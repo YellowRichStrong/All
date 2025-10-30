@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Color Extraction - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Image Color Extraction</h2>
+                    <p>Extract dominant colors from your images</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Upload Area -->
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="imageUpload" accept="image/*">
+                        <div class="upload-icon">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                        </div>
+                        <p>Drag and drop your image here, or</p>
+                        <button class="upload-btn" onclick="document.getElementById('imageUpload').click()">Select Image</button>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="options">
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="colorCount">Number of Colors</label>
+                                <input type="range" id="colorCount" min="1" max="20" value="8">
+                                <span id="colorCountValue">8 colors</span>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="quality">Quality (lower = faster)</label>
+                                <select id="quality">
+                                    <option value="10">High</option>
+                                    <option value="20" selected>Medium</option>
+                                    <option value="30">Low</option>
+                                    <option value="50">Very Low</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Area -->
+                    <div class="preview">
+                        <h3>Preview</h3>
+                        <div class="preview-container">
+                            <img id="previewImage" style="display: none; max-width: 100%; height: auto;">
+                            <canvas id="previewCanvas" style="display: none;"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Extracted Colors -->
+                    <div class="extracted-colors">
+                        <h3>Extracted Colors</h3>
+                        <div class="color-palette" id="colorPalette"></div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="extractColorsBtn">Extract Colors</button>
+                        <button class="action-btn" id="copyAllBtn">Copy All Colors</button>
+                        <a href="#" class="download-btn" id="downloadPaletteBtn" style="display: none;">Download Palette</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageUpload = document.getElementById('imageUpload');
+            const uploadArea = document.getElementById('uploadArea');
+            const colorCount = document.getElementById('colorCount');
+            const colorCountValue = document.getElementById('colorCountValue');
+            const quality = document.getElementById('quality');
+            const previewImage = document.getElementById('previewImage');
+            const previewCanvas = document.getElementById('previewCanvas');
+            const colorPalette = document.getElementById('colorPalette');
+            const extractColorsBtn = document.getElementById('extractColorsBtn');
+            const copyAllBtn = document.getElementById('copyAllBtn');
+            const downloadPaletteBtn = document.getElementById('downloadPaletteBtn');
+            
+            const ctx = previewCanvas.getContext('2d');
+            let extractedColors = [];
+            let imageData = null;
+            
+            // Set up drag and drop
+            Utils.setupDragAndDrop(uploadArea, imageUpload, null);
+            
+            // Handle file upload
+            imageUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = new Image();
+                        img.onload = function() {
+                            // Display preview
+                            previewImage.src = e.target.result;
+                            previewImage.style.display = 'block';
+                            
+                            // Set canvas size
+                            const MAX_WIDTH = 600;
+                            const MAX_HEIGHT = 400;
+                            let width = img.width;
+                            let height = img.height;
+                            
+                            if (width > height) {
+                                if (width > MAX_WIDTH) {
+                                    height *= MAX_WIDTH / width;
+                                    width = MAX_WIDTH;
+                                }
+                            } else {
+                                if (height > MAX_HEIGHT) {
+                                    width *= MAX_HEIGHT / height;
+                                    height = MAX_HEIGHT;
+                                }
+                            }
+                            
+                            previewCanvas.width = width;
+                            previewCanvas.height = height;
+                            ctx.drawImage(img, 0, 0, width, height);
+                            
+                            imageData = ctx.getImageData(0, 0, width, height).data;
+                            Utils.showNotification('Image uploaded successfully!');
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Update color count display
+            colorCount.addEventListener('input', function() {
+                colorCountValue.textContent = `${this.value} colors`;
+            });
+            
+            // Extract colors function
+            function extractColors() {
+                if (!imageData) {
+                    Utils.showNotification('Please upload an image first', 'error');
+                    return;
+                }
+                
+                const count = parseInt(colorCount.value);
+                const qualityFactor = parseInt(quality.value);
+                
+                // Reduce image resolution for performance
+                const pixels = [];
+                const totalPixels = previewCanvas.width * previewCanvas.height;
+                
+                for (let i = 0; i < totalPixels; i += qualityFactor) {
+                    const pixelIndex = i * 4;
+                    const r = imageData[pixelIndex];
+                    const g = imageData[pixelIndex + 1];
+                    const b = imageData[pixelIndex + 2];
+                    const a = imageData[pixelIndex + 3];
+                    
+                    // Skip transparent pixels
+                    if (a > 128) {
+                        pixels.push([r, g, b]);
+                    }
+                }
+                
+                // Use K-means clustering to find dominant colors
+                extractedColors = kmeans(pixels, count);
+                
+                // Sort colors by perceived brightness
+                extractedColors.sort((a, b) => {
+                    const brightnessA = 0.299 * a[0] + 0.587 * a[1] + 0.114 * a[2];
+                    const brightnessB = 0.299 * b[0] + 0.587 * b[1] + 0.114 * b[2];
+                    return brightnessB - brightnessA; // Descending order
+                });
+                
+                // Display colors
+                displayColors(extractedColors);
+                
+                // Show download button
+                downloadPaletteBtn.style.display = 'inline-block';
+                
+                Utils.showNotification(`${count} colors extracted successfully!`);
+            }
+            
+            // Simple K-means clustering implementation
+            function kmeans(data, k) {
+                // Initialize centroids randomly
+                let centroids = [];
+                for (let i = 0; i < k; i++) {
+                    const randomIndex = Math.floor(Math.random() * data.length);
+                    centroids.push([...data[randomIndex]]);
+                }
+                
+                let clusters = [];
+                let iterations = 0;
+                let maxIterations = 10;
+                
+                while (iterations < maxIterations) {
+                    // Assign data points to clusters
+                    clusters = Array(k).fill().map(() => []);
+                    
+                    data.forEach(point => {
+                        let minDistance = Infinity;
+                        let closestCluster = 0;
+                        
+                        centroids.forEach((centroid, index) => {
+                            const distance = euclideanDistance(point, centroid);
+                            if (distance < minDistance) {
+                                minDistance = distance;
+                                closestCluster = index;
+                            }
+                        });
+                        
+                        clusters[closestCluster].push(point);
+                    });
+                    
+                    // Update centroids
+                    let converged = true;
+                    centroids.forEach((centroid, index) => {
+                        if (clusters[index].length === 0) {
+                            return;
+                        }
+                        
+                        const newCentroid = clusters[index].reduce((sum, point) => {
+                            sum[0] += point[0];
+                            sum[1] += point[1];
+                            sum[2] += point[2];
+                            return sum;
+                        }, [0, 0, 0]);
+                        
+                        newCentroid[0] = Math.round(newCentroid[0] / clusters[index].length);
+                        newCentroid[1] = Math.round(newCentroid[1] / clusters[index].length);
+                        newCentroid[2] = Math.round(newCentroid[2] / clusters[index].length);
+                        
+                        if (euclideanDistance(centroid, newCentroid) > 1) {
+                            converged = false;
+                            centroids[index] = newCentroid;
+                        }
+                    });
+                    
+                    if (converged) break;
+                    iterations++;
+                }
+                
+                // Filter out empty clusters
+                return centroids.filter(centroid => centroid.every(channel => !isNaN(channel)));
+            }
+            
+            // Euclidean distance between two points
+            function euclideanDistance(a, b) {
+                const r = a[0] - b[0];
+                const g = a[1] - b[1];
+                const b = a[2] - b[2];
+                return Math.sqrt(r * r + g * g + b * b);
+            }
+            
+            // Display extracted colors
+            function displayColors(colors) {
+                colorPalette.innerHTML = '';
+                
+                colors.forEach(color => {
+                    const colorHex = rgbToHex(color[0], color[1], color[2]);
+                    const colorRgb = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                    
+                    const colorItem = document.createElement('div');
+                    colorItem.className = 'color-item';
+                    
+                    const colorSwatch = document.createElement('div');
+                    colorSwatch.className = 'color-swatch';
+                    colorSwatch.style.backgroundColor = colorRgb;
+                    colorSwatch.setAttribute('data-color', colorHex);
+                    
+                    const colorInfo = document.createElement('div');
+                    colorInfo.className = 'color-info';
+                    colorInfo.innerHTML = `
+                        <div class="color-hex">${colorHex}</div>
+                        <div class="color-rgb">${colorRgb}</div>
+                    `;
+                    
+                    const copyBtn = document.createElement('button');
+                    copyBtn.className = 'copy-btn';
+                    copyBtn.textContent = 'Copy';
+                    copyBtn.onclick = function() {
+                        Utils.copyToClipboard(colorHex);
+                        Utils.showNotification('Color copied to clipboard!');
+                    };
+                    
+                    colorItem.appendChild(colorSwatch);
+                    colorItem.appendChild(colorInfo);
+                    colorItem.appendChild(copyBtn);
+                    colorPalette.appendChild(colorItem);
+                });
+            }
+            
+            // Convert RGB to HEX
+            function rgbToHex(r, g, b) {
+                return '#' + [r, g, b].map(x => {
+                    const hex = x.toString(16);
+                    return hex.length === 1 ? '0' + hex : hex;
+                }).join('').toUpperCase();
+            }
+            
+            // Extract colors button
+            extractColorsBtn.addEventListener('click', extractColors);
+            
+            // Copy all colors button
+            copyAllBtn.addEventListener('click', function() {
+                if (extractedColors.length === 0) {
+                    Utils.showNotification('No colors to copy', 'error');
+                    return;
+                }
+                
+                const allColors = extractedColors.map(color => 
+                    rgbToHex(color[0], color[1], color[2])
+                ).join('\n');
+                
+                Utils.copyToClipboard(allColors);
+                Utils.showNotification('All colors copied to clipboard!');
+            });
+            
+            // Download palette button
+            downloadPaletteBtn.addEventListener('click', function() {
+                if (extractedColors.length === 0) {
+                    Utils.showNotification('No colors to download', 'error');
+                    return;
+                }
+                
+                // Create a palette image
+                const paletteWidth = extractedColors.length * 80;
+                const paletteHeight = 80;
+                const paletteCanvas = document.createElement('canvas');
+                paletteCanvas.width = paletteWidth;
+                paletteCanvas.height = paletteHeight;
+                const paletteCtx = paletteCanvas.getContext('2d');
+                
+                extractedColors.forEach((color, index) => {
+                    paletteCtx.fillStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                    paletteCtx.fillRect(index * 80, 0, 80, paletteHeight);
+                });
+                
+                // Convert to data URL and download
+                const dataURL = paletteCanvas.toDataURL('image/png');
+                downloadPaletteBtn.href = dataURL;
+                downloadPaletteBtn.download = 'color-palette.png';
+            });
+        });
+    </script>
+    <style>
+        .color-palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .color-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            min-width: 200px;
+        }
+        
+        .color-swatch {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+        
+        .color-info {
+            padding: 10px;
+            flex: 1;
+        }
+        
+        .color-hex {
+            font-weight: bold;
+            font-family: monospace;
+            margin-bottom: 4px;
+        }
+        
+        .color-rgb {
+            font-size: 12px;
+            color: #666;
+            font-family: monospace;
+        }
+        
+        .copy-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        @media (max-width: 600px) {
+            .color-palette {
+                flex-direction: column;
+            }
+            
+            .color-item {
+                width: 100%;
+            }
+        }
+    </style>
+</body>
+</html>

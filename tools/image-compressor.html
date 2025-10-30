@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线图片压缩工具 - 免费压缩JPG/PNG/WebP图片大小 - OOPEN AII</title>
+    <meta name="description" content="免费在线图片压缩工具，支持JPG、PNG、WebP等多种格式图片压缩，保持图片质量的同时大幅减小图片体积，提升网页加载速度。">
+    <meta name="keywords" content="图片压缩,压缩图片,图片大小压缩,JPG压缩,PNG压缩,WebP压缩,在线压缩图片,免费图片压缩">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/image-compressor.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/image-compressor.html">
+    <meta property="og:title" content="在线图片压缩工具 - OOPEN AII">
+    <meta property="og:description" content="免费在线图片压缩工具，支持JPG、PNG、WebP等多种格式图片压缩，保持图片质量的同时减小体积。">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/image-compressor.html">
+    <meta property="twitter:title" content="在线图片压缩工具 - OOPEN AII">
+    <meta property="twitter:description" content="免费在线图片压缩工具，支持JPG、PNG、WebP等多种格式图片压缩，保持图片质量的同时减小体积。">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Image Compressor</h2>
+                    <p>Reduce image file size while maintaining quality</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Upload Section -->
+                    <div class="upload-section">
+                        <div class="upload-container">
+                            <div class="upload-box" id="uploadBox">
+                                <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;">
+                                <label for="imageUpload" class="upload-label">
+                                    <div class="upload-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#999" viewBox="0 0 16 16">
+                                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 13a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/>
+                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                        </svg>
+                                    </div>
+                                    <p>Drag and drop images here, or click to select</p>
+                                    <p class="upload-hint">Supports JPG, PNG, WebP, GIF, and BMP formats. Multiple files supported.</p>
+                                </label>
+                            </div>
+                            <div class="upload-info">
+                                <div id="imagesList" class="images-list"></div>
+                                <div id="uploadProgress" class="upload-progress" style="display: none;">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 0%;"></div>
+                                    </div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview and Controls -->
+                    <div class="preview-section" id="previewSection" style="display: none;">
+                        <div id="previewContainer" class="preview-container">
+                            <!-- Dynamic content will be inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Compression Settings -->
+                    <div class="settings-section">
+                        <h3>Compression Settings</h3>
+                        <div class="settings-groups">
+                            <div class="settings-group">
+                                <div class="settings-header">
+                                    <h4>Quality Level</h4>
+                                    <p>Set the compression level for your images</p>
+                                </div>
+                                <div class="quality-presets">
+                                    <label class="preset-option">
+                                        <input type="radio" name="qualityPreset" value="high" checked>
+                                        <div class="preset-content">
+                                            <h5>High Quality</h5>
+                                            <p>Minimal compression, almost no visible loss</p>
+                                            <div class="preset-info">
+                                                <span>Quality: 80-90%</span>
+                                                <span>File Size: ~60% reduction</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="preset-option">
+                                        <input type="radio" name="qualityPreset" value="medium" checked>
+                                        <div class="preset-content">
+                                            <h5>Medium Quality</h5>
+                                            <p>Balanced quality and compression</p>
+                                            <div class="preset-info">
+                                                <span>Quality: 60-70%</span>
+                                                <span>File Size: ~75% reduction</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="preset-option">
+                                        <input type="radio" name="qualityPreset" value="low">
+                                        <div class="preset-content">
+                                            <h5>Low Quality</h5>
+                                            <p>High compression, some visible artifacts</p>
+                                            <div class="preset-info">
+                                                <span>Quality: 40-50%</span>
+                                                <span>File Size: ~85% reduction</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="preset-option">
+                                        <input type="radio" name="qualityPreset" value="custom">
+                                        <div class="preset-content">
+                                            <h5>Custom Quality</h5>
+                                            <p>Set your own compression parameters</p>
+                                            <div class="custom-quality-control" style="display: none;">
+                                                <label for="customQuality">Quality:</label>
+                                                <div class="range-with-value">
+                                                    <input type="range" id="customQuality" min="1" max="100" value="75">
+                                                    <span class="range-value">75</span>
+                                                </div>
+                                                <div class="quality-preview"></div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings-group">
+                                <div class="settings-header">
+                                    <h4>Format Options</h4>
+                                </div>
+                                <div class="format-options">
+                                    <div class="format-option">
+                                        <label>
+                                            <input type="radio" name="outputFormat" value="keep" checked>
+                                            Keep Original Format
+                                        </label>
+                                    </div>
+                                    <div class="format-option">
+                                        <label>
+                                            <input type="radio" name="outputFormat" value="convert">
+                                            Convert to:
+                                        </label>
+                                        <select id="convertToFormat">
+                                            <option value="jpeg">JPEG</option>
+                                            <option value="png">PNG</option>
+                                            <option value="webp">WebP</option>
+                                            <option value="avif">AVIF</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="settings-group">
+                                <div class="settings-header">
+                                    <h4>Resize Options</h4>
+                                    <p>Resize images to reduce file size further</p>
+                                </div>
+                                <div class="resize-options">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="resizeImage">
+                                        Resize image
+                                    </label>
+                                    <div class="resize-controls" style="display: none;">
+                                        <div class="resize-method">
+                                            <label>
+                                                <input type="radio" name="resizeMethod" value="percentage" checked>
+                                                Reduce by percentage
+                                            </label>
+                                            <div class="resize-percentage">
+                                                <input type="range" id="resizePercentage" min="10" max="100" value="80">
+                                                <span class="range-value">80%</span>
+                                            </div>
+                                        </div>
+                                        <div class="resize-method">
+                                            <label>
+                                                <input type="radio" name="resizeMethod" value="dimensions">
+                                                Set maximum dimensions
+                                            </label>
+                                            <div class="resize-dimensions">
+                                                <input type="number" id="maxWidth" placeholder="Max Width">
+                                                <span>×</span>
+                                                <input type="number" id="maxHeight" placeholder="Max Height">
+                                                <label class="checkbox-option">
+                                                    <input type="checkbox" id="preserveAspectRatio" checked>
+                                                    Preserve aspect ratio
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="settings-group">
+                                <div class="settings-header">
+                                    <h4>Advanced Options</h4>
+                                </div>
+                                <div class="advanced-options">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="removeMetadata">
+                                        Remove metadata
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="optimizePalette" data-format="png">
+                                        Optimize color palette (PNG only)
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="useProgressive" data-format="jpeg">
+                                        Use progressive format (JPEG only)
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="stripAlpha" data-format="jpeg">
+                                        Convert transparent areas to white (when converting to JPEG)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="compressBtn" disabled>Compress Images</button>
+                        <button class="action-btn" id="resetBtn" disabled>Clear All</button>
+                        <button class="action-btn" id="downloadAllBtn" disabled>Download All</button>
+                    </div>
+
+                    <!-- Compression Results -->
+                    <div class="results-section" id="resultsSection" style="display: none;">
+                        <h3>Compression Results</h3>
+                        <div class="results-overview">
+                            <div class="result-stat">
+                                <div class="stat-value" id="totalOriginalSize">0 KB</div>
+                                <div class="stat-label">Original Size</div>
+                            </div>
+                            <div class="result-stat">
+                                <div class="stat-value" id="totalCompressedSize">0 KB</div>
+                                <div class="stat-label">Compressed Size</div>
+                            </div>
+                            <div class="result-stat">
+                                <div class="stat-value" id="totalReduction">0%</div>
+                                <div class="stat-label">Size Reduction</div>
+                            </div>
+                            <div class="result-stat">
+                                <div class="stat-value" id="compressionTime">0s</div>
+                                <div class="stat-label">Compression Time</div>
+                            </div>
+                        </div>
+                        <div id="compressedFilesList" class="compressed-files-list">
+                            <!-- Dynamic content will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Main elements
+            const uploadBox = document.getElementById('uploadBox');
+            const imageUpload = document.getElementById('imageUpload');
+            const imagesList = document.getElementById('imagesList');
+            const uploadProgress = document.getElementById('uploadProgress');
+            const previewSection = document.getElementById('previewSection');
+            const previewContainer = document.getElementById('previewContainer');
+            const compressBtn = document.getElementById('compressBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const downloadAllBtn = document.getElementById('downloadAllBtn');
+            const resultsSection = document.getElementById('resultsSection');
+            const compressedFilesList = document.getElementById('compressedFilesList');
+            
+            // Stats elements
+            const totalOriginalSize = document.getElementById('totalOriginalSize');
+            const totalCompressedSize = document.getElementById('totalCompressedSize');
+            const totalReduction = document.getElementById('totalReduction');
+            const compressionTime = document.getElementById('compressionTime');
+            
+            // Quality settings
+            const qualityPresets = document.querySelectorAll('input[name="qualityPreset"]');
+            const customQualityControl = document.querySelector('.custom-quality-control');
+            const customQuality = document.getElementById('customQuality');
+            
+            // Format settings
+            const outputFormat = document.querySelectorAll('input[name="outputFormat"]');
+            const convertToFormat = document.getElementById('convertToFormat');
+            
+            // Resize settings
+            const resizeImage = document.getElementById('resizeImage');
+            const resizeControls = document.querySelector('.resize-controls');
+            const resizeMethod = document.querySelectorAll('input[name="resizeMethod"]');
+            const resizePercentage = document.getElementById('resizePercentage');
+            const maxWidth = document.getElementById('maxWidth');
+            const maxHeight = document.getElementById('maxHeight');
+            const preserveAspectRatio = document.getElementById('preserveAspectRatio');
+            
+            // Advanced options
+            const removeMetadata = document.getElementById('removeMetadata');
+            const optimizePalette = document.getElementById('optimizePalette');
+            const useProgressive = document.getElementById('useProgressive');
+            const stripAlpha = document.getElementById('stripAlpha');
+            
+            // Range value displays
+            const rangeValues = document.querySelectorAll('.range-value');
+            
+            // Store uploaded files and their data
+            let uploadedFiles = [];
+            let compressedFiles = [];
+            
+            // Initialize event listeners
+            initEventListeners();
+            
+            function initEventListeners() {
+                // Upload handling
+                uploadBox.addEventListener('dragover', handleDragOver);
+                uploadBox.addEventListener('dragleave', handleDragLeave);
+                uploadBox.addEventListener('drop', handleDrop);
+                imageUpload.addEventListener('change', handleFileSelect);
+                
+                // Quality preset selection
+                qualityPresets.forEach(preset => {
+                    preset.addEventListener('change', function() {
+                        customQualityControl.style.display = this.value === 'custom' ? 'block' : 'none';
+                    });
+                });
+                
+                // Custom quality slider
+                customQuality.addEventListener('input', function() {
+                    updateRangeValue.call(this);
+                    updateQualityPreview(this.value);
+                });
+                
+                // Format selection
+                outputFormat.forEach(format => {
+                    format.addEventListener('change', updateFormatOptions);
+                });
+                
+                // Resize options
+                resizeImage.addEventListener('change', function() {
+                    resizeControls.style.display = this.checked ? 'block' : 'none';
+                    updateResizeControls();
+                });
+                
+                resizeMethod.forEach(method => {
+                    method.addEventListener('change', updateResizeControls);
+                });
+                
+                resizePercentage.addEventListener('input', updateRangeValue);
+                
+                // Action buttons
+                compressBtn.addEventListener('click', compressImages);
+                resetBtn.addEventListener('click', clearAll);
+                downloadAllBtn.addEventListener('click', downloadAll);
+                
+                // Initialize range values
+                updateRangeValue.call(customQuality);
+                updateRangeValue.call(resizePercentage);
+                
+                // Initialize format options
+                updateFormatOptions();
+                updateQualityPreview(customQuality.value);
+                
+                // Set default quality preset
+                document.querySelector('input[name="qualityPreset"][value="medium"]').checked = true;
+            }
+            
+            function handleDragOver(e) {
+                e.preventDefault();
+                uploadBox.classList.add('dragover');
+            }
+            
+            function handleDragLeave() {
+                uploadBox.classList.remove('dragover');
+            }
+            
+            function handleDrop(e) {
+                e.preventDefault();
+                uploadBox.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length > 0) {
+                    processFiles(e.dataTransfer.files);
+                }
+            }
+            
+            function handleFileSelect(e) {
+                if (e.target.files.length > 0) {
+                    processFiles(e.target.files);
+                }
+            }
+            
+            function processFiles(files) {
+                // Show progress bar
+                uploadProgress.style.display = 'block';
+                const progressBar = uploadProgress.querySelector('.progress-fill');
+                const progressText = uploadProgress.querySelector('.progress-text');
+                
+                let totalFiles = files.length;
+                let processedFiles = 0;
+                
+                // Reset if this is the first upload
+                if (uploadedFiles.length === 0) {
+                    imagesList.innerHTML = '';
+                    previewContainer.innerHTML = '';
+                }
+                
+                // Process each file
+                Array.from(files).forEach(file => {
+                    // Check file type
+                    if (!file.type.match('image.*')) {
+                        Utils.showNotification(`Skipping ${file.name}: Not an image file!`, 'warning');
+                        processedFiles++;
+                        updateProgress();
+                        return;
+                    }
+                    
+                    // Check if file already uploaded
+                    if (uploadedFiles.some(f => f.name === file.name && f.size === file.size)) {
+                        Utils.showNotification(`Skipping ${file.name}: Already uploaded!`, 'warning');
+                        processedFiles++;
+                        updateProgress();
+                        return;
+                    }
+                    
+                    // Create file entry
+                    const fileEntry = {
+                        name: file.name,
+                        size: file.size,
+                        type: file.type,
+                        file: file
+                    };
+                    
+                    // Add to uploaded files
+                    uploadedFiles.push(fileEntry);
+                    
+                    // Create file item in list
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.dataset.index = uploadedFiles.length - 1;
+                    fileItem.innerHTML = `
+                        <div class="file-info">
+                            <div class="file-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#666" viewBox="0 0 16 16">
+                                    <path d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
+                                    <path d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                            </div>
+                            <div class="file-details">
+                                <p class="file-name">${file.name}</p>
+                                <p class="file-size">${formatFileSize(file.size)} • ${file.type.split('/')[1].toUpperCase()}</p>
+                            </div>
+                        </div>
+                        <button class="remove-file-btn" title="Remove file">&times;</button>
+                    `;
+                    imagesList.appendChild(fileItem);
+                    
+                    // Add event listener to remove button
+                    const removeBtn = fileItem.querySelector('.remove-file-btn');
+                    removeBtn.addEventListener('click', function() {
+                        const index = parseInt(fileItem.dataset.index);
+                        uploadedFiles.splice(index, 1);
+                        updateFileIndices();
+                        fileItem.remove();
+                        
+                        // Update preview
+                        updatePreviews();
+                        
+                        // Update buttons state
+                        updateButtonsState();
+                    });
+                    
+                    // Create preview
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // Create preview item
+                        const previewItem = document.createElement('div');
+                        previewItem.className = 'preview-item';
+                        previewItem.dataset.index = uploadedFiles.length - 1;
+                        
+                        // Create image to get dimensions
+                        const img = new Image();
+                        img.onload = function() {
+                            previewItem.innerHTML = `
+                                <div class="preview-header">
+                                    <h4>${file.name}</h4>
+                                    <button class="remove-preview-btn" title="Remove image">&times;</button>
+                                </div>
+                                <div class="preview-image-container">
+                                    <img src="${e.target.result}" alt="${file.name}" class="preview-image">
+                                    <div class="preview-info">
+                                        <span>${img.width} × ${img.height}</span>
+                                        <span>${formatFileSize(file.size)}</span>
+                                    </div>
+                                </div>
+                                <div class="preview-result" style="display: none;">
+                                    <div class="result-info">
+                                        <span class="compressed-size"></span>
+                                        <span class="reduction-percentage"></span>
+                                    </div>
+                                    <a href="#" class="download-single-btn">Download</a>
+                                </div>
+                            `;
+                            previewContainer.appendChild(previewItem);
+                            
+                            // Add event listener to remove button
+                            const removeBtn = previewItem.querySelector('.remove-preview-btn');
+                            removeBtn.addEventListener('click', function() {
+                                const index = parseInt(previewItem.dataset.index);
+                                uploadedFiles.splice(index, 1);
+                                updateFileIndices();
+                                previewItem.remove();
+                                
+                                // Update file list
+                                updateFileList();
+                                
+                                // Update buttons state
+                                updateButtonsState();
+                            });
+                            
+                            // Show preview section
+                            previewSection.style.display = 'block';
+                            
+                            processedFiles++;
+                            updateProgress();
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                });
+                
+                function updateProgress() {
+                    const progress = Math.round((processedFiles / totalFiles) * 100);
+                    progressBar.style.width = `${progress}%`;
+                    progressText.textContent = `${progress}%`;
+                    
+                    if (processedFiles >= totalFiles) {
+                        setTimeout(() => {
+                            uploadProgress.style.display = 'none';
+                        }, 500);
+                        
+                        // Update buttons state
+                        updateButtonsState();
+                    }
+                }
+            }
+            
+            function updateFileIndices() {
+                // Update indices in file list
+                document.querySelectorAll('.file-item').forEach((item, index) => {
+                    item.dataset.index = index;
+                });
+                
+                // Update indices in preview items
+                document.querySelectorAll('.preview-item').forEach((item, index) => {
+                    item.dataset.index = index;
+                });
+            }
+            
+            function updateFileList() {
+                imagesList.innerHTML = '';
+                
+                uploadedFiles.forEach((file, index) => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.dataset.index = index;
+                    fileItem.innerHTML = `
+                        <div class="file-info">
+                            <div class="file-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#666" viewBox="0 0 16 16">
+                                    <path d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
+                                    <path d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                            </div>
+                            <div class="file-details">
+                                <p class="file-name">${file.name}</p>
+                                <p class="file-size">${formatFileSize(file.size)} • ${file.type.split('/')[1].toUpperCase()}</p>
+                            </div>
+                        </div>
+                        <button class="remove-file-btn" title="Remove file">&times;</button>
+                    `;
+                    imagesList.appendChild(fileItem);
+                    
+                    // Add event listener to remove button
+                    const removeBtn = fileItem.querySelector('.remove-file-btn');
+                    removeBtn.addEventListener('click', function() {
+                        const index = parseInt(fileItem.dataset.index);
+                        uploadedFiles.splice(index, 1);
+                        updateFileIndices();
+                        fileItem.remove();
+                        
+                        // Update preview
+                        updatePreviews();
+                        
+                        // Update buttons state
+                        updateButtonsState();
+                    });
+                });
+            }
+            
+            function updatePreviews() {
+                const previewItems = document.querySelectorAll('.preview-item');
+                previewItems.forEach((item, index) => {
+                    if (index >= uploadedFiles.length) {
+                        item.remove();
+                    }
+                });
+                
+                if (uploadedFiles.length === 0) {
+                    previewSection.style.display = 'none';
+                }
+            }
+            
+            function updateButtonsState() {
+                const hasFiles = uploadedFiles.length > 0;
+                compressBtn.disabled = !hasFiles;
+                resetBtn.disabled = !hasFiles;
+                downloadAllBtn.disabled = compressedFiles.length === 0;
+            }
+            
+            function updateFormatOptions() {
+                const convertTo = document.querySelector('input[name="outputFormat"][value="convert"]').checked;
+                convertToFormat.disabled = !convertTo;
+                
+                // Show/hide format-specific options
+                const selectedFormat = convertTo ? convertToFormat.value : null;
+                document.querySelectorAll('[data-format]').forEach(option => {
+                    if (selectedFormat) {
+                        option.style.display = option.dataset.format === selectedFormat ? 'block' : 'none';
+                    } else {
+                        option.style.display = 'block';
+                    }
+                });
+            }
+            
+            function updateResizeControls() {
+                const percentageMethod = document.querySelector('input[name="resizeMethod"][value="percentage"]').checked;
+                document.querySelector('.resize-percentage').style.display = percentageMethod ? 'block' : 'none';
+                document.querySelector('.resize-dimensions').style.display = !percentageMethod ? 'block' : 'none';
+            }
+            
+            function updateRangeValue() {
+                const value = this.value;
+                const suffix = this.id === 'resizePercentage' ? '%' : '';
+                
+                // Find the corresponding range value display
+                let rangeValue;
+                if (this === customQuality) rangeValue = rangeValues[0];
+                else if (this === resizePercentage) rangeValue = rangeValues[1];
+                
+                if (rangeValue) {
+                    rangeValue.textContent = value + suffix;
+                }
+            }
+            
+            function updateQualityPreview(quality) {
+                const qualityPreview = document.querySelector('.quality-preview');
+                let previewClass = 'quality-excellent';
+                
+                if (quality >= 80) previewClass = 'quality-excellent';
+                else if (quality >= 60) previewClass = 'quality-good';
+                else if (quality >= 40) previewClass = 'quality-fair';
+                else previewClass = 'quality-poor';
+                
+                qualityPreview.className = 'quality-preview';
+                qualityPreview.classList.add(previewClass);
+                
+                let qualityDesc = 'Excellent quality';
+                if (quality >= 80) qualityDesc = 'Excellent quality';
+                else if (quality >= 60) qualityDesc = 'Good quality';
+                else if (quality >= 40) qualityDesc = 'Fair quality';
+                else qualityDesc = 'Poor quality';
+                
+                qualityPreview.textContent = qualityDesc;
+            }
+            
+            function getQualityValue() {
+                const selectedPreset = document.querySelector('input[name="qualityPreset"]:checked').value;
+                
+                switch(selectedPreset) {
+                    case 'high':
+                        return 85;
+                    case 'medium':
+                        return 70;
+                    case 'low':
+                        return 45;
+                    case 'custom':
+                        return parseInt(customQuality.value);
+                    default:
+                        return 70;
+                }
+            }
+            
+            function getOutputFormat(file) {
+                const formatOption = document.querySelector('input[name="outputFormat"]:checked').value;
+                
+                if (formatOption === 'keep') {
+                    return file.type.split('/')[1];
+                } else {
+                    return convertToFormat.value;
+                }
+            }
+            
+            function compressImages() {
+                if (uploadedFiles.length === 0) return;
+                
+                // Show progress bar
+                uploadProgress.style.display = 'block';
+                const progressBar = uploadProgress.querySelector('.progress-fill');
+                const progressText = uploadProgress.querySelector('.progress-text');
+                
+                let totalFiles = uploadedFiles.length;
+                let compressedCount = 0;
+                let totalOriginalSizeValue = 0;
+                let totalCompressedSizeValue = 0;
+                const startTime = performance.now();
+                
+                // Clear previous results
+                compressedFiles = [];
+                document.querySelectorAll('.preview-result').forEach(result => {
+                    result.style.display = 'none';
+                });
+                
+                uploadedFiles.forEach((fileEntry, index) => {
+                    totalOriginalSizeValue += fileEntry.size;
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = new Image();
+                        img.onload = function() {
+                            // Create canvas for manipulation
+                            const canvas = document.createElement('canvas');
+                            const ctx = canvas.getContext('2d');
+                            
+                            // Set canvas dimensions
+                            let width = img.width;
+                            let height = img.height;
+                            
+                            // Apply resizing if enabled
+                            if (resizeImage.checked) {
+                                const resizeOption = document.querySelector('input[name="resizeMethod"]:checked').value;
+                                
+                                if (resizeOption === 'percentage') {
+                                    const percentage = parseInt(resizePercentage.value) / 100;
+                                    width *= percentage;
+                                    height *= percentage;
+                                } else {
+                                    const maxW = parseInt(maxWidth.value) || width;
+                                    const maxH = parseInt(maxHeight.value) || height;
+                                    
+                                    if (preserveAspectRatio.checked) {
+                                        const ratio = Math.min(maxW / width, maxH / height);
+                                        width *= ratio;
+                                        height *= ratio;
+                                    } else {
+                                        width = maxW || width;
+                                        height = maxH || height;
+                                    }
+                                }
+                            }
+                            
+                            canvas.width = width;
+                            canvas.height = height;
+                            
+                            // Fill with white if needed
+                            const outputFormat = getOutputFormat(fileEntry);
+                            if (outputFormat === 'jpeg' && stripAlpha.checked) {
+                                ctx.fillStyle = 'white';
+                                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                            }
+                            
+                            // Draw image
+                            ctx.drawImage(img, 0, 0, width, height);
+                            
+                            // Get quality
+                            const quality = getQualityValue() / 100;
+                            
+                            // Get MIME type
+                            let mimeType = `image/${outputFormat}`;
+                            
+                            // Convert to data URL
+                            let dataURL;
+                            if (outputFormat === 'jpeg') {
+                                const options = {};
+                                if (useProgressive.checked) {
+                                    // In canvas, progressive JPEG isn't directly supported, but we'll still compress
+                                }
+                                dataURL = canvas.toDataURL(mimeType, quality);
+                            } else if (outputFormat === 'png') {
+                                // For PNG, quality isn't directly applicable, but we can use it as a guide
+                                dataURL = canvas.toDataURL(mimeType);
+                            } else if (outputFormat === 'webp') {
+                                dataURL = canvas.toDataURL(mimeType, quality);
+                            } else {
+                                // Default to original format
+                                dataURL = canvas.toDataURL(fileEntry.type, quality);
+                            }
+                            
+                            // Convert data URL to blob to get size
+                            fetch(dataURL)
+                                .then(res => res.blob())
+                                .then(blob => {
+                                    // Create compressed file entry
+                                    const compressedEntry = {
+                                        name: fileEntry.name.replace(/\.[^/.]+$/, '') + '.' + outputFormat,
+                                        size: blob.size,
+                                        type: blob.type,
+                                        dataURL: dataURL,
+                                        originalSize: fileEntry.size
+                                    };
+                                    
+                                    compressedFiles[index] = compressedEntry;
+                                    totalCompressedSizeValue += blob.size;
+                                    
+                                    // Update preview result
+                                    const previewItem = document.querySelector(`.preview-item[data-index="${index}"]`);
+                                    if (previewItem) {
+                                        const resultElement = previewItem.querySelector('.preview-result');
+                                        const compressedSize = previewItem.querySelector('.compressed-size');
+                                        const reductionPercentage = previewItem.querySelector('.reduction-percentage');
+                                        const downloadBtn = previewItem.querySelector('.download-single-btn');
+                                        
+                                        compressedSize.textContent = formatFileSize(blob.size);
+                                        const reduction = ((1 - blob.size / fileEntry.size) * 100).toFixed(1);
+                                        reductionPercentage.textContent = `${reduction}% smaller`;
+                                        
+                                        downloadBtn.href = dataURL;
+                                        downloadBtn.download = compressedEntry.name;
+                                        
+                                        // Show result
+                                        resultElement.style.display = 'flex';
+                                    }
+                                    
+                                    compressedCount++;
+                                    updateProgress();
+                                });
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(fileEntry.file);
+                });
+                
+                function updateProgress() {
+                    const progress = Math.round((compressedCount / totalFiles) * 100);
+                    progressBar.style.width = `${progress}%`;
+                    progressText.textContent = `${progress}%`;
+                    
+                    if (compressedCount >= totalFiles) {
+                        setTimeout(() => {
+                            uploadProgress.style.display = 'none';
+                            
+                            // Update results section
+                            updateResultsSection(totalOriginalSizeValue, totalCompressedSizeValue, startTime);
+                            
+                            // Enable download all button
+                            downloadAllBtn.disabled = false;
+                        }, 500);
+                    }
+                }
+            }
+            
+            function updateResultsSection(originalSize, compressedSize, startTime) {
+                // Calculate metrics
+                const reduction = ((1 - compressedSize / originalSize) * 100).toFixed(1);
+                const endTime = performance.now();
+                const timeTaken = ((endTime - startTime) / 1000).toFixed(1);
+                
+                // Update stats
+                totalOriginalSize.textContent = formatFileSize(originalSize);
+                totalCompressedSize.textContent = formatFileSize(compressedSize);
+                totalReduction.textContent = `${reduction}%`;
+                compressionTime.textContent = `${timeTaken}s`;
+                
+                // Update compressed files list
+                compressedFilesList.innerHTML = '';
+                compressedFiles.forEach((file, index) => {
+                    if (!file) return; // Skip if undefined (shouldn't happen)
+                    
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'compressed-file-item';
+                    
+                    const reduction = ((1 - file.size / file.originalSize) * 100).toFixed(1);
+                    
+                    fileItem.innerHTML = `
+                        <div class="compressed-file-info">
+                            <div class="file-name">${file.name}</div>
+                            <div class="file-meta">
+                                <span>${formatFileSize(file.size)} (${reduction}% smaller)</span>
+                                <span>${file.type.split('/')[1].toUpperCase()}</span>
+                            </div>
+                        </div>
+                        <a href="${file.dataURL}" download="${file.name}" class="download-btn">Download</a>
+                    `;
+                    compressedFilesList.appendChild(fileItem);
+                });
+                
+                // Show results section
+                resultsSection.style.display = 'block';
+            }
+            
+            function downloadAll() {
+                if (compressedFiles.length === 0) return;
+                
+                // For multiple files, we'd normally create a ZIP, but for simplicity, we'll download the first file
+                // In a real application, you'd use a library like JSZip
+                const firstFile = compressedFiles.find(file => file);
+                if (firstFile) {
+                    // Create download link
+                    const link = document.createElement('a');
+                    link.href = firstFile.dataURL;
+                    link.download = firstFile.name;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // If only one file, show notification
+                    if (compressedFiles.length === 1) {
+                        Utils.showNotification('Image downloaded successfully!');
+                    } else {
+                        Utils.showNotification('Downloading the first image. To download all, save each individually.');
+                    }
+                }
+            }
+            
+            function clearAll() {
+                // Clear uploaded files
+                uploadedFiles = [];
+                compressedFiles = [];
+                
+                // Clear UI
+                imagesList.innerHTML = '';
+                previewContainer.innerHTML = '';
+                resultsSection.style.display = 'none';
+                previewSection.style.display = 'none';
+                
+                // Reset buttons state
+                updateButtonsState();
+                
+                Utils.showNotification('All files cleared!');
+            }
+            
+            // Helper functions
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+        });
+    </script>
+    <style>
+        .upload-section {
+            margin-bottom: 30px;
+        }
+        
+        .upload-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .upload-box {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            background-color: #f9f9f9;
+        }
+        
+        .upload-box.dragover {
+            border-color: #3498db;
+            background-color: #e8f4fd;
+        }
+        
+        .upload-label {
+            display: block;
+            cursor: pointer;
+        }
+        
+        .upload-icon {
+            margin-bottom: 20px;
+        }
+        
+        .upload-box p {
+            margin: 10px 0;
+            color: #666;
+        }
+        
+        .upload-hint {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        .images-list {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .file-details p {
+            margin: 0;
+        }
+        
+        .file-name {
+            font-weight: bold;
+        }
+        
+        .file-size {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .remove-file-btn,
+        .remove-preview-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #999;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        
+        .remove-file-btn:hover,
+        .remove-preview-btn:hover {
+            color: #e74c3c;
+        }
+        
+        .upload-progress {
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #3498db;
+            transition: width 0.3s;
+        }
+        
+        .progress-text {
+            display: block;
+            text-align: center;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .preview-section {
+            margin-bottom: 30px;
+        }
+        
+        .preview-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .preview-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+        
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background-color: #f1f1f1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .preview-header h4 {
+            margin: 0;
+            font-size: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+            margin-right: 10px;
+        }
+        
+        .preview-image-container {
+            padding: 16px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+        }
+        
+        .preview-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .preview-result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background-color: #e8f4f8;
+            border-top: 1px solid #ddd;
+        }
+        
+        .result-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .compressed-size {
+            font-weight: bold;
+        }
+        
+        .reduction-percentage {
+            color: #27ae60;
+            font-size: 14px;
+        }
+        
+        .download-single-btn {
+            padding: 6px 12px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        
+        .download-single-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .settings-section {
+            margin-bottom: 30px;
+        }
+        
+        .settings-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .settings-group {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .settings-header h4 {
+            margin: 0 0 5px 0;
+        }
+        
+        .settings-header p {
+            margin: 0 0 15px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .quality-presets {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .preset-option {
+            position: relative;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .preset-option:hover {
+            border-color: #3498db;
+            background-color: #f0f8ff;
+        }
+        
+        .preset-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .preset-option input[type="radio"]:checked + .preset-content {
+            background-color: #e8f4fd;
+        }
+        
+        .preset-option input[type="radio"]:checked + .preset-content::before {
+            content: '✓';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .preset-content {
+            position: relative;
+        }
+        
+        .preset-content h5 {
+            margin: 0 0 5px 0;
+        }
+        
+        .preset-content p {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .preset-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .custom-quality-control {
+            margin-top: 15px;
+        }
+        
+        .custom-quality-control label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .range-with-value {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .range-with-value input[type="range"] {
+            flex: 1;
+        }
+        
+        .quality-preview {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .quality-excellent {
+            background-color: #d5f5e3;
+            color: #1e8449;
+        }
+        
+        .quality-good {
+            background-color: #d6eaf8;
+            color: #2874a6;
+        }
+        
+        .quality-fair {
+            background-color: #fcf3cf;
+            color: #d68910;
+        }
+        
+        .quality-poor {
+            background-color: #fadbd8;
+            color: #922b21;
+        }
+        
+        .format-options,
+        .resize-options,
+        .advanced-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .format-option,
+        .resize-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .format-option select {
+            margin-left: 10px;
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .resize-controls {
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+        
+        .resize-percentage {
+            margin: 10px 0 0 30px;
+        }
+        
+        .resize-dimensions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0 0 30px;
+        }
+        
+        .resize-dimensions input[type="number"] {
+            width: 100px;
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .results-section {
+            margin-bottom: 30px;
+        }
+        
+        .results-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .result-stat {
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .compressed-files-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .compressed-file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        .compressed-file-info .file-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .compressed-file-info .file-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .download-btn {
+            padding: 8px 16px;
+            background-color: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #229954;
+        }
+        
+        @media (max-width: 768px) {
+            .preview-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .settings-groups {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-overview {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .compressed-file-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            
+            .download-btn {
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html>

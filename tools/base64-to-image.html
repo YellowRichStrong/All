@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 to Image - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Base64 to Image</h2>
+                    <p>Convert Base64 strings to image files</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Input Area -->
+                    <div class="option-group">
+                        <label for="base64Input">Base64 String</label>
+                        <textarea id="base64Input" rows="10" placeholder="Paste your Base64 string here..."></textarea>
+                    </div>
+
+                    <!-- Format Options -->
+                    <div class="options">
+                        <div class="option-group">
+                            <label for="imageFormat">Output Image Format</label>
+                            <select id="imageFormat">
+                                <option value="png">PNG</option>
+                                <option value="jpg">JPG</option>
+                                <option value="webp">WebP</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="fileName">File Name</label>
+                            <input type="text" id="fileName" value="image" placeholder="Enter file name">
+                        </div>
+                    </div>
+
+                    <!-- Preview Area -->
+                    <div class="preview">
+                        <h3>Preview</h3>
+                        <img id="imagePreview" src="" alt="Preview" style="display: none;">
+                        <div id="errorMessage" style="color: #dc3545; display: none;"></div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="decodeBtn">Convert to Image</button>
+                        <button class="action-btn" id="clearBtn">Clear</button>
+                        <button class="action-btn" id="copyBtn">Copy Example Base64</button>
+                        <a href="#" class="download-btn" id="downloadBtn" style="display: none;">Download Image</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../contact.html">Contact Us</a>
+                <a href="../privacy.html">Privacy Policy</a>
+                <a href="../terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const base64Input = document.getElementById('base64Input');
+            const imageFormat = document.getElementById('imageFormat');
+            const fileName = document.getElementById('fileName');
+            const imagePreview = document.getElementById('imagePreview');
+            const errorMessage = document.getElementById('errorMessage');
+            const decodeBtn = document.getElementById('decodeBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            // Example Base64 string (small red dot)
+            const exampleBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA' +
+                'AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
+            
+            // Convert Base64 to image
+            decodeBtn.addEventListener('click', function() {
+                const base64String = base64Input.value.trim();
+                
+                if (!base64String) {
+                    showError('Please enter a Base64 string');
+                    return;
+                }
+                
+                try {
+                    // Check if string starts with data:image, if not add it
+                    let dataURL = base64String;
+                    if (!dataURL.startsWith('data:image')) {
+                        const mimeType = `data:image/${imageFormat.value};base64,`;
+                        dataURL = mimeType + base64String;
+                    }
+                    
+                    // Validate Base64
+                    const img = new Image();
+                    img.onload = function() {
+                        imagePreview.src = dataURL;
+                        imagePreview.style.display = 'block';
+                        errorMessage.style.display = 'none';
+                        
+                        // Update download link
+                        updateDownloadLink(dataURL);
+                        
+                        showNotification('Base64 decoded successfully!');
+                    };
+                    
+                    img.onerror = function() {
+                        showError('Invalid Base64 string or not an image');
+                    };
+                    
+                    img.src = dataURL;
+                } catch (error) {
+                    showError('Error decoding Base64: ' + error.message);
+                }
+            });
+            
+            // Update download link when format changes
+            imageFormat.addEventListener('change', function() {
+                if (imagePreview.src) {
+                    updateDownloadLink(imagePreview.src);
+                }
+            });
+            
+            // Clear input
+            clearBtn.addEventListener('click', function() {
+                base64Input.value = '';
+                imagePreview.src = '';
+                imagePreview.style.display = 'none';
+                errorMessage.style.display = 'none';
+                downloadBtn.style.display = 'none';
+            });
+            
+            // Copy example Base64
+            copyBtn.addEventListener('click', function() {
+                base64Input.value = exampleBase64;
+                showNotification('Example Base64 copied to input field');
+            });
+            
+            // Update download link
+            function updateDownloadLink(dataURL) {
+                const format = imageFormat.value;
+                const name = fileName.value || 'image';
+                
+                // For download, we need to convert to the desired format
+                const canvas = document.createElement('canvas');
+                const img = new Image();
+                img.src = dataURL;
+                
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    
+                    const mimeType = `image/${format}`;
+                    const downloadURL = canvas.toDataURL(mimeType);
+                    
+                    downloadBtn.href = downloadURL;
+                    downloadBtn.download = `${name}.${format}`;
+                    downloadBtn.style.display = 'inline-block';
+                };
+            }
+            
+            // Show error message
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                imagePreview.style.display = 'none';
+                downloadBtn.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

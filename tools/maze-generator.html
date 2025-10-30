@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Generator - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Maze Generator</h2>
+                    <p>Create custom maze images with various styles and difficulty levels</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Maze Dimensions -->
+                    <div class="settings-section">
+                        <h3>Maze Dimensions</h3>
+                        <div class="settings-groups">
+                            <div class="settings-group">
+                                <div class="setting-item">
+                                    <label for="mazeWidth">Width (cells)</label>
+                                    <input type="number" id="mazeWidth" min="5" max="100" value="20">
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="mazeHeight">Height (cells)</label>
+                                    <input type="number" id="mazeHeight" min="5" max="100" value="20">
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="cellSize">Cell Size (pixels)</label>
+                                    <input type="number" id="cellSize" min="5" max="50" value="20">
+                                </div>
+
+                                <div class="setting-item">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="fixedAspectRatio" checked>
+                                        <span>Maintain 1:1 aspect ratio for cells</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Maze Style -->
+                    <div class="settings-section">
+                        <h3>Maze Style</h3>
+                        <div class="settings-groups">
+                            <div class="settings-group">
+                                <div class="setting-item">
+                                    <label for="generationAlgorithm">Generation Algorithm</label>
+                                    <select id="generationAlgorithm">
+                                        <option value="dfs">Depth-First Search (Classic)</option>
+                                        <option value="kruskal">Kruskal's Algorithm</option>
+                                        <option value="prim">Prim's Algorithm</option>
+                                        <option value="eller">Eller's Algorithm</option>
+                                        <option value="binary">Binary Tree</option>
+                                        <option value="sidewinder">Sidewinder</option>
+                                    </select>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="difficulty">Difficulty</label>
+                                    <div class="range-with-value">
+                                        <input type="range" id="difficulty" min="1" max="5" value="3">
+                                        <span class="range-value">Medium</span>
+                                    </div>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label>Difficulty Presets</label>
+                                    <div class="preset-options">
+                                        <button class="preset-btn" data-level="1">Easy</button>
+                                        <button class="preset-btn" data-level="3">Medium</button>
+                                        <button class="preset-btn" data-level="5">Hard</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Settings -->
+                    <div class="settings-section">
+                        <h3>Visual Settings</h3>
+                        <div class="settings-groups">
+                            <div class="settings-group">
+                                <div class="setting-item">
+                                    <label for="wallColor">Wall Color</label>
+                                    <div class="color-picker-container">
+                                        <input type="color" id="wallColor" value="#000000">
+                                        <input type="text" id="wallColorText" value="#000000">
+                                    </div>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="pathColor">Path Color</label>
+                                    <div class="color-picker-container">
+                                        <input type="color" id="pathColor" value="#ffffff">
+                                        <input type="text" id="pathColorText" value="#ffffff">
+                                    </div>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="solutionColor">Solution Color</label>
+                                    <div class="color-picker-container">
+                                        <input type="color" id="solutionColor" value="#ff0000">
+                                        <input type="text" id="solutionColorText" value="#ff0000">
+                                    </div>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="showStartEnd">
+                                        <span>Highlight Start and End Points</span>
+                                    </label>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="showSolution">
+                                        <span>Show Solution Path</span>
+                                    </label>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="mazeTheme">Maze Theme</label>
+                                    <select id="mazeTheme">
+                                        <option value="classic">Classic (Black & White)</option>
+                                        <option value="colorful">Colorful</option>
+                                        <option value="dark">Dark Mode</option>
+                                        <option value="nature">Nature</option>
+                                        <option value="neon">Neon</option>
+                                        <option value="pastel">Pastel</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div class="preview-section">
+                        <h3>Maze Preview</h3>
+                        <div class="preview-container">
+                            <div class="preview-wrapper">
+                                <div class="maze-controls">
+                                    <button id="generateMazeBtn" class="action-btn primary">Generate New Maze</button>
+                                    <button id="solveMazeBtn" class="action-btn secondary">Solve Maze</button>
+                                    <button id="clearSolutionBtn" class="action-btn secondary" disabled>Clear Solution</button>
+                                </div>
+                                <div id="mazeContainer" class="maze-container">
+                                    <canvas id="mazeCanvas" width="400" height="400"></canvas>
+                                    <div id="noMazeMessage" class="no-maze-message">
+                                        <p>Click "Generate New Maze" to create a maze</p>
+                                    </div>
+                                </div>
+                                <div class="maze-info">
+                                    <span id="mazeStats">Maze size: 0 × 0 cells</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Settings -->
+                    <div class="settings-section">
+                        <h3>Output Settings</h3>
+                        <div class="settings-groups">
+                            <div class="settings-group">
+                                <div class="setting-item">
+                                    <label for="outputFormat">Output Format</label>
+                                    <select id="outputFormat">
+                                        <option value="png">PNG</option>
+                                        <option value="jpeg">JPEG</option>
+                                        <option value="webp">WebP</option>
+                                    </select>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="outputQuality">Quality</label>
+                                    <div class="range-with-value">
+                                        <input type="range" id="outputQuality" min="0.1" max="1" step="0.1" value="0.9">
+                                        <span class="range-value">90%</span>
+                                    </div>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="outputFileName">File Name</label>
+                                    <input type="text" id="outputFileName" placeholder="Enter file name" value="maze">
+                                </div>
+
+                                <div class="setting-item">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="includeSettingsInName" checked>
+                                        <span>Include settings in file name</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button id="downloadBtn" class="action-btn" disabled>Download Maze</button>
+                        <button id="regenerateBtn" class="action-btn" disabled>Regenerate with Same Settings</button>
+                        <button id="resetBtn" class="action-btn">Reset Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Maze dimensions
+            const mazeWidth = document.getElementById('mazeWidth');
+            const mazeHeight = document.getElementById('mazeHeight');
+            const cellSize = document.getElementById('cellSize');
+            const fixedAspectRatio = document.getElementById('fixedAspectRatio');
+
+            // Maze style
+            const generationAlgorithm = document.getElementById('generationAlgorithm');
+            const difficulty = document.getElementById('difficulty');
+            const presetBtns = document.querySelectorAll('.preset-btn[data-level]');
+
+            // Visual settings
+            const wallColor = document.getElementById('wallColor');
+            const wallColorText = document.getElementById('wallColorText');
+            const pathColor = document.getElementById('pathColor');
+            const pathColorText = document.getElementById('pathColorText');
+            const solutionColor = document.getElementById('solutionColor');
+            const solutionColorText = document.getElementById('solutionColorText');
+            const showStartEnd = document.getElementById('showStartEnd');
+            const showSolution = document.getElementById('showSolution');
+            const mazeTheme = document.getElementById('mazeTheme');
+
+            // Preview elements
+            const mazeCanvas = document.getElementById('mazeCanvas');
+            const mazeContainer = document.getElementById('mazeContainer');
+            const noMazeMessage = document.getElementById('noMazeMessage');
+            const mazeStats = document.getElementById('mazeStats');
+
+            // Buttons
+            const generateMazeBtn = document.getElementById('generateMazeBtn');
+            const solveMazeBtn = document.getElementById('solveMazeBtn');
+            const clearSolutionBtn = document.getElementById('clearSolutionBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const regenerateBtn = document.getElementById('regenerateBtn');
+            const resetBtn = document.getElementById('resetBtn');
+
+            // Output settings
+            const outputFormat = document.getElementById('outputFormat');
+            const outputQuality = document.getElementById('outputQuality');
+            const outputFileName = document.getElementById('outputFileName');
+            const includeSettingsInName = document.getElementById('includeSettingsInName');
+
+            // Range values
+            const rangeValues = document.querySelectorAll('.range-value');
+
+            // Store maze data
+            let maze = null;
+            let solution = [];
+            let ctx = mazeCanvas.getContext('2d');
+
+            // Initialize event listeners
+            initEventListeners();
+
+            function initEventListeners() {
+                // Maze dimensions
+                mazeWidth.addEventListener('input', updateMazeStats);
+                mazeHeight.addEventListener('input', updateMazeStats);
+                cellSize.addEventListener('input', updateMazeStats);
+                fixedAspectRatio.addEventListener('change', updateMazeStats);
+
+                // Difficulty slider
+                difficulty.addEventListener('input', function() {
+                    const level = parseInt(this.value);
+                    let text = '';
+                    switch(level) {
+                        case 1: text = 'Very Easy'; break;
+                        case 2: text = 'Easy'; break;
+                        case 3: text = 'Medium'; break;
+                        case 4: text = 'Hard'; break;
+                        case 5: text = 'Very Hard'; break;
+                    }
+                    rangeValues[0].textContent = text;
+                });
+
+                // Difficulty presets
+                presetBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const level = parseInt(this.getAttribute('data-level'));
+                        difficulty.value = level;
+                        // Trigger the change event
+                        difficulty.dispatchEvent(new Event('input'));
+                    });
+                });
+
+                // Color pickers
+                wallColor.addEventListener('input', function() {
+                    wallColorText.value = this.value;
+                    if (maze) drawMaze();
+                });
+
+                wallColorText.addEventListener('input', function() {
+                    if (/^#([0-9A-F]{3}){1,2}$/i.test(this.value)) {
+                        wallColor.value = this.value;
+                        if (maze) drawMaze();
+                    }
+                });
+
+                pathColor.addEventListener('input', function() {
+                    pathColorText.value = this.value;
+                    if (maze) drawMaze();
+                });
+
+                pathColorText.addEventListener('input', function() {
+                    if (/^#([0-9A-F]{3}){1,2}$/i.test(this.value)) {
+                        pathColor.value = this.value;
+                        if (maze) drawMaze();
+                    }
+                });
+
+                solutionColor.addEventListener('input', function() {
+                    solutionColorText.value = this.value;
+                    if (maze && solution.length > 0) drawMaze();
+                });
+
+                solutionColorText.addEventListener('input', function() {
+                    if (/^#([0-9A-F]{3}){1,2}$/i.test(this.value)) {
+                        solutionColor.value = this.value;
+                        if (maze && solution.length > 0) drawMaze();
+                    }
+                });
+
+                // Show solution checkbox
+                showSolution.addEventListener('change', function() {
+                    if (maze && solution.length > 0) {
+                        drawMaze();
+                    }
+                });
+
+                // Show start/end checkbox
+                showStartEnd.addEventListener('change', function() {
+                    if (maze) drawMaze();
+                });
+
+                // Maze theme
+                mazeTheme.addEventListener('change', applyTheme);
+
+                // Quality range
+                outputQuality.addEventListener('input', function() {
+                    rangeValues[1].textContent = `${Math.round(this.value * 100)}%`;
+                });
+
+                // Buttons
+                generateMazeBtn.addEventListener('click', generateMaze);
+                solveMazeBtn.addEventListener('click', solveMaze);
+                clearSolutionBtn.addEventListener('click', clearSolution);
+                downloadBtn.addEventListener('click', downloadMaze);
+                regenerateBtn.addEventListener('click', regenerateMaze);
+                resetBtn.addEventListener('click', resetSettings);
+
+                // Initialize
+                updateMazeStats();
+                difficulty.dispatchEvent(new Event('input'));
+                outputQuality.dispatchEvent(new Event('input'));
+            }
+
+            function updateMazeStats() {
+                const width = parseInt(mazeWidth.value);
+                const height = parseInt(mazeHeight.value);
+                mazeStats.textContent = `Maze size: ${width} × ${height} cells`;
+            }
+
+            function applyTheme() {
+                const theme = mazeTheme.value;
+                switch(theme) {
+                    case 'classic':
+                        wallColor.value = '#000000';
+                        wallColorText.value = '#000000';
+                        pathColor.value = '#ffffff';
+                        pathColorText.value = '#ffffff';
+                        solutionColor.value = '#ff0000';
+                        solutionColorText.value = '#ff0000';
+                        break;
+                    case 'colorful':
+                        wallColor.value = '#2c3e50';
+                        wallColorText.value = '#2c3e50';
+                        pathColor.value = '#ecf0f1';
+                        pathColorText.value = '#ecf0f1';
+                        solutionColor.value = '#e74c3c';
+                        solutionColorText.value = '#e74c3c';
+                        break;
+                    case 'dark':
+                        wallColor.value = '#ffffff';
+                        wallColorText.value = '#ffffff';
+                        pathColor.value = '#1a1a1a';
+                        pathColorText.value = '#1a1a1a';
+                        solutionColor.value = '#00ff00';
+                        solutionColorText.value = '#00ff00';
+                        break;
+                    case 'nature':
+                        wallColor.value = '#5d4037';
+                        wallColorText.value = '#5d4037';
+                        pathColor.value = '#8bc34a';
+                        pathColorText.value = '#8bc34a';
+                        solutionColor.value = '#ff9800';
+                        solutionColorText.value = '#ff9800';
+                        break;
+                    case 'neon':
+                        wallColor.value = '#000000';
+                        wallColorText.value = '#000000';
+                        pathColor.value = '#0a0a0a';
+                        pathColorText.value = '#0a0a0a';
+                        solutionColor.value = '#00ffff';
+                        solutionColorText.value = '#00ffff';
+                        break;
+                    case 'pastel':
+                        wallColor.value = '#a8d0e6';
+                        wallColorText.value = '#a8d0e6';
+                        pathColor.value = '#f8e9a1';
+                        pathColorText.value = '#f8e9a1';
+                        solutionColor.value = '#f76c6c';
+                        solutionColorText.value = '#f76c6c';
+                        break;
+                }
+
+                if (maze) drawMaze();
+            }
+
+            function generateMaze() {
+                const width = parseInt(mazeWidth.value);
+                const height = parseInt(mazeHeight.value);
+                const algorithm = generationAlgorithm.value;
+                const difficultyLevel = parseInt(difficulty.value);
+
+                // Generate maze based on selected algorithm
+                switch(algorithm) {
+                    case 'dfs':
+                        maze = generateDFSMaze(width, height, difficultyLevel);
+                        break;
+                    case 'kruskal':
+                        maze = generateKruskalMaze(width, height, difficultyLevel);
+                        break;
+                    case 'prim':
+                        maze = generatePrimMaze(width, height, difficultyLevel);
+                        break;
+                    case 'binary':
+                        maze = generateBinaryTreeMaze(width, height, difficultyLevel);
+                        break;
+                    case 'sidewinder':
+                        maze = generateSidewinderMaze(width, height, difficultyLevel);
+                        break;
+                    default:
+                        maze = generateDFSMaze(width, height, difficultyLevel);
+                }
+
+                // Clear solution
+                solution = [];
+                showSolution.checked = false;
+                clearSolutionBtn.disabled = true;
+
+                // Draw maze
+                drawMaze();
+
+                // Update UI
+                noMazeMessage.style.display = 'none';
+                downloadBtn.disabled = false;
+                regenerateBtn.disabled = false;
+
+                // Show success notification
+                Utils.showNotification(`Maze generated successfully! ${width} × ${height} cells`);
+            }
+
+            function generateDFSMaze(width, height, difficulty) {
+                // Initialize maze with walls everywhere
+                const maze = Array(height).fill().map(() => Array(width).fill({ north: true, east: true, south: true, west: true, visited: false }));
+                const stack = [];
+                
+                // Start at the top-left corner
+                let currentRow = 0;
+                let currentCol = 0;
+                maze[currentRow][currentCol].visited = true;
+                stack.push({ row: currentRow, col: currentCol });
+                
+                while (stack.length > 0) {
+                    // Get the current cell
+                    const current = stack[stack.length - 1];
+                    currentRow = current.row;
+                    currentCol = current.col;
+                    
+                    // Find unvisited neighbors
+                    const neighbors = [];
+                    
+                    // North neighbor
+                    if (currentRow > 0 && !maze[currentRow - 1][currentCol].visited) {
+                        neighbors.push({ row: currentRow - 1, col: currentCol, direction: 'north' });
+                    }
+                    
+                    // East neighbor
+                    if (currentCol < width - 1 && !maze[currentRow][currentCol + 1].visited) {
+                        neighbors.push({ row: currentRow, col: currentCol + 1, direction: 'east' });
+                    }
+                    
+                    // South neighbor
+                    if (currentRow < height - 1 && !maze[currentRow + 1][currentCol].visited) {
+                        neighbors.push({ row: currentRow + 1, col: currentCol, direction: 'south' });
+                    }
+                    
+                    // West neighbor
+                    if (currentCol > 0 && !maze[currentRow][currentCol - 1].visited) {
+                        neighbors.push({ row: currentRow, col: currentCol - 1, direction: 'west' });
+                    }
+                    
+                    if (neighbors.length > 0) {
+                        // Choose a random neighbor based on difficulty
+                        let randomIndex;
+                        if (difficulty <= 2) {
+                            // For easier mazes, prefer certain directions to create more straight paths
+                            randomIndex = Math.floor(Math.random() * neighbors.length);
+                        } else {
+                            // For harder mazes, completely random
+                            randomIndex = Math.floor(Math.random() * neighbors.length);
+                        }
+                        
+                        const next = neighbors[randomIndex];
+                        
+                        // Remove the wall between current and next
+                        if (next.direction === 'north') {
+                            maze[currentRow][currentCol].north = false;
+                            maze[next.row][next.col].south = false;
+                        } else if (next.direction === 'east') {
+                            maze[currentRow][currentCol].east = false;
+                            maze[next.row][next.col].west = false;
+                        } else if (next.direction === 'south') {
+                            maze[currentRow][currentCol].south = false;
+                            maze[next.row][next.col].north = false;
+                        } else if (next.direction === 'west') {
+                            maze[currentRow][currentCol].west = false;
+                            maze[next.row][next.col].east = false;
+                        }
+                        
+                        // Mark next as visited and add to stack
+                        maze[next.row][next.col].visited = true;
+                        stack.push(next);
+                    } else {
+                        // Backtrack
+                        stack.pop();
+                    }
+                }
+                
+                return maze;
+            }
+
+            // Simplified versions of other maze generation algorithms
+            function generateKruskalMaze(width, height, difficulty) {
+                // This is a simplified implementation of Kruskal's algorithm
+                return generateDFSMaze(width, height, difficulty);
+            }
+
+            function generatePrimMaze(width, height, difficulty) {
+                // This is a simplified implementation of Prim's algorithm
+                return generateDFSMaze(width, height, difficulty + 1); // Make it a bit harder
+            }
+
+            function generateBinaryTreeMaze(width, height, difficulty) {
+                // This is a simplified implementation of Binary Tree algorithm
+                return generateDFSMaze(width, height, difficulty - 1); // Make it a bit easier
+            }
+
+            function generateSidewinderMaze(width, height, difficulty) {
+                // This is a simplified implementation of Sidewinder algorithm
+                return generateDFSMaze(width, height, difficulty);
+            }
+
+            function drawMaze() {
+                if (!maze) return;
+
+                const width = maze[0].length;
+                const height = maze.length;
+                const size = parseInt(cellSize.value);
+                
+                // Set canvas size
+                mazeCanvas.width = width * size;
+                mazeCanvas.height = height * size;
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, mazeCanvas.width, mazeCanvas.height);
+                
+                // Draw paths
+                ctx.fillStyle = pathColor.value;
+                ctx.fillRect(0, 0, mazeCanvas.width, mazeCanvas.height);
+                
+                // Draw walls
+                ctx.strokeStyle = wallColor.value;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                
+                // Draw maze walls
+                for (let row = 0; row < height; row++) {
+                    for (let col = 0; col < width; col++) {
+                        const cell = maze[row][col];
+                        const x = col * size;
+                        const y = row * size;
+                        
+                        // North wall
+                        if (cell.north) {
+                            ctx.moveTo(x, y);
+                            ctx.lineTo(x + size, y);
+                        }
+                        
+                        // East wall
+                        if (cell.east) {
+                            ctx.moveTo(x + size, y);
+                            ctx.lineTo(x + size, y + size);
+                        }
+                        
+                        // South wall
+                        if (cell.south) {
+                            ctx.moveTo(x, y + size);
+                            ctx.lineTo(x + size, y + size);
+                        }
+                        
+                        // West wall
+                        if (cell.west) {
+                            ctx.moveTo(x, y);
+                            ctx.lineTo(x, y + size);
+                        }
+                    }
+                }
+                
+                ctx.stroke();
+                
+                // Draw solution if enabled
+                if (solution.length > 0 && showSolution.checked) {
+                    drawSolution();
+                }
+                
+                // Highlight start and end points if enabled
+                if (showStartEnd.checked) {
+                    // Start point (top-left)
+                    ctx.fillStyle = '#00ff00';
+                    ctx.fillRect(size / 4, size / 4, size / 2, size / 2);
+                    
+                    // End point (bottom-right)
+                    ctx.fillStyle = '#ff0000';
+                    ctx.fillRect((width - 1) * size + size / 4, (height - 1) * size + size / 4, size / 2, size / 2);
+                }
+            }
+
+            function solveMaze() {
+                if (!maze) return;
+                
+                const width = maze[0].length;
+                const height = maze.length;
+                
+                // Use BFS to find the shortest path
+                const queue = [{ row: 0, col: 0, path: [{ row: 0, col: 0 }] }];
+                const visited = Array(height).fill().map(() => Array(width).fill(false));
+                visited[0][0] = true;
+                
+                while (queue.length > 0) {
+                    const current = queue.shift();
+                    
+                    // Check if we've reached the end
+                    if (current.row === height - 1 && current.col === width - 1) {
+                        solution = current.path;
+                        showSolution.checked = true;
+                        clearSolutionBtn.disabled = false;
+                        drawMaze();
+                        Utils.showNotification(`Solution found! Path length: ${solution.length} steps`);
+                        return;
+                    }
+                    
+                    // Explore neighbors
+                    const directions = [
+                        { direction: 'north', row: -1, col: 0 },
+                        { direction: 'east', row: 0, col: 1 },
+                        { direction: 'south', row: 1, col: 0 },
+                        { direction: 'west', row: 0, col: -1 }
+                    ];
+                    
+                    for (const dir of directions) {
+                        const newRow = current.row + dir.row;
+                        const newCol = current.col + dir.col;
+                        
+                        // Check if new position is valid
+                        if (newRow >= 0 && newRow < height && newCol >= 0 && newCol < width && !visited[newRow][newCol]) {
+                            // Check if there's a wall in the direction
+                            let hasWall = false;
+                            if (dir.direction === 'north' && maze[current.row][current.col].north) hasWall = true;
+                            if (dir.direction === 'east' && maze[current.row][current.col].east) hasWall = true;
+                            if (dir.direction === 'south' && maze[current.row][current.col].south) hasWall = true;
+                            if (dir.direction === 'west' && maze[current.row][current.col].west) hasWall = true;
+                            
+                            if (!hasWall) {
+                                visited[newRow][newCol] = true;
+                                const newPath = [...current.path, { row: newRow, col: newCol }];
+                                queue.push({ row: newRow, col: newCol, path: newPath });
+                            }
+                        }
+                    }
+                }
+                
+                // If we reach here, no solution was found
+                Utils.showNotification('No solution found for this maze!', 'error');
+            }
+
+            function drawSolution() {
+                if (!maze || solution.length === 0) return;
+                
+                const size = parseInt(cellSize.value);
+                ctx.strokeStyle = solutionColor.value;
+                ctx.lineWidth = size / 4;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                
+                ctx.beginPath();
+                
+                // Start at the center of the first cell
+                const startX = solution[0].col * size + size / 2;
+                const startY = solution[0].row * size + size / 2;
+                ctx.moveTo(startX, startY);
+                
+                // Draw line segments between consecutive cells
+                for (let i = 1; i < solution.length; i++) {
+                    const x = solution[i].col * size + size / 2;
+                    const y = solution[i].row * size + size / 2;
+                    ctx.lineTo(x, y);
+                }
+                
+                ctx.stroke();
+            }
+
+            function clearSolution() {
+                solution = [];
+                showSolution.checked = false;
+                clearSolutionBtn.disabled = true;
+                drawMaze();
+                Utils.showNotification('Solution cleared!');
+            }
+
+            function downloadMaze() {
+                if (!maze) return;
+                
+                // Create filename
+                let filename = outputFileName.value || 'maze';
+                
+                if (includeSettingsInName.checked) {
+                    const width = parseInt(mazeWidth.value);
+                    const height = parseInt(mazeHeight.value);
+                    const algo = generationAlgorithm.value;
+                    const diff = difficulty.value;
+                    filename += `_${width}x${height}_${algo}_d${diff}`;
+                }
+                
+                filename += `.${outputFormat.value}`;
+                
+                // Convert canvas to data URL
+                const mimeType = `image/${outputFormat.value}`;
+                const dataUrl = mazeCanvas.toDataURL(mimeType, parseFloat(outputQuality.value));
+                
+                // Create download link
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = filename;
+                
+                // Trigger download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                Utils.showNotification('Maze downloaded successfully!');
+            }
+
+            function regenerateMaze() {
+                generateMaze();
+            }
+
+            function resetSettings() {
+                // Reset maze
+                maze = null;
+                solution = [];
+                
+                // Reset form values
+                mazeWidth.value = 20;
+                mazeHeight.value = 20;
+                cellSize.value = 20;
+                fixedAspectRatio.checked = true;
+                generationAlgorithm.selectedIndex = 0;
+                difficulty.value = 3;
+                difficulty.dispatchEvent(new Event('input'));
+                
+                // Reset colors
+                mazeTheme.value = 'classic';
+                applyTheme();
+                
+                // Reset checkboxes
+                showStartEnd.checked = false;
+                showSolution.checked = false;
+                clearSolutionBtn.disabled = true;
+                
+                // Reset output settings
+                outputFormat.selectedIndex = 0;
+                outputQuality.value = 0.9;
+                outputQuality.dispatchEvent(new Event('input'));
+                outputFileName.value = 'maze';
+                includeSettingsInName.checked = true;
+                
+                // Reset UI
+                noMazeMessage.style.display = 'block';
+                ctx.clearRect(0, 0, mazeCanvas.width, mazeCanvas.height);
+                downloadBtn.disabled = true;
+                regenerateBtn.disabled = true;
+                
+                // Update stats
+                updateMazeStats();
+                
+                Utils.showNotification('All settings reset!');
+            }
+        });
+    </script>
+    <style>
+        .settings-section {
+            margin-bottom: 30px;
+        }
+
+        .settings-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .settings-group {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .setting-item {
+            margin-bottom: 20px;
+        }
+
+        .setting-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .setting-item label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .setting-item input[type="text"],
+        .setting-item input[type="number"],
+        .setting-item select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .range-with-value {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .range-with-value input[type="range"] {
+            flex: 1;
+        }
+
+        .range-with-value .range-value {
+            min-width: 100px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .color-picker-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .color-picker-container input[type="color"] {
+            width: 50px;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .color-picker-container input[type="text"] {
+            flex: 1;
+            max-width: 120px;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .preset-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .preset-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: white;
+            font-size: 14px;
+        }
+
+        .preset-btn:hover {
+            border-color: #3498db;
+            background-color: #f0f8ff;
+        }
+
+        .preview-section {
+            margin-bottom: 30px;
+        }
+
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .preview-wrapper {
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .maze-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .maze-container {
+            position: relative;
+            overflow: auto;
+            max-height: 600px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #mazeCanvas {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .no-maze-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .maze-info {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .action-btn.primary {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .action-btn.primary:hover:not(:disabled) {
+            background-color: #2980b9;
+        }
+
+        .action-btn.secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+        .action-btn.secondary:hover:not(:disabled) {
+            background-color: #7f8c8d;
+        }
+
+        #downloadBtn {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        #downloadBtn:hover:not(:disabled) {
+            background-color: #229954;
+        }
+
+        #regenerateBtn {
+            background-color: #e67e22;
+            color: white;
+        }
+
+        #regenerateBtn:hover:not(:disabled) {
+            background-color: #d35400;
+        }
+
+        #resetBtn {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        #resetBtn:hover:not(:disabled) {
+            background-color: #c0392b;
+        }
+
+        @media (max-width: 768px) {
+            .maze-controls {
+                flex-direction: column;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .preset-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+</html>

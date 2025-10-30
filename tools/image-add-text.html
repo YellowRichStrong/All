@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Text to Image - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Add Text to Image</h2>
+                    <p>Add custom text to your images</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Upload Area -->
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="imageUpload" accept="image/*">
+                        <div class="upload-icon">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                        </div>
+                        <p>Drag and drop your image here, or</p>
+                        <button class="upload-btn" onclick="document.getElementById('imageUpload').click()">Select Image</button>
+                    </div>
+
+                    <!-- Text Input -->
+                    <div class="option-group">
+                        <label for="textInput">Text to Add</label>
+                        <input type="text" id="textInput" value="Your Text" placeholder="Enter text to add">
+                    </div>
+
+                    <!-- Options -->
+                    <div class="options">
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="fontFamily">Font Family</label>
+                                <select id="fontFamily">
+                                    <option value="Arial, sans-serif">Arial</option>
+                                    <option value="'Times New Roman', serif">Times New Roman</option>
+                                    <option value="'Courier New', monospace">Courier New</option>
+                                    <option value="Georgia, serif">Georgia</option>
+                                    <option value="Verdana, sans-serif">Verdana</option>
+                                </select>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="fontSize">Font Size</label>
+                                <input type="range" id="fontSize" min="12" max="120" value="32">
+                                <span id="fontSizeValue">32px</span>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="fontColor">Font Color</label>
+                                <input type="color" id="fontColor" value="#ffffff">
+                            </div>
+
+                            <div class="option-group">
+                                <label for="strokeColor">Stroke Color</label>
+                                <input type="color" id="strokeColor" value="#000000">
+                                <input type="range" id="strokeWidth" min="0" max="5" value="0.5">
+                                <span id="strokeWidthValue">0.5px</span>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="textAlign">Text Alignment</label>
+                                <select id="textAlign">
+                                    <option value="left">Left</option>
+                                    <option value="center">Center</option>
+                                    <option value="right">Right</option>
+                                </select>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="fontStyle">Font Style</label>
+                                <select id="fontStyle">
+                                    <option value="normal">Normal</option>
+                                    <option value="bold">Bold</option>
+                                    <option value="italic">Italic</option>
+                                    <option value="bold italic">Bold Italic</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="positionX">Horizontal Position (%)</label>
+                                <input type="range" id="positionX" min="0" max="100" value="50">
+                                <span id="positionXValue">50%</span>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="positionY">Vertical Position (%)</label>
+                                <input type="range" id="positionY" min="0" max="100" value="50">
+                                <span id="positionYValue">50%</span>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="backgroundColor">Background Color</label>
+                                <input type="color" id="backgroundColor" value="rgba(0,0,0,0)">
+                                <input type="checkbox" id="enableBg"> Enable Text Background
+                            </div>
+
+                            <div class="option-group">
+                                <label for="rotation">Rotation (degrees)</label>
+                                <input type="range" id="rotation" min="-180" max="180" value="0">
+                                <span id="rotationValue">0°</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Area -->
+                    <div class="preview">
+                        <h3>Preview</h3>
+                        <div class="preview-container">
+                            <canvas id="previewCanvas" style="display: none;"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="addTextBtn">Add Text</button>
+                        <button class="action-btn" id="resetBtn">Reset</button>
+                        <a href="#" class="download-btn" id="downloadBtn" style="display: none;">Download Image</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageUpload = document.getElementById('imageUpload');
+            const uploadArea = document.getElementById('uploadArea');
+            const textInput = document.getElementById('textInput');
+            const fontFamily = document.getElementById('fontFamily');
+            const fontSize = document.getElementById('fontSize');
+            const fontSizeValue = document.getElementById('fontSizeValue');
+            const fontColor = document.getElementById('fontColor');
+            const strokeColor = document.getElementById('strokeColor');
+            const strokeWidth = document.getElementById('strokeWidth');
+            const strokeWidthValue = document.getElementById('strokeWidthValue');
+            const textAlign = document.getElementById('textAlign');
+            const fontStyle = document.getElementById('fontStyle');
+            const positionX = document.getElementById('positionX');
+            const positionXValue = document.getElementById('positionXValue');
+            const positionY = document.getElementById('positionY');
+            const positionYValue = document.getElementById('positionYValue');
+            const backgroundColor = document.getElementById('backgroundColor');
+            const enableBg = document.getElementById('enableBg');
+            const rotation = document.getElementById('rotation');
+            const rotationValue = document.getElementById('rotationValue');
+            const previewCanvas = document.getElementById('previewCanvas');
+            const addTextBtn = document.getElementById('addTextBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            const ctx = previewCanvas.getContext('2d');
+            let originalImage = null;
+            
+            // Set up drag and drop
+            Utils.setupDragAndDrop(uploadArea, imageUpload, null);
+            
+            // Handle file upload
+            imageUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = new Image();
+                        img.onload = function() {
+                            originalImage = img;
+                            // Set canvas size
+                            previewCanvas.width = img.width;
+                            previewCanvas.height = img.height;
+                            previewCanvas.style.display = 'block';
+                            
+                            // Initial draw
+                            drawImageWithText();
+                            Utils.showNotification('Image uploaded successfully!');
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Update value displays
+            fontSize.addEventListener('input', function() {
+                fontSizeValue.textContent = `${this.value}px`;
+                if (originalImage) drawImageWithText();
+            });
+            
+            strokeWidth.addEventListener('input', function() {
+                strokeWidthValue.textContent = `${this.value}px`;
+                if (originalImage) drawImageWithText();
+            });
+            
+            positionX.addEventListener('input', function() {
+                positionXValue.textContent = `${this.value}%`;
+                if (originalImage) drawImageWithText();
+            });
+            
+            positionY.addEventListener('input', function() {
+                positionYValue.textContent = `${this.value}%`;
+                if (originalImage) drawImageWithText();
+            });
+            
+            rotation.addEventListener('input', function() {
+                rotationValue.textContent = `${this.value}°`;
+                if (originalImage) drawImageWithText();
+            });
+            
+            // Toggle text background
+            enableBg.addEventListener('change', function() {
+                backgroundColor.disabled = !this.checked;
+                if (originalImage) drawImageWithText();
+            });
+            
+            // Add event listeners to all options
+            const optionElements = [
+                textInput, fontFamily, fontColor, strokeColor, textAlign,
+                fontStyle, backgroundColor
+            ];
+            
+            optionElements.forEach(element => {
+                element.addEventListener('input', function() {
+                    if (originalImage) drawImageWithText();
+                });
+                element.addEventListener('change', function() {
+                    if (originalImage) drawImageWithText();
+                });
+            });
+            
+            // Draw image with text
+            function drawImageWithText() {
+                if (!originalImage) return;
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+                
+                // Draw image
+                ctx.drawImage(originalImage, 0, 0);
+                
+                const text = textInput.value;
+                const size = parseInt(fontSize.value);
+                const posX = (parseInt(positionX.value) / 100) * previewCanvas.width;
+                const posY = (parseInt(positionY.value) / 100) * previewCanvas.height;
+                const rot = parseInt(rotation.value) * Math.PI / 180;
+                const strokeW = parseFloat(strokeWidth.value);
+                
+                // Set text properties
+                ctx.font = `${fontStyle.value} ${size}px ${fontFamily.value}`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                // Save context state
+                ctx.save();
+                
+                // Translate to position
+                ctx.translate(posX, posY);
+                
+                // Rotate
+                ctx.rotate(rot);
+                
+                // Draw text background if enabled
+                if (enableBg.checked) {
+                    const metrics = ctx.measureText(text);
+                    const textHeight = size;
+                    const padding = 5;
+                    
+                    ctx.fillStyle = backgroundColor.value;
+                    ctx.fillRect(
+                        -metrics.width / 2 - padding,
+                        -textHeight / 2 - padding,
+                        metrics.width + (padding * 2),
+                        textHeight + (padding * 2)
+                    );
+                }
+                
+                // Draw text stroke
+                if (strokeW > 0) {
+                    ctx.strokeStyle = strokeColor.value;
+                    ctx.lineWidth = strokeW;
+                    ctx.strokeText(text, 0, 0);
+                }
+                
+                // Draw text
+                ctx.fillStyle = fontColor.value;
+                ctx.fillText(text, 0, 0);
+                
+                // Restore context state
+                ctx.restore();
+            }
+            
+            // Add text button (same as实时 preview)
+            addTextBtn.addEventListener('click', function() {
+                if (!originalImage) {
+                    Utils.showNotification('Please upload an image first', 'error');
+                    return;
+                }
+                
+                drawImageWithText();
+                Utils.showNotification('Text added to image!');
+            });
+            
+            // Reset button
+            resetBtn.addEventListener('click', function() {
+                textInput.value = 'Your Text';
+                fontSize.value = '32';
+                fontSizeValue.textContent = '32px';
+                fontColor.value = '#ffffff';
+                strokeColor.value = '#000000';
+                strokeWidth.value = '0.5';
+                strokeWidthValue.textContent = '0.5px';
+                textAlign.value = 'center';
+                fontStyle.value = 'normal';
+                positionX.value = '50';
+                positionXValue.textContent = '50%';
+                positionY.value = '50';
+                positionYValue.textContent = '50%';
+                backgroundColor.value = 'rgba(0,0,0,0)';
+                enableBg.checked = false;
+                backgroundColor.disabled = true;
+                rotation.value = '0';
+                rotationValue.textContent = '0°';
+                
+                if (originalImage) drawImageWithText();
+            });
+            
+            // Download image
+            downloadBtn.addEventListener('click', function() {
+                if (!originalImage) {
+                    Utils.showNotification('Please upload an image first', 'error');
+                    return;
+                }
+                
+                drawImageWithText();
+                const dataURL = previewCanvas.toDataURL('image/png');
+                downloadBtn.href = dataURL;
+                downloadBtn.download = 'image-with-text.png';
+                Utils.showNotification('Image with text ready for download!');
+            });
+        });
+    </script>
+    <style>
+        .option-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .option-row .option-group {
+            flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .option-row {
+                flex-direction: column;
+            }
+        }
+        
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .preview canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</body>
+</html>

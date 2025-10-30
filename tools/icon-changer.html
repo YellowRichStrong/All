@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Changer - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="display: inline-block; position: relative; z-index: 999;">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Icon Changer</h2>
+                    <p>Change icons with ease</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Upload Area -->
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="iconUpload" accept="image/*">
+                        <div class="upload-icon">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                            </svg>
+                        </div>
+                        <p>Drag and drop your icon here, or</p>
+                        <button class="upload-btn" onclick="document.getElementById('iconUpload').click()">Select Icon</button>
+                    </div>
+
+                    <!-- Icon Library -->
+                    <div class="icon-library">
+                        <h3>Select from Library</h3>
+                        <div class="icon-grid">
+                            <!-- Sample icons -->
+                            <div class="icon-item" data-icon="home"></div>
+                            <div class="icon-item" data-icon="settings"></div>
+                            <div class="icon-item" data-icon="user"></div>
+                            <div class="icon-item" data-icon="mail"></div>
+                            <div class="icon-item" data-icon="phone"></div>
+                            <div class="icon-item" data-icon="message"></div>
+                            <div class="icon-item" data-icon="search"></div>
+                            <div class="icon-item" data-icon="heart"></div>
+                            <div class="icon-item" data-icon="star"></div>
+                            <div class="icon-item" data-icon="share"></div>
+                            <div class="icon-item" data-icon="download"></div>
+                            <div class="icon-item" data-icon="upload"></div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Area -->
+                    <div class="preview">
+                        <h3>Preview</h3>
+                        <div class="icon-preview-container">
+                            <img id="iconPreview" src="" alt="Preview" style="display: none;">
+                        </div>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="options">
+                        <div class="option-group">
+                            <label for="iconSize">Icon Size</label>
+                            <select id="iconSize">
+                                <option value="16">16x16</option>
+                                <option value="32">32x32</option>
+                                <option value="48">48x48</option>
+                                <option value="64">64x64</option>
+                                <option value="128">128x128</option>
+                                <option value="256">256x256</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="iconFormat">Output Format</label>
+                            <select id="iconFormat">
+                                <option value="png">PNG</option>
+                                <option value="ico">ICO</option>
+                                <option value="svg">SVG</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="backgroundColor">Background Color</label>
+                            <input type="color" id="backgroundColor" value="#ffffff">
+                            <input type="checkbox" id="transparentBg"> Transparent Background
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="generateBtn">Generate Icon</button>
+                        <a href="#" class="download-btn" id="downloadBtn" style="display: none;
+; display: none;">Download Icon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const iconUpload = document.getElementById('iconUpload');
+            const uploadArea = document.getElementById('uploadArea');
+            const iconPreview = document.getElementById('iconPreview');
+            const iconItems = document.querySelectorAll('.icon-item');
+            const iconSize = document.getElementById('iconSize');
+            const iconFormat = document.getElementById('iconFormat');
+            const backgroundColor = document.getElementById('backgroundColor');
+            const transparentBg = document.getElementById('transparentBg');
+            const generateBtn = document.getElementById('generateBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            let currentIcon = null;
+            
+            // Setup icon library with SVG icons
+            const iconTemplates = {
+                home: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>`,
+                settings: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>`,
+                user: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`,
+                mail: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg>`,
+                phone: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1z"/></svg>`,
+                message: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>`,
+                search: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>`,
+                heart: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`,
+                star: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`,
+                share: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>`,
+                download: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>`,
+                upload: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>`
+            };
+            
+            // Set up icon library items
+            iconItems.forEach(item => {
+                const iconName = item.getAttribute('data-icon');
+                item.innerHTML = iconTemplates[iconName];
+                item.classList.add('icon-preview');
+                
+                item.addEventListener('click', function() {
+                    currentIcon = iconName;
+                    iconItems.forEach(i => i.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    // Preview the selected icon
+                    const svgData = new XMLSerializer().serializeToString(this.querySelector('svg'));
+                    const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+                    const svgUrl = URL.createObjectURL(svgBlob);
+                    
+                    iconPreview.src = svgUrl;
+                    iconPreview.style.display = 'block';
+                });
+            });
+            
+            // Set up drag and drop
+            Utils.setupDragAndDrop(uploadArea, iconUpload, iconPreview);
+            
+            // Handle file upload
+            iconUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        iconPreview.src = e.target.result;
+                        iconPreview.style.display = 'block';
+                        currentIcon = null; // Clear selected library icon
+                        iconItems.forEach(i => i.classList.remove('selected'));
+                        Utils.showNotification('Icon uploaded successfully!');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Toggle transparent background
+            transparentBg.addEventListener('change', function() {
+                backgroundColor.disabled = this.checked;
+            });
+            
+            // Generate icon
+            generateBtn.addEventListener('click', function() {
+                if (!iconPreview.src) {
+                    Utils.showNotification('Please upload an icon or select one from the library', 'error');
+                    return;
+                }
+                
+                const size = parseInt(iconSize.value);
+                const format = iconFormat.value;
+                const isTransparent = transparentBg.checked;
+                const bgColor = backgroundColor.value;
+                
+                // Create canvas
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                
+                // Set background
+                if (!isTransparent) {
+                    ctx.fillStyle = bgColor;
+                    ctx.fillRect(0, 0, size, size);
+                } else {
+                    ctx.clearRect(0, 0, size, size);
+                }
+                
+                // Draw icon
+                const img = new Image();
+                img.onload = function() {
+                    // Center the icon
+                    const maxDim = Math.max(img.width, img.height);
+                    const scale = size / maxDim;
+                    const newWidth = img.width * scale;
+                    const newHeight = img.height * scale;
+                    const offsetX = (size - newWidth) / 2;
+                    const offsetY = (size - newHeight) / 2;
+                    
+                    ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+                    
+                    // Create download link
+                    let dataURL;
+                    if (format === 'svg' && currentIcon) {
+                        // For SVG icons from library
+                        const svg = iconTemplates[currentIcon];
+                        const blob = new Blob([svg], {type: 'image/svg+xml'});
+                        downloadBtn.href = URL.createObjectURL(blob);
+                    } else {
+                        // For raster formats
+                        const mimeType = `image/${format === 'ico' ? 'png' : format}`;
+                        dataURL = canvas.toDataURL(mimeType);
+                        downloadBtn.href = dataURL;
+                    }
+                    
+                    downloadBtn.download = `icon.${format}`;
+                    downloadBtn.style.display = 'inline-block';
+                    
+                    Utils.showNotification('Icon generated successfully!');
+                };
+                
+                img.src = iconPreview.src;
+            });
+        });
+    </script>
+    <style>
+        .icon-library {
+            margin-bottom: 30px;
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .icon-item {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #f9f9f9;
+        }
+        
+        .icon-item:hover {
+            border-color: #0066cc;
+            background-color: #f0f8ff;
+        }
+        
+        .icon-item.selected {
+            border-color: #0066cc;
+            background-color: #e6f0ff;
+        }
+        
+        .icon-preview svg {
+            width: 32px;
+            height: 32px;
+            fill: #333;
+        }
+        
+        .icon-preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .note {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #0066cc;
+            border-radius: 4px;
+        }
+    </style>
+</body>
+</html>

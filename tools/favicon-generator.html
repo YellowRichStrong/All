@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Generator - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="display: inline-block; position: relative; z-index: 999;">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Favicon Generator</h2>
+                    <p>Create custom favicon icons for your website</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Upload Area -->
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="imageUpload" accept="image/*">
+                        <div class="upload-icon">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </div>
+                        <p>Drag and drop your image here, or</p>
+                        <button class="upload-btn" onclick="document.getElementById('imageUpload').click()">Select Image</button>
+                    </div>
+
+                    <!-- Preview Area -->
+                    <div class="preview">
+                        <h3>Preview</h3>
+                        <div class="favicon-previews">
+                            <div class="preview-item">
+                                <div class="preview-size">16x16</div>
+                                <div class="preview-box">
+                                    <canvas id="preview16" width="16" height="16"></canvas>
+                                </div>
+                            </div>
+                            <div class="preview-item">
+                                <div class="preview-size">32x32</div>
+                                <div class="preview-box">
+                                    <canvas id="preview32" width="32" height="32"></canvas>
+                                </div>
+                            </div>
+                            <div class="preview-item">
+                                <div class="preview-size">48x48</div>
+                                <div class="preview-box">
+                                    <canvas id="preview48" width="48" height="48"></canvas>
+                                </div>
+                            </div>
+                            <div class="preview-item">
+                                <div class="preview-size">64x64</div>
+                                <div class="preview-box">
+                                    <canvas id="preview64" width="64" height="64"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="options">
+                        <div class="option-group">
+                            <label for="backgroundColor">Background Color (Leave transparent for none)</label>
+                            <input type="color" id="backgroundColor" value="#ffffff">
+                            <input type="checkbox" id="transparentBg"> Make Background Transparent
+                        </div>
+
+                        <div class="option-group">
+                            <label for="padding">Padding</label>
+                            <input type="range" id="padding" min="0" max="20" value="0">
+                            <span id="paddingValue">0px</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="generateBtn">Generate Favicon</button>
+                        <a href="#" class="download-btn" id="downloadBtn" style="display: none;">Download Favicon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageUpload = document.getElementById('imageUpload');
+            const uploadArea = document.getElementById('uploadArea');
+            const preview16 = document.getElementById('preview16');
+            const preview32 = document.getElementById('preview32');
+            const preview48 = document.getElementById('preview48');
+            const preview64 = document.getElementById('preview64');
+            const backgroundColor = document.getElementById('backgroundColor');
+            const transparentBg = document.getElementById('transparentBg');
+            const padding = document.getElementById('padding');
+            const paddingValue = document.getElementById('paddingValue');
+            const generateBtn = document.getElementById('generateBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            let originalImage = null;
+            
+            // Set up drag and drop
+            Utils.setupDragAndDrop(uploadArea, imageUpload, null);
+            
+            // Handle file upload
+            Utils.handleFileUpload(imageUpload, new Image());
+            
+            imageUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = new Image();
+                        img.onload = function() {
+                            originalImage = img;
+                            updatePreviews();
+                            Utils.showNotification('Image uploaded successfully!');
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Update padding value display
+            padding.addEventListener('input', function() {
+                paddingValue.textContent = `${this.value}px`;
+                updatePreviews();
+            });
+            
+            // Toggle transparent background
+            transparentBg.addEventListener('change', updatePreviews);
+            
+            // Change background color
+            backgroundColor.addEventListener('input', updatePreviews);
+            
+            // Update previews
+            function updatePreviews() {
+                if (!originalImage) return;
+                
+                const sizes = [16, 32, 48, 64];
+                const canvases = [preview16, preview32, preview48, preview64];
+                const pad = parseInt(padding.value);
+                
+                sizes.forEach((size, index) => {
+                    const canvas = canvases[index];
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Clear canvas
+                    ctx.clearRect(0, 0, size, size);
+                    
+                    // Set background
+                    if (!transparentBg.checked) {
+                        ctx.fillStyle = backgroundColor.value;
+                        ctx.fillRect(0, 0, size, size);
+                    } else {
+                        ctx.clearRect(0, 0, size, size);
+                    }
+                    
+                    // Calculate draw area with padding
+                    const drawSize = size - (pad * 2);
+                    const drawX = pad;
+                    const drawY = pad;
+                    
+                    // Draw image
+                    ctx.drawImage(originalImage, drawX, drawY, drawSize, drawSize);
+                });
+            }
+            
+            // Generate favicon
+            generateBtn.addEventListener('click', function() {
+                if (!originalImage) {
+                    Utils.showNotification('Please upload an image first', 'error');
+                    return;
+                }
+                
+                // Create a canvas for the favicon
+                const canvas = document.createElement('canvas');
+                canvas.width = 64;
+                canvas.height = 64;
+                const ctx = canvas.getContext('2d');
+                
+                // Set background
+                if (!transparentBg.checked) {
+                    ctx.fillStyle = backgroundColor.value;
+                    ctx.fillRect(0, 0, 64, 64);
+                }
+                
+                // Calculate draw area with padding
+                const pad = parseInt(padding.value);
+                const drawSize = 64 - (pad * 2);
+                
+                // Draw image
+                ctx.drawImage(originalImage, pad, pad, drawSize, drawSize);
+                
+                // Create download link
+                const link = document.getElementById('downloadBtn');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'favicon.png';
+                link.style.display = 'inline-block';
+                
+                Utils.showNotification('Favicon generated successfully!');
+            });
+        });
+    </script>
+</body>
+</html>

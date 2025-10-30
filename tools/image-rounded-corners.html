@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Rounded Corners - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Image Rounded Corners</h2>
+                    <p>Add rounded corners to your images with customizable radius</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Upload Section -->
+                    <div class="upload-section">
+                        <div class="upload-container">
+                            <div class="upload-box" id="imageUploadBox">
+                                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                                <label for="imageUpload" class="upload-label">
+                                    <div class="upload-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#999" viewBox="0 0 16 16">
+                                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 13a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/>
+                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                        </svg>
+                                    </div>
+                                    <p>Drag and drop your image here, or click to select</p>
+                                    <p class="upload-hint">Supports JPG, PNG, WebP formats</p>
+                                </label>
+                            </div>
+                            <div id="imageInfo" class="image-info" style="display: none;">
+                                <div class="image-details">
+                                    <span id="fileName"></span>
+                                    <span id="fileSize"></span>
+                                    <span id="imageDimensions"></span>
+                                </div>
+                                <button id="changeImageBtn" class="change-btn">Change Image</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rounded Corners Settings -->
+                    <div class="settings-section">
+                        <h3>Rounded Corners Settings</h3>
+                        <div class="settings-groups">
+                            <div class="settings-group">
+                                <div class="setting-item">
+                                    <label>Corner Radius Style</label>
+                                    <div class="radius-style-options">
+                                        <label class="style-option">
+                                            <input type="radio" name="radiusStyle" value="equal" checked>
+                                            <span>Equal All Corners</span>
+                                        </label>
+                                        <label class="style-option">
+                                            <input type="radio" name="radiusStyle" value="custom">
+                                            <span>Custom Corners</span>
+                                        </label>
+                                        <label class="style-option">
+                                            <input type="radio" name="radiusStyle" value="circle">
+                                            <span>Circle/Oval Shape</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Equal Radius Settings -->
+                                <div id="equalRadiusSettings" class="radius-settings">
+                                    <div class="setting-item">
+                                        <label for="equalRadius">Radius Size</label>
+                                        <div class="range-with-value">
+                                            <input type="range" id="equalRadius" min="0" max="500" value="50">
+                                            <div class="value-display">
+                                                <input type="number" id="equalRadiusValue" min="0" max="500" value="50">
+                                                <span>px</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Preset Radius Options -->
+                                    <div class="setting-item">
+                                        <label>Quick Presets</label>
+                                        <div class="preset-options">
+                                            <button class="preset-btn" data-radius="0">Square</button>
+                                            <button class="preset-btn" data-radius="10">Small</button>
+                                            <button class="preset-btn" data-radius="25">Medium</button>
+                                            <button class="preset-btn" data-radius="50">Large</button>
+                                            <button class="preset-btn" data-radius="100">Extra Large</button>
+                                            <button class="preset-btn" data-radius="200">Very Rounded</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Custom Corners Settings -->
+                                <div id="customRadiusSettings" class="radius-settings" style="display: none;">
+                                    <div class="corner-inputs">
+                                        <div class="corner-group">
+                                            <label for="topLeftRadius">Top Left</label>
+                                            <input type="range" class="corner-range" id="topLeftRadius" min="0" max="500" value="50">
+                                            <input type="number" class="corner-value" id="topLeftRadiusValue" min="0" max="500" value="50">
+                                            <span>px</span>
+                                        </div>
+
+                                        <div class="corner-group">
+                                            <label for="topRightRadius">Top Right</label>
+                                            <input type="range" class="corner-range" id="topRightRadius" min="0" max="500" value="50">
+                                            <input type="number" class="corner-value" id="topRightRadiusValue" min="0" max="500" value="50">
+                                            <span>px</span>
+                                        </div>
+
+                                        <div class="corner-group">
+                                            <label for="bottomRightRadius">Bottom Right</label>
+                                            <input type="range" class="corner-range" id="bottomRightRadius" min="0" max="500" value="50">
+                                            <input type="number" class="corner-value" id="bottomRightRadiusValue" min="0" max="500" value="50">
+                                            <span>px</span>
+                                        </div>
+
+                                        <div class="corner-group">
+                                            <label for="bottomLeftRadius">Bottom Left</label>
+                                            <input type="range" class="corner-range" id="bottomLeftRadius" min="0" max="500" value="50">
+                                            <input type="number" class="corner-value" id="bottomLeftRadiusValue" min="0" max="500" value="50">
+                                            <span>px</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Link Corners Option -->
+                                    <div class="setting-item">
+                                        <label class="checkbox-option">
+                                            <input type="checkbox" id="linkCorners">
+                                            <span>Link all corners (change together)</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Background Settings -->
+                                <div class="setting-item">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="addBackground">
+                                        <span>Add background color</span>
+                                    </label>
+                                </div>
+
+                                <div id="backgroundSettings" class="background-settings" style="display: none;">
+                                    <div class="setting-item">
+                                        <label for="backgroundColor">Background Color</label>
+                                        <div class="color-picker-container">
+                                            <input type="color" id="backgroundColor" value="#ffffff">
+                                            <input type="text" id="backgroundColorText" value="#ffffff">
+                                        </div>
+                                    </div>
+
+                                    <div class="setting-item">
+                                        <label class="checkbox-option">
+                                            <input type="checkbox" id="makeTransparent">
+                                            <span>Make background transparent (PNG only)</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Border Settings -->
+                                <div class="setting-item">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="addBorder">
+                                        <span>Add border</span>
+                                    </label>
+                                </div>
+
+                                <div id="borderSettings" class="border-settings" style="display: none;">
+                                    <div class="setting-item">
+                                        <label for="borderWidth">Border Width</label>
+                                        <div class="range-with-value">
+                                            <input type="range" id="borderWidth" min="1" max="50" value="2">
+                                            <div class="value-display">
+                                                <input type="number" id="borderWidthValue" min="1" max="50" value="2">
+                                                <span>px</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="setting-item">
+                                        <label for="borderColor">Border Color</label>
+                                        <div class="color-picker-container">
+                                            <input type="color" id="borderColor" value="#000000">
+                                            <input type="text" id="borderColorText" value="#000000">
+                                        </div>
+                                    </div>
+
+                                    <div class="setting-item">
+                                        <label for="borderStyle">Border Style</label>
+                                        <select id="borderStyle">
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                            <option value="double">Double</option>
+                                            <option value="groove">Groove</option>
+                                            <option value="ridge">Ridge</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div class="preview-section">
+                        <h3>Preview</h3>
+                        <div class="preview-container">
+                            <div class="preview-wrapper">
+                                <div id="previewContainer" class="preview-inner">
+                                    <img id="imagePreview" src="" alt="Preview" style="display: none;">
+                                    <div id="noImageMessage" class="no-image-message">
+                                        <p>Upload an image to see the preview</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Settings -->
+                    <div class="settings-section">
+                        <h3>Output Settings</h3>
+                        <div class="settings-groups">
+                            <div class="settings-group">
+                                <div class="setting-item">
+                                    <label for="outputFormat">Output Format</label>
+                                    <select id="outputFormat">
+                                        <option value="png">PNG</option>
+                                        <option value="jpeg">JPEG</option>
+                                        <option value="webp">WebP</option>
+                                    </select>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="outputQuality">Quality</label>
+                                    <div class="range-with-value">
+                                        <input type="range" id="outputQuality" min="0.1" max="1" step="0.1" value="0.9">
+                                        <span class="range-value">90%</span>
+                                    </div>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="outputFileName">File Name</label>
+                                    <input type="text" id="outputFileName" placeholder="Enter file name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button id="applyChangesBtn" class="action-btn" disabled>Apply Changes</button>
+                        <button id="downloadBtn" class="action-btn" disabled>Download</button>
+                        <button id="resetBtn" class="action-btn" disabled>Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Main elements
+            const imageUploadBox = document.getElementById('imageUploadBox');
+            const imageUpload = document.getElementById('imageUpload');
+            const imageInfo = document.getElementById('imageInfo');
+            const fileName = document.getElementById('fileName');
+            const fileSize = document.getElementById('fileSize');
+            const imageDimensions = document.getElementById('imageDimensions');
+            const changeImageBtn = document.getElementById('changeImageBtn');
+
+            // Radius style options
+            const radiusStyleOptions = document.querySelectorAll('input[name="radiusStyle"]');
+            const equalRadiusSettings = document.getElementById('equalRadiusSettings');
+            const customRadiusSettings = document.getElementById('customRadiusSettings');
+
+            // Equal radius controls
+            const equalRadius = document.getElementById('equalRadius');
+            const equalRadiusValue = document.getElementById('equalRadiusValue');
+            const presetBtns = document.querySelectorAll('.preset-btn');
+
+            // Custom radius controls
+            const cornerRanges = document.querySelectorAll('.corner-range');
+            const cornerValues = document.querySelectorAll('.corner-value');
+            const linkCorners = document.getElementById('linkCorners');
+
+            // Background settings
+            const addBackground = document.getElementById('addBackground');
+            const backgroundSettings = document.getElementById('backgroundSettings');
+            const backgroundColor = document.getElementById('backgroundColor');
+            const backgroundColorText = document.getElementById('backgroundColorText');
+            const makeTransparent = document.getElementById('makeTransparent');
+
+            // Border settings
+            const addBorder = document.getElementById('addBorder');
+            const borderSettings = document.getElementById('borderSettings');
+            const borderWidth = document.getElementById('borderWidth');
+            const borderWidthValue = document.getElementById('borderWidthValue');
+            const borderColor = document.getElementById('borderColor');
+            const borderColorText = document.getElementById('borderColorText');
+            const borderStyle = document.getElementById('borderStyle');
+
+            // Preview elements
+            const previewContainer = document.getElementById('previewContainer');
+            const imagePreview = document.getElementById('imagePreview');
+            const noImageMessage = document.getElementById('noImageMessage');
+
+            // Output settings
+            const outputFormat = document.getElementById('outputFormat');
+            const outputQuality = document.getElementById('outputQuality');
+            const outputFileName = document.getElementById('outputFileName');
+
+            // Action buttons
+            const applyChangesBtn = document.getElementById('applyChangesBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const resetBtn = document.getElementById('resetBtn');
+
+            // Range values
+            const rangeValue = document.querySelector('.range-value');
+
+            // Store image data
+            let uploadedImage = null;
+            let processedImageDataUrl = null;
+
+            // Initialize event listeners
+            initEventListeners();
+
+            function initEventListeners() {
+                // Image upload handling
+                imageUploadBox.addEventListener('dragover', handleDragOver);
+                imageUploadBox.addEventListener('dragleave', handleDragLeave);
+                imageUploadBox.addEventListener('drop', handleDrop);
+                imageUpload.addEventListener('change', handleImageSelect);
+                changeImageBtn.addEventListener('click', function() {
+                    imageUpload.click();
+                });
+
+                // Radius style selection
+                radiusStyleOptions.forEach(option => {
+                    option.addEventListener('change', function() {
+                        equalRadiusSettings.style.display = this.value === 'equal' ? 'block' : 'none';
+                        customRadiusSettings.style.display = this.value === 'custom' ? 'block' : 'none';
+                        updatePreview();
+                    });
+                });
+
+                // Equal radius controls
+                equalRadius.addEventListener('input', function() {
+                    equalRadiusValue.value = this.value;
+                    updatePreview();
+                });
+
+                equalRadiusValue.addEventListener('input', function() {
+                    const value = Math.max(0, Math.min(500, parseInt(this.value) || 0));
+                    this.value = value;
+                    equalRadius.value = value;
+                    updatePreview();
+                });
+
+                // Preset buttons
+                presetBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const radius = parseInt(this.getAttribute('data-radius'));
+                        equalRadius.value = radius;
+                        equalRadiusValue.value = radius;
+                        updatePreview();
+                    });
+                });
+
+                // Custom corner controls
+                cornerRanges.forEach((range, index) => {
+                    range.addEventListener('input', function() {
+                        cornerValues[index].value = this.value;
+                        if (linkCorners.checked) {
+                            // Update all corners to this value
+                            cornerRanges.forEach(r => r.value = this.value);
+                            cornerValues.forEach(v => v.value = this.value);
+                        }
+                        updatePreview();
+                    });
+                });
+
+                cornerValues.forEach((value, index) => {
+                    value.addEventListener('input', function() {
+                        const val = Math.max(0, Math.min(500, parseInt(this.value) || 0));
+                        this.value = val;
+                        cornerRanges[index].value = val;
+                        if (linkCorners.checked) {
+                            // Update all corners to this value
+                            cornerRanges.forEach(r => r.value = val);
+                            cornerValues.forEach(v => v.value = val);
+                        }
+                        updatePreview();
+                    });
+                });
+
+                // Link corners checkbox
+                linkCorners.addEventListener('change', updatePreview);
+
+                // Background settings
+                addBackground.addEventListener('change', function() {
+                    backgroundSettings.style.display = this.checked ? 'block' : 'none';
+                    updatePreview();
+                });
+
+                backgroundColor.addEventListener('input', function() {
+                    backgroundColorText.value = this.value;
+                    updatePreview();
+                });
+
+                backgroundColorText.addEventListener('input', function() {
+                    if (/^#([0-9A-F]{3}){1,2}$/i.test(this.value)) {
+                        backgroundColor.value = this.value;
+                        updatePreview();
+                    }
+                });
+
+                makeTransparent.addEventListener('change', function() {
+                    if (this.checked && outputFormat.value !== 'png') {
+                        outputFormat.value = 'png';
+                    }
+                    updatePreview();
+                });
+
+                // Border settings
+                addBorder.addEventListener('change', function() {
+                    borderSettings.style.display = this.checked ? 'block' : 'none';
+                    updatePreview();
+                });
+
+                borderWidth.addEventListener('input', function() {
+                    borderWidthValue.value = this.value;
+                    updatePreview();
+                });
+
+                borderWidthValue.addEventListener('input', function() {
+                    const value = Math.max(1, Math.min(50, parseInt(this.value) || 1));
+                    this.value = value;
+                    borderWidth.value = value;
+                    updatePreview();
+                });
+
+                borderColor.addEventListener('input', function() {
+                    borderColorText.value = this.value;
+                    updatePreview();
+                });
+
+                borderColorText.addEventListener('input', function() {
+                    if (/^#([0-9A-F]{3}){1,2}$/i.test(this.value)) {
+                        borderColor.value = this.value;
+                        updatePreview();
+                    }
+                });
+
+                borderStyle.addEventListener('change', updatePreview);
+
+                // Quality range
+                outputQuality.addEventListener('input', function() {
+                    rangeValue.textContent = `${Math.round(this.value * 100)}%`;
+                });
+
+                // Output format affects transparency option
+                outputFormat.addEventListener('change', function() {
+                    if (this.value !== 'png') {
+                        makeTransparent.checked = false;
+                    }
+                });
+
+                // Action buttons
+                applyChangesBtn.addEventListener('click', applyChanges);
+                downloadBtn.addEventListener('click', downloadImage);
+                resetBtn.addEventListener('click', resetAll);
+
+                // Initialize range values
+                rangeValue.textContent = `${Math.round(outputQuality.value * 100)}%`;
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            }
+
+            function handleDragLeave() {
+                this.classList.remove('dragover');
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+
+                if (e.dataTransfer.files.length > 0) {
+                    handleImageSelect({ target: { files: e.dataTransfer.files } });
+                }
+            }
+
+            function handleImageSelect(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                // Check file type
+                if (!file.type.match('image.*')) {
+                    Utils.showNotification('Please select an image file!', 'warning');
+                    return;
+                }
+
+                // Read file
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        // Store image data
+                        uploadedImage = {
+                            name: file.name,
+                            size: file.size,
+                            type: file.type,
+                            width: img.width,
+                            height: img.height,
+                            src: e.target.result
+                        };
+
+                        // Update UI
+                        imagePreview.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                        noImageMessage.style.display = 'none';
+
+                        // Update image info
+                        fileName.textContent = file.name;
+                        fileSize.textContent = formatFileSize(file.size);
+                        imageDimensions.textContent = `${img.width} × ${img.height}`;
+                        imageInfo.style.display = 'flex';
+
+                        // Set default output file name
+                        const nameWithoutExt = file.name.replace(/\.[^/.]+$/, '');
+                        outputFileName.value = nameWithoutExt + '_rounded';
+
+                        // Enable buttons
+                        applyChangesBtn.disabled = false;
+                        resetBtn.disabled = false;
+
+                        // Update preview with rounded corners
+                        updatePreview();
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+
+            function updatePreview() {
+                if (!uploadedImage) return;
+
+                // Get selected radius style
+                const radiusStyle = document.querySelector('input[name="radiusStyle"]:checked').value;
+                let borderRadius = '0px';
+
+                // Calculate border radius based on selected style
+                switch(radiusStyle) {
+                    case 'equal':
+                        borderRadius = `${equalRadius.value}px`;
+                        break;
+                    case 'custom':
+                        const topLeft = document.getElementById('topLeftRadius').value;
+                        const topRight = document.getElementById('topRightRadius').value;
+                        const bottomRight = document.getElementById('bottomRightRadius').value;
+                        const bottomLeft = document.getElementById('bottomLeftRadius').value;
+                        borderRadius = `${topLeft}px ${topRight}px ${bottomRight}px ${bottomLeft}px`;
+                        break;
+                    case 'circle':
+                        borderRadius = '50%';
+                        break;
+                }
+
+                // Apply background settings
+                if (addBackground.checked) {
+                    previewContainer.style.backgroundColor = makeTransparent.checked ? 'transparent' : backgroundColor.value;
+                    previewContainer.style.padding = '20px'; // Add padding to show background
+                } else {
+                    previewContainer.style.backgroundColor = 'transparent';
+                    previewContainer.style.padding = '0';
+                }
+
+                // Apply border settings
+                if (addBorder.checked) {
+                    imagePreview.style.borderWidth = `${borderWidth.value}px`;
+                    imagePreview.style.borderColor = borderColor.value;
+                    imagePreview.style.borderStyle = borderStyle.value;
+                } else {
+                    imagePreview.style.borderWidth = '0';
+                    imagePreview.style.borderColor = 'transparent';
+                    imagePreview.style.borderStyle = 'solid';
+                }
+
+                // Apply border radius
+                imagePreview.style.borderRadius = borderRadius;
+
+                // Adjust image max size for preview
+                imagePreview.style.maxWidth = '100%';
+                imagePreview.style.maxHeight = '400px';
+                imagePreview.style.objectFit = 'contain';
+            }
+
+            function applyChanges() {
+                if (!uploadedImage) return;
+
+                // Create a canvas with the image dimensions
+                const canvas = document.createElement('canvas');
+                const img = new Image();
+                img.onload = function() {
+                    // Set canvas dimensions
+                    const borderWidthVal = addBorder.checked ? parseInt(borderWidth.value) : 0;
+                    const padding = 0; // We'll handle the background differently
+                    
+                    // Get selected radius style
+                    const radiusStyle = document.querySelector('input[name="radiusStyle"]:checked').value;
+                    let radius = 0;
+                    let customRadii = { topLeft: 0, topRight: 0, bottomRight: 0, bottomLeft: 0 };
+
+                    // Calculate border radius based on selected style
+                    switch(radiusStyle) {
+                        case 'equal':
+                            radius = parseInt(equalRadius.value);
+                            break;
+                        case 'custom':
+                            customRadii.topLeft = parseInt(document.getElementById('topLeftRadius').value);
+                            customRadii.topRight = parseInt(document.getElementById('topRightRadius').value);
+                            customRadii.bottomRight = parseInt(document.getElementById('bottomRightRadius').value);
+                            customRadii.bottomLeft = parseInt(document.getElementById('bottomLeftRadius').value);
+                            break;
+                        case 'circle':
+                            radius = Math.max(img.width, img.height) / 2;
+                            break;
+                    }
+
+                    // Determine if we need background
+                    const needsBackground = addBackground.checked && !makeTransparent.checked;
+                    
+                    // Set canvas size with borders
+                    canvas.width = img.width + (borderWidthVal * 2);
+                    canvas.height = img.height + (borderWidthVal * 2);
+                    
+                    const ctx = canvas.getContext('2d');
+
+                    // Make canvas transparent if needed
+                    if (!needsBackground) {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    } else {
+                        // Fill with background color
+                        ctx.fillStyle = backgroundColor.value;
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    }
+
+                    // Create rounded rectangle path
+                    ctx.beginPath();
+                    
+                    if (radiusStyle === 'custom') {
+                        // Custom radii for each corner
+                        const tl = customRadii.topLeft + borderWidthVal;
+                        const tr = customRadii.topRight + borderWidthVal;
+                        const br = customRadii.bottomRight + borderWidthVal;
+                        const bl = customRadii.bottomLeft + borderWidthVal;
+                        
+                        ctx.moveTo(borderWidthVal + tl, borderWidthVal);
+                        ctx.lineTo(canvas.width - borderWidthVal - tr, borderWidthVal);
+                        ctx.quadraticCurveTo(canvas.width - borderWidthVal, borderWidthVal, canvas.width - borderWidthVal, borderWidthVal + tr);
+                        ctx.lineTo(canvas.width - borderWidthVal, canvas.height - borderWidthVal - br);
+                        ctx.quadraticCurveTo(canvas.width - borderWidthVal, canvas.height - borderWidthVal, canvas.width - borderWidthVal - br, canvas.height - borderWidthVal);
+                        ctx.lineTo(borderWidthVal + bl, canvas.height - borderWidthVal);
+                        ctx.quadraticCurveTo(borderWidthVal, canvas.height - borderWidthVal, borderWidthVal, canvas.height - borderWidthVal - bl);
+                        ctx.lineTo(borderWidthVal, borderWidthVal + tl);
+                        ctx.quadraticCurveTo(borderWidthVal, borderWidthVal, borderWidthVal + tl, borderWidthVal);
+                    } else {
+                        // Equal radius for all corners or circle
+                        const r = radius + borderWidthVal;
+                        ctx.moveTo(borderWidthVal + r, borderWidthVal);
+                        ctx.lineTo(canvas.width - borderWidthVal - r, borderWidthVal);
+                        ctx.quadraticCurveTo(canvas.width - borderWidthVal, borderWidthVal, canvas.width - borderWidthVal, borderWidthVal + r);
+                        ctx.lineTo(canvas.width - borderWidthVal, canvas.height - borderWidthVal - r);
+                        ctx.quadraticCurveTo(canvas.width - borderWidthVal, canvas.height - borderWidthVal, canvas.width - borderWidthVal - r, canvas.height - borderWidthVal);
+                        ctx.lineTo(borderWidthVal + r, canvas.height - borderWidthVal);
+                        ctx.quadraticCurveTo(borderWidthVal, canvas.height - borderWidthVal, borderWidthVal, canvas.height - borderWidthVal - r);
+                        ctx.lineTo(borderWidthVal, borderWidthVal + r);
+                        ctx.quadraticCurveTo(borderWidthVal, borderWidthVal, borderWidthVal + r, borderWidthVal);
+                    }
+                    
+                    ctx.closePath();
+
+                    // Apply border if needed
+                    if (addBorder.checked) {
+                        ctx.strokeStyle = borderColor.value;
+                        ctx.lineWidth = borderWidthVal * 2;
+                        ctx.stroke();
+                    }
+
+                    // Clip to the rounded rectangle
+                    ctx.clip();
+
+                    // Draw the image
+                    ctx.drawImage(img, borderWidthVal, borderWidthVal, img.width, img.height);
+
+                    // Convert canvas to data URL
+                    const mimeType = `image/${outputFormat.value}`;
+                    processedImageDataUrl = canvas.toDataURL(mimeType, parseFloat(outputQuality.value));
+
+                    // Update the preview image
+                    imagePreview.src = processedImageDataUrl;
+
+                    // Enable download button
+                    downloadBtn.disabled = false;
+
+                    // Show success notification
+                    Utils.showNotification('Changes applied successfully!');
+                };
+                img.src = uploadedImage.src;
+            }
+
+            function downloadImage() {
+                if (!processedImageDataUrl) return;
+
+                // Create download link
+                const link = document.createElement('a');
+                link.href = processedImageDataUrl;
+                
+                // Set filename
+                let filename = outputFileName.value || 'rounded_image';
+                filename += `.${outputFormat.value}`;
+                
+                link.download = filename;
+                
+                // Trigger download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Show success notification
+                Utils.showNotification('Image downloaded successfully!');
+            }
+
+            function resetAll() {
+                // Reset image
+                uploadedImage = null;
+                processedImageDataUrl = null;
+
+                // Reset UI
+                imagePreview.src = '';
+                imagePreview.style.display = 'none';
+                noImageMessage.style.display = 'block';
+                imageInfo.style.display = 'none';
+
+                // Reset form values
+                document.querySelector('input[name="radiusStyle"][value="equal"]').checked = true;
+                equalRadiusSettings.style.display = 'block';
+                customRadiusSettings.style.display = 'none';
+                equalRadius.value = 50;
+                equalRadiusValue.value = 50;
+                
+                // Reset corner values
+                document.getElementById('topLeftRadius').value = 50;
+                document.getElementById('topRightRadius').value = 50;
+                document.getElementById('bottomRightRadius').value = 50;
+                document.getElementById('bottomLeftRadius').value = 50;
+                document.getElementById('topLeftRadiusValue').value = 50;
+                document.getElementById('topRightRadiusValue').value = 50;
+                document.getElementById('bottomRightRadiusValue').value = 50;
+                document.getElementById('bottomLeftRadiusValue').value = 50;
+                linkCorners.checked = false;
+
+                // Reset background settings
+                addBackground.checked = false;
+                backgroundSettings.style.display = 'none';
+                backgroundColor.value = '#ffffff';
+                backgroundColorText.value = '#ffffff';
+                makeTransparent.checked = false;
+
+                // Reset border settings
+                addBorder.checked = false;
+                borderSettings.style.display = 'none';
+                borderWidth.value = 2;
+                borderWidthValue.value = 2;
+                borderColor.value = '#000000';
+                borderColorText.value = '#000000';
+                borderStyle.selectedIndex = 0;
+
+                // Reset output settings
+                outputFormat.selectedIndex = 0;
+                outputQuality.value = 0.9;
+                outputFileName.value = '';
+
+                // Reset range values
+                rangeValue.textContent = `${Math.round(outputQuality.value * 100)}%`;
+
+                // Reset preview styles
+                previewContainer.style.backgroundColor = 'transparent';
+                previewContainer.style.padding = '0';
+                imagePreview.style.borderWidth = '0';
+                imagePreview.style.borderColor = 'transparent';
+                imagePreview.style.borderStyle = 'solid';
+                imagePreview.style.borderRadius = '0px';
+
+                // Disable buttons
+                applyChangesBtn.disabled = true;
+                downloadBtn.disabled = true;
+                resetBtn.disabled = true;
+
+                // Show notification
+                Utils.showNotification('All settings reset!');
+            }
+
+            // Helper functions
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+        });
+    </script>
+    <style>
+        .upload-section {
+            margin-bottom: 30px;
+        }
+
+        .upload-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .upload-box {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            background-color: #f9f9f9;
+        }
+
+        .upload-box.dragover {
+            border-color: #3498db;
+            background-color: #e8f4fd;
+        }
+
+        .upload-label {
+            display: block;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            margin-bottom: 20px;
+        }
+
+        .upload-box p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        .upload-hint {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .image-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding: 12px 16px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        .image-details {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .change-btn {
+            padding: 6px 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .change-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .settings-section {
+            margin-bottom: 30px;
+        }
+
+        .settings-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .settings-group {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .setting-item {
+            margin-bottom: 20px;
+        }
+
+        .setting-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .setting-item label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .setting-item input[type="text"],
+        .setting-item input[type="number"],
+        .setting-item select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .radius-style-options,
+        .preset-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .style-option,
+        .preset-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: white;
+            font-size: 14px;
+        }
+
+        .style-option:hover,
+        .preset-btn:hover {
+            border-color: #3498db;
+            background-color: #f0f8ff;
+        }
+
+        .style-option input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .preset-btn.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .range-with-value {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .range-with-value input[type="range"] {
+            flex: 1;
+        }
+
+        .value-display {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            min-width: 80px;
+        }
+
+        .value-display input[type="number"] {
+            width: 60px;
+            text-align: center;
+        }
+
+        .range-with-value .range-value {
+            min-width: 50px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .color-picker-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .color-picker-container input[type="color"] {
+            width: 50px;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .color-picker-container input[type="text"] {
+            flex: 1;
+            max-width: 120px;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .corner-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .corner-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .corner-group input[type="range"] {
+            width: 100%;
+        }
+
+        .corner-group input[type="number"] {
+            width: 70px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .background-settings,
+        .border-settings {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .preview-section {
+            margin-bottom: 30px;
+        }
+
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .preview-wrapper {
+            max-width: 100%;
+            max-height: 400px;
+            overflow: auto;
+        }
+
+        .preview-inner {
+            position: relative;
+            display: inline-block;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .preview-inner img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .no-image-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-size: 18px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #applyChangesBtn {
+            background-color: #3498db;
+            color: white;
+        }
+
+        #applyChangesBtn:hover:not(:disabled) {
+            background-color: #2980b9;
+        }
+
+        #downloadBtn {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        #downloadBtn:hover:not(:disabled) {
+            background-color: #229954;
+        }
+
+        #resetBtn {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        #resetBtn:hover:not(:disabled) {
+            background-color: #c0392b;
+        }
+
+        @media (max-width: 768px) {
+            .radius-style-options,
+            .preset-options {
+                flex-direction: column;
+            }
+
+            .corner-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+</html>

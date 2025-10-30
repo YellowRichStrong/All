@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线图片网格切割工具 - 免费分割图片为多格 - OOPEN AII</title>
+    <meta name="description" content="免费在线图片网格切割工具，支持将图片分割为3x3、2x2等多种网格布局，适用于社交媒体图片发布、海报设计等场景。">
+    <meta name="keywords" content="图片网格切割,图片分割工具,图片分块,网格分割,图片裁剪成多张小图,社交媒体图片,朋友圈图片分割">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/image-grid-cutter.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/image-grid-cutter.html">
+    <meta property="og:title" content="在线图片网格切割工具 - OOPEN AII">
+    <meta property="og:description" content="免费在线图片网格切割工具，支持将图片分割为3x3、2x2等多种网格布局，适用于社交媒体图片发布。">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/image-grid-cutter.html">
+    <meta property="twitter:title" content="在线图片网格切割工具 - OOPEN AII">
+    <meta property="twitter:description" content="免费在线图片网格切割工具，支持将图片分割为3x3、2x2等多种网格布局，适用于社交媒体图片发布。">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Image Grid Cutter</h2>
+                    <p>Cut images into grids (9-grid for social media)</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Upload Section -->
+                    <div class="upload-section">
+                        <div class="upload-container">
+                            <div class="upload-box" id="imageUploadBox">
+                                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                                <label for="imageUpload" class="upload-label">
+                                    <div class="upload-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#999" viewBox="0 0 16 16">
+                                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 13a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/>
+                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                        </svg>
+                                    </div>
+                                    <p>Drag and drop your image here, or click to select</p>
+                                    <p class="upload-hint">Supports JPG, PNG, WebP formats</p>
+                                </label>
+                            </div>
+                            <div id="imageInfo" class="image-info" style="display: none;">
+                                <div class="image-details">
+                                    <span id="fileName"></span>
+                                    <span id="fileSize"></span>
+                                    <span id="imageDimensions"></span>
+                                </div>
+                                <button id="changeImageBtn" class="change-btn">Change Image</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid Settings -->
+                    <div class="settings-section">
+                        <h3>Grid Settings</h3>
+                        <div class="settings-groups">
+                            <div class="settings-group">
+                                <div class="setting-item">
+                                    <label>Grid Layout</label>
+                                    <div class="grid-layout-options">
+                                        <label class="grid-option">
+                                            <input type="radio" name="gridLayout" value="3x3" checked>
+                                            <div class="grid-preview grid-3x3">
+            <span class="grid-line-horizontal"></span>
+            <span class="grid-line-horizontal"></span>
+            <span class="grid-line-vertical"></span>
+            <span class="grid-line-vertical"></span>
+        </div>
+                                            <span>3×3 (9 Grid)</span>
+                                        </label>
+                                        <label class="grid-option">
+                                            <input type="radio" name="gridLayout" value="2x2">
+                                            <div class="grid-preview grid-2x2">
+                                                <span class="grid-line-horizontal"></span>
+                                                <span class="grid-line-vertical"></span>
+                                            </div>
+                                            <span>2×2</span>
+                                        </label>
+                                        <label class="grid-option">
+                                            <input type="radio" name="gridLayout" value="3x1">
+                                            <div class="grid-preview grid-3x1">
+                                                <span class="grid-line-horizontal"></span>
+                                                <span class="grid-line-horizontal"></span>
+                                            </div>
+                                            <span>3×1</span>
+                                        </label>
+                                        <label class="grid-option">
+                                            <input type="radio" name="gridLayout" value="1x3">
+                                            <div class="grid-preview grid-1x3">
+                                                <span class="grid-line-vertical"></span>
+                                                <span class="grid-line-vertical"></span>
+                                            </div>
+                                            <span>1×3</span>
+                                        </label>
+                                        <label class="grid-option">
+                                            <input type="radio" name="gridLayout" value="custom">
+                                            <div class="grid-preview grid-custom">
+                                                <span class="grid-line-horizontal"></span>
+                                                <span class="grid-line-vertical"></span>
+                                            </div>
+                                            <span>Custom</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Custom Grid Settings -->
+                                <div id="customGridSettings" class="custom-grid-settings" style="display: none;">
+                                    <div class="custom-grid-inputs">
+                                        <div class="grid-dimension">
+                                            <label for="rows">Rows</label>
+                                            <input type="number" id="rows" min="1" max="10" value="3">
+                                        </div>
+                                        <div class="grid-dimension">
+                                            <label for="columns">Columns</label>
+                                            <input type="number" id="columns" min="1" max="10" value="3">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="autoAdjustImage" checked>
+                                        <span>Auto-adjust image to fit grid (recommended)</span>
+                                    </label>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label>Cell Size</label>
+                                    <select id="cellSize">
+                                        <option value="1080">1080×1080px (Instagram)</option>
+                                        <option value="1000">1000×1000px</option>
+                                        <option value="500">500×500px</option>
+                                        <option value="300">300×300px</option>
+                                        <option value="custom">Custom size</option>
+                                    </select>
+                                </div>
+
+                                <!-- Custom Cell Size Settings -->
+                                <div id="customCellSizeSettings" class="custom-cellsize-settings" style="display: none;">
+                                    <div class="custom-cellsize-inputs">
+                                        <div class="cell-dimension">
+                                            <label for="customCellWidth">Width</label>
+                                            <input type="number" id="customCellWidth" min="100" max="5000" value="1080">
+                                            <span>px</span>
+                                        </div>
+                                        <div class="cell-dimension">
+                                            <label for="customCellHeight">Height</label>
+                                            <input type="number" id="customCellHeight" min="100" max="5000" value="1080">
+                                            <span>px</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="addBorder">
+                                        <span>Add border to cells</span>
+                                    </label>
+                                </div>
+
+                                <!-- Border Settings -->
+                                <div id="borderSettings" class="border-settings" style="display: none;">
+                                    <div class="setting-item">
+                                        <label for="borderWidth">Border Width</label>
+                                        <div class="range-with-value">
+                                            <input type="range" id="borderWidth" min="1" max="20" value="2">
+                                            <span class="range-value">2px</span>
+                                        </div>
+                                    </div>
+                                    <div class="setting-item">
+                                        <label for="borderColor">Border Color</label>
+                                        <div class="color-picker-container">
+                                            <input type="color" id="borderColor" value="#ffffff">
+                                            <input type="text" id="borderColorText" value="#ffffff">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div class="preview-section">
+                        <h3>Preview</h3>
+                        <div class="preview-container">
+                            <div id="previewWrapper" class="preview-wrapper">
+                                <div id="imagePreviewContainer" class="image-preview-container">
+                                    <img id="imagePreview" src="" alt="Preview" style="display: none;">
+                                    <div id="gridOverlay" class="grid-overlay" style="display: none;"></div>
+                                    <div id="noImageMessage" class="no-image-message">
+                                        <p>Upload an image to see the preview</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Settings -->
+                    <div class="settings-section">
+                        <h3>Output Settings</h3>
+                        <div class="settings-groups">
+                            <div class="settings-group">
+                                <div class="setting-item">
+                                    <label for="outputFormat">Output Format</label>
+                                    <select id="outputFormat">
+                                        <option value="png">PNG</option>
+                                        <option value="jpeg">JPEG</option>
+                                        <option value="webp">WebP</option>
+                                    </select>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="outputQuality">Quality</label>
+                                    <div class="range-with-value">
+                                        <input type="range" id="outputQuality" min="0.1" max="1" step="0.1" value="0.9">
+                                        <span class="range-value">90%</span>
+                                    </div>
+                                </div>
+
+                                <div class="setting-item">
+                                    <label for="outputFileName">Base File Name</label>
+                                    <input type="text" id="outputFileName" placeholder="Enter base file name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button id="cutImageBtn" class="action-btn" disabled>Cut Image</button>
+                        <div class="download-options">
+                            <button id="downloadAllBtn" class="action-btn" disabled>Download All</button>
+                            <div id="individualDownloads" class="individual-downloads" style="display: none;">
+                                <h4>Individual Downloads:</h4>
+                                <div id="downloadLinksContainer" class="download-links-container"></div>
+                            </div>
+                        </div>
+                        <button id="resetBtn" class="action-btn" disabled>Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Main elements
+            const imageUploadBox = document.getElementById('imageUploadBox');
+            const imageUpload = document.getElementById('imageUpload');
+            const imageInfo = document.getElementById('imageInfo');
+            const fileName = document.getElementById('fileName');
+            const fileSize = document.getElementById('fileSize');
+            const imageDimensions = document.getElementById('imageDimensions');
+            const changeImageBtn = document.getElementById('changeImageBtn');
+
+            // Grid settings
+            const gridLayoutOptions = document.querySelectorAll('input[name="gridLayout"]');
+            const customGridSettings = document.getElementById('customGridSettings');
+            const rows = document.getElementById('rows');
+            const columns = document.getElementById('columns');
+            const autoAdjustImage = document.getElementById('autoAdjustImage');
+
+            // Cell size settings
+            const cellSize = document.getElementById('cellSize');
+            const customCellSizeSettings = document.getElementById('customCellSizeSettings');
+            const customCellWidth = document.getElementById('customCellWidth');
+            const customCellHeight = document.getElementById('customCellHeight');
+
+            // Border settings
+            const addBorder = document.getElementById('addBorder');
+            const borderSettings = document.getElementById('borderSettings');
+            const borderWidth = document.getElementById('borderWidth');
+            const borderColor = document.getElementById('borderColor');
+            const borderColorText = document.getElementById('borderColorText');
+
+            // Preview elements
+            const previewWrapper = document.getElementById('previewWrapper');
+            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+            const imagePreview = document.getElementById('imagePreview');
+            const gridOverlay = document.getElementById('gridOverlay');
+            const noImageMessage = document.getElementById('noImageMessage');
+
+            // Output settings
+            const outputFormat = document.getElementById('outputFormat');
+            const outputQuality = document.getElementById('outputQuality');
+            const outputFileName = document.getElementById('outputFileName');
+
+            // Action buttons
+            const cutImageBtn = document.getElementById('cutImageBtn');
+            const downloadAllBtn = document.getElementById('downloadAllBtn');
+            const individualDownloads = document.getElementById('individualDownloads');
+            const downloadLinksContainer = document.getElementById('downloadLinksContainer');
+            const resetBtn = document.getElementById('resetBtn');
+
+            // Range values
+            const rangeValues = document.querySelectorAll('.range-value');
+
+            // Store image data
+            let uploadedImage = null;
+            let cutImages = [];
+
+            // Initialize event listeners
+            initEventListeners();
+
+            function initEventListeners() {
+                // Image upload handling
+                imageUploadBox.addEventListener('dragover', handleDragOver);
+                imageUploadBox.addEventListener('dragleave', handleDragLeave);
+                imageUploadBox.addEventListener('drop', handleDrop);
+                imageUpload.addEventListener('change', handleImageSelect);
+                changeImageBtn.addEventListener('click', function() {
+                    imageUpload.click();
+                });
+
+                // Grid layout selection
+                gridLayoutOptions.forEach(option => {
+                    option.addEventListener('change', function() {
+                        customGridSettings.style.display = this.value === 'custom' ? 'block' : 'none';
+                        updateGridPreview();
+                        updateGridOverlay();
+                    });
+                });
+
+                // Custom grid dimensions
+                rows.addEventListener('input', updateGridOverlay);
+                columns.addEventListener('input', updateGridOverlay);
+
+                // Auto-adjust image
+                autoAdjustImage.addEventListener('change', updateGridOverlay);
+
+                // Cell size selection
+                cellSize.addEventListener('change', function() {
+                    customCellSizeSettings.style.display = this.value === 'custom' ? 'block' : 'none';
+                });
+
+                // Border settings
+                addBorder.addEventListener('change', function() {
+                    borderSettings.style.display = this.checked ? 'block' : 'none';
+                    updateGridOverlay();
+                });
+
+                borderWidth.addEventListener('input', function() {
+                    updateRangeValue.call(this, 'px');
+                    updateGridOverlay();
+                });
+
+                borderColor.addEventListener('input', function() {
+                    borderColorText.value = this.value;
+                    updateGridOverlay();
+                });
+
+                borderColorText.addEventListener('input', function() {
+                    if (/^#([0-9A-F]{3}){1,2}$/i.test(this.value)) {
+                        borderColor.value = this.value;
+                        updateGridOverlay();
+                    }
+                });
+
+                // Quality range
+                outputQuality.addEventListener('input', function() {
+                    updateRangeValue.call(this, '%', 100);
+                });
+
+                // Action buttons
+                cutImageBtn.addEventListener('click', cutImage);
+                downloadAllBtn.addEventListener('click', downloadAllImages);
+                resetBtn.addEventListener('click', resetAll);
+
+                // Initialize range values
+                updateRangeValue.call(borderWidth, 'px');
+                updateRangeValue.call(outputQuality, '%', 100);
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            }
+
+            function handleDragLeave() {
+                this.classList.remove('dragover');
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+
+                if (e.dataTransfer.files.length > 0) {
+                    handleImageSelect({ target: { files: e.dataTransfer.files } });
+                }
+            }
+
+            function handleImageSelect(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                // Check file type
+                if (!file.type.match('image.*')) {
+                    Utils.showNotification('Please select an image file!', 'warning');
+                    return;
+                }
+
+                // Read file
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        // Store image data
+                        uploadedImage = {
+                            name: file.name,
+                            size: file.size,
+                            type: file.type,
+                            width: img.width,
+                            height: img.height,
+                            src: e.target.result
+                        };
+
+                        // Update UI
+                        imagePreview.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                        gridOverlay.style.display = 'block';
+                        // Ensure the grid overlay has the correct class
+                        const defaultLayout = document.querySelector('input[name="gridLayout"]:checked').value;
+                        gridOverlay.className = `grid-overlay grid-${defaultLayout}`;
+                        noImageMessage.style.display = 'none';
+
+                        // Update image info
+                        fileName.textContent = file.name;
+                        fileSize.textContent = formatFileSize(file.size);
+                        imageDimensions.textContent = `${img.width} × ${img.height}`;
+                        imageInfo.style.display = 'flex';
+
+                        // Set default output file name
+                        const nameWithoutExt = file.name.replace(/\.[^/.]+$/, '');
+                        outputFileName.value = nameWithoutExt;
+
+                        // Enable buttons
+                        cutImageBtn.disabled = false;
+                        resetBtn.disabled = false;
+
+                        // Update grid overlay
+                        updateGridOverlay();
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+
+            function updateRangeValue(suffix = '', multiplier = 1) {
+                const value = this.value * multiplier;
+                // Find the corresponding range value display
+                const rangeValues = document.querySelectorAll('.range-value');
+                let targetValue;
+
+                if (this === borderWidth) targetValue = rangeValues[0];
+                else if (this === outputQuality) targetValue = rangeValues[1];
+
+                if (targetValue) {
+                    targetValue.textContent = `${value}${suffix}`;
+                }
+            }
+
+            function updateGridPreview() {
+                // Update grid preview styles (for visual selection)
+                // This is primarily handled via CSS
+            }
+
+            function updateGridOverlay() {
+                if (!uploadedImage) return;
+
+                // Clear existing grid lines
+                gridOverlay.innerHTML = '';
+
+                // Get grid dimensions
+                let gridRows, gridCols;
+                const selectedLayout = document.querySelector('input[name="gridLayout"]:checked').value;
+
+                switch(selectedLayout) {
+                    case '3x3':
+                        gridRows = 3;
+                        gridCols = 3;
+                        break;
+                    case '2x2':
+                        gridRows = 2;
+                        gridCols = 2;
+                        break;
+                    case '3x1':
+                        gridRows = 3;
+                        gridCols = 1;
+                        break;
+                    case '1x3':
+                        gridRows = 1;
+                        gridCols = 3;
+                        break;
+                    case 'custom':
+                        gridRows = parseInt(rows.value);
+                        gridCols = parseInt(columns.value);
+                        break;
+                }
+
+                // Get container dimensions
+                const containerRect = imagePreviewContainer.getBoundingClientRect();
+                const imageRatio = uploadedImage.width / uploadedImage.height;
+                let displayWidth, displayHeight;
+
+                // Determine image display size
+                if (autoAdjustImage.checked) {
+                    // For grid preview, we want to ensure the image fits the container
+                    // while maintaining aspect ratio
+                    if (imageRatio > 1) {
+                        // Landscape image
+                        displayWidth = Math.min(containerRect.width, 600);
+                        displayHeight = displayWidth / imageRatio;
+                    } else {
+                        // Portrait or square image
+                        displayHeight = Math.min(containerRect.height, 600);
+                        displayWidth = displayHeight * imageRatio;
+                    }
+                } else {
+                    // Use original image dimensions (might overflow)
+                    displayWidth = uploadedImage.width;
+                    displayHeight = uploadedImage.height;
+                }
+
+                // Set image dimensions
+                imagePreview.style.width = `${displayWidth}px`;
+                imagePreview.style.height = `${displayHeight}px`;
+                
+                // Set grid overlay dimensions to match image
+                gridOverlay.style.width = `${displayWidth}px`;
+                gridOverlay.style.height = `${displayHeight}px`;
+                
+                // Update grid overlay class based on selected layout
+                gridOverlay.className = `grid-overlay grid-${selectedLayout}`;
+
+                // Calculate cell dimensions
+                const cellWidth = displayWidth / gridCols;
+                const cellHeight = displayHeight / gridRows;
+
+                // Get border settings
+                const hasBorder = addBorder.checked;
+                const borderWidthVal = hasBorder ? parseInt(borderWidth.value) : 0;
+                const borderColorVal = borderColor.value;
+
+                // Create grid lines
+                // Horizontal lines
+                for (let i = 1; i < gridRows; i++) {
+                    const line = document.createElement('div');
+                    line.className = 'grid-line horizontal';
+                    line.style.top = `${i * cellHeight - borderWidthVal / 2}px`;
+                    line.style.width = `${displayWidth}px`;
+                    line.style.height = `${borderWidthVal}px`;
+                    line.style.backgroundColor = borderColorVal;
+                    gridOverlay.appendChild(line);
+                }
+
+                // Vertical lines
+                for (let i = 1; i < gridCols; i++) {
+                    const line = document.createElement('div');
+                    line.className = 'grid-line vertical';
+                    line.style.left = `${i * cellWidth - borderWidthVal / 2}px`;
+                    line.style.width = `${borderWidthVal}px`;
+                    line.style.height = `${displayHeight}px`;
+                    line.style.backgroundColor = borderColorVal;
+                    gridOverlay.appendChild(line);
+                }
+
+                // Add cell numbering for reference
+                for (let row = 0; row < gridRows; row++) {
+                    for (let col = 0; col < gridCols; col++) {
+                        const cellNumber = document.createElement('div');
+                        cellNumber.className = 'grid-cell-number';
+                        cellNumber.textContent = `${row * gridCols + col + 1}`;
+                        cellNumber.style.left = `${col * cellWidth + 10}px`;
+                        cellNumber.style.top = `${row * cellHeight + 10}px`;
+                        gridOverlay.appendChild(cellNumber);
+                    }
+                }
+            }
+
+            function cutImage() {
+                if (!uploadedImage) return;
+
+                // Get grid dimensions
+                let gridRows, gridCols;
+                const selectedLayout = document.querySelector('input[name="gridLayout"]:checked').value;
+
+                switch(selectedLayout) {
+                    case '3x3':
+                        gridRows = 3;
+                        gridCols = 3;
+                        break;
+                    case '2x2':
+                        gridRows = 2;
+                        gridCols = 2;
+                        break;
+                    case '3x1':
+                        gridRows = 3;
+                        gridCols = 1;
+                        break;
+                    case '1x3':
+                        gridRows = 1;
+                        gridCols = 3;
+                        break;
+                    case 'custom':
+                        gridRows = parseInt(rows.value);
+                        gridCols = parseInt(columns.value);
+                        break;
+                }
+
+                // Get cell size settings
+                let targetCellWidth, targetCellHeight;
+                if (cellSize.value === 'custom') {
+                    targetCellWidth = parseInt(customCellWidth.value);
+                    targetCellHeight = parseInt(customCellHeight.value);
+                } else {
+                    const size = parseInt(cellSize.value);
+                    targetCellWidth = size;
+                    targetCellHeight = size;
+                }
+
+                // Get border settings
+                const hasBorder = addBorder.checked;
+                const borderWidthVal = hasBorder ? parseInt(borderWidth.value) : 0;
+                const borderColorVal = borderColor.value;
+
+                // Get output settings
+                const format = outputFormat.value;
+                const quality = parseFloat(outputQuality.value);
+                const baseFileName = outputFileName.value || 'grid_image';
+
+                // Create original image
+                const originalImg = new Image();
+                originalImg.onload = function() {
+                    // Clear previous cut images
+                    cutImages = [];
+                    
+                    // Determine the size to process
+                    let processWidth, processHeight;
+                    
+                    if (autoAdjustImage.checked) {
+                        // Calculate new dimensions based on target cell size
+                        const totalTargetWidth = targetCellWidth * gridCols;
+                        const totalTargetHeight = targetCellHeight * gridRows;
+                        const originalRatio = originalImg.width / originalImg.height;
+                        const targetRatio = totalTargetWidth / totalTargetHeight;
+                        
+                        if (originalRatio > targetRatio) {
+                            // Original image is wider than target
+                            processWidth = totalTargetWidth;
+                            processHeight = processWidth / originalRatio;
+                        } else {
+                            // Original image is taller than target or same ratio
+                            processHeight = totalTargetHeight;
+                            processWidth = processHeight * originalRatio;
+                        }
+                    } else {
+                        // Use original dimensions
+                        processWidth = originalImg.width;
+                        processHeight = originalImg.height;
+                    }
+
+                    // Calculate cell dimensions
+                    const cellWidth = processWidth / gridCols;
+                    const cellHeight = processHeight / gridRows;
+
+                    // Create canvas for processing
+                    const processCanvas = document.createElement('canvas');
+                    processCanvas.width = processWidth;
+                    processCanvas.height = processHeight;
+                    const processCtx = processCanvas.getContext('2d');
+
+                    // Draw original image scaled to processing size
+                    processCtx.drawImage(originalImg, 0, 0, processWidth, processHeight);
+
+                    // Cut into grid cells
+                    for (let row = 0; row < gridRows; row++) {
+                        for (let col = 0; col < gridCols; col++) {
+                            // Create cell canvas
+                            const cellCanvas = document.createElement('canvas');
+                            cellCanvas.width = targetCellWidth;
+                            cellCanvas.height = targetCellHeight;
+                            const cellCtx = cellCanvas.getContext('2d');
+
+                            // Fill with border color if borders are enabled
+                            if (hasBorder) {
+                                cellCtx.fillStyle = borderColorVal;
+                                cellCtx.fillRect(0, 0, targetCellWidth, targetCellHeight);
+                            }
+
+                            // Calculate source and destination positions
+                            const srcX = col * cellWidth;
+                            const srcY = row * cellHeight;
+                            const destX = hasBorder ? borderWidthVal : 0;
+                            const destY = hasBorder ? borderWidthVal : 0;
+                            const destWidth = targetCellWidth - (hasBorder ? borderWidthVal * 2 : 0);
+                            const destHeight = targetCellHeight - (hasBorder ? borderWidthVal * 2 : 0);
+
+                            // Draw the cell from the processed image
+                            cellCtx.drawImage(
+                                processCanvas,
+                                srcX, srcY, cellWidth, cellHeight,
+                                destX, destY, destWidth, destHeight
+                            );
+
+                            // Convert to data URL
+                            const mimeType = `image/${format}`;
+                            const dataUrl = cellCanvas.toDataURL(mimeType, quality);
+
+                            // Store cell image information
+                            const cellIndex = row * gridCols + col + 1;
+                            const imageFileName = `${baseFileName}_${cellIndex}.${format}`;
+                            
+                            cutImages.push({
+                                dataUrl: dataUrl,
+                                fileName: imageFileName,
+                                index: cellIndex,
+                                row: row,
+                                col: col
+                            });
+                        }
+                    }
+
+                    // Update UI with download options
+                    updateDownloadOptions();
+
+                    // Show success notification
+                    Utils.showNotification(`Image successfully cut into ${cutImages.length} pieces!`);
+                };
+                originalImg.src = uploadedImage.src;
+            }
+
+            function updateDownloadOptions() {
+                // Clear previous download links
+                downloadLinksContainer.innerHTML = '';
+
+                // Show individual downloads section
+                individualDownloads.style.display = 'block';
+
+                // Create download links for each cell
+                cutImages.forEach(cutImage => {
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = cutImage.dataUrl;
+                    downloadLink.download = cutImage.fileName;
+                    downloadLink.className = 'individual-download-link';
+                    downloadLink.textContent = `Download Cell ${cutImage.index}`;
+                    downloadLinksContainer.appendChild(downloadLink);
+                });
+
+                // Enable download all button
+                downloadAllBtn.disabled = false;
+            }
+
+            function downloadAllImages() {
+                if (cutImages.length === 0) return;
+
+                // For multiple images, we'll create a zip file in a real implementation
+                // For this demo, we'll just download the first image as an example
+                // In a real implementation, you would use a library like JSZip
+                
+                Utils.showNotification('In a real implementation, this would download all images as a zip file.', 'info');
+                
+                // For demo purposes, just download the first image
+                if (cutImages.length > 0) {
+                    const firstImage = cutImages[0];
+                    const link = document.createElement('a');
+                    link.href = firstImage.dataUrl;
+                    link.download = firstImage.fileName;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            }
+
+            function resetAll() {
+                // Reset image
+                uploadedImage = null;
+                cutImages = [];
+
+                // Reset UI
+                imagePreview.src = '';
+                imagePreview.style.display = 'none';
+                gridOverlay.style.display = 'none';
+                gridOverlay.innerHTML = '';
+                noImageMessage.style.display = 'block';
+                imageInfo.style.display = 'none';
+                individualDownloads.style.display = 'none';
+                downloadLinksContainer.innerHTML = '';
+
+                // Reset form values
+                document.querySelector('input[name="gridLayout"][value="3x3"]').checked = true;
+                customGridSettings.style.display = 'none';
+                rows.value = 3;
+                columns.value = 3;
+                autoAdjustImage.checked = true;
+                cellSize.selectedIndex = 0;
+                customCellSizeSettings.style.display = 'none';
+                customCellWidth.value = 1080;
+                customCellHeight.value = 1080;
+                addBorder.checked = false;
+                borderSettings.style.display = 'none';
+                borderWidth.value = 2;
+                borderColor.value = '#ffffff';
+                borderColorText.value = '#ffffff';
+                outputFormat.selectedIndex = 0;
+                outputQuality.value = 0.9;
+                outputFileName.value = '';
+
+                // Reset range values
+                updateRangeValue.call(borderWidth, 'px');
+                updateRangeValue.call(outputQuality, '%', 100);
+
+                // Disable buttons
+                cutImageBtn.disabled = true;
+                downloadAllBtn.disabled = true;
+                resetBtn.disabled = true;
+
+                // Show notification
+                Utils.showNotification('All settings reset!');
+            }
+
+            // Helper functions
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // Initialize resize handler to update grid when window resizes
+            window.addEventListener('resize', updateGridOverlay);
+        });
+    </script>
+    <style>
+        .upload-section {
+            margin-bottom: 30px;
+        }
+
+        .upload-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .upload-box {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            background-color: #f9f9f9;
+        }
+
+        .upload-box.dragover {
+            border-color: #3498db;
+            background-color: #e8f4fd;
+        }
+
+        .upload-label {
+            display: block;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            margin-bottom: 20px;
+        }
+
+        .upload-box p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        .upload-hint {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .image-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding: 12px 16px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        .image-details {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .change-btn {
+            padding: 6px 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .change-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .settings-section {
+            margin-bottom: 30px;
+        }
+
+        .settings-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .settings-group {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .setting-item {
+            margin-bottom: 20px;
+        }
+
+        .setting-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .setting-item label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .setting-item input[type="text"],
+        .setting-item input[type="number"],
+        .setting-item select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .setting-item input[type="number"] {
+            width: 100px;
+        }
+
+        .range-with-value {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .range-with-value input[type="range"] {
+            flex: 1;
+        }
+
+        .range-with-value .range-value {
+            min-width: 50px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .color-picker-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .color-picker-container input[type="color"] {
+            width: 50px;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .color-picker-container input[type="text"] {
+            flex: 1;
+            max-width: 120px;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .grid-layout-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .grid-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .grid-option:hover {
+            border-color: #3498db;
+            background-color: #f0f8ff;
+        }
+
+        .grid-option input[type="radio"] {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .grid-preview {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        .grid-preview.grid-3x3::before,
+        .grid-preview.grid-3x3::after,
+        .grid-preview.grid-3x3 .grid-line-horizontal,
+        .grid-preview.grid-3x3 .grid-line-vertical {
+            content: '';
+            position: absolute;
+            background-color: #3498db;
+        }
+
+        .grid-preview.grid-3x3 .grid-line-horizontal {
+            width: 100%;
+            height: 1px;
+            top: 33%;
+        }
+
+        .grid-preview.grid-3x3 .grid-line-horizontal:nth-child(2) {
+            top: 66%;
+        }
+
+        .grid-preview.grid-3x3 .grid-line-vertical {
+            width: 1px;
+            height: 100%;
+            left: 33%;
+        }
+
+        .grid-preview.grid-3x3 .grid-line-vertical:nth-child(2) {
+            left: 66%;
+        }
+
+        /* Additional grid preview styles for other grid types */
+        .grid-preview.grid-2x2 .grid-line-horizontal,
+        .grid-preview.grid-2x2 .grid-line-vertical {
+            content: '';
+            position: absolute;
+            background-color: #3498db;
+        }
+
+        .grid-preview.grid-2x2 .grid-line-horizontal {
+            width: 100%;
+            height: 1px;
+            top: 50%;
+        }
+
+        .grid-preview.grid-2x2 .grid-line-vertical {
+            width: 1px;
+            height: 100%;
+            left: 50%;
+        }
+
+        .grid-preview.grid-3x1 .grid-line-horizontal {
+            content: '';
+            position: absolute;
+            background-color: #3498db;
+            width: 100%;
+            height: 1px;
+        }
+
+        .grid-preview.grid-3x1 .grid-line-horizontal:first-child {
+            top: 33%;
+        }
+
+        .grid-preview.grid-3x1 .grid-line-horizontal:last-child {
+            top: 66%;
+        }
+
+        .grid-preview.grid-1x3 .grid-line-vertical {
+            content: '';
+            position: absolute;
+            background-color: #3498db;
+            width: 1px;
+            height: 100%;
+        }
+
+        .grid-preview.grid-1x3 .grid-line-vertical:first-child {
+            left: 33%;
+        }
+
+        .grid-preview.grid-1x3 .grid-line-vertical:last-child {
+            left: 66%;
+        }
+
+        .grid-preview.grid-custom .grid-line-horizontal,
+        .grid-preview.grid-custom .grid-line-vertical {
+            content: '';
+            position: absolute;
+            background-color: #3498db;
+        }
+
+        .grid-preview.grid-custom .grid-line-horizontal {
+            width: 100%;
+            height: 1px;
+            top: 40%;
+        }
+
+        .grid-preview.grid-custom .grid-line-vertical {
+            width: 1px;
+            height: 100%;
+            left: 40%;
+        }
+
+        .custom-grid-inputs,
+        .custom-cellsize-inputs {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .grid-dimension,
+        .cell-dimension {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .cell-dimension {
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cell-dimension label {
+            margin-bottom: 0;
+            min-width: 50px;
+        }
+
+        .cell-dimension input[type="number"] {
+            flex: 1;
+        }
+
+        .cell-dimension span {
+            color: #666;
+        }
+
+        .custom-grid-settings,
+        .custom-cellsize-settings,
+        .border-settings {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .preview-section {
+            margin-bottom: 30px;
+        }
+
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .preview-wrapper {
+            max-width: 100%;
+            max-height: 500px;
+            overflow: auto;
+        }
+
+        .image-preview-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .image-preview-container img {
+            max-width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .grid-line {
+            position: absolute;
+            opacity: 0.7;
+        }
+
+        .grid-cell-number {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .no-image-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-size: 18px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #cutImageBtn {
+            background-color: #3498db;
+            color: white;
+        }
+
+        #cutImageBtn:hover:not(:disabled) {
+            background-color: #2980b9;
+        }
+
+        #downloadAllBtn {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        #downloadAllBtn:hover:not(:disabled) {
+            background-color: #229954;
+        }
+
+        #resetBtn {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        #resetBtn:hover:not(:disabled) {
+            background-color: #c0392b;
+        }
+
+        .download-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .individual-downloads {
+            width: 100%;
+            max-width: 600px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .individual-downloads h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .download-links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .individual-download-link {
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .individual-download-link:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .custom-grid-inputs,
+            .custom-cellsize-inputs {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .cell-dimension {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 5px;
+            }
+
+            .cell-dimension label {
+                margin-bottom: 5px;
+            }
+
+            .cell-dimension span {
+                align-self: flex-start;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .grid-layout-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</body>
+</html>

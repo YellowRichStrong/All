@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placeholder Image Generator - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Placeholder Image Generator</h2>
+                    <p>Generate custom placeholder images with any dimensions</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Options -->
+                    <div class="options">
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="width">Width</label>
+                                <input type="number" id="width" min="1" max="2000" value="800">
+                            </div>
+                            <div class="option-group">
+                                <label for="height">Height</label>
+                                <input type="number" id="height" min="1" max="2000" value="400">
+                            </div>
+                            <div class="option-group">
+                                <label>Quick Sizes</label>
+                                <div class="size-presets">
+                                    <button class="preset-btn" data-width="300" data-height="200">300×200</button>
+                                    <button class="preset-btn" data-width="640" data-height="480">640×480</button>
+                                    <button class="preset-btn" data-width="1200" data-height="628">1200×628</button>
+                                    <button class="preset-btn" data-width="1920" data-height="1080">1920×1080</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="bgColor">Background Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="bgColor" value="#e0e0e0">
+                                    <input type="text" id="bgColorText" value="#e0e0e0">
+                                </div>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="textColor">Text Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="textColor" value="#666666">
+                                    <input type="text" id="textColorText" value="#666666">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="text">Custom Text</label>
+                                <input type="text" id="text" placeholder="Leave blank for dimensions">
+                            </div>
+
+                            <div class="option-group">
+                                <label for="textSize">Text Size</label>
+                                <input type="range" id="textSize" min="12" max="100" value="36">
+                                <span id="textSizeValue">36px</span>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label>Style Options</label>
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" id="showGrid" checked>
+                                        Show Grid
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="showBorder">
+                                        Add Border
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="roundedCorners">
+                                        Rounded Corners
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="borderRadius">Border Radius</label>
+                                <input type="range" id="borderRadius" min="0" max="50" value="8">
+                                <span id="borderRadiusValue">8px</span>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="imageFormat">Output Format</label>
+                                <select id="imageFormat">
+                                    <option value="png">PNG</option>
+                                    <option value="jpeg">JPEG</option>
+                                    <option value="webp">WebP</option>
+                                </select>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="quality">Quality (JPEG/WebP)</label>
+                                <input type="range" id="quality" min="1" max="100" value="90">
+                                <span id="qualityValue">90%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Area -->
+                    <div class="preview">
+                        <h3>Preview</h3>
+                        <div class="preview-container">
+                            <canvas id="previewCanvas"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="generateBtn">Generate Placeholder</button>
+                        <button class="action-btn" id="randomBtn">Random Placeholder</button>
+                        <a href="#" class="download-btn" id="downloadBtn">Download Image</a>
+                        <button class="action-btn" id="copyBtn">Copy to Clipboard</button>
+                    </div>
+
+                    <!-- HTML Code -->
+                    <div class="code-section">
+                        <h3>HTML Code</h3>
+                        <div class="code-container">
+                            <textarea id="htmlCode" readonly></textarea>
+                            <button class="copy-code-btn" onclick="copyCode()">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const width = document.getElementById('width');
+            const height = document.getElementById('height');
+            const sizePresets = document.querySelectorAll('.preset-btn');
+            const bgColor = document.getElementById('bgColor');
+            const bgColorText = document.getElementById('bgColorText');
+            const textColor = document.getElementById('textColor');
+            const textColorText = document.getElementById('textColorText');
+            const text = document.getElementById('text');
+            const textSize = document.getElementById('textSize');
+            const textSizeValue = document.getElementById('textSizeValue');
+            const showGrid = document.getElementById('showGrid');
+            const showBorder = document.getElementById('showBorder');
+            const roundedCorners = document.getElementById('roundedCorners');
+            const borderRadius = document.getElementById('borderRadius');
+            const borderRadiusValue = document.getElementById('borderRadiusValue');
+            const imageFormat = document.getElementById('imageFormat');
+            const quality = document.getElementById('quality');
+            const qualityValue = document.getElementById('qualityValue');
+            const previewCanvas = document.getElementById('previewCanvas');
+            const generateBtn = document.getElementById('generateBtn');
+            const randomBtn = document.getElementById('randomBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const htmlCode = document.getElementById('htmlCode');
+            
+            const ctx = previewCanvas.getContext('2d');
+            
+            // Update text size display
+            textSize.addEventListener('input', function() {
+                textSizeValue.textContent = `${this.value}px`;
+                updatePreview();
+            });
+            
+            // Update border radius display
+            borderRadius.addEventListener('input', function() {
+                borderRadiusValue.textContent = `${this.value}px`;
+                updatePreview();
+            });
+            
+            // Update quality display
+            quality.addEventListener('input', function() {
+                qualityValue.textContent = `${this.value}%`;
+            });
+            
+            // Update background color
+            bgColor.addEventListener('input', function() {
+                bgColorText.value = this.value;
+                updatePreview();
+            });
+            
+            bgColorText.addEventListener('input', function() {
+                if (/^#[0-9A-F]{6}$/i.test(this.value)) {
+                    bgColor.value = this.value;
+                    updatePreview();
+                }
+            });
+            
+            // Update text color
+            textColor.addEventListener('input', function() {
+                textColorText.value = this.value;
+                updatePreview();
+            });
+            
+            textColorText.addEventListener('input', function() {
+                if (/^#[0-9A-F]{6}$/i.test(this.value)) {
+                    textColor.value = this.value;
+                    updatePreview();
+                }
+            });
+            
+            // Size presets
+            sizePresets.forEach(preset => {
+                preset.addEventListener('click', function() {
+                    width.value = this.dataset.width;
+                    height.value = this.dataset.height;
+                    updatePreview();
+                });
+            });
+            
+            // Toggle options
+            showGrid.addEventListener('change', updatePreview);
+            showBorder.addEventListener('change', updatePreview);
+            roundedCorners.addEventListener('change', updatePreview);
+            
+            // Input fields change
+            width.addEventListener('input', updatePreview);
+            height.addEventListener('input', updatePreview);
+            text.addEventListener('input', updatePreview);
+            imageFormat.addEventListener('change', updatePreview);
+            
+            // Generate placeholder
+            generateBtn.addEventListener('click', function() {
+                generatePlaceholder();
+                Utils.showNotification('Placeholder generated!');
+            });
+            
+            // Random placeholder
+            randomBtn.addEventListener('click', function() {
+                generateRandomPlaceholder();
+                Utils.showNotification('Random placeholder generated!');
+            });
+            
+            // Download image
+            downloadBtn.addEventListener('click', function() {
+                const format = imageFormat.value;
+                const mimeType = `image/${format}`;
+                const qualityValue = parseInt(quality.value) / 100;
+                
+                let dataURL;
+                if (format === 'jpeg' || format === 'webp') {
+                    dataURL = previewCanvas.toDataURL(mimeType, qualityValue);
+                } else {
+                    dataURL = previewCanvas.toDataURL(mimeType);
+                }
+                
+                downloadBtn.href = dataURL;
+                downloadBtn.download = `placeholder-${width.value}x${height.value}.${format}`;
+                Utils.showNotification('Placeholder downloaded!');
+            });
+            
+            // Copy to clipboard
+            copyBtn.addEventListener('click', function() {
+                const format = imageFormat.value;
+                const mimeType = `image/${format}`;
+                const qualityValue = parseInt(quality.value) / 100;
+                
+                let dataURL;
+                if (format === 'jpeg' || format === 'webp') {
+                    dataURL = previewCanvas.toDataURL(mimeType, qualityValue);
+                } else {
+                    dataURL = previewCanvas.toDataURL(mimeType);
+                }
+                
+                // Convert data URL to blob and then to clipboard
+                fetch(dataURL)
+                    .then(res => res.blob())
+                    .then(blob => {
+                        navigator.clipboard.write([
+                            new ClipboardItem({ [mimeType]: blob })
+                        ]).then(() => {
+                            Utils.showNotification('Placeholder copied to clipboard!');
+                        }).catch(err => {
+                            Utils.showNotification('Failed to copy image', 'error');
+                            console.error('Failed to copy image:', err);
+                        });
+                    });
+            });
+            
+            // Generate placeholder
+            function generatePlaceholder() {
+                const w = parseInt(width.value);
+                const h = parseInt(height.value);
+                const bg = bgColor.value;
+                const textCol = textColor.value;
+                const customText = text.value.trim() || `${w}×${h}`;
+                const fontSize = parseInt(textSize.value);
+                const radius = roundedCorners.checked ? parseInt(borderRadius.value) : 0;
+                
+                // Set canvas dimensions
+                previewCanvas.width = w;
+                previewCanvas.height = h;
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, w, h);
+                
+                // Draw rounded rectangle if enabled
+                if (roundedCorners.checked) {
+                    ctx.beginPath();
+                    ctx.moveTo(radius, 0);
+                    ctx.lineTo(w - radius, 0);
+                    ctx.quadraticCurveTo(w, 0, w, radius);
+                    ctx.lineTo(w, h - radius);
+                    ctx.quadraticCurveTo(w, h, w - radius, h);
+                    ctx.lineTo(radius, h);
+                    ctx.quadraticCurveTo(0, h, 0, h - radius);
+                    ctx.lineTo(0, radius);
+                    ctx.quadraticCurveTo(0, 0, radius, 0);
+                    ctx.closePath();
+                    ctx.fillStyle = bg;
+                    ctx.fill();
+                    
+                    // Add border if enabled
+                    if (showBorder.checked) {
+                        ctx.strokeStyle = '#000000';
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                    }
+                } else {
+                    // Draw rectangle
+                    ctx.fillStyle = bg;
+                    ctx.fillRect(0, 0, w, h);
+                    
+                    // Add border if enabled
+                    if (showBorder.checked) {
+                        ctx.strokeStyle = '#000000';
+                        ctx.lineWidth = 2;
+                        ctx.strokeRect(0, 0, w, h);
+                    }
+                }
+                
+                // Draw grid if enabled
+                if (showGrid.checked) {
+                    ctx.strokeStyle = adjustBrightness(bg, -20);
+                    ctx.lineWidth = 1;
+                    
+                    const gridSize = Math.max(20, Math.min(w, h) / 10);
+                    
+                    // Vertical lines
+                    for (let x = gridSize; x < w; x += gridSize) {
+                        ctx.beginPath();
+                        ctx.moveTo(x, 0);
+                        ctx.lineTo(x, h);
+                        ctx.stroke();
+                    }
+                    
+                    // Horizontal lines
+                    for (let y = gridSize; y < h; y += gridSize) {
+                        ctx.beginPath();
+                        ctx.moveTo(0, y);
+                        ctx.lineTo(w, y);
+                        ctx.stroke();
+                    }
+                }
+                
+                // Draw text
+                ctx.fillStyle = textCol;
+                ctx.font = `${fontSize}px Arial, sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                // Adjust font size to fit if needed
+                let adjustedFontSize = fontSize;
+                let textMetrics;
+                
+                do {
+                    ctx.font = `${adjustedFontSize}px Arial, sans-serif`;
+                    textMetrics = ctx.measureText(customText);
+                    adjustedFontSize--;
+                } while (textMetrics.width > w * 0.8 && adjustedFontSize > 10);
+                
+                ctx.fillText(customText, w / 2, h / 2);
+                
+                // Update HTML code
+                updateHTMLCode();
+            }
+            
+            // Generate random placeholder
+            function generateRandomPlaceholder() {
+                // Random dimensions between 200-1200
+                const randomWidth = Math.floor(Math.random() * 1000) + 200;
+                const randomHeight = Math.floor(Math.random() * 600) + 200;
+                
+                width.value = randomWidth;
+                height.value = randomHeight;
+                
+                // Random colors
+                const randomBgColor = getRandomColor();
+                const randomTextColor = invertColor(randomBgColor);
+                
+                bgColor.value = randomBgColor;
+                bgColorText.value = randomBgColor;
+                textColor.value = randomTextColor;
+                textColorText.value = randomTextColor;
+                
+                // Random options
+                showGrid.checked = Math.random() > 0.5;
+                showBorder.checked = Math.random() > 0.7;
+                roundedCorners.checked = Math.random() > 0.6;
+                
+                // Random text (50% chance to show dimensions)
+                if (Math.random() > 0.5) {
+                    text.value = '';
+                } else {
+                    // Generate random text
+                    const words = ['Placeholder', 'Example', 'Demo', 'Sample', 'Test', 'Image'];
+                    const randomWord = words[Math.floor(Math.random() * words.length)];
+                    text.value = randomWord;
+                }
+                
+                updatePreview();
+            }
+            
+            // Get random color
+            function getRandomColor() {
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+            
+            // Invert color
+            function invertColor(hex) {
+                hex = hex.replace('#', '');
+                const r = (255 - parseInt(hex.substring(0, 2), 16)).toString(16).padStart(2, '0');
+                const g = (255 - parseInt(hex.substring(2, 4), 16)).toString(16).padStart(2, '0');
+                const b = (255 - parseInt(hex.substring(4, 6), 16)).toString(16).padStart(2, '0');
+                return '#' + r + g + b;
+            }
+            
+            // Adjust brightness of color
+            function adjustBrightness(color, percent) {
+                const num = parseInt(color.replace('#', ''), 16);
+                const amt = Math.round(2.55 * percent);
+                const R = (num >> 16) + amt;
+                const G = (num >> 8 & 0x00FF) + amt;
+                const B = (num & 0x0000FF) + amt;
+                return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+            }
+            
+            // Update HTML code
+            function updateHTMLCode() {
+                const w = width.value;
+                const h = height.value;
+                const bg = bgColor.value;
+                const customText = text.value.trim() || `${w}×${h}`;
+                
+                // Generate inline SVG code
+                const svgCode = `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="${bg}" />
+  <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="${textSize.value}" text-anchor="middle" dominant-baseline="middle" fill="${textColor.value}">${customText}</text>
+</svg>`;
+                
+                const encodedSvg = encodeURIComponent(svgCode);
+                const dataUrl = `data:image/svg+xml,${encodedSvg}`;
+                
+                const html = `<img src="${dataUrl}" alt="Placeholder ${w}x${h}" width="${w}" height="${h}">`;
+                htmlCode.value = html;
+            }
+            
+            // Copy HTML code
+            window.copyCode = function() {
+                htmlCode.select();
+                document.execCommand('copy');
+                Utils.showNotification('HTML code copied to clipboard!');
+            };
+            
+            // Update preview on load
+            updatePreview();
+            
+            function updatePreview() {
+                generatePlaceholder();
+            }
+        });
+    </script>
+    <style>
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        #previewCanvas {
+            max-width: 100%;
+            max-height: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .size-presets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .preset-btn {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            background-color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        
+        .preset-btn:hover {
+            background-color: #f5f5f5;
+            border-color: #3498db;
+        }
+        
+        .color-input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .color-input-group input[type="color"] {
+            width: 50px;
+            height: 36px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .color-input-group input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .code-section {
+            margin-top: 30px;
+        }
+        
+        .code-container {
+            position: relative;
+            margin-top: 10px;
+        }
+        
+        #htmlCode {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            background-color: #f8f8f8;
+        }
+        
+        .copy-code-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        
+        .copy-code-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .option-row {
+                flex-direction: column;
+            }
+            
+            .checkbox-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .size-presets {
+                justify-content: center;
+            }
+            
+            .color-input-group {
+                flex-direction: column;
+            }
+            
+            .action-buttons {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+    </style>
+</body>
+</html>

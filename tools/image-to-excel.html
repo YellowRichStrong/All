@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Excel - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Image to Excel</h2>
+                    <p>Convert images to Excel format</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Upload Area -->
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="imageUpload" accept="image/*">
+                        <div class="upload-icon">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <p>Drag and drop your image here, or</p>
+                        <button class="upload-btn" onclick="document.getElementById('imageUpload').click()">Select Image</button>
+                    </div>
+
+                    <!-- Preview Area -->
+                    <div class="preview">
+                        <h3>Preview</h3>
+                        <img id="imagePreview" src="" alt="Preview" style="display: none;">
+                    </div>
+
+                    <!-- Options -->
+                    <div class="options">
+                        <div class="option-group">
+                            <label for="conversionType">Conversion Type</label>
+                            <select id="conversionType">
+                                <option value="pixels">Convert Each Pixel to Cell</option>
+                                <option value="table">Extract Tables from Image</option>
+                                <option value="ocr">Extract Text (OCR)</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group" id="pixelGroup">
+                            <label for="pixelSize">Pixel Size (for pixel conversion)</label>
+                            <input type="range" id="pixelSize" min="1" max="10" value="2">
+                            <span id="pixelSizeValue">2x2</span>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="fileName">Excel File Name</label>
+                            <input type="text" id="fileName" value="exported_image" placeholder="Enter file name">
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="convertBtn">Convert to Excel</button>
+                        <a href="#" class="download-btn" id="downloadBtn" style="display: none;">Download Excel File</a>
+                    </div>
+
+                    <!-- Note -->
+                    <div class="note">
+                        <p><strong>Note:</strong> This is a simulation of Excel conversion. For actual Excel file generation, a backend service would be required.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageUpload = document.getElementById('imageUpload');
+            const uploadArea = document.getElementById('uploadArea');
+            const imagePreview = document.getElementById('imagePreview');
+            const conversionType = document.getElementById('conversionType');
+            const pixelGroup = document.getElementById('pixelGroup');
+            const pixelSize = document.getElementById('pixelSize');
+            const pixelSizeValue = document.getElementById('pixelSizeValue');
+            const fileName = document.getElementById('fileName');
+            const convertBtn = document.getElementById('convertBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            let originalImage = null;
+            
+            // Set up drag and drop
+            Utils.setupDragAndDrop(uploadArea, imageUpload, imagePreview);
+            
+            // Handle file upload
+            imageUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = new Image();
+                        img.onload = function() {
+                            originalImage = img;
+                            imagePreview.src = e.target.result;
+                            imagePreview.style.display = 'block';
+                            Utils.showNotification('Image uploaded successfully!');
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Update pixel size display
+            pixelSize.addEventListener('input', function() {
+                pixelSizeValue.textContent = `${this.value}x${this.value}`;
+            });
+            
+            // Toggle pixel group based on conversion type
+            conversionType.addEventListener('change', function() {
+                pixelGroup.style.display = (this.value === 'pixels') ? 'block' : 'none';
+            });
+            
+            // Initial check for pixel group
+            pixelGroup.style.display = (conversionType.value === 'pixels') ? 'block' : 'none';
+            
+            // Convert to Excel (simulation)
+            convertBtn.addEventListener('click', function() {
+                if (!originalImage) {
+                    Utils.showNotification('Please upload an image first', 'error');
+                    return;
+                }
+                
+                // Show loading state
+                convertBtn.disabled = true;
+                convertBtn.textContent = 'Converting...';
+                
+                // Simulate conversion process
+                setTimeout(function() {
+                    const name = fileName.value || 'exported_image';
+                    
+                    // In a real implementation, this would generate an actual Excel file
+                    // For now, we'll just provide a placeholder download
+                    const placeholderUrl = 'data:text/plain;charset=utf-8,This%20would%20be%20an%20Excel%20file%20in%20a%20real%20implementation';
+                    
+                    downloadBtn.href = placeholderUrl;
+                    downloadBtn.download = `${name}.xlsx`;
+                    downloadBtn.style.display = 'inline-block';
+                    
+                    Utils.showNotification('Excel conversion simulated. In a real implementation, this would generate an actual Excel file.');
+                    
+                    // Reset button
+                    convertBtn.disabled = false;
+                    convertBtn.textContent = 'Convert to Excel';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

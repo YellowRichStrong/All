@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Image - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h2>Text to Image</h2>
+                    <p>Convert text to image</p>
+                </div>
+
+                <div class="tool-content">
+                    <!-- Text Input -->
+                    <div class="option-group">
+                        <label for="textInput">Enter Text</label>
+                        <textarea id="textInput" rows="5" placeholder="Enter your text here...">Hello, OOPEN AII!</textarea>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="options">
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="fontFamily">Font Family</label>
+                                <select id="fontFamily">
+                                    <option value="Arial, sans-serif">Arial</option>
+                                    <option value="'Times New Roman', serif">Times New Roman</option>
+                                    <option value="'Courier New', monospace">Courier New</option>
+                                    <option value="Georgia, serif">Georgia</option>
+                                    <option value="Verdana, sans-serif">Verdana</option>
+                                    <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+                                </select>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="fontSize">Font Size</label>
+                                <input type="range" id="fontSize" min="12" max="72" value="32">
+                                <span id="fontSizeValue">32px</span>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="fontColor">Font Color</label>
+                                <input type="color" id="fontColor" value="#000000">
+                            </div>
+
+                            <div class="option-group">
+                                <label for="backgroundColor">Background Color</label>
+                                <input type="color" id="backgroundColor" value="#ffffff">
+                                <input type="checkbox" id="transparentBg"> Transparent Background
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="textAlign">Text Alignment</label>
+                                <select id="textAlign">
+                                    <option value="left">Left</option>
+                                    <option value="center">Center</option>
+                                    <option value="right">Right</option>
+                                    <option value="justify">Justify</option>
+                                </select>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="fontStyle">Font Style</label>
+                                <select id="fontStyle">
+                                    <option value="normal">Normal</option>
+                                    <option value="bold">Bold</option>
+                                    <option value="italic">Italic</option>
+                                    <option value="bold italic">Bold Italic</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <div class="option-group">
+                                <label for="imageWidth">Image Width</label>
+                                <input type="number" id="imageWidth" value="800" min="100" max="2000">
+                            </div>
+
+                            <div class="option-group">
+                                <label for="imageHeight">Image Height</label>
+                                <input type="number" id="imageHeight" value="600" min="100" max="2000">
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="padding">Padding</label>
+                            <input type="range" id="padding" min="0" max="100" value="20">
+                            <span id="paddingValue">20px</span>
+                        </div>
+                    </div>
+
+                    <!-- Preview Area -->
+                    <div class="preview">
+                        <h3>Preview</h3>
+                        <canvas id="textCanvas" width="800" height="600"></canvas>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="generateBtn">Generate Image</button>
+                        <a href="#" class="download-btn" id="downloadBtn" style="display: none;">Download Image</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">User Rights</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textInput = document.getElementById('textInput');
+            const fontFamily = document.getElementById('fontFamily');
+            const fontSize = document.getElementById('fontSize');
+            const fontSizeValue = document.getElementById('fontSizeValue');
+            const fontColor = document.getElementById('fontColor');
+            const backgroundColor = document.getElementById('backgroundColor');
+            const transparentBg = document.getElementById('transparentBg');
+            const textAlign = document.getElementById('textAlign');
+            const fontStyle = document.getElementById('fontStyle');
+            const imageWidth = document.getElementById('imageWidth');
+            const imageHeight = document.getElementById('imageHeight');
+            const padding = document.getElementById('padding');
+            const paddingValue = document.getElementById('paddingValue');
+            const textCanvas = document.getElementById('textCanvas');
+            const generateBtn = document.getElementById('generateBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            const ctx = textCanvas.getContext('2d');
+            
+            // Update value displays
+            fontSize.addEventListener('input', function() {
+                fontSizeValue.textContent = `${this.value}px`;
+                updatePreview();
+            });
+            
+            padding.addEventListener('input', function() {
+                paddingValue.textContent = `${this.value}px`;
+                updatePreview();
+            });
+            
+            // Toggle transparent background
+            transparentBg.addEventListener('change', function() {
+                backgroundColor.disabled = this.checked;
+                updatePreview();
+            });
+            
+            // Add event listeners to all options
+            const optionElements = [
+                textInput, fontFamily, fontColor, backgroundColor, 
+                textAlign, fontStyle, imageWidth, imageHeight
+            ];
+            
+            optionElements.forEach(element => {
+                element.addEventListener('input', updatePreview);
+                element.addEventListener('change', updatePreview);
+            });
+            
+            // Initial preview
+            updatePreview();
+            
+            // Update preview function
+            function updatePreview() {
+                const width = parseInt(imageWidth.value);
+                const height = parseInt(imageHeight.value);
+                const pad = parseInt(padding.value);
+                const text = textInput.value;
+                
+                // Update canvas size
+                textCanvas.width = width;
+                textCanvas.height = height;
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, width, height);
+                
+                // Set background
+                if (!transparentBg.checked) {
+                    ctx.fillStyle = backgroundColor.value;
+                    ctx.fillRect(0, 0, width, height);
+                }
+                
+                // Set text properties
+                ctx.fillStyle = fontColor.value;
+                ctx.font = `${fontStyle.value} ${fontSize.value}px ${fontFamily.value}`;
+                ctx.textAlign = textAlign.value;
+                ctx.textBaseline = 'top';
+                
+                // Draw text with word wrapping
+                drawMultilineText(text, pad, pad, width - (pad * 2));
+            }
+            
+            // Draw multiline text with word wrapping
+            function drawMultilineText(text, x, y, maxWidth) {
+                const words = text.split(' ');
+                const lineHeight = parseInt(fontSize.value) * 1.2;
+                let line = '';
+                let currentY = y;
+                
+                ctx.textAlign = textAlign.value;
+                
+                for (let i = 0; i < words.length; i++) {
+                    const testLine = line + words[i] + ' ';
+                    const metrics = ctx.measureText(testLine);
+                    const testWidth = metrics.width;
+                    
+                    if (testWidth > maxWidth && i > 0) {
+                        // Align text based on textAlign setting
+                        let drawX = x;
+                        if (textAlign.value === 'center') {
+                            drawX = x + (maxWidth / 2);
+                        } else if (textAlign.value === 'right') {
+                            drawX = x + maxWidth;
+                        }
+                        
+                        ctx.fillText(line, drawX, currentY);
+                        line = words[i] + ' ';
+                        currentY += lineHeight;
+                    } else {
+                        line = testLine;
+                    }
+                }
+                
+                // Draw the last line
+                let drawX = x;
+                if (textAlign.value === 'center') {
+                    drawX = x + (maxWidth / 2);
+                } else if (textAlign.value === 'right') {
+                    drawX = x + maxWidth;
+                }
+                
+                ctx.fillText(line, drawX, currentY);
+            }
+            
+            // Generate image
+            generateBtn.addEventListener('click', function() {
+                updatePreview();
+                
+                // Create download link
+                const dataURL = textCanvas.toDataURL('image/png');
+                downloadBtn.href = dataURL;
+                downloadBtn.download = 'text-image.png';
+                downloadBtn.style.display = 'inline-block';
+                
+                Utils.showNotification('Image generated successfully!');
+            });
+        });
+    </script>
+    <style>
+        .option-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .option-row .option-group {
+            flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .option-row {
+                flex-direction: column;
+            }
+        }
+        
+        .preview canvas {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</body>
+</html>
