@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese to Pinyin Converter - OOPEN AII</title>
+    <meta name="description" content="Free online tool to convert Chinese characters to pinyin with various options like tone marks, initial caps, and first letter extraction.">
+    <meta name="keywords" content="chinese to pinyin, pinyin converter, chinese pinyin, pinyin with tone marks, convert chinese to pinyin">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .input-output-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            resize: vertical;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+        
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2196F3;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1976D2;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #2196F3;
+            color: #2196F3;
+        }
+        
+        .btn-outline:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .options-group {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .options-group h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .option-item input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        
+        .option-item label {
+            font-size: 14px;
+            color: #555;
+            margin: 0;
+            font-weight: normal;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .tab.active {
+            background-color: #fff;
+            border-bottom: 2px solid #2196F3;
+            font-weight: 500;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .message {
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .examples-section {
+            margin-top: 30px;
+        }
+        
+        .examples-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .example-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .example-tab {
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .example-tab:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .example-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .example-item h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .example-item pre {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">🔤</div>
+                <h2>Chinese to Pinyin Converter</h2>
+                <p class="tool-description">Convert Chinese characters to pinyin with customizable options.</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="input-output-container">
+                    <div class="form-group">
+                        <label for="chineseInput">Chinese Text:</label>
+                        <textarea id="chineseInput" placeholder="Enter Chinese text here..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pinyinOutput">Pinyin Output:</label>
+                        <textarea id="pinyinOutput" readonly placeholder="Pinyin will appear here..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="options-group">
+                    <h3>Output Options</h3>
+                    <div class="options-grid">
+                        <div class="option-item">
+                            <input type="checkbox" id="includeTones" checked>
+                            <label for="includeTones">Include tone marks</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="capitalizeFirst">
+                            <label for="capitalizeFirst">Capitalize first letter</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="useSpaces" checked>
+                            <label for="useSpaces">Add spaces between words</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="firstLettersOnly">
+                            <label for="firstLettersOnly">Show first letters only</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="keepOriginal">
+                            <label for="keepOriginal">Keep original text</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="numericTones">
+                            <label for="numericTones">Use numeric tone markers</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" id="convertBtn">Convert to Pinyin</button>
+                    <button class="btn btn-outline" id="clearBtn">Clear All</button>
+                    <button class="btn btn-outline" id="copyBtn">Copy Pinyin</button>
+                    <button class="btn btn-outline" id="swapBtn">Swap Input/Output</button>
+                </div>
+                
+                <div class="message" id="message"></div>
+                
+                <div class="examples-section">
+                    <h3>Quick Examples</h3>
+                    <div class="example-tabs">
+                        <button class="example-tab" data-text="你好世界">Hello World</button>
+                        <button class="example-tab" data-text="这是一个测试">Test Sentence</button>
+                        <button class="example-tab" data-text="中国人民">Chinese People</button>
+                        <button class="example-tab" data-text="我喜欢学习中文">I Love Learning Chinese</button>
+                    </div>
+                    
+                    <div class="examples-grid">
+                        <div class="example-item">
+                            <h4>Basic Conversion</h4>
+                            <pre>你好世界 → nǐ hǎo shì jiè</pre>
+                        </div>
+                        <div class="example-item">
+                            <h4>With Initial Caps</h4>
+                            <pre>你好世界 → Nǐ Hǎo Shì Jiè</pre>
+                        </div>
+                        <div class="example-item">
+                            <h4>First Letters Only</h4>
+                            <pre>你好世界 → nhsj</pre>
+                        </div>
+                        <div class="example-item">
+                            <h4>Numeric Tones</h4>
+                            <pre>你好世界 → ni3 hao3 shi4 jie4</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div style="margin-top: 40px; background-color: #f9f9fa; padding: 30px; border-radius: 8px;">
+                <h3>Features</h3>
+                <ul style="list-style-type: none; padding: 0; max-width: 600px; margin: 0 auto;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">✨ Convert Chinese characters to standard pinyin</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🔤 Support for both tone marks and numeric tones</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📝 Customizable output formats (capitalization, spacing)</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🔠 First letter extraction for quick abbreviation</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📋 Easy copy to clipboard functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💻 Works entirely in your browser</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📱 Responsive design for all devices</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">⚡ Fast and efficient processing</li>
+                </ul>
+            </div>
+
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <a href="text-tools.html" style="text-decoration: none; color: #2196F3;">Text Tools</a>
+                    <a href="../dav.html" style="text-decoration: none; color: #2196F3;">View All Development Tools</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const chineseInput = document.getElementById('chineseInput');
+        const pinyinOutput = document.getElementById('pinyinOutput');
+        const convertBtn = document.getElementById('convertBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const swapBtn = document.getElementById('swapBtn');
+        const includeTones = document.getElementById('includeTones');
+        const capitalizeFirst = document.getElementById('capitalizeFirst');
+        const useSpaces = document.getElementById('useSpaces');
+        const firstLettersOnly = document.getElementById('firstLettersOnly');
+        const keepOriginal = document.getElementById('keepOriginal');
+        const numericTones = document.getElementById('numericTones');
+        const message = document.getElementById('message');
+        const exampleTabs = document.querySelectorAll('.example-tab');
+        
+        // Basic Chinese character to pinyin mapping (simplified for demonstration)
+        // In a real-world scenario, this would be a more comprehensive mapping or use a library
+        const basicPinyinMap = {
+            '你': 'ni3', '好': 'hao3', '世': 'shi4', '界': 'jie4',
+            '中': 'zhong1', '国': 'guo2', '人': 'ren2', '民': 'min2',
+            '我': 'wo3', '喜': 'xi3', '欢': 'huan1', '学': 'xue2', '习': 'xi2',
+            '这': 'zhe4', '是': 'shi4', '一': 'yi1', '个': 'ge4', '测': 'ce4', '试': 'shi4',
+            '大': 'da4', '家': 'jia1', '早': 'zao3', '上': 'shang4', '晚': 'wan3', '安': 'an1',
+            '谢': 'xie4', '谢': 'xie4', '再': 'zai4', '见': 'jian4', '请': 'qing3', '问': 'wen4',
+            '对': 'dui4', '不': 'bu4', '起': 'qi3', '没': 'mei2', '关': 'guan1', '系': 'xi4',
+            '朋': 'peng2', '友': 'you3', '今': 'jin1', '天': 'tian1', '明': 'ming2', '天': 'tian1',
+            '工': 'gong1', '作': 'zuo4', '生': 'sheng1', '活': 'huo2', '快': 'kuai4', '乐': 'le4',
+            '美': 'mei3', '丽': 'li4', '的': 'de5', '漂': 'piao4', '亮': 'liang4', '多': 'duo1',
+            '少': 'shao3', '钱': 'qian2', '时': 'shi2', '间': 'jian1', '地': 'di4', '点': 'dian3'
+        };
+        
+        // More comprehensive pinyin data for common characters
+        const extendedPinyinMap = {
+            ...basicPinyinMap,
+            '吗': 'ma5', '呢': 'ne5', '啊': 'a5', '吧': 'ba5', '呀': 'ya5',
+            '要': 'yao4', '有': 'you3', '在': 'zai4', '和': 'he2', '与': 'yu3',
+            '或': 'huo4', '但': 'dan4', '是': 'shi4', '因': 'yin1', '为': 'wei2',
+            '所': 'suo3', '以': 'yi3', '如': 'ru2', '果': 'guo3', '虽': 'sui1',
+            '然': 'ran2', '然': 'ran2', '后': 'hou4', '就': 'jiu4', '还': 'hai2',
+            '也': 'ye3', '又': 'you4', '而': 'er2', '且': 'qie3', '并': 'bing4',
+            '同': 'tong2', '时': 'shi2', '不': 'bu4', '没': 'mei2', '无': 'wu2',
+            '非': 'fei1', '很': 'hen3', '更': 'geng4', '最': 'zui4', '太': 'tai4',
+            '可': 'ke3', '能': 'neng2', '应': 'ying1', '该': 'gai1', '必': 'bi4',
+            '须': 'xu1', '可': 'ke3', '以': 'yi3', '会': 'hui4', '将': 'jiang1',
+            '能': 'neng2', '够': 'gou4', '让': 'rang4', '使': 'shi3', '叫': 'jiao4',
+            '被': 'bei4', '把': 'ba3', '对': 'dui4', '向': 'xiang4', '从': 'cong2',
+            '自': 'zi4', '往': 'wang3', '到': 'dao4', '在': 'zai4', '给': 'gei3',
+            '与': 'yu3', '跟': 'gen1', '比': 'bi3', '为': 'wei4', '关': 'guan1',
+            '于': 'yu2', '根': 'gen1', '据': 'ju4', '通': 'tong1', '过': 'guo4',
+            '用': 'yong4', '按': 'an4', '照': 'zhao4', '依': 'yi1', '靠': 'kao4'
+        };
+        
+        // Function to convert Chinese text to pinyin
+        function chineseToPinyin(text) {
+            if (!text) return '';
+            
+            const options = {
+                includeTones: includeTones.checked,
+                capitalizeFirst: capitalizeFirst.checked,
+                useSpaces: useSpaces.checked,
+                firstLettersOnly: firstLettersOnly.checked,
+                keepOriginal: keepOriginal.checked,
+                numericTones: numericTones.checked
+            };
+            
+            // Function to get pinyin for a single character
+            function getPinyin(char) {
+                // If it's not a Chinese character, return it as is
+                if (!isChineseChar(char)) return char;
+                
+                // Get pinyin from the map, default to character if not found
+                return extendedPinyinMap[char] || basicPinyinMap[char] || char;
+            }
+            
+            // Check if a character is Chinese
+            function isChineseChar(char) {
+                return /[\u4e00-\u9fff]/.test(char);
+            }
+            
+            // Convert pinyin with numeric tone to tone marks
+            function addToneMarks(pinyin) {
+                // This is a simplified tone mark conversion
+                // In a real-world scenario, this would be more accurate
+                const vowels = 'aeiouv';
+                const toneMap = {
+                    1: { a: 'ā', e: 'ē', i: 'ī', o: 'ō', u: 'ū', v: 'ǖ' },
+                    2: { a: 'á', e: 'é', i: 'í', o: 'ó', u: 'ú', v: 'ǘ' },
+                    3: { a: 'ǎ', e: 'ě', i: 'ǐ', o: 'ǒ', u: 'ǔ', v: 'ǚ' },
+                    4: { a: 'à', e: 'è', i: 'ì', o: 'ò', u: 'ù', v: 'ǜ' }
+                };
+                
+                // Extract numeric tone
+                const toneMatch = pinyin.match(/^(.*?)([1-4])$/);
+                if (!toneMatch) return pinyin; // No tone or neutral tone
+                
+                const syllable = toneMatch[1].replace('v', 'ü'); // Replace v with ü
+                const tone = parseInt(toneMatch[2]);
+                
+                // Find the vowel to mark (prioritize a > e > other vowels)
+                let vowelIndex = -1;
+                for (let i = 0; i < syllable.length; i++) {
+                    const char = syllable[i];
+                    if (char === 'a') {
+                        vowelIndex = i;
+                        break;
+                    } else if (char === 'e' && vowelIndex === -1) {
+                        vowelIndex = i;
+                    } else if (vowels.includes(char) && vowelIndex === -1) {
+                        vowelIndex = i;
+                    }
+                }
+                
+                // Add tone mark if vowel found
+                if (vowelIndex >= 0) {
+                    const vowel = syllable[vowelIndex];
+                    const markedVowel = toneMap[tone][vowel] || vowel;
+                    return syllable.slice(0, vowelIndex) + markedVowel + syllable.slice(vowelIndex + 1);
+                }
+                
+                return syllable; // Default if no vowel found
+            }
+            
+            // Process each character
+            let result = '';
+            let lastCharWasChinese = false;
+            
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const isCurrentChinese = isChineseChar(char);
+                
+                // Add space between words if option enabled and transitioning between types
+                if (options.useSpaces && i > 0 && lastCharWasChinese !== isCurrentChinese) {
+                    result += ' ';
+                }
+                
+                if (isCurrentChinese) {
+                    let pinyin = getPinyin(char);
+                    
+                    // Process pinyin based on options
+                    if (options.firstLettersOnly) {
+                        // Extract first letter only
+                        result += pinyin.charAt(0);
+                    } else {
+                        // Handle tone marks
+                        if (options.includeTones && !options.numericTones) {
+                            pinyin = addToneMarks(pinyin);
+                        } else if (!options.includeTones) {
+                            // Remove tone numbers
+                            pinyin = pinyin.replace(/[1-4]$/, '');
+                        }
+                        
+                        // Capitalize first letter if option enabled
+                        if (options.capitalizeFirst) {
+                            pinyin = pinyin.charAt(0).toUpperCase() + pinyin.slice(1);
+                        }
+                        
+                        result += pinyin;
+                    }
+                    
+                    // Add original character if option enabled
+                    if (options.keepOriginal) {
+                        result += ` [${char}]`;
+                    }
+                } else {
+                    // Non-Chinese characters are added as is
+                    result += char;
+                }
+                
+                lastCharWasChinese = isCurrentChinese;
+            }
+            
+            return result;
+        }
+        
+        // Convert text
+        function convertText() {
+            try {
+                const chineseText = chineseInput.value;
+                if (!chineseText.trim()) {
+                    showMessage('Please enter Chinese text', 'error');
+                    return;
+                }
+                
+                const pinyin = chineseToPinyin(chineseText);
+                pinyinOutput.value = pinyin;
+                showMessage('Conversion successful', 'success');
+            } catch (error) {
+                showMessage('Error converting: ' + error.message, 'error');
+            }
+        }
+        
+        // Clear inputs
+        function clearInputs() {
+            chineseInput.value = '';
+            pinyinOutput.value = '';
+            showMessage('Inputs cleared', 'success');
+        }
+        
+        // Copy pinyin to clipboard
+        function copyPinyin() {
+            if (!pinyinOutput.value) {
+                showMessage('No pinyin to copy', 'error');
+                return;
+            }
+            
+            navigator.clipboard.writeText(pinyinOutput.value)
+                .then(() => {
+                    showMessage('Copied to clipboard', 'success');
+                })
+                .catch(err => {
+                    showMessage('Failed to copy: ' + err.message, 'error');
+                });
+        }
+        
+        // Swap input and output
+        function swapInputOutput() {
+            const temp = chineseInput.value;
+            chineseInput.value = pinyinOutput.value;
+            pinyinOutput.value = temp;
+            showMessage('Swapped input and output', 'success');
+        }
+        
+        // Show message
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = 'message ' + type;
+            setTimeout(hideMessage, 3000);
+        }
+        
+        // Hide message
+        function hideMessage() {
+            message.className = 'message';
+        }
+        
+        // Load example
+        function loadExample(btn) {
+            const text = btn.getAttribute('data-text');
+            chineseInput.value = text;
+            convertText();
+        }
+        
+        // Toggle numeric tones option based on include tones
+        function toggleNumericTones() {
+            numericTones.disabled = !includeTones.checked;
+            if (!includeTones.checked) {
+                numericTones.checked = false;
+            }
+        }
+        
+        // Toggle keep original option based on first letters only
+        function toggleKeepOriginal() {
+            keepOriginal.disabled = firstLettersOnly.checked;
+            if (firstLettersOnly.checked) {
+                keepOriginal.checked = false;
+            }
+        }
+        
+        // Event Listeners
+        convertBtn.addEventListener('click', convertText);
+        clearBtn.addEventListener('click', clearInputs);
+        copyBtn.addEventListener('click', copyPinyin);
+        swapBtn.addEventListener('click', swapInputOutput);
+        
+        // Options change listeners
+        includeTones.addEventListener('change', toggleNumericTones);
+        firstLettersOnly.addEventListener('change', toggleKeepOriginal);
+        
+        // Example buttons
+        exampleTabs.forEach(btn => {
+            btn.addEventListener('click', () => loadExample(btn));
+        });
+        
+        // Real-time conversion
+        chineseInput.addEventListener('input', convertText);
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                convertText();
+            }
+        });
+        
+        // Initialize options
+        toggleNumericTones();
+        toggleKeepOriginal();
+    </script>
+</body>
+</html>

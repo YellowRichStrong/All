@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Size Converter - OOPEN AII</title>
+    <meta name="description" content="Free online data size converter tool to convert between different data size units including bytes, KB, MB, GB, TB, and more with precision control.">
+    <meta name="keywords" content="data size converter, byte converter, kb to mb, mb to gb, data unit conversion, online data calculator">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2196F3;
+        }
+        
+        .conversion-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin: 30px 0;
+        }
+        
+        .swap-icon {
+            font-size: 24px;
+            color: #2196F3;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .swap-icon:hover {
+            transform: rotate(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            .conversion-container {
+                flex-direction: column;
+            }
+            
+            .swap-icon {
+                transform: rotate(90deg);
+            }
+            
+            .swap-icon:hover {
+                transform: rotate(-90deg);
+            }
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1976D2;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #2196F3;
+            color: #2196F3;
+        }
+        
+        .btn-outline:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .results-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .results-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .result-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+        
+        .result-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .result-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .copy-btn {
+            padding: 4px 8px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .options-group {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .options-group h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .option-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .option-item input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        
+        .option-item label {
+            font-size: 14px;
+            color: #555;
+            margin: 0;
+            font-weight: normal;
+        }
+        
+        .option-item input[type="number"] {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .message {
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .examples-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .examples-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .example-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .example-btn {
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .example-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">📊</div>
+                <h2>Data Size Converter</h2>
+                <p class="tool-description">Easily convert between different data size units with precision control.</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="conversion-container">
+                    <div style="flex: 1;">
+                        <div class="form-group">
+                            <label for="inputValue">Input Value:</label>
+                            <input type="number" id="inputValue" placeholder="Enter value" value="1" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputUnit">From Unit:</label>
+                            <select id="inputUnit">
+                                <option value="B">Bytes (B)</option>
+                                <option value="KB">Kilobytes (KB)</option>
+                                <option value="MB">Megabytes (MB)</option>
+                                <option value="GB">Gigabytes (GB)</option>
+                                <option value="TB">Terabytes (TB)</option>
+                                <option value="PB">Petabytes (PB)</option>
+                                <option value="EB">Exabytes (EB)</option>
+                                <option value="bits">Bits (b)</option>
+                                <option value="Kbits">Kilobits (Kb)</option>
+                                <option value="Mbits">Megabits (Mb)</option>
+                                <option value="Gbits">Gigabits (Gb)</option>
+                                <option value="Tbits">Terabits (Tb)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="swap-icon" id="swapUnits">⇄</div>
+                    
+                    <div style="flex: 1;">
+                        <div class="form-group">
+                            <label for="outputValue">Output Value:</label>
+                            <input type="number" id="outputValue" placeholder="Result" readonly step="any">
+                        </div>
+                        <div class="form-group">
+                            <label for="outputUnit">To Unit:</label>
+                            <select id="outputUnit">
+                                <option value="B">Bytes (B)</option>
+                                <option value="KB">Kilobytes (KB)</option>
+                                <option value="MB">Megabytes (MB)</option>
+                                <option value="GB" selected>Gigabytes (GB)</option>
+                                <option value="TB">Terabytes (TB)</option>
+                                <option value="PB">Petabytes (PB)</option>
+                                <option value="EB">Exabytes (EB)</option>
+                                <option value="bits">Bits (b)</option>
+                                <option value="Kbits">Kilobits (Kb)</option>
+                                <option value="Mbits">Megabits (Mb)</option>
+                                <option value="Gbits">Gigabits (Gb)</option>
+                                <option value="Tbits">Terabits (Tb)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="options-group">
+                    <h4>Conversion Options</h4>
+                    <div class="option-item">
+                        <input type="checkbox" id="useBinaryPrefix" checked>
+                        <label for="useBinaryPrefix">Use binary prefix (1 KB = 1024 bytes)</label>
+                    </div>
+                    <div class="option-item">
+                        <label for="decimalPlaces">Decimal places:</label>
+                        <input type="number" id="decimalPlaces" min="0" max="15" value="2">
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" id="convertBtn">Convert</button>
+                    <button class="btn btn-outline" id="clearBtn">Clear</button>
+                    <button class="btn btn-outline" id="copyBtn">Copy Result</button>
+                </div>
+                
+                <div class="results-section">
+                    <h3>All Conversions</h3>
+                    <div class="results-grid" id="allResults"></div>
+                </div>
+                
+                <div class="examples-section">
+                    <h3>Quick Examples</h3>
+                    <div class="example-buttons">
+                        <button class="example-btn" data-value="1024" data-unit="MB" data-target="GB">1024 MB to GB</button>
+                        <button class="example-btn" data-value="5" data-unit="GB" data-target="MB">5 GB to MB</button>
+                        <button class="example-btn" data-value="1" data-unit="TB" data-target="GB">1 TB to GB</button>
+                        <button class="example-btn" data-value="5000" data-unit="GB" data-target="TB">5000 GB to TB</button>
+                        <button class="example-btn" data-value="8" data-unit="bits" data-target="B">8 bits to Bytes</button>
+                        <button class="example-btn" data-value="100" data-unit="Mbits" data-target="GB">100 Mbits to GB</button>
+                    </div>
+                </div>
+                
+                <div class="message" id="message"></div>
+            </div>
+
+            <!-- Features Section -->
+            <div style="margin-top: 40px; background-color: #f9f9fa; padding: 30px; border-radius: 8px;">
+                <h3>Features</h3>
+                <ul style="list-style-type: none; padding: 0; max-width: 600px; margin: 0 auto;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">✨ Convert between all common data units</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🔢 Support for both decimal (1000) and binary (1024) prefixes</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📊 Display all unit conversions at once</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">⚡ Precision control with customizable decimal places</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🔄 Quick unit swapping</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📋 Easy copy to clipboard functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💻 Works entirely in your browser</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📱 Responsive design for all devices</li>
+                </ul>
+            </div>
+
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <a href="file-converter.html" style="text-decoration: none; color: #2196F3;">File Converter</a>
+                    <a href="calculator.html" style="text-decoration: none; color: #2196F3;">Calculator</a>
+                    <a href="../dav.html" style="text-decoration: none; color: #2196F3;">View All Development Tools</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const inputValue = document.getElementById('inputValue');
+        const inputUnit = document.getElementById('inputUnit');
+        const outputValue = document.getElementById('outputValue');
+        const outputUnit = document.getElementById('outputUnit');
+        const swapUnits = document.getElementById('swapUnits');
+        const convertBtn = document.getElementById('convertBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const useBinaryPrefix = document.getElementById('useBinaryPrefix');
+        const decimalPlaces = document.getElementById('decimalPlaces');
+        const allResults = document.getElementById('allResults');
+        const message = document.getElementById('message');
+        const exampleButtons = document.querySelectorAll('.example-btn');
+        
+        // Unit definitions
+        const units = {
+            'B': { name: 'Bytes', factor: 1, isBit: false },
+            'KB': { name: 'Kilobytes', factor: 1000, isBit: false, binaryFactor: 1024 },
+            'MB': { name: 'Megabytes', factor: 1000000, isBit: false, binaryFactor: 1048576 },
+            'GB': { name: 'Gigabytes', factor: 1000000000, isBit: false, binaryFactor: 1073741824 },
+            'TB': { name: 'Terabytes', factor: 1000000000000, isBit: false, binaryFactor: 1099511627776 },
+            'PB': { name: 'Petabytes', factor: 1000000000000000, isBit: false, binaryFactor: 1125899906842624 },
+            'EB': { name: 'Exabytes', factor: 1000000000000000000, isBit: false, binaryFactor: 1152921504606846976 },
+            'bits': { name: 'Bits', factor: 1, isBit: true },
+            'Kbits': { name: 'Kilobits', factor: 1000, isBit: true, binaryFactor: 1024 },
+            'Mbits': { name: 'Megabits', factor: 1000000, isBit: true, binaryFactor: 1048576 },
+            'Gbits': { name: 'Gigabits', factor: 1000000000, isBit: true, binaryFactor: 1073741824 },
+            'Tbits': { name: 'Terabits', factor: 1000000000000, isBit: true, binaryFactor: 1099511627776 }
+        };
+        
+        // Convert function
+        function convertDataSize() {
+            try {
+                const value = parseFloat(inputValue.value);
+                const fromUnit = inputUnit.value;
+                const toUnit = outputUnit.value;
+                const binary = useBinaryPrefix.checked;
+                const decimals = parseInt(decimalPlaces.value) || 2;
+                
+                if (isNaN(value)) {
+                    showMessage('Please enter a valid number', 'error');
+                    return;
+                }
+                
+                if (!units[fromUnit] || !units[toUnit]) {
+                    showMessage('Invalid unit selected', 'error');
+                    return;
+                }
+                
+                // Convert to base unit (bytes or bits)
+                let baseValue;
+                const fromUnitObj = units[fromUnit];
+                
+                if (binary && fromUnitObj.binaryFactor) {
+                    baseValue = value * fromUnitObj.binaryFactor;
+                } else {
+                    baseValue = value * fromUnitObj.factor;
+                }
+                
+                // Convert from base unit to target unit
+                let result;
+                const toUnitObj = units[toUnit];
+                
+                // Handle conversion between bytes and bits
+                if (fromUnitObj.isBit !== toUnitObj.isBit) {
+                    if (fromUnitObj.isBit) {
+                        // Convert from bits to bytes
+                        baseValue = baseValue / 8;
+                    } else {
+                        // Convert from bytes to bits
+                        baseValue = baseValue * 8;
+                    }
+                }
+                
+                // Convert to target unit
+                if (binary && toUnitObj.binaryFactor) {
+                    result = baseValue / toUnitObj.binaryFactor;
+                } else {
+                    result = baseValue / toUnitObj.factor;
+                }
+                
+                // Format result
+                const formattedResult = result.toFixed(decimals);
+                outputValue.value = formattedResult;
+                
+                // Generate all unit conversions
+                generateAllConversions(value, fromUnit, binary, decimals);
+                
+                showMessage('Conversion successful', 'success');
+            } catch (error) {
+                showMessage('Error converting: ' + error.message, 'error');
+            }
+        }
+        
+        // Generate all unit conversions
+        function generateAllConversions(value, fromUnit, binary, decimals) {
+            allResults.innerHTML = '';
+            
+            const fromUnitObj = units[fromUnit];
+            
+            // Convert to base unit (bytes or bits)
+            let baseValue;
+            if (binary && fromUnitObj.binaryFactor) {
+                baseValue = value * fromUnitObj.binaryFactor;
+            } else {
+                baseValue = value * fromUnitObj.factor;
+            }
+            
+            // Generate conversion for each unit
+            Object.keys(units).forEach(unit => {
+                const unitObj = units[unit];
+                let convertedValue;
+                
+                // Handle conversion between bytes and bits
+                let adjustedBaseValue = baseValue;
+                if (fromUnitObj.isBit !== unitObj.isBit) {
+                    if (fromUnitObj.isBit) {
+                        // Convert from bits to bytes
+                        adjustedBaseValue = baseValue / 8;
+                    } else {
+                        // Convert from bytes to bits
+                        adjustedBaseValue = baseValue * 8;
+                    }
+                }
+                
+                // Convert to target unit
+                if (binary && unitObj.binaryFactor) {
+                    convertedValue = adjustedBaseValue / unitObj.binaryFactor;
+                } else {
+                    convertedValue = adjustedBaseValue / unitObj.factor;
+                }
+                
+                // Format value
+                const formattedValue = convertedValue.toFixed(decimals);
+                
+                // Create result item
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                resultItem.innerHTML = `
+                    <span class="result-label">${unitObj.name} (${unit})</span>
+                    <div class="result-value">
+                        <span>${formattedValue}</span>
+                        <button class="copy-btn" onclick="copyToClipboard('${formattedValue}')">Copy</button>
+                    </div>
+                `;
+                
+                allResults.appendChild(resultItem);
+            });
+        }
+        
+        // Swap units
+        function swapInputOutput() {
+            const tempUnit = inputUnit.value;
+            inputUnit.value = outputUnit.value;
+            outputUnit.value = tempUnit;
+            
+            // If we have both values, swap them too
+            if (outputValue.value) {
+                const tempValue = inputValue.value;
+                inputValue.value = outputValue.value;
+                outputValue.value = tempValue;
+                
+                // Generate all conversions with swapped values
+                const value = parseFloat(inputValue.value);
+                const fromUnit = inputUnit.value;
+                const binary = useBinaryPrefix.checked;
+                const decimals = parseInt(decimalPlaces.value) || 2;
+                generateAllConversions(value, fromUnit, binary, decimals);
+            }
+        }
+        
+        // Clear inputs
+        function clearInputs() {
+            inputValue.value = '1';
+            outputValue.value = '';
+            allResults.innerHTML = '';
+            showMessage('Inputs cleared', 'success');
+        }
+        
+        // Copy result to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    showMessage('Copied to clipboard', 'success');
+                })
+                .catch(err => {
+                    showMessage('Failed to copy: ' + err.message, 'error');
+                });
+        }
+        
+        // Copy current result
+        function copyCurrentResult() {
+            const result = outputValue.value;
+            if (result) {
+                copyToClipboard(result);
+            } else {
+                showMessage('No result to copy', 'error');
+            }
+        }
+        
+        // Show message
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = 'message ' + type;
+            setTimeout(hideMessage, 3000);
+        }
+        
+        // Hide message
+        function hideMessage() {
+            message.className = 'message';
+        }
+        
+        // Load example
+        function loadExample(btn) {
+            const value = btn.getAttribute('data-value');
+            const unit = btn.getAttribute('data-unit');
+            const targetUnit = btn.getAttribute('data-target');
+            
+            inputValue.value = value;
+            inputUnit.value = unit;
+            outputUnit.value = targetUnit;
+            
+            convertDataSize();
+        }
+        
+        // Event Listeners
+        convertBtn.addEventListener('click', convertDataSize);
+        clearBtn.addEventListener('click', clearInputs);
+        copyBtn.addEventListener('click', copyCurrentResult);
+        swapUnits.addEventListener('click', swapInputOutput);
+        
+        // Real-time conversion when inputs change
+        inputValue.addEventListener('input', convertDataSize);
+        inputUnit.addEventListener('change', convertDataSize);
+        outputUnit.addEventListener('change', convertDataSize);
+        useBinaryPrefix.addEventListener('change', convertDataSize);
+        decimalPlaces.addEventListener('change', convertDataSize);
+        
+        // Example buttons
+        exampleButtons.forEach(btn => {
+            btn.addEventListener('click', () => loadExample(btn));
+        });
+        
+        // Make copyToClipboard available globally for inline onclick
+        window.copyToClipboard = copyToClipboard;
+        
+        // Initial conversion
+        convertDataSize();
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                convertDataSize();
+            }
+        });
+    </script>
+</body>
+</html>

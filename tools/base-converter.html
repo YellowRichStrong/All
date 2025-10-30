@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Converter - OOPEN AII</title>
+    <meta name="description" content="Free online base converter tool to convert numbers between different bases including binary, decimal, hexadecimal, and more.">
+    <meta name="keywords" content="base converter, binary converter, decimal converter, hexadecimal converter, number base conversion">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .converter-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .input-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-row {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .input-field {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .input-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .input-field input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .input-field input:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+        
+        .input-field select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: white;
+            cursor: pointer;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .input-field select:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+        }
+        
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1976D2;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #2196F3;
+            color: #2196F3;
+        }
+        
+        .btn-outline:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .swap-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            border: 2px solid #dee2e6;
+            color: #495057;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .swap-btn:hover {
+            background-color: #2196F3;
+            border-color: #2196F3;
+            color: white;
+            transform: rotate(180deg);
+        }
+        
+        .results-section {
+            background-color: #f0f7ff;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .results-section h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #1976D2;
+            font-size: 20px;
+        }
+        
+        .result-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .result-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .result-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .result-card-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .copy-result-btn {
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .copy-result-btn:hover {
+            color: #2196F3;
+        }
+        
+        .result-value {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            word-break: break-all;
+            min-height: 24px;
+        }
+        
+        .examples-section {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .examples-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .example-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .example-btn {
+            padding: 8px 16px;
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .example-btn:hover {
+            background-color: #e9ecef;
+            border-color: #2196F3;
+            color: #2196F3;
+        }
+        
+        .message {
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .frequently-used-bases {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        
+        .base-tag {
+            padding: 5px 10px;
+            background-color: #e9ecef;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .base-tag:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .base-tag.active {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .custom-base-input {
+            display: none;
+            margin-top: 10px;
+        }
+        
+        .custom-base-input.show {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 20px;
+            }
+            
+            .input-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .result-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Additional styles for binary visualization */
+        .binary-visualization {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .binary-visualization.show {
+            display: block;
+        }
+        
+        .binary-visualization h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .binary-bits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+        }
+        
+        .binary-bit {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .binary-bit.one {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .binary-bit .exponent {
+            position: absolute;
+            top: -15px;
+            right: 5px;
+            font-size: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">🔢</div>
+                <h2>Base Converter</h2>
+                <p class="tool-description">Convert numbers between different bases including binary, decimal, hexadecimal, and more.</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="converter-container">
+                    <!-- Input Section -->
+                    <div class="input-section">
+                        <div class="input-row">
+                            <div class="input-field">
+                                <label for="inputNumber">Input Number:</label>
+                                <input type="text" id="inputNumber" placeholder="Enter number to convert" value="42">
+                            </div>
+                            <div class="input-field">
+                                <label for="inputBase">From Base:</label>
+                                <select id="inputBase">
+                                    <option value="2">Binary (Base 2)</option>
+                                    <option value="8">Octal (Base 8)</option>
+                                    <option value="10" selected>Decimal (Base 10)</option>
+                                    <option value="16">Hexadecimal (Base 16)</option>
+                                    <option value="custom">Custom Base...</option>
+                                </select>
+                                <div class="custom-base-input" id="customInputBase">
+                                    <input type="number" min="2" max="36" placeholder="Enter base (2-36)">
+                                </div>
+                            </div>
+                            <button class="swap-btn" id="swapBtn">↔️</button>
+                            <div class="input-field">
+                                <label for="outputBase">To Base:</label>
+                                <select id="outputBase">
+                                    <option value="2">Binary (Base 2)</option>
+                                    <option value="8">Octal (Base 8)</option>
+                                    <option value="10">Decimal (Base 10)</option>
+                                    <option value="16" selected>Hexadecimal (Base 16)</option>
+                                    <option value="custom">Custom Base...</option>
+                                </select>
+                                <div class="custom-base-input" id="customOutputBase">
+                                    <input type="number" min="2" max="36" placeholder="Enter base (2-36)">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="frequently-used-bases">
+                            <div class="base-tag" data-base="2">Binary</div>
+                            <div class="base-tag" data-base="8">Octal</div>
+                            <div class="base-tag" data-base="10">Decimal</div>
+                            <div class="base-tag" data-base="16">Hexadecimal</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Button Group -->
+                    <div class="button-group">
+                        <button class="btn btn-primary" id="convertBtn">Convert</button>
+                        <button class="btn btn-secondary" id="clearBtn">Clear</button>
+                        <button class="btn btn-outline" id="copyBtn">Copy Result</button>
+                    </div>
+                    
+                    <!-- Results Section -->
+                    <div class="results-section" id="resultsSection">
+                        <h3>Conversion Results</h3>
+                        <div class="result-cards">
+                            <div class="result-card">
+                                <div class="result-card-header">
+                                    <div class="result-card-title">Binary (Base 2)</div>
+                                    <button class="copy-result-btn" data-target="binaryResult">Copy</button>
+                                </div>
+                                <div class="result-value" id="binaryResult">0101010</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-card-header">
+                                    <div class="result-card-title">Octal (Base 8)</div>
+                                    <button class="copy-result-btn" data-target="octalResult">Copy</button>
+                                </div>
+                                <div class="result-value" id="octalResult">52</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-card-header">
+                                    <div class="result-card-title">Decimal (Base 10)</div>
+                                    <button class="copy-result-btn" data-target="decimalResult">Copy</button>
+                                </div>
+                                <div class="result-value" id="decimalResult">42</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-card-header">
+                                    <div class="result-card-title">Hexadecimal (Base 16)</div>
+                                    <button class="copy-result-btn" data-target="hexResult">Copy</button>
+                                </div>
+                                <div class="result-value" id="hexResult">2A</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Examples Section -->
+                    <div class="examples-section">
+                        <h3>Quick Examples</h3>
+                        <div class="example-buttons">
+                            <button class="example-btn" data-number="10" data-base="2">10 (binary)</button>
+                            <button class="example-btn" data-number="77" data-base="8">77 (octal)</button>
+                            <button class="example-btn" data-number="42" data-base="10">42 (decimal)</button>
+                            <button class="example-btn" data-number="FF" data-base="16">FF (hex)</button>
+                            <button class="example-btn" data-number="101010" data-base="2">101010 (binary)</button>
+                            <button class="example-btn" data-number="DEADBEEF" data-base="16">DEADBEEF (hex)</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Binary Visualization (conditionally shown) -->
+                    <div class="binary-visualization" id="binaryVisualization">
+                        <h4>Binary Representation</h4>
+                        <div class="binary-bits" id="binaryBits"></div>
+                    </div>
+                    
+                    <!-- Message -->
+                    <div class="message" id="message"></div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div style="margin-top: 40px; background-color: #f9f9fa; padding: 30px; border-radius: 8px;">
+                <h3>Features</h3>
+                <ul style="list-style-type: none; padding: 0; max-width: 600px; margin: 0 auto;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">✨ Convert between multiple number bases (2-36)</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🔢 Support for binary, octal, decimal, hexadecimal</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🎯 Custom base conversion (2-36)</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">⚡ Real-time conversion results</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📋 Easy copy to clipboard functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💡 Quick examples for common conversions</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🔄 Swap input/output bases with one click</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💻 Works entirely in your browser</li>
+                </ul>
+            </div>
+
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <a href="timestamp-converter.html" style="text-decoration: none; color: #2196F3;">Timestamp Converter</a>
+                    <a href="../dav.html" style="text-decoration: none; color: #2196F3;">View All Development Tools</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const inputNumber = document.getElementById('inputNumber');
+        const inputBase = document.getElementById('inputBase');
+        const outputBase = document.getElementById('outputBase');
+        const convertBtn = document.getElementById('convertBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const swapBtn = document.getElementById('swapBtn');
+        const binaryResult = document.getElementById('binaryResult');
+        const octalResult = document.getElementById('octalResult');
+        const decimalResult = document.getElementById('decimalResult');
+        const hexResult = document.getElementById('hexResult');
+        const message = document.getElementById('message');
+        const customInputBase = document.getElementById('customInputBase');
+        const customOutputBase = document.getElementById('customOutputBase');
+        const exampleButtons = document.querySelectorAll('.example-btn');
+        const baseTags = document.querySelectorAll('.base-tag');
+        const binaryVisualization = document.getElementById('binaryVisualization');
+        const binaryBits = document.getElementById('binaryBits');
+        
+        // Event Listeners
+        convertBtn.addEventListener('click', convertNumber);
+        clearBtn.addEventListener('click', clearAll);
+        copyBtn.addEventListener('click', copyResult);
+        swapBtn.addEventListener('click', swapBases);
+        
+        // Input/Output events
+        inputNumber.addEventListener('input', handleInputChange);
+        inputBase.addEventListener('change', handleBaseChange);
+        outputBase.addEventListener('change', handleBaseChange);
+        
+        // Custom base input events
+        if (customInputBase.querySelector('input')) {
+            customInputBase.querySelector('input').addEventListener('change', updateCustomBase);
+        }
+        if (customOutputBase.querySelector('input')) {
+            customOutputBase.querySelector('input').addEventListener('change', updateCustomBase);
+        }
+        
+        // Example buttons
+        exampleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const number = button.dataset.number;
+                const base = button.dataset.base;
+                inputNumber.value = number;
+                inputBase.value = base;
+                handleBaseChange();
+                convertNumber();
+            });
+        });
+        
+        // Base tags
+        baseTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                const base = tag.dataset.base;
+                outputBase.value = base;
+                
+                // Update active tag
+                baseTags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+                
+                convertNumber();
+            });
+        });
+        
+        // Copy result buttons
+        document.querySelectorAll('.copy-result-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.target;
+                const textToCopy = document.getElementById(targetId).textContent;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showMessage('success', `Result copied to clipboard: ${textToCopy}`);
+                }).catch(() => {
+                    showMessage('error', 'Failed to copy result');
+                });
+            });
+        });
+        
+        // Handle base change
+        function handleBaseChange() {
+            // Show/hide custom base inputs
+            customInputBase.classList.toggle('show', inputBase.value === 'custom');
+            customOutputBase.classList.toggle('show', outputBase.value === 'custom');
+            
+            // Validate custom bases
+            if (inputBase.value === 'custom' && customInputBase.querySelector('input').value) {
+                convertNumber();
+            }
+            if (outputBase.value === 'custom' && customOutputBase.querySelector('input').value) {
+                convertNumber();
+            }
+        }
+        
+        // Handle input change (real-time conversion)
+        function handleInputChange() {
+            // Only convert if input is not empty and valid
+            if (inputNumber.value.trim()) {
+                // Debounce conversion
+                clearTimeout(this.debounceTimer);
+                this.debounceTimer = setTimeout(convertNumber, 500);
+            }
+        }
+        
+        // Update custom base
+        function updateCustomBase(event) {
+            const value = parseInt(event.target.value);
+            if (value >= 2 && value <= 36) {
+                convertNumber();
+            } else {
+                showMessage('error', 'Base must be between 2 and 36');
+                event.target.value = '';
+            }
+        }
+        
+        // Get actual base value (handling custom bases)
+        function getActualBase(baseElement) {
+            if (baseElement.value === 'custom') {
+                const customInput = baseElement === inputBase ? 
+                    customInputBase.querySelector('input') : 
+                    customOutputBase.querySelector('input');
+                const customValue = parseInt(customInput.value);
+                return isNaN(customValue) || customValue < 2 || customValue > 36 ? null : customValue;
+            }
+            return parseInt(baseElement.value);
+        }
+        
+        // Convert number from one base to another
+        function convertNumber() {
+            const number = inputNumber.value.trim().toUpperCase();
+            const fromBase = getActualBase(inputBase);
+            const toBase = getActualBase(outputBase);
+            
+            // Validate inputs
+            if (!number) {
+                showMessage('error', 'Please enter a number to convert');
+                return;
+            }
+            
+            if (fromBase === null) {
+                showMessage('error', 'Please enter a valid input base (2-36)');
+                return;
+            }
+            
+            // Validate number format for the given base
+            const isValid = isValidNumberForBase(number, fromBase);
+            if (!isValid) {
+                showMessage('error', `Invalid number for base ${fromBase}`);
+                return;
+            }
+            
+            try {
+                // Convert to decimal first
+                const decimalValue = parseInt(number, fromBase);
+                
+                // Update all result fields
+                binaryResult.textContent = decimalValue.toString(2).toUpperCase().padStart(8, '0');
+                octalResult.textContent = decimalValue.toString(8).toUpperCase();
+                decimalResult.textContent = decimalValue.toString(10);
+                hexResult.textContent = decimalValue.toString(16).toUpperCase();
+                
+                // Update binary visualization
+                updateBinaryVisualization(decimalValue);
+                
+                showMessage('success', `Converted ${number} from base ${fromBase} to all bases`);
+            } catch (error) {
+                showMessage('error', `Conversion error: ${error.message}`);
+            }
+        }
+        
+        // Validate if a number is valid for a given base
+        function isValidNumberForBase(number, base) {
+            const regexPatterns = {
+                2: /^[01]+$/,
+                8: /^[0-7]+$/,
+                10: /^\d+$/,
+                16: /^[0-9A-F]+$/
+            };
+            
+            // Use predefined regex if available, otherwise create a custom one
+            const pattern = regexPatterns[base] || 
+                new RegExp(`^[0-9A-${String.fromCharCode(64 + base > 9 ? base - 10 : 0)}]+$`, 'i');
+            
+            return pattern.test(number);
+        }
+        
+        // Swap input and output bases
+        function swapBases() {
+            const tempBase = inputBase.value;
+            inputBase.value = outputBase.value;
+            outputBase.value = tempBase;
+            
+            // Also swap custom base values if applicable
+            if (inputBase.value === 'custom' && outputBase.value === 'custom') {
+                const customInput = customInputBase.querySelector('input');
+                const customOutput = customOutputBase.querySelector('input');
+                const tempCustom = customInput.value;
+                customInput.value = customOutput.value;
+                customOutput.value = tempCustom;
+            }
+            
+            handleBaseChange();
+            convertNumber();
+            
+            // Add animation class for the button
+            swapBtn.style.transition = 'transform 0.3s ease';
+            swapBtn.style.transform = 'rotate(180deg)';
+            setTimeout(() => {
+                swapBtn.style.transform = 'rotate(0deg)';
+            }, 300);
+        }
+        
+        // Clear all fields
+        function clearAll() {
+            inputNumber.value = '';
+            inputBase.value = '10';
+            outputBase.value = '16';
+            customInputBase.querySelector('input').value = '';
+            customOutputBase.querySelector('input').value = '';
+            binaryResult.textContent = '0';
+            octalResult.textContent = '0';
+            decimalResult.textContent = '0';
+            hexResult.textContent = '0';
+            customInputBase.classList.remove('show');
+            customOutputBase.classList.remove('show');
+            binaryVisualization.classList.remove('show');
+            showMessage('success', 'All fields cleared');
+        }
+        
+        // Copy main result
+        function copyResult() {
+            const result = outputBase.value === '2' ? binaryResult.textContent :
+                          outputBase.value === '8' ? octalResult.textContent :
+                          outputBase.value === '10' ? decimalResult.textContent :
+                          hexResult.textContent;
+            
+            navigator.clipboard.writeText(result).then(() => {
+                showMessage('success', `Result copied to clipboard: ${result}`);
+            }).catch(() => {
+                showMessage('error', 'Failed to copy result');
+            });
+        }
+        
+        // Update binary visualization
+        function updateBinaryVisualization(decimalValue) {
+            // Show the visualization
+            binaryVisualization.classList.add('show');
+            
+            // Clear previous bits
+            binaryBits.innerHTML = '';
+            
+            // Get binary representation
+            const binaryString = decimalValue.toString(2);
+            
+            // Create bit elements
+            for (let i = binaryString.length - 1; i >= 0; i--) {
+                const bit = binaryString[i];
+                const bitElement = document.createElement('div');
+                bitElement.className = `binary-bit ${bit === '1' ? 'one' : 'zero'}`;
+                bitElement.textContent = bit;
+                
+                // Add exponent
+                const exponentElement = document.createElement('div');
+                exponentElement.className = 'exponent';
+                exponentElement.textContent = i;
+                bitElement.appendChild(exponentElement);
+                
+                binaryBits.appendChild(bitElement);
+            }
+        }
+        
+        // Show message
+        function showMessage(type, text) {
+            message.textContent = text;
+            message.className = 'message ' + type;
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                message.className = 'message';
+            }, 3000);
+        }
+        
+        // Initialize
+        handleBaseChange();
+        convertNumber();
+    </script>
+</body>
+</html>

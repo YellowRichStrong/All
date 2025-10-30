@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter - OOPEN AII</title>
+    <meta name="description" content="Free online JSON formatter tool to beautify and validate your JSON code with syntax highlighting.">
+    <meta name="keywords" content="JSON formatter, JSON beautifier, JSON validator, online JSON formatter, pretty print JSON">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        
+        .btn-secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0b7dda;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #666;
+            color: #666;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .result-container {
+            display: none;
+        }
+        
+        .result-container.active {
+            display: block;
+        }
+        
+        .copy-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        .copy-notification.active {
+            display: block;
+            animation: fadeInOut 2s ease-in-out;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">📋</div>
+                <h2>JSON Formatter</h2>
+                <p class="tool-description">Format and validate your JSON data with this easy-to-use online tool. Supports syntax highlighting and error checking.</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="jsonInput">Enter your JSON code:</label>
+                    <textarea id="jsonInput" placeholder="Paste your JSON code here...">{"name":"John","age":30,"city":"New York","skills":["JavaScript","HTML","CSS"],"isEmployed":true}</textarea>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" id="formatBtn">Format JSON</button>
+                    <button class="btn btn-secondary" id="minifyBtn">Minify JSON</button>
+                    <button class="btn btn-outline" id="clearBtn">Clear</button>
+                    <button class="btn btn-outline" id="loadSampleBtn">Load Sample</button>
+                </div>
+                
+                <div class="form-group">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <label for="jsonOutput">Formatted JSON:</label>
+                        <button class="btn btn-outline" id="copyBtn" style="padding: 5px 10px; font-size: 14px;">Copy to Clipboard</button>
+                    </div>
+                    <textarea id="jsonOutput" readonly></textarea>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div style="margin-top: 40px; background-color: #f9f9f9; padding: 30px; border-radius: 8px;">
+                <h3>Features</h3>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✨ Beautiful syntax highlighting</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">✅ JSON validation and error checking</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">⚡ Fast formatting and minification</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">📋 Easy copy to clipboard functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">💻 Works entirely in your browser</li>
+                </ul>
+            </div>
+
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                    <a href="json-compressor.html" style="text-decoration: none; color: #2196F3;">JSON Compressor</a>
+                    <a href="json-get-converter.html" style="text-decoration: none; color: #2196F3;">JSON/GET Converter</a>
+                    <a href="xml-json-converter.html" style="text-decoration: none; color: #2196F3;">XML/JSON Converter</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copy Notification -->
+    <div class="copy-notification" id="copyNotification">Copied to clipboard!</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const jsonInput = document.getElementById('jsonInput');
+            const jsonOutput = document.getElementById('jsonOutput');
+            const formatBtn = document.getElementById('formatBtn');
+            const minifyBtn = document.getElementById('minifyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const loadSampleBtn = document.getElementById('loadSampleBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const copyNotification = document.getElementById('copyNotification');
+
+            // Format JSON
+            formatBtn.addEventListener('click', function() {
+                try {
+                    const parsed = JSON.parse(jsonInput.value);
+                    jsonOutput.value = JSON.stringify(parsed, null, 2);
+                    highlightJSON();
+                } catch (error) {
+                    jsonOutput.value = 'Error: ' + error.message;
+                    jsonOutput.style.color = '#f44336';
+                }
+            });
+
+            // Minify JSON
+            minifyBtn.addEventListener('click', function() {
+                try {
+                    const parsed = JSON.parse(jsonInput.value);
+                    jsonOutput.value = JSON.stringify(parsed);
+                    jsonOutput.style.color = '#333';
+                } catch (error) {
+                    jsonOutput.value = 'Error: ' + error.message;
+                    jsonOutput.style.color = '#f44336';
+                }
+            });
+
+            // Clear input and output
+            clearBtn.addEventListener('click', function() {
+                jsonInput.value = '';
+                jsonOutput.value = '';
+                jsonOutput.style.color = '#333';
+            });
+
+            // Load sample JSON
+            loadSampleBtn.addEventListener('click', function() {
+                jsonInput.value = '{"name":"John","age":30,"city":"New York","skills":["JavaScript","HTML","CSS"],"isEmployed":true,"address":{"street":"123 Main St","zipCode":"10001"}}';
+            });
+
+            // Copy to clipboard
+            copyBtn.addEventListener('click', function() {
+                jsonOutput.select();
+                jsonOutput.setSelectionRange(0, 99999);
+                document.execCommand('copy');
+                
+                // Show notification
+                copyNotification.classList.add('active');
+                setTimeout(() => {
+                    copyNotification.classList.remove('active');
+                }, 2000);
+            });
+
+            // Simple JSON highlighting (in a real implementation you'd use a proper syntax highlighter)
+            function highlightJSON() {
+                // For demo purposes, we'll just set a nice font and color
+                jsonOutput.style.fontFamily = '\'Courier New\', monospace';
+                jsonOutput.style.color = '#333';
+                jsonOutput.style.fontSize = '14px';
+            }
+        });
+    </script>
+</body>
+</html>

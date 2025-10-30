@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text/Binary Converter - OOPEN AII</title>
+    <meta name="description" content="Free online tool to convert text to binary and binary to text with various formatting options.">
+    <meta name="keywords" content="text binary converter, convert text to binary, binary to text, binary translator, text to binary">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .conversion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .conversion-container {
+                flex-direction: row;
+            }
+            
+            .input-section,
+            .output-section {
+                flex: 1;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2196F3;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1976D2;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #2196F3;
+            color: #2196F3;
+        }
+        
+        .btn-outline:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .swap-button-container {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .swap-button {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .swap-button:hover {
+            background-color: #e9ecef;
+            transform: rotate(180deg);
+        }
+        
+        .swap-button i {
+            font-size: 20px;
+            color: #6c757d;
+        }
+        
+        .options-group {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .options-group h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .option-item input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        
+        .option-item label {
+            font-size: 14px;
+            color: #555;
+            margin: 0;
+            font-weight: normal;
+        }
+        
+        .option-item select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .message {
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .statistics {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .statistics span {
+            font-weight: 500;
+        }
+        
+        .examples-section {
+            margin-top: 30px;
+        }
+        
+        .examples-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .example-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .example-tab {
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .example-tab:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .example-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .example-item h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .example-item pre {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group textarea {
+                min-height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">0️⃣1️⃣</div>
+                <h2>Text/Binary Converter</h2>
+                <p class="tool-description">Convert text to binary and binary to text with customizable formatting options.</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="conversion-container">
+                    <div class="input-section">
+                        <div class="form-group">
+                            <label for="inputText">Input Text:</label>
+                            <textarea id="inputText" placeholder="Enter text or binary here..."></textarea>
+                        </div>
+                        <div class="statistics">
+                            <p>Input Length: <span id="inputLength">0</span> characters</p>
+                        </div>
+                    </div>
+                    
+                    <div class="swap-button-container">
+                        <button class="swap-button" id="swapButton">
+                            ⇄
+                        </button>
+                    </div>
+                    
+                    <div class="output-section">
+                        <div class="form-group">
+                            <label for="outputText">Output:</label>
+                            <textarea id="outputText" readonly placeholder="Converted result will appear here..."></textarea>
+                        </div>
+                        <div class="statistics">
+                            <p>Output Length: <span id="outputLength">0</span> characters</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="options-group">
+                    <h3>Conversion Options</h3>
+                    <div class="options-grid">
+                        <div class="option-item">
+                            <input type="checkbox" id="useSpaces" checked>
+                            <label for="useSpaces">Add spaces between bytes</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="formatBinary" checked>
+                            <label for="formatBinary">Format binary (8 bits per byte)</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="autoConvert" checked>
+                            <label for="autoConvert">Auto convert on input</label>
+                        </div>
+                        <div class="option-item">
+                            <label for="encoding">Encoding:</label>
+                            <select id="encoding">
+                                <option value="utf8">UTF-8</option>
+                                <option value="ascii">ASCII</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" id="textToBinaryBtn">Text to Binary</button>
+                    <button class="btn btn-primary" id="binaryToTextBtn">Binary to Text</button>
+                    <button class="btn btn-outline" id="clearBtn">Clear All</button>
+                    <button class="btn btn-outline" id="copyBtn">Copy Output</button>
+                </div>
+                
+                <div class="message" id="message"></div>
+                
+                <div class="examples-section">
+                    <h3>Quick Examples</h3>
+                    <div class="example-tabs">
+                        <button class="example-tab" data-type="text" data-content="Hello">Hello</button>
+                        <button class="example-tab" data-type="text" data-content="Binary Converter">Binary Converter</button>
+                        <button class="example-tab" data-type="binary" data-content="01001000 01100101 01101100 01101100 01101111">Hello (Binary)</button>
+                        <button class="example-tab" data-type="binary" data-content="01000010 01101001 01101110 01100001 01110010 01111001">Binary (Binary)</button>
+                    </div>
+                    
+                    <div class="examples-grid">
+                        <div class="example-item">
+                            <h4>Text to Binary</h4>
+                            <pre>Hello → 01001000 01100101 01101100 01101100 01101111</pre>
+                        </div>
+                        <div class="example-item">
+                            <h4>Binary to Text</h4>
+                            <pre>01001000 01100101 01101100 01101100 01101111 → Hello</pre>
+                        </div>
+                        <div class="example-item">
+                            <h4>Without Spaces</h4>
+                            <pre>Hello → 0100100001100101011011000110110001101111</pre>
+                        </div>
+                        <div class="example-item">
+                            <h4>Special Characters</h4>
+                            <pre>!@# → 00100001 01000000 00100011</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div style="margin-top: 40px; background-color: #f9f9fa; padding: 30px; border-radius: 8px;">
+                <h3>Features</h3>
+                <ul style="list-style-type: none; padding: 0; max-width: 600px; margin: 0 auto;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">✨ Convert text to binary and binary to text</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🔤 Support for UTF-8 and ASCII encoding</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📋 Easy copy to clipboard functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">⚡ Automatic conversion as you type</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📏 Character counting and statistics</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🔄 Swap input and output with one click</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💻 Works entirely in your browser</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📱 Responsive design for all devices</li>
+                </ul>
+            </div>
+
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <a href="text-tools.html" style="text-decoration: none; color: #2196F3;">Text Tools</a>
+                    <a href="../dav.html" style="text-decoration: none; color: #2196F3;">View All Development Tools</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const textToBinaryBtn = document.getElementById('textToBinaryBtn');
+        const binaryToTextBtn = document.getElementById('binaryToTextBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const swapButton = document.getElementById('swapButton');
+        const useSpaces = document.getElementById('useSpaces');
+        const formatBinary = document.getElementById('formatBinary');
+        const autoConvert = document.getElementById('autoConvert');
+        const encoding = document.getElementById('encoding');
+        const message = document.getElementById('message');
+        const inputLength = document.getElementById('inputLength');
+        const outputLength = document.getElementById('outputLength');
+        const exampleTabs = document.querySelectorAll('.example-tab');
+        
+        // Update length counters
+        function updateLengths() {
+            inputLength.textContent = inputText.value.length;
+            outputLength.textContent = outputText.value.length;
+        }
+        
+        // Show message
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = 'message ' + type;
+            setTimeout(hideMessage, 3000);
+        }
+        
+        // Hide message
+        function hideMessage() {
+            message.className = 'message';
+        }
+        
+        // Text to Binary Conversion
+        function textToBinary(text) {
+            if (!text) return '';
+            
+            const options = {
+                useSpaces: useSpaces.checked,
+                formatBinary: formatBinary.checked,
+                encoding: encoding.value
+            };
+            
+            let binaryResult = '';
+            
+            // Process each character
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                let binary;
+                
+                // Get binary representation based on encoding
+                if (options.encoding === 'ascii') {
+                    // ASCII encoding (0-127)
+                    const code = char.charCodeAt(0);
+                    if (code > 127) {
+                        throw new Error('Non-ASCII character found when using ASCII encoding');
+                    }
+                    binary = code.toString(2);
+                } else {
+                    // UTF-8 encoding
+                    let code = char.charCodeAt(0);
+                    let bytes = [];
+                    
+                    if (code < 0x80) {
+                        // 1-byte sequence
+                        bytes.push(code);
+                    } else if (code < 0x800) {
+                        // 2-byte sequence
+                        bytes.push(0xC0 | (code >> 6));
+                        bytes.push(0x80 | (code & 0x3F));
+                    } else if (code < 0x10000) {
+                        // 3-byte sequence
+                        bytes.push(0xE0 | (code >> 12));
+                        bytes.push(0x80 | ((code >> 6) & 0x3F));
+                        bytes.push(0x80 | (code & 0x3F));
+                    } else {
+                        // 4-byte sequence
+                        bytes.push(0xF0 | (code >> 18));
+                        bytes.push(0x80 | ((code >> 12) & 0x3F));
+                        bytes.push(0x80 | ((code >> 6) & 0x3F));
+                        bytes.push(0x80 | (code & 0x3F));
+                    }
+                    
+                    // Convert bytes to binary
+                    binary = bytes.map(byte => {
+                        let bin = byte.toString(2);
+                        return options.formatBinary ? bin.padStart(8, '0') : bin;
+                    }).join(options.useSpaces ? ' ' : '');
+                    
+                    // Add space between characters if needed
+                    if (i < text.length - 1 && options.useSpaces) {
+                        binary += ' ';
+                    }
+                    
+                    binaryResult += binary;
+                    continue;
+                }
+                
+                // Format binary if needed
+                if (options.formatBinary) {
+                    binary = binary.padStart(8, '0');
+                }
+                
+                binaryResult += binary;
+                
+                // Add space between bytes/characters if needed
+                if (i < text.length - 1 && options.useSpaces) {
+                    binaryResult += ' ';
+                }
+            }
+            
+            return binaryResult;
+        }
+        
+        // Binary to Text Conversion
+        function binaryToText(binary) {
+            if (!binary) return '';
+            
+            const options = {
+                encoding: encoding.value
+            };
+            
+            // Remove all whitespace
+            const cleanedBinary = binary.replace(/\s+/g, '');
+            
+            // Validate binary
+            if (!/^[01]+$/.test(cleanedBinary)) {
+                throw new Error('Invalid binary input. Please enter only 0s and 1s.');
+            }
+            
+            let textResult = '';
+            
+            if (options.encoding === 'ascii') {
+                // Process as ASCII (8 bits per character)
+                if (cleanedBinary.length % 8 !== 0) {
+                    throw new Error('ASCII binary must be multiples of 8 bits');
+                }
+                
+                for (let i = 0; i < cleanedBinary.length; i += 8) {
+                    const byte = cleanedBinary.substr(i, 8);
+                    const code = parseInt(byte, 2);
+                    if (code > 127) {
+                        throw new Error('Invalid ASCII code (must be 0-127)');
+                    }
+                    textResult += String.fromCharCode(code);
+                }
+            } else {
+                // Process as UTF-8
+                // This is a simplified UTF-8 decoder for demonstration
+                let i = 0;
+                while (i < cleanedBinary.length) {
+                    let code;
+                    
+                    // Determine number of bytes based on leading bits
+                    if (i + 8 <= cleanedBinary.length && cleanedBinary.substr(i, 1) === '0') {
+                        // 1-byte sequence
+                        code = parseInt(cleanedBinary.substr(i, 8), 2);
+                        i += 8;
+                    } else if (i + 16 <= cleanedBinary.length && cleanedBinary.substr(i, 3) === '110') {
+                        // 2-byte sequence
+                        const byte1 = parseInt(cleanedBinary.substr(i, 8), 2);
+                        const byte2 = parseInt(cleanedBinary.substr(i + 8, 8), 2);
+                        
+                        // Validate continuation bytes
+                        if (cleanedBinary.substr(i + 8, 2) !== '10') {
+                            throw new Error('Invalid UTF-8 sequence');
+                        }
+                        
+                        code = ((byte1 & 0x1F) << 6) | (byte2 & 0x3F);
+                        i += 16;
+                    } else if (i + 24 <= cleanedBinary.length && cleanedBinary.substr(i, 4) === '1110') {
+                        // 3-byte sequence
+                        const byte1 = parseInt(cleanedBinary.substr(i, 8), 2);
+                        const byte2 = parseInt(cleanedBinary.substr(i + 8, 8), 2);
+                        const byte3 = parseInt(cleanedBinary.substr(i + 16, 8), 2);
+                        
+                        // Validate continuation bytes
+                        if (cleanedBinary.substr(i + 8, 2) !== '10' || cleanedBinary.substr(i + 16, 2) !== '10') {
+                            throw new Error('Invalid UTF-8 sequence');
+                        }
+                        
+                        code = ((byte1 & 0x0F) << 12) | ((byte2 & 0x3F) << 6) | (byte3 & 0x3F);
+                        i += 24;
+                    } else if (i + 32 <= cleanedBinary.length && cleanedBinary.substr(i, 5) === '11110') {
+                        // 4-byte sequence
+                        const byte1 = parseInt(cleanedBinary.substr(i, 8), 2);
+                        const byte2 = parseInt(cleanedBinary.substr(i + 8, 8), 2);
+                        const byte3 = parseInt(cleanedBinary.substr(i + 16, 8), 2);
+                        const byte4 = parseInt(cleanedBinary.substr(i + 24, 8), 2);
+                        
+                        // Validate continuation bytes
+                        if (cleanedBinary.substr(i + 8, 2) !== '10' || 
+                            cleanedBinary.substr(i + 16, 2) !== '10' || 
+                            cleanedBinary.substr(i + 24, 2) !== '10') {
+                            throw new Error('Invalid UTF-8 sequence');
+                        }
+                        
+                        code = ((byte1 & 0x07) << 18) | ((byte2 & 0x3F) << 12) | 
+                               ((byte3 & 0x3F) << 6) | (byte4 & 0x3F);
+                        i += 32;
+                    } else {
+                        throw new Error('Invalid UTF-8 sequence or incomplete binary');
+                    }
+                    
+                    textResult += String.fromCharCode(code);
+                }
+            }
+            
+            return textResult;
+        }
+        
+        // Determine if input is binary
+        function isBinary(input) {
+            // Remove whitespace and check if only 0s and 1s remain
+            return /^[01\s]*$/.test(input);
+        }
+        
+        // Process conversion based on input type
+        function processConversion(direction = null) {
+            try {
+                const input = inputText.value.trim();
+                if (!input) {
+                    showMessage('Please enter text or binary data', 'error');
+                    return;
+                }
+                
+                let result = '';
+                
+                if (direction === 'textToBinary' || (direction === null && !isBinary(input))) {
+                    // Text to Binary conversion
+                    result = textToBinary(input);
+                } else if (direction === 'binaryToText' || (direction === null && isBinary(input))) {
+                    // Binary to Text conversion
+                    result = binaryToText(input);
+                }
+                
+                outputText.value = result;
+                updateLengths();
+                showMessage('Conversion successful', 'success');
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            }
+        }
+        
+        // Clear all inputs
+        function clearAll() {
+            inputText.value = '';
+            outputText.value = '';
+            updateLengths();
+            showMessage('Cleared all inputs', 'success');
+        }
+        
+        // Copy output to clipboard
+        function copyToClipboard() {
+            if (!outputText.value) {
+                showMessage('No output to copy', 'error');
+                return;
+            }
+            
+            navigator.clipboard.writeText(outputText.value)
+                .then(() => {
+                    showMessage('Copied to clipboard', 'success');
+                })
+                .catch(err => {
+                    showMessage('Failed to copy: ' + err.message, 'error');
+                });
+        }
+        
+        // Swap input and output
+        function swapInputOutput() {
+            const temp = inputText.value;
+            inputText.value = outputText.value;
+            outputText.value = temp;
+            updateLengths();
+            showMessage('Swapped input and output', 'success');
+            
+            // If auto-convert is enabled, process the new input
+            if (autoConvert.checked) {
+                processConversion();
+            }
+        }
+        
+        // Load example
+        function loadExample(tab) {
+            const type = tab.getAttribute('data-type');
+            const content = tab.getAttribute('data-content');
+            
+            inputText.value = content;
+            updateLengths();
+            
+            // Process conversion based on example type
+            if (type === 'text') {
+                processConversion('textToBinary');
+            } else {
+                processConversion('binaryToText');
+            }
+        }
+        
+        // Event Listeners
+        textToBinaryBtn.addEventListener('click', () => processConversion('textToBinary'));
+        binaryToTextBtn.addEventListener('click', () => processConversion('binaryToText'));
+        clearBtn.addEventListener('click', clearAll);
+        copyBtn.addEventListener('click', copyToClipboard);
+        swapButton.addEventListener('click', swapInputOutput);
+        
+        // Input event for real-time updates
+        inputText.addEventListener('input', () => {
+            updateLengths();
+            if (autoConvert.checked) {
+                processConversion();
+            }
+        });
+        
+        // Example buttons
+        exampleTabs.forEach(tab => {
+            tab.addEventListener('click', () => loadExample(tab));
+        });
+        
+        // Option changes trigger conversion if auto-convert is enabled
+        useSpaces.addEventListener('change', () => {
+            if (autoConvert.checked && inputText.value && !isBinary(inputText.value)) {
+                processConversion('textToBinary');
+            }
+        });
+        
+        formatBinary.addEventListener('change', () => {
+            if (autoConvert.checked && inputText.value && !isBinary(inputText.value)) {
+                processConversion('textToBinary');
+            }
+        });
+        
+        encoding.addEventListener('change', () => {
+            if (autoConvert.checked && inputText.value) {
+                processConversion();
+            }
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                processConversion();
+            } else if (e.ctrlKey && e.key === 'Backspace') {
+                clearAll();
+            }
+        });
+        
+        // Initialize
+        updateLengths();
+    </script>
+</body>
+</html>

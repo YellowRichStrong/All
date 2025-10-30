@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML/JSON Converter - OOPEN AII</title>
+    <meta name="description" content="Free online xml/json converter tool to convert between xml and json formats.">
+    <meta name="keywords" content="xml/json-converter, online xml/json-converter, xml/json converter">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .converter-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .converter-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        
+        .btn-secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0b7dda;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #ddd;
+            color: #666;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .conversion-type {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .conversion-type h3 {
+            margin-bottom: 10px;
+        }
+        
+        .error-message {
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        
+        .success-message {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">🔄</div>
+                <h2>XML/JSON Converter</h2>
+                <p class="tool-description">Convert between XML and JSON formats.</p>
+            </div>
+            <div class="tool-content">
+                <div class="conversion-type">
+                    <h3>Select Conversion Type</h3>
+                    <div class="button-group">
+                        <button id="xmlToJsonBtn" class="btn btn-primary">XML to JSON</button>
+                        <button id="jsonToXmlBtn" class="btn btn-secondary">JSON to XML</button>
+                    </div>
+                </div>
+                
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+                
+                <div class="converter-container">
+                    <div>
+                        <div class="form-group">
+                            <label for="inputText"><span id="inputLabel">XML</span> Input:</label>
+                            <textarea id="inputText" placeholder="Paste your XML here..."></textarea>
+                            <div class="action-buttons">
+                                <button id="clearInputBtn" class="btn btn-outline">Clear</button>
+                                <button id="loadSampleInputBtn" class="btn btn-outline">Load Sample</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="form-group">
+                            <label for="outputText"><span id="outputLabel">JSON</span> Output:</label>
+                            <textarea id="outputText" placeholder="Converted output will appear here..." readonly></textarea>
+                            <div class="action-buttons">
+                                <button id="copyOutputBtn" class="btn btn-outline">Copy</button>
+                                <button id="downloadOutputBtn" class="btn btn-outline">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button id="convertBtn" class="btn btn-primary">Convert</button>
+                    <button id="swapBtn" class="btn btn-secondary">Swap Input/Output</button>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div style="margin-top: 40px; background-color: #f9f9f9; padding: 30px; border-radius: 8px;">
+                <h3>Features</h3>
+                <ul style="list-style-type: none; padding: 0; max-width: 600px; margin: 0 auto;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">✨ XML/JSON Converter functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">⚡ Fast and efficient processing</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📋 Easy copy to clipboard functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💻 Works entirely in your browser</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🎨 User-friendly interface</li>
+                </ul>
+            </div>
+
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <a href="json-formatter.html" style="text-decoration: none; color: #2196F3;">JSON Formatter</a>
+                    <a href="json-get-converter.html" style="text-decoration: none; color: #2196F3;">JSON/GET Converter</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const inputText = document.getElementById('inputText');
+            const outputText = document.getElementById('outputText');
+            const convertBtn = document.getElementById('convertBtn');
+            const xmlToJsonBtn = document.getElementById('xmlToJsonBtn');
+            const jsonToXmlBtn = document.getElementById('jsonToXmlBtn');
+            const swapBtn = document.getElementById('swapBtn');
+            const clearInputBtn = document.getElementById('clearInputBtn');
+            const loadSampleInputBtn = document.getElementById('loadSampleInputBtn');
+            const copyOutputBtn = document.getElementById('copyOutputBtn');
+            const downloadOutputBtn = document.getElementById('downloadOutputBtn');
+            const inputLabel = document.getElementById('inputLabel');
+            const outputLabel = document.getElementById('outputLabel');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Conversion state
+            let conversionMode = 'xmlToJson'; // Default mode
+            
+            // XML to JSON conversion function
+            function xmlToJson(xmlStr) {
+                try {
+                    // Create a parser
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlStr, 'text/xml');
+                    
+                    // Check for parsing errors
+                    const parserError = xmlDoc.querySelector('parsererror');
+                    if (parserError) {
+                        throw new Error('Invalid XML format');
+                    }
+                    
+                    // Convert XML to JSON
+                    function convertXmlNodeToObject(xmlNode) {
+                        const obj = {};
+                        
+                        // Process attributes
+                        if (xmlNode.attributes.length > 0) {
+                            obj['@attributes'] = {};
+                            for (let i = 0; i < xmlNode.attributes.length; i++) {
+                                const attr = xmlNode.attributes[i];
+                                obj['@attributes'][attr.nodeName] = attr.nodeValue;
+                            }
+                        }
+                        
+                        // Process child nodes
+                        if (xmlNode.hasChildNodes()) {
+                            // Check if there are multiple children with the same name
+                            const childNodesByName = {};
+                            for (let i = 0; i < xmlNode.childNodes.length; i++) {
+                                const child = xmlNode.childNodes[i];
+                                if (child.nodeType === 1) { // Element node
+                                    if (!childNodesByName[child.nodeName]) {
+                                        childNodesByName[child.nodeName] = [];
+                                    }
+                                    childNodesByName[child.nodeName].push(child);
+                                }
+                            }
+                            
+                            // Process text content if no element children
+                            let hasElementChildren = false;
+                            for (const name in childNodesByName) {
+                                hasElementChildren = true;
+                                break;
+                            }
+                            
+                            if (!hasElementChildren) {
+                                // Only text content
+                                let textContent = '';
+                                for (let i = 0; i < xmlNode.childNodes.length; i++) {
+                                    if (xmlNode.childNodes[i].nodeType === 3) { // Text node
+                                        textContent += xmlNode.childNodes[i].nodeValue;
+                                    }
+                                }
+                                return textContent.trim() || '';
+                            } else {
+                                // Process element children
+                                for (const name in childNodesByName) {
+                                    const children = childNodesByName[name];
+                                    if (children.length === 1) {
+                                        obj[name] = convertXmlNodeToObject(children[0]);
+                                    } else {
+                                        obj[name] = children.map(child => convertXmlNodeToObject(child));
+                                    }
+                                }
+                                return obj;
+                            }
+                        } else {
+                            // Empty node
+                            return '';
+                        }
+                    }
+                    
+                    return JSON.stringify(convertXmlNodeToObject(xmlDoc.documentElement), null, 2);
+                } catch (error) {
+                    throw new Error('XML to JSON conversion failed: ' + error.message);
+                }
+            }
+            
+            // JSON to XML conversion function
+            function jsonToXml(jsonStr) {
+                try {
+                    const jsonObj = JSON.parse(jsonStr);
+                    
+                    function convertObjectToXml(obj, rootName = 'root') {
+                        let xml = `<${rootName}`;
+                        
+                        // Process attributes if they exist
+                        if (obj['@attributes']) {
+                            for (const attr in obj['@attributes']) {
+                                xml += ` ${attr}="${escapeXml(obj['@attributes'][attr])}"`;
+                            }
+                            delete obj['@attributes'];
+                        }
+                        
+                        xml += '>';
+                        
+                        if (typeof obj === 'string') {
+                            xml += escapeXml(obj);
+                        } else if (Array.isArray(obj)) {
+                            // For arrays, use the parent tag name for each item
+                            obj.forEach(item => {
+                                xml += convertObjectToXml(item, rootName);
+                            });
+                        } else if (typeof obj === 'object' && obj !== null) {
+                            // For objects, process each property
+                            for (const key in obj) {
+                                if (obj.hasOwnProperty(key)) {
+                                    xml += convertObjectToXml(obj[key], key);
+                                }
+                            }
+                        } else if (obj !== undefined && obj !== null) {
+                            xml += escapeXml(String(obj));
+                        }
+                        
+                        xml += `</${rootName}>`;
+                        return xml;
+                    }
+                    
+                    // Function to escape XML special characters
+                    function escapeXml(text) {
+                        return String(text)
+                            .replace(/&/g, '&amp;')
+                            .replace(/</g, '&lt;')
+                            .replace(/>/g, '&gt;')
+                            .replace(/"/g, '&quot;')
+                            .replace(/'/g, '&#39;');
+                    }
+                    
+                    // If the JSON is an object with a single property, use that as root
+                    let rootName = 'root';
+                    let rootObj = jsonObj;
+                    
+                    if (typeof jsonObj === 'object' && jsonObj !== null && Object.keys(jsonObj).length === 1) {
+                        rootName = Object.keys(jsonObj)[0];
+                        rootObj = jsonObj[rootName];
+                    }
+                    
+                    return convertObjectToXml(rootObj, rootName);
+                } catch (error) {
+                    throw new Error('JSON to XML conversion failed: ' + error.message);
+                }
+            }
+            
+            // Convert button handler
+            convertBtn.addEventListener('click', function() {
+                const input = inputText.value.trim();
+                
+                if (!input) {
+                    showError('Please enter text to convert');
+                    return;
+                }
+                
+                try {
+                    hideMessages();
+                    let result;
+                    
+                    if (conversionMode === 'xmlToJson') {
+                        result = xmlToJson(input);
+                    } else {
+                        result = jsonToXml(input);
+                    }
+                    
+                    outputText.value = result;
+                    showSuccess('Conversion successful!');
+                } catch (error) {
+                    showError(error.message);
+                }
+            });
+            
+            // Set conversion mode to XML to JSON
+            xmlToJsonBtn.addEventListener('click', function() {
+                conversionMode = 'xmlToJson';
+                inputLabel.textContent = 'XML';
+                outputLabel.textContent = 'JSON';
+                inputText.placeholder = 'Paste your XML here...';
+                xmlToJsonBtn.classList.add('btn-primary');
+                xmlToJsonBtn.classList.remove('btn-secondary');
+                jsonToXmlBtn.classList.add('btn-secondary');
+                jsonToXmlBtn.classList.remove('btn-primary');
+            });
+            
+            // Set conversion mode to JSON to XML
+            jsonToXmlBtn.addEventListener('click', function() {
+                conversionMode = 'jsonToXml';
+                inputLabel.textContent = 'JSON';
+                outputLabel.textContent = 'XML';
+                inputText.placeholder = 'Paste your JSON here...';
+                jsonToXmlBtn.classList.add('btn-primary');
+                jsonToXmlBtn.classList.remove('btn-secondary');
+                xmlToJsonBtn.classList.add('btn-secondary');
+                xmlToJsonBtn.classList.remove('btn-primary');
+            });
+            
+            // Swap input and output
+            swapBtn.addEventListener('click', function() {
+                // Swap the text content
+                const temp = inputText.value;
+                inputText.value = outputText.value;
+                outputText.value = temp;
+                
+                // Toggle conversion mode
+                if (conversionMode === 'xmlToJson') {
+                    jsonToXmlBtn.click();
+                } else {
+                    xmlToJsonBtn.click();
+                }
+            });
+            
+            // Clear input button
+            clearInputBtn.addEventListener('click', function() {
+                inputText.value = '';
+                hideMessages();
+            });
+            
+            // Load sample input
+            loadSampleInputBtn.addEventListener('click', function() {
+                if (conversionMode === 'xmlToJson') {
+                    inputText.value = `<?xml version="1.0" encoding="UTF-8"?>
+<person>
+  <name>John Doe</name>
+  <age>30</age>
+  <address type="home">
+    <street>123 Main St</street>
+    <city>Anytown</city>
+    <zip>12345</zip>
+  </address>
+  <hobbies>
+    <hobby>Reading</hobby>
+    <hobby>Cycling</hobby>
+    <hobby>Swimming</hobby>
+  </hobbies>
+</person>`;
+                } else {
+                    inputText.value = `{
+  "person": {
+    "name": "John Doe",
+    "age": 30,
+    "address": {
+      "@attributes": {
+        "type": "home"
+      },
+      "street": "123 Main St",
+      "city": "Anytown",
+      "zip": 12345
+    },
+    "hobbies": {
+      "hobby": ["Reading", "Cycling", "Swimming"]
+    }
+  }
+}`;
+                }
+                hideMessages();
+            });
+            
+            // Copy output to clipboard
+            copyOutputBtn.addEventListener('click', function() {
+                if (outputText.value) {
+                    outputText.select();
+                    document.execCommand('copy');
+                    showSuccess('Copied to clipboard!');
+                }
+            });
+            
+            // Download output file
+            downloadOutputBtn.addEventListener('click', function() {
+                if (outputText.value) {
+                    const extension = conversionMode === 'xmlToJson' ? 'json' : 'xml';
+                    const blob = new Blob([outputText.value], { type: 'text/' + extension });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'converted.' + extension;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    showSuccess('File downloaded successfully!');
+                }
+            });
+            
+            // Helper functions for messages
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            }
+            
+            function showSuccess(message) {
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Hide success message after 3 seconds
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 3000);
+            }
+            
+            function hideMessages() {
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

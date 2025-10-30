@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Difference Calculator - OOPEN AII</title>
+    <meta name="description" content="Free online time difference calculator to calculate the time difference between two dates and times with multiple formats.">
+    <meta name="keywords" content="time difference calculator, date difference calculator, calculate time between dates, time calculator">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .date-time-inputs {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .date-time-group {
+            flex: 1;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .date-time-group h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        .input-field {
+            margin-bottom: 15px;
+        }
+        
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .input-field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .input-field input:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 140px;
+        }
+        
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1976D2;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #2196F3;
+            color: #2196F3;
+        }
+        
+        .btn-outline:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .results-section {
+            background-color: #f0f7ff;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .results-section h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #1976D2;
+            font-size: 20px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .result-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .result-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 8px;
+        }
+        
+        .result-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .formats-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .formats-section h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .format-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .format-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .format-option input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        
+        .format-option label {
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+        }
+        
+        .quick-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .quick-action-btn {
+            padding: 8px 16px;
+            background-color: #e9ecef;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .quick-action-btn:hover {
+            background-color: #dee2e6;
+        }
+        
+        .timezone-info {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        .message {
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .presets-section {
+            margin-top: 30px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .presets-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .preset-btn {
+            padding: 10px 15px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .preset-btn:hover {
+            background-color: #f0f0f0;
+            border-color: #2196F3;
+            color: #2196F3;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 20px;
+            }
+            
+            .date-time-inputs {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">⏱️</div>
+                <h2>Time Difference Calculator</h2>
+                <p class="tool-description">Calculate the time difference between two dates and times with multiple output formats.</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="date-time-inputs">
+                    <div class="date-time-group">
+                        <h3>Start Date & Time</h3>
+                        <div class="input-field">
+                            <label for="startDate">Date:</label>
+                            <input type="date" id="startDate">
+                        </div>
+                        <div class="input-field">
+                            <label for="startTime">Time:</label>
+                            <input type="time" id="startTime">
+                        </div>
+                    </div>
+                    
+                    <div class="date-time-group">
+                        <h3>End Date & Time</h3>
+                        <div class="input-field">
+                            <label for="endDate">Date:</label>
+                            <input type="date" id="endDate">
+                        </div>
+                        <div class="input-field">
+                            <label for="endTime">Time:</label>
+                            <input type="time" id="endTime">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <button class="quick-action-btn" id="setNowStartBtn">Set Start to Now</button>
+                    <button class="quick-action-btn" id="setNowEndBtn">Set End to Now</button>
+                    <button class="quick-action-btn" id="swapDatesBtn">Swap Dates</button>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" id="calculateBtn">Calculate Difference</button>
+                    <button class="btn btn-secondary" id="clearBtn">Clear All</button>
+                    <button class="btn btn-outline" id="copyBtn">Copy Results</button>
+                </div>
+                
+                <div class="formats-section">
+                    <h4>Select Output Formats:</h4>
+                    <div class="format-options">
+                        <div class="format-option">
+                            <input type="checkbox" id="showYears" checked>
+                            <label for="showYears">Years</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="checkbox" id="showMonths" checked>
+                            <label for="showMonths">Months</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="checkbox" id="showDays" checked>
+                            <label for="showDays">Days</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="checkbox" id="showHours" checked>
+                            <label for="showHours">Hours</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="checkbox" id="showMinutes" checked>
+                            <label for="showMinutes">Minutes</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="checkbox" id="showSeconds" checked>
+                            <label for="showSeconds">Seconds</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="results-section" id="resultsSection">
+                    <h3>Time Difference Results</h3>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-value" id="totalDays">0</div>
+                            <div class="result-label">Total Days</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value" id="totalHours">0</div>
+                            <div class="result-label">Total Hours</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value" id="totalMinutes">0</div>
+                            <div class="result-label">Total Minutes</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value" id="totalSeconds">0</div>
+                            <div class="result-label">Total Seconds</div>
+                        </div>
+                    </div>
+                    
+                    <div class="formatted-difference" style="margin-top: 30px; padding: 20px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                        <h4 style="margin-top: 0; margin-bottom: 15px; color: #333;">Detailed Breakdown:</h4>
+                        <div style="font-size: 18px; line-height: 1.6; color: #333;" id="detailedBreakdown">
+                            0 years, 0 months, 0 days, 0 hours, 0 minutes, 0 seconds
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="presets-section">
+                    <h3>Quick Presets</h3>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" data-days="1">1 Day</button>
+                        <button class="preset-btn" data-days="7">1 Week</button>
+                        <button class="preset-btn" data-days="30">1 Month</button>
+                        <button class="preset-btn" data-days="365">1 Year</button>
+                        <button class="preset-btn" data-hours="1">1 Hour</button>
+                        <button class="preset-btn" data-hours="24">24 Hours</button>
+                        <button class="preset-btn" data-minutes="60">60 Minutes</button>
+                    </div>
+                </div>
+                
+                <div class="timezone-info">
+                    All calculations are based on your local timezone.
+                </div>
+                
+                <div class="message" id="message"></div>
+            </div>
+
+            <!-- Features Section -->
+            <div style="margin-top: 40px; background-color: #f9f9fa; padding: 30px; border-radius: 8px;">
+                <h3>Features</h3>
+                <ul style="list-style-type: none; padding: 0; max-width: 600px; margin: 0 auto;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">✨ Calculate time difference between two dates and times</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📊 Multiple output formats (years, months, days, hours, minutes, seconds)</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">⚡ Quick presets for common time periods</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🔄 Swap dates functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">⏱️ Set current time with one click</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📋 Easy copy results to clipboard</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🎨 Clean and responsive user interface</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💻 Works entirely in your browser</li>
+                </ul>
+            </div>
+
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <a href="timestamp-converter.html" style="text-decoration: none; color: #2196F3;">Timestamp Converter</a>
+                    <a href="../dav.html" style="text-decoration: none; color: #2196F3;">View All Development Tools</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const startDate = document.getElementById('startDate');
+        const startTime = document.getElementById('startTime');
+        const endDate = document.getElementById('endDate');
+        const endTime = document.getElementById('endTime');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const setNowStartBtn = document.getElementById('setNowStartBtn');
+        const setNowEndBtn = document.getElementById('setNowEndBtn');
+        const swapDatesBtn = document.getElementById('swapDatesBtn');
+        const totalDays = document.getElementById('totalDays');
+        const totalHours = document.getElementById('totalHours');
+        const totalMinutes = document.getElementById('totalMinutes');
+        const totalSeconds = document.getElementById('totalSeconds');
+        const detailedBreakdown = document.getElementById('detailedBreakdown');
+        const showYears = document.getElementById('showYears');
+        const showMonths = document.getElementById('showMonths');
+        const showDays = document.getElementById('showDays');
+        const showHours = document.getElementById('showHours');
+        const showMinutes = document.getElementById('showMinutes');
+        const showSeconds = document.getElementById('showSeconds');
+        const message = document.getElementById('message');
+        const presetButtons = document.querySelectorAll('.preset-btn');
+        
+        // Set default dates to current date and one day ahead
+        function setDefaultDates() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(now.getDate() + 1);
+            
+            startDate.valueAsDate = now;
+            endDate.valueAsDate = tomorrow;
+            
+            // Set default times
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                              now.getMinutes().toString().padStart(2, '0');
+            startTime.value = timeString;
+            endTime.value = timeString;
+        }
+        
+        // Set current date and time to selected field
+        function setCurrentDateTime(dateField, timeField) {
+            const now = new Date();
+            dateField.valueAsDate = now;
+            timeField.value = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+        }
+        
+        // Swap start and end dates/times
+        function swapDates() {
+            const tempDate = startDate.value;
+            const tempTime = startTime.value;
+            
+            startDate.value = endDate.value;
+            startTime.value = endTime.value;
+            
+            endDate.value = tempDate;
+            endTime.value = tempTime;
+        }
+        
+        // Calculate time difference
+        function calculateTimeDifference() {
+            // Validate inputs
+            if (!startDate.value || !startTime.value || !endDate.value || !endTime.value) {
+                showMessage('error', 'Please enter all date and time fields');
+                return;
+            }
+            
+            // Create Date objects
+            const startDateTimeStr = `${startDate.value}T${startTime.value}`;
+            const endDateTimeStr = `${endDate.value}T${endTime.value}`;
+            
+            const start = new Date(startDateTimeStr);
+            const end = new Date(endDateTimeStr);
+            
+            // Validate date parsing
+            if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+                showMessage('error', 'Invalid date or time format');
+                return;
+            }
+            
+            // Calculate difference in milliseconds
+            const diffMs = end - start;
+            const absoluteDiffMs = Math.abs(diffMs);
+            
+            // Calculate total values
+            const totalSecondsValue = Math.floor(absoluteDiffMs / 1000);
+            const totalMinutesValue = Math.floor(totalSecondsValue / 60);
+            const totalHoursValue = Math.floor(totalMinutesValue / 60);
+            const totalDaysValue = Math.floor(totalHoursValue / 24);
+            
+            // Update total values
+            totalSeconds.textContent = totalSecondsValue.toLocaleString();
+            totalMinutes.textContent = totalMinutesValue.toLocaleString();
+            totalHours.textContent = totalHoursValue.toLocaleString();
+            totalDays.textContent = totalDaysValue.toLocaleString();
+            
+            // Calculate detailed breakdown
+            const years = Math.floor(totalDaysValue / 365.25);
+            let remainingDays = totalDaysValue % 365.25;
+            
+            // Approximate months (30.44 days per month)
+            const months = Math.floor(remainingDays / 30.44);
+            remainingDays = Math.floor(remainingDays % 30.44);
+            
+            const hours = totalHoursValue % 24;
+            const minutes = totalMinutesValue % 60;
+            const seconds = totalSecondsValue % 60;
+            
+            // Build detailed breakdown string
+            const parts = [];
+            
+            if (showYears.checked && years > 0) {
+                parts.push(`${years} year${years > 1 ? 's' : ''}`);
+            }
+            
+            if (showMonths.checked && months > 0) {
+                parts.push(`${months} month${months > 1 ? 's' : ''}`);
+            }
+            
+            if (showDays.checked && remainingDays > 0) {
+                parts.push(`${remainingDays} day${remainingDays > 1 ? 's' : ''}`);
+            }
+            
+            if (showHours.checked && hours > 0) {
+                parts.push(`${hours} hour${hours > 1 ? 's' : ''}`);
+            }
+            
+            if (showMinutes.checked && minutes > 0) {
+                parts.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
+            }
+            
+            if (showSeconds.checked && seconds > 0) {
+                parts.push(`${seconds} second${seconds > 1 ? 's' : ''}`);
+            }
+            
+            // Handle case where all parts are hidden or zero
+            if (parts.length === 0) {
+                detailedBreakdown.textContent = 'No time difference';
+            } else {
+                // Add prefix if end date is before start date
+                const prefix = diffMs < 0 ? 'Negative time difference: ' : '';
+                detailedBreakdown.textContent = prefix + parts.join(', ');
+            }
+            
+            showMessage('success', 'Time difference calculated successfully');
+        }
+        
+        // Clear all fields
+        function clearAll() {
+            startDate.value = '';
+            startTime.value = '';
+            endDate.value = '';
+            endTime.value = '';
+            
+            totalSeconds.textContent = '0';
+            totalMinutes.textContent = '0';
+            totalHours.textContent = '0';
+            totalDays.textContent = '0';
+            detailedBreakdown.textContent = '0 years, 0 months, 0 days, 0 hours, 0 minutes, 0 seconds';
+            
+            showMessage('success', 'All fields cleared');
+        }
+        
+        // Copy results to clipboard
+        function copyResults() {
+            const results = `Time Difference Results:\n\n` +
+                           `Total Days: ${totalDays.textContent}\n` +
+                           `Total Hours: ${totalHours.textContent}\n` +
+                           `Total Minutes: ${totalMinutes.textContent}\n` +
+                           `Total Seconds: ${totalSeconds.textContent}\n\n` +
+                           `Detailed Breakdown: ${detailedBreakdown.textContent}`;
+            
+            navigator.clipboard.writeText(results).then(() => {
+                showMessage('success', 'Results copied to clipboard');
+            }).catch(err => {
+                showMessage('error', 'Failed to copy results');
+            });
+        }
+        
+        // Apply preset time difference
+        function applyPreset(presetBtn) {
+            const days = parseInt(presetBtn.dataset.days) || 0;
+            const hours = parseInt(presetBtn.dataset.hours) || 0;
+            const minutes = parseInt(presetBtn.dataset.minutes) || 0;
+            
+            // Set start to now
+            const now = new Date();
+            startDate.valueAsDate = now;
+            startTime.value = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            
+            // Calculate end date
+            const end = new Date(now);
+            end.setDate(end.getDate() + days);
+            end.setHours(end.getHours() + hours);
+            end.setMinutes(end.getMinutes() + minutes);
+            
+            endDate.valueAsDate = end;
+            endTime.value = end.getHours().toString().padStart(2, '0') + ':' + 
+                           end.getMinutes().toString().padStart(2, '0');
+            
+            // Calculate difference
+            calculateTimeDifference();
+        }
+        
+        // Show message
+        function showMessage(type, text) {
+            message.textContent = text;
+            message.className = 'message ' + type;
+            
+            setTimeout(() => {
+                message.className = 'message';
+            }, 3000);
+        }
+        
+        // Event Listeners
+        calculateBtn.addEventListener('click', calculateTimeDifference);
+        clearBtn.addEventListener('click', clearAll);
+        copyBtn.addEventListener('click', copyResults);
+        setNowStartBtn.addEventListener('click', () => setCurrentDateTime(startDate, startTime));
+        setNowEndBtn.addEventListener('click', () => setCurrentDateTime(endDate, endTime));
+        swapDatesBtn.addEventListener('click', swapDates);
+        
+        // Format checkbox listeners
+        [showYears, showMonths, showDays, showHours, showMinutes, showSeconds].forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                // Ensure at least one format is selected
+                const hasChecked = [showYears, showMonths, showDays, showHours, showMinutes, showSeconds]
+                    .some(cb => cb.checked);
+                
+                if (!hasChecked) {
+                    checkbox.checked = true;
+                    showMessage('error', 'At least one output format must be selected');
+                } else if (totalDays.textContent !== '0') {
+                    calculateTimeDifference();
+                }
+            });
+        });
+        
+        // Preset buttons listeners
+        presetButtons.forEach(button => {
+            button.addEventListener('click', () => applyPreset(button));
+        });
+        
+        // Initialize
+        setDefaultDates();
+        calculateTimeDifference();
+    </script>
+</body>
+</html>

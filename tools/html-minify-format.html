@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Minify/Format - OOPEN AII</title>
+    <meta name="description" content="Free online HTML minify and format tool to compress or beautify your HTML code with proper indentation.">
+    <meta name="keywords" content="HTML minifier, HTML formatter, HTML beautifier, compress HTML, beautify HTML, online HTML tool">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+            background-color: #fafafa;
+            line-height: 1.5;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        
+        .btn-secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0b7dda;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #666;
+            color: #666;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .copy-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        .copy-notification.active {
+            display: block;
+            animation: fadeInOut 2s ease-in-out;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        .options-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        
+        .option-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .option-item label {
+            font-weight: normal;
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .size-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f7ff;
+            border-radius: 6px;
+            border: 1px solid #e3f2fd;
+        }
+        
+        .size-info p {
+            margin: 5px 0;
+        }
+        
+        .size-info strong {
+            color: #1976d2;
+        }
+        
+        .examples-container {
+            margin-top: 30px;
+        }
+        
+        .examples-header {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .example-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+        
+        .example-tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            margin-right: 5px;
+            border-radius: 6px 6px 0 0;
+            white-space: nowrap;
+        }
+        
+        .example-tab.active {
+            background-color: white;
+            border-bottom: 1px solid white;
+            margin-bottom: -1px;
+        }
+        
+        .example-content {
+            display: none;
+            padding: 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 0 6px 6px 6px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+        
+        .example-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">📄</div>
+                <h2>HTML Minify/Format</h2>
+                <p class="tool-description">Minify your HTML code for production or format it for better readability with this powerful online tool.</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="options-group">
+                    <div class="form-group">
+                        <label for="htmlInput">Enter your HTML code:</label>
+                        <textarea id="htmlInput" placeholder="Paste your HTML code here..."><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Hello World</h1>
+    <p>This is an example paragraph.</p>
+  </div>
+</body>
+</html></textarea>
+                    </div>
+                    
+                    <div class="options-group">
+                        <strong>Formatting Options:</strong>
+                        <div class="option-item">
+                            <input type="checkbox" id="preserveComments" checked>
+                            <label for="preserveComments">Preserve comments</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="preserveWhitespace" checked>
+                            <label for="preserveWhitespace">Preserve significant whitespace</label>
+                        </div>
+                        <div class="option-item">
+                            <select id="indentSize">
+                                <option value="2">2 spaces</option>
+                                <option value="4" selected>4 spaces</option>
+                                <option value="8">8 spaces</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="btn btn-primary" id="formatBtn">Format HTML</button>
+                        <button class="btn btn-secondary" id="minifyBtn">Minify HTML</button>
+                        <button class="btn btn-outline" id="clearBtn">Clear</button>
+                        <button class="btn btn-outline" id="loadSampleBtn">Load Sample</button>
+                        <button class="btn btn-outline" id="beautifyExampleBtn">Beautify Example</button>
+                        <button class="btn btn-outline" id="minifyExampleBtn">Minify Example</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <label for="htmlOutput">Result:</label>
+                            <button class="btn btn-outline" id="copyBtn" style="padding: 5px 10px; font-size: 14px;">Copy to Clipboard</button>
+                        </div>
+                        <textarea id="htmlOutput" readonly></textarea>
+                    </div>
+                    
+                    <div class="size-info">
+                        <p><strong>Original Size:</strong> <span id="originalSize">0</span> bytes</p>
+                        <p><strong>Result Size:</strong> <span id="resultSize">0</span> bytes</p>
+                        <p><strong>Size Reduction:</strong> <span id="sizeReduction">0</span>%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Examples Section -->
+            <div class="examples-container">
+                <div class="examples-header">Examples:</div>
+                <div class="example-tabs">
+                    <div class="example-tab active" data-example="basic">Basic HTML</div>
+                    <div class="example-tab" data-example="form">Form Example</div>
+                    <div class="example-tab" data-example="table">Table Example</div>
+                    <div class="example-tab" data-example="complex">Complex HTML</div>
+                </div>
+                <div id="basic-example" class="example-content active">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic HTML Example</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Website</h1>
+  </header>
+  <main>
+    <p>This is a basic HTML document example.</p>
+  </main>
+  <footer>
+    <p>&copy; 2024 Example</p>
+  </footer>
+</body>
+</html>
+                </div>
+                <div id="form-example" class="example-content">
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <form action="/submit" method="POST">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
+                </div>
+                <div id="table-example" class="example-content">
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Doe</td>
+        <td>30</td>
+        <td>New York</td>
+      </tr>
+      <tr>
+        <td>Jane Smith</td>
+        <td>25</td>
+        <td>London</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
+                </div>
+                <div id="complex-example" class="example-content">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Complex Example</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="hero">
+      <h1>Welcome to Our Website</h1>
+      <p>This is a complex HTML structure example.</p>
+      <button>Learn More</button>
+    </section>
+    <section id="features">
+      <div class="feature">
+        <h3>Feature 1</h3>
+        <p>Description of feature 1.</p>
+      </div>
+      <div class="feature">
+        <h3>Feature 2</h3>
+        <p>Description of feature 2.</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Example. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div style="margin-top: 40px; background-color: #f9f9f9; padding: 30px; border-radius: 8px;">
+                <h3>Features</h3>
+                <ul style="list-style-type: none; padding: 0; max-width: 600px; margin: 0 auto;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">✨ Beautiful HTML formatting with proper indentation</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">⚡ Efficient HTML minification to reduce file size</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📊 Shows size reduction percentage</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📋 Easy copy to clipboard functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💻 Works entirely in your browser</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🔧 Customizable formatting options</li>
+                    <li style="padding: 8px 0; text-align: left;">📚 Multiple code examples for reference</li>
+                </ul>
+            </div>
+
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <a href="css-minify-format.html" style="text-decoration: none; color: #2196F3;">CSS Minify/Format</a>
+                    <a href="js-minify-format.html" style="text-decoration: none; color: #2196F3;">JS Minify/Format</a>
+                    <a href="html-preview.html" style="text-decoration: none; color: #2196F3;">HTML Preview</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copy Notification -->
+    <div class="copy-notification" id="copyNotification">Copied to clipboard!</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const htmlInput = document.getElementById('htmlInput');
+            const htmlOutput = document.getElementById('htmlOutput');
+            const formatBtn = document.getElementById('formatBtn');
+            const minifyBtn = document.getElementById('minifyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const loadSampleBtn = document.getElementById('loadSampleBtn');
+            const beautifyExampleBtn = document.getElementById('beautifyExampleBtn');
+            const minifyExampleBtn = document.getElementById('minifyExampleBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const copyNotification = document.getElementById('copyNotification');
+            const originalSizeEl = document.getElementById('originalSize');
+            const resultSizeEl = document.getElementById('resultSize');
+            const sizeReductionEl = document.getElementById('sizeReduction');
+            const preserveComments = document.getElementById('preserveComments');
+            const preserveWhitespace = document.getElementById('preserveWhitespace');
+            const indentSize = document.getElementById('indentSize');
+            const exampleTabs = document.querySelectorAll('.example-tab');
+            const exampleContents = document.querySelectorAll('.example-content');
+
+            // List of HTML tags that don't need closing tags (self-closing or void elements)
+            const voidTags = [
+                'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
+                'link', 'meta', 'param', 'source', 'track', 'wbr'
+            ];
+
+            // Update size information
+            function updateSizeInfo() {
+                const originalSize = htmlInput.value.length;
+                const resultSize = htmlOutput.value.length;
+                let reduction = 0;
+                
+                if (originalSize > 0) {
+                    reduction = Math.round((1 - resultSize / originalSize) * 100);
+                }
+                
+                originalSizeEl.textContent = originalSize;
+                resultSizeEl.textContent = resultSize;
+                sizeReductionEl.textContent = reduction;
+            }
+
+            // Format HTML code
+            function formatHTML(html) {
+                if (!html.trim()) return '';
+                
+                try {
+                    // Remove comments if option is disabled
+                    if (!preserveComments.checked) {
+                        html = html.replace(/<!--[\s\S]*?-->/g, '');
+                    }
+                    
+                    const indent = ' '.repeat(parseInt(indentSize.value));
+                    let indentLevel = 0;
+                    let result = '';
+                    let inTag = false;
+                    let inComment = false;
+                    let inString = false;
+                    let tagStart = 0;
+                    let lastChar = '';
+                    let currentTag = '';
+                    let inPre = false; // For <pre> tags that preserve whitespace
+                    
+                    for (let i = 0; i < html.length; i++) {
+                        const currentChar = html[i];
+                        const nextChar = html[i + 1] || '';
+                        
+                        // Handle comments
+                        if (!inTag && !inString && !inPre && currentChar === '<' && nextChar === '!') {
+                            inComment = true;
+                            tagStart = i;
+                            result += currentChar;
+                            continue;
+                        }
+                        if (inComment) {
+                            result += currentChar;
+                            if (currentChar === '-' && nextChar === '-') {
+                                result += nextChar;
+                                i++;
+                                inComment = false;
+                            }
+                            continue;
+                        }
+                        
+                        // Handle strings inside tags
+                        if (inTag && (currentChar === '"' || currentChar === "'") && lastChar !== '\\') {
+                            inString = !inString;
+                        }
+                        
+                        // Handle tags
+                        if (!inString && !inComment && currentChar === '<') {
+                            inTag = true;
+                            tagStart = i;
+                            
+                            // Add newline and indentation before opening tag
+                            if (i > 0 && !/\s/.test(html[i - 1])) {
+                                result += '\n' + indent.repeat(indentLevel);
+                            }
+                            
+                            result += currentChar;
+                            currentTag = '';
+                            continue;
+                        }
+                        
+                        if (inTag && !inString) {
+                            // Capture tag name
+                            if (!currentTag && currentChar.match(/[a-zA-Z]/)) {
+                                let tagEnd = i;
+                                while (tagEnd < html.length && html[tagEnd].match(/[a-zA-Z0-9:-]/)) {
+                                    tagEnd++;
+                                }
+                                currentTag = html.substring(i, tagEnd).split(':')[0]; // Get tag name without namespace
+                                i = tagEnd - 1; // Skip ahead
+                                result += html.substring(tagStart + 1, tagEnd);
+                                continue;
+                            }
+                            
+                            // Handle end of tag
+                            if (currentChar === '>') {
+                                inTag = false;
+                                
+                                // Check if it's a closing tag
+                                if (html.substring(tagStart, i + 1).startsWith('</')) {
+                                    indentLevel = Math.max(0, indentLevel - 1);
+                                    if (!voidTags.includes(currentTag.toLowerCase())) {
+                                        result += currentChar + '\n' + indent.repeat(indentLevel);
+                                    } else {
+                                        result += currentChar;
+                                    }
+                                } 
+                                // Check if it's a self-closing tag or void element
+                                else if (html.substring(tagStart, i + 1).endsWith('/>') || voidTags.includes(currentTag.toLowerCase())) {
+                                    result += currentChar;
+                                    // Add newline after void elements except in <pre>
+                                    if (!inPre) {
+                                        result += '\n' + indent.repeat(indentLevel);
+                                    }
+                                } 
+                                // Regular opening tag
+                                else {
+                                    result += currentChar;
+                                    // Don't increase indent for certain tags
+                                    if (['html', 'head', 'body'].includes(currentTag.toLowerCase())) {
+                                        result += '\n' + indent.repeat(indentLevel);
+                                    } else {
+                                        indentLevel++;
+                                        // Special handling for <pre> tag
+                                        if (currentTag.toLowerCase() === 'pre') {
+                                            inPre = true;
+                                        }
+                                    }
+                                }
+                                continue;
+                            }
+                        }
+                        
+                        // Handle text content
+                        if (!inTag && !inComment) {
+                            const text = currentChar.trim();
+                            if (text || preserveWhitespace.checked) {
+                                // If we're not preserving whitespace, skip multiple spaces
+                                if (!preserveWhitespace.checked && /\s/.test(currentChar) && /\s/.test(lastChar)) {
+                                    // Skip multiple spaces
+                                } else {
+                                    result += currentChar;
+                                }
+                            }
+                        } else {
+                            result += currentChar;
+                        }
+                        
+                        lastChar = currentChar;
+                    }
+                    
+                    // Clean up extra newlines
+                    formatted = result
+                        .replace(/\n\s*\n/g, '\n\n')
+                        .replace(/^\s+/gm, match => match.trim())
+                        .trim();
+                    
+                    return formatted;
+                } catch (error) {
+                    console.error("Formatting error:", error);
+                    return "Error formatting code. Please check your HTML syntax.";
+                }
+            }
+
+            // Minify HTML code
+            function minifyHTML(html) {
+                if (!html.trim()) return '';
+                
+                try {
+                    // Remove comments if option is disabled
+                    if (!preserveComments.checked) {
+                        html = html.replace(/<!--[\s\S]*?-->/g, '');
+                    }
+                    
+                    // Minify HTML
+                    let minified = html
+                        // Remove comments (if not preserved)
+                        .replace(/<!--[\s\S]*?-->/g, '')
+                        // Remove whitespace between tags
+                        .replace(/\>\s+\</g, '><')
+                        // Remove leading and trailing whitespace
+                        .trim();
+                    
+                    return minified;
+                } catch (error) {
+                    console.error("Minification error:", error);
+                    return "Error minifying code. Please check your HTML syntax.";
+                }
+            }
+
+            // Clear input and output
+            clearBtn.addEventListener('click', function() {
+                htmlInput.value = '';
+                htmlOutput.value = '';
+                updateSizeInfo();
+            });
+
+            // Load sample HTML
+            loadSampleBtn.addEventListener('click', function() {
+                htmlInput.value = '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>Example</title>\n</head>\n<body>\n  <div class="container">\n    <h1>Hello World</h1>\n    <p>This is an example paragraph.</p>\n  </div>\n</body>\n</html>';
+                updateSizeInfo();
+            });
+
+            // Format button click
+            formatBtn.addEventListener('click', function() {
+                htmlOutput.value = formatHTML(htmlInput.value);
+                updateSizeInfo();
+            });
+
+            // Minify button click
+            minifyBtn.addEventListener('click', function() {
+                htmlOutput.value = minifyHTML(htmlInput.value);
+                updateSizeInfo();
+            });
+
+            // Copy to clipboard
+            copyBtn.addEventListener('click', function() {
+                htmlOutput.select();
+                htmlOutput.setSelectionRange(0, 99999);
+                
+                try {
+                    document.execCommand('copy');
+                    // Show notification
+                    copyNotification.classList.add('active');
+                    setTimeout(() => {
+                        copyNotification.classList.remove('active');
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                }
+            });
+
+            // Load beautify example
+            beautifyExampleBtn.addEventListener('click', function() {
+                const minifiedCode = '<!DOCTYPE html><html><head><title>Example</title></head><body><div><h1>Hello</h1><p>This is minified HTML.</p></div></body></html>';
+                htmlInput.value = minifiedCode;
+                htmlOutput.value = formatHTML(minifiedCode);
+                updateSizeInfo();
+            });
+
+            // Load minify example
+            minifyExampleBtn.addEventListener('click', function() {
+                const formattedCode = '<!DOCTYPE html>\n<html>\n<head>\n    <title>Example</title>\n</head>\n<body>\n    <div>\n        <h1>Hello</h1>\n        <p>This is formatted HTML.</p>\n    </div>\n</body>\n</html>';
+                htmlInput.value = formattedCode;
+                htmlOutput.value = minifyHTML(formattedCode);
+                updateSizeInfo();
+            });
+
+            // Example tabs
+            exampleTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and contents
+                    exampleTabs.forEach(t => t.classList.remove('active'));
+                    exampleContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    document.getElementById(`${tab.dataset.example}-example`).classList.add('active');
+                });
+            });
+
+            // Initial size update
+            updateSizeInfo();
+        });
+    </script>
+</body>
+</html>

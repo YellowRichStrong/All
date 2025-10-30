@@ -241,6 +241,32 @@ img[src*="Logo"] {
 .tool-card p {
     color: #666;
     font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Tool Button Styles */
+.tool-btn {
+    background-color: #0066cc !important;
+    color: white !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: background-color 0.3s !important;
+    display: inline-block !important;
+    margin-top: 10px !important;
+}
+
+.tool-btn:hover {
+    background-color: #0052a3 !important;
+}
+
+/* 确保.tool-content内的按钮也应用相同样式 */
+.tool-content .tool-btn {
+    background-color: #0066cc !important;
+    color: white !important;
 }
 
 /* Features Section */

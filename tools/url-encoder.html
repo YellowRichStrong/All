@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Encoder/Decoder - OOPEN AII</title>
+    <meta name="description" content="Free online URL encoder and decoder tool to convert text to URL encoded format and decode URL encoded strings">
+    <meta name="keywords" content="url encoder, url decoder, url encoding, url decoding, percent encoding, encode url, decode url">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .converter-tabs {
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            border-bottom-color: #2196F3;
+            color: #2196F3;
+        }
+        
+        .converter-panel {
+            display: none;
+        }
+        
+        .converter-panel.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .textarea-container {
+            position: relative;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1976D2;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #45a049;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #ddd;
+            color: #666;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f5f5f5;
+            border-color: #ccc;
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #da190b;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
+        }
+        
+        .result-container {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .result-content {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            word-break: break-all;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        
+        .status-message {
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .success-message {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .error-message {
+            background-color: #ffebee;
+            color: #d32f2f;
+            border-left: 4px solid #f44336;
+        }
+        
+        .options-group {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        
+        .options-header {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .option-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .option-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .option-item label {
+            cursor: pointer;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        .copy-btn.copied {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        
+        .char-reference-table {
+            margin-top: 30px;
+            overflow-x: auto;
+        }
+        
+        .char-reference-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .char-reference-table th,
+        .char-reference-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .char-reference-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .char-reference-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .char-reference-table .char-cell {
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .char-reference-table .code-cell {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background-color: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+        
+        .quick-encode-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .quick-encode-btn {
+            padding: 6px 12px;
+            background-color: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-encode-btn:hover {
+            background-color: #bbdefb;
+            transform: translateY(-1px);
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .feature-description {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .examples-section {
+            margin-top: 30px;
+        }
+        
+        .examples-header {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .example-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        
+        .example-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .example-code {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            word-break: break-all;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .tab {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">🔗</div>
+                <h2>URL Encoder/Decoder</h2>
+                <p class="tool-description">Encode text to URL-safe format or decode URL-encoded strings with advanced options.</p>
+            </div>
+            
+            <div class="tool-content">
+                <div id="statusMessage" class="status-message"></div>
+                
+                <div class="converter-tabs">
+                    <div class="tab active" data-tab="encoder">Encode URL</div>
+                    <div class="tab" data-tab="decoder">Decode URL</div>
+                </div>
+                
+                <div id="encoder-panel" class="converter-panel active">
+                    <div class="options-group">
+                        <div class="options-header">Encoding Options:</div>
+                        <div class="option-item">
+                            <input type="checkbox" id="encodeAllChars" checked>
+                            <label for="encodeAllChars">Encode all non-alphanumeric characters</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="preserveSpaceAsPlus">
+                            <label for="preserveSpaceAsPlus">Preserve spaces as '+' (application/x-www-form-urlencoded)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="encodeInput">Text to Encode:</label>
+                        <div class="quick-encode-buttons">
+                            <button class="quick-encode-btn" data-char=" ">Space ( )</button>
+                            <button class="quick-encode-btn" data-char="&">Ampersand (&)</button>
+                            <button class="quick-encode-btn" data-char="?">Question Mark (?)</button>
+                            <button class="quick-encode-btn" data-char="#">Hash (#)</button>
+                            <button class="quick-encode-btn" data-char="%">Percent (%)</button>
+                            <button class="quick-encode-btn" data-char="+">Plus (+)</button>
+                        </div>
+                        <div class="textarea-container">
+                            <textarea id="encodeInput" placeholder="Enter text to encode...">Hello World! This is a test with special characters: &, ?, #, %, +, =, and spaces.</textarea>
+                            <button id="copyEncodeInputBtn" class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="encodeBtn" class="btn btn-primary">Encode URL</button>
+                        <button id="clearEncodeBtn" class="btn btn-outline">Clear</button>
+                        <button id="loadEncodeExampleBtn" class="btn btn-outline">Load Example</button>
+                    </div>
+                    
+                    <div class="result-container">
+                        <div class="result-header">
+                            <span>Encoded Result:</span>
+                            <button id="copyEncodeResultBtn" class="btn btn-outline" style="padding: 6px 12px; font-size: 14px;">Copy</button>
+                        </div>
+                        <div id="encodeResult" class="result-content">
+                            <!-- Encoded result will appear here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="decoder-panel" class="converter-panel">
+                    <div class="options-group">
+                        <div class="options-header">Decoding Options:</div>
+                        <div class="option-item">
+                            <input type="checkbox" id="decodePlusAsSpace" checked>
+                            <label for="decodePlusAsSpace">Treat '+' as spaces (application/x-www-form-urlencoded)</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="tryMultipleDecodes">
+                            <label for="tryMultipleDecodes">Try multiple decodes (for double-encoded strings)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="decodeInput">Text to Decode:</label>
+                        <div class="textarea-container">
+                            <textarea id="decodeInput" placeholder="Enter URL-encoded text to decode...">Hello%20World%21%20This%20is%20a%20test%20with%20special%20characters%3A%20%26%2C%20%3F%2C%20%23%2C%20%25%2C%20%2B%2C%20%3D%2C%20and%20spaces.</textarea>
+                            <button id="copyDecodeInputBtn" class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="decodeBtn" class="btn btn-secondary">Decode URL</button>
+                        <button id="clearDecodeBtn" class="btn btn-outline">Clear</button>
+                        <button id="loadDecodeExampleBtn" class="btn btn-outline">Load Example</button>
+                    </div>
+                    
+                    <div class="result-container">
+                        <div class="result-header">
+                            <span>Decoded Result:</span>
+                            <button id="copyDecodeResultBtn" class="btn btn-outline" style="padding: 6px 12px; font-size: 14px;">Copy</button>
+                        </div>
+                        <div id="decodeResult" class="result-content">
+                            <!-- Decoded result will appear here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="char-reference-table">
+                    <h3>Common URL Encoding Reference</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Character</th>
+                                <th>Encoded</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="char-cell"> </td>
+                                <td class="code-cell">%20</td>
+                                <td>Space</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">!</td>
+                                <td class="code-cell">%21</td>
+                                <td>Exclamation mark</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">"</td>
+                                <td class="code-cell">%22</td>
+                                <td>Double quote</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">#</td>
+                                <td class="code-cell">%23</td>
+                                <td>Hash / Number sign</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">$</td>
+                                <td class="code-cell">%24</td>
+                                <td>Dollar sign</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">%</td>
+                                <td class="code-cell">%25</td>
+                                <td>Percent sign</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">&</td>
+                                <td class="code-cell">%26</td>
+                                <td>Ampersand</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">'</td>
+                                <td class="code-cell">%27</td>
+                                <td>Single quote</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">(</td>
+                                <td class="code-cell">%28</td>
+                                <td>Left parenthesis</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">)</td>
+                                <td class="code-cell">%29</td>
+                                <td>Right parenthesis</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">*</td>
+                                <td class="code-cell">%2A</td>
+                                <td>Asterisk</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">+</td>
+                                <td class="code-cell">%2B</td>
+                                <td>Plus sign</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">,</td>
+                                <td class="code-cell">%2C</td>
+                                <td>Comma</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">/</td>
+                                <td class="code-cell">%2F</td>
+                                <td>Forward slash</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">:</td>
+                                <td class="code-cell">%3A</td>
+                                <td>Colon</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">;</td>
+                                <td class="code-cell">%3B</td>
+                                <td>Semicolon</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">=</td>
+                                <td class="code-cell">%3D</td>
+                                <td>Equals sign</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">?</td>
+                                <td class="code-cell">%3F</td>
+                                <td>Question mark</td>
+                            </tr>
+                            <tr>
+                                <td class="char-cell">@</td>
+                                <td class="code-cell">%40</td>
+                                <td>At symbol</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="examples-section">
+                    <div class="examples-header">Examples:</div>
+                    <div class="example-item">
+                        <div class="example-label">URL with Query Parameters</div>
+                        <div class="example-code">Original: https://example.com/search?q=hello world&filter=price<100
+Encoded: https://example.com/search?q=hello%20world&filter=price%3C100</div>
+                    </div>
+                    <div class="example-item">
+                        <div class="example-label">Form Data</div>
+                        <div class="example-code">Original: name=John Doe&email=john.doe@example.com
+Encoded: name=John+Doe&email=john.doe%40example.com</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div style="margin-top: 40px;">
+                <h3>Key Features</h3>
+                <div class="features-list">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <div class="feature-title">Complete URL Encoding</div>
+                        <div class="feature-description">Encodes all special characters according to RFC standards for safe URL transmission.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔓</div>
+                        <div class="feature-title">Accurate Decoding</div>
+                        <div class="feature-description">Correctly decodes URL-encoded strings, handling both %-encoding and + for spaces.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <div class="feature-title">Advanced Options</div>
+                        <div class="feature-description">Customize encoding behavior with options for different URL encoding standards.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📋</div>
+                        <div class="feature-title">Quick Copy</div>
+                        <div class="feature-description">Easily copy input and output with dedicated copy buttons for each section.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <div class="feature-title">Reference Table</div>
+                        <div class="feature-description">Includes a comprehensive reference table for common URL-encoded characters.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <div class="feature-title">Browser-based</div>
+                        <div class="feature-description">Works entirely in your browser without sending data to external servers.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Usage Tips -->
+            <div style="margin-top: 40px; background-color: #f8f9fa; padding: 30px; border-radius: 8px;">
+                <h3>Usage Tips</h3>
+                <ul style="text-align: left; max-width: 800px; margin: 0 auto;">
+                    <li>Always encode URL parameters to ensure special characters don't break the URL structure</li>
+                    <li>Use '+' as space option when encoding form data (application/x-www-form-urlencoded)</li>
+                    <li>For API calls, ensure all special characters in URLs are properly encoded</li>
+                    <li>If you encounter double-encoded strings, enable the "Try multiple decodes" option</li>
+                    <li>Remember that the percent sign (%) itself needs to be encoded as %25</li>
+                </ul>
+            </div>
+            
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <a href="json-formatter.html" style="text-decoration: none; color: #2196F3;">JSON Formatter</a>
+                    <a href="json-get-converter.html" style="text-decoration: none; color: #2196F3;">JSON to GET Converter</a>
+                    <a href="string-comparison.html" style="text-decoration: none; color: #2196F3;">String Comparison</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const encodeInput = document.getElementById('encodeInput');
+            const encodeResult = document.getElementById('encodeResult');
+            const encodeBtn = document.getElementById('encodeBtn');
+            const clearEncodeBtn = document.getElementById('clearEncodeBtn');
+            const loadEncodeExampleBtn = document.getElementById('loadEncodeExampleBtn');
+            
+            const decodeInput = document.getElementById('decodeInput');
+            const decodeResult = document.getElementById('decodeResult');
+            const decodeBtn = document.getElementById('decodeBtn');
+            const clearDecodeBtn = document.getElementById('clearDecodeBtn');
+            const loadDecodeExampleBtn = document.getElementById('loadDecodeExampleBtn');
+            
+            const encodeAllChars = document.getElementById('encodeAllChars');
+            const preserveSpaceAsPlus = document.getElementById('preserveSpaceAsPlus');
+            const decodePlusAsSpace = document.getElementById('decodePlusAsSpace');
+            const tryMultipleDecodes = document.getElementById('tryMultipleDecodes');
+            
+            const copyEncodeInputBtn = document.getElementById('copyEncodeInputBtn');
+            const copyEncodeResultBtn = document.getElementById('copyEncodeResultBtn');
+            const copyDecodeInputBtn = document.getElementById('copyDecodeInputBtn');
+            const copyDecodeResultBtn = document.getElementById('copyDecodeResultBtn');
+            
+            const statusMessage = document.getElementById('statusMessage');
+            const tabs = document.querySelectorAll('.tab');
+            const panels = document.querySelectorAll('.converter-panel');
+            const quickEncodeBtns = document.querySelectorAll('.quick-encode-btn');
+            
+            // Show status message
+            function showStatus(message, isError = false) {
+                statusMessage.textContent = message;
+                statusMessage.className = `status-message ${isError ? 'error-message' : 'success-message'}`;
+                statusMessage.style.display = 'block';
+                
+                // Hide after 3 seconds
+                setTimeout(() => {
+                    statusMessage.style.display = 'none';
+                }, 3000);
+            }
+            
+            // Copy to clipboard function
+            async function copyToClipboard(text, button) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    button.classList.add('copied');
+                    
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.classList.remove('copied');
+                    }, 2000);
+                    
+                    showStatus('Copied to clipboard!');
+                    return true;
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                    showStatus('Failed to copy to clipboard', true);
+                    return false;
+                }
+            }
+            
+            // URL encode function with options
+            function encodeUrl(text) {
+                let encoded = '';
+                
+                if (encodeAllChars.checked) {
+                    // Encode all non-alphanumeric characters
+                    for (let i = 0; i < text.length; i++) {
+                        const char = text.charAt(i);
+                        
+                        if (char === ' ' && preserveSpaceAsPlus.checked) {
+                            encoded += '+';
+                        } else if (/[a-zA-Z0-9]/.test(char)) {
+                            encoded += char;
+                        } else {
+                            const code = char.charCodeAt(0);
+                            // Handle Unicode characters
+                            if (code < 128) {
+                                encoded += '%' + code.toString(16).toUpperCase().padStart(2, '0');
+                            } else {
+                                // For Unicode characters, encode as UTF-8
+                                const utf8Bytes = encodeURIComponent(char).match(/%[0-9A-F]{2}/g);
+                                encoded += utf8Bytes.join('');
+                            }
+                        }
+                    }
+                } else {
+                    // Use standard encodeURIComponent but handle spaces differently if needed
+                    encoded = encodeURIComponent(text);
+                    if (preserveSpaceAsPlus.checked) {
+                        encoded = encoded.replace(/%20/g, '+');
+                    }
+                }
+                
+                return encoded;
+            }
+            
+            // URL decode function with options
+            function decodeUrl(text) {
+                try {
+                    let decoded = text;
+                    
+                    // Replace + with space if option is enabled
+                    if (decodePlusAsSpace.checked) {
+                        decoded = decoded.replace(/\+/g, ' ');
+                    }
+                    
+                    // Try decoding
+                    decoded = decodeURIComponent(decoded);
+                    
+                    // Try multiple decodes if option is enabled
+                    if (tryMultipleDecodes.checked) {
+                        let prevDecoded;
+                        do {
+                            prevDecoded = decoded;
+                            try {
+                                // Replace + again in case they were encoded
+                                if (decodePlusAsSpace.checked) {
+                                    decoded = decoded.replace(/\+/g, ' ');
+                                }
+                                decoded = decodeURIComponent(decoded);
+                            } catch (e) {
+                                // Stop if we can't decode further
+                                break;
+                            }
+                        } while (decoded !== prevDecoded);
+                    }
+                    
+                    return decoded;
+                } catch (error) {
+                    throw new Error('Invalid URL-encoded string');
+                }
+            }
+            
+            // Load encode example
+            function loadEncodeExample() {
+                encodeInput.value = `https://example.com/search?q=hello world&filter=price<100&category=electronics
+
+User data with special characters: "quoted text", 'apostrophe', #hashtag, $currency, %percent
+
+Unicode characters: 你好, 世界, 🌍, 🎉`;
+                showStatus('Example loaded successfully!');
+            }
+            
+            // Load decode example
+            function loadDecodeExample() {
+                decodeInput.value = `https://example.com/search?q=hello%20world&filter=price%3C100&category=electronics
+
+User+data+with+special+characters%3A+%22quoted+text%22%2C+%27apostrophe%27%2C+%23hashtag%2C+%24currency%2C+%25percent
+
+Unicode+characters%3A+%E4%BD%A0%E5%A5%BD%2C+%E4%B8%96%E7%95%8C%2C+%F0%9F%8C%8D%2C+%F0%9F%8E%89`;
+                showStatus('Example loaded successfully!');
+            }
+            
+            // Tab switching
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+                    
+                    // Remove active class from all tabs and panels
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panels.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding panel
+                    this.classList.add('active');
+                    document.getElementById(`${tabId}-panel`).classList.add('active');
+                });
+            });
+            
+            // Quick encode buttons
+            quickEncodeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const char = this.dataset.char;
+                    encodeInput.value += char;
+                    encodeInput.focus();
+                });
+            });
+            
+            // Event Listeners
+            encodeBtn.addEventListener('click', function() {
+                try {
+                    const result = encodeUrl(encodeInput.value);
+                    encodeResult.textContent = result;
+                    showStatus('Text encoded successfully!');
+                } catch (error) {
+                    showStatus(`Error: ${error.message}`, true);
+                }
+            });
+            
+            decodeBtn.addEventListener('click', function() {
+                try {
+                    const result = decodeUrl(decodeInput.value);
+                    decodeResult.textContent = result;
+                    showStatus('Text decoded successfully!');
+                } catch (error) {
+                    showStatus(`Error: ${error.message}`, true);
+                }
+            });
+            
+            clearEncodeBtn.addEventListener('click', function() {
+                encodeInput.value = '';
+                encodeResult.textContent = '';
+                showStatus('Encode fields cleared');
+            });
+            
+            clearDecodeBtn.addEventListener('click', function() {
+                decodeInput.value = '';
+                decodeResult.textContent = '';
+                showStatus('Decode fields cleared');
+            });
+            
+            loadEncodeExampleBtn.addEventListener('click', loadEncodeExample);
+            loadDecodeExampleBtn.addEventListener('click', loadDecodeExample);
+            
+            // Copy buttons
+            copyEncodeInputBtn.addEventListener('click', function() {
+                copyToClipboard(encodeInput.value, copyEncodeInputBtn);
+            });
+            
+            copyEncodeResultBtn.addEventListener('click', function() {
+                copyToClipboard(encodeResult.textContent, copyEncodeResultBtn);
+            });
+            
+            copyDecodeInputBtn.addEventListener('click', function() {
+                copyToClipboard(decodeInput.value, copyDecodeInputBtn);
+            });
+            
+            copyDecodeResultBtn.addEventListener('click', function() {
+                copyToClipboard(decodeResult.textContent, copyDecodeResultBtn);
+            });
+            
+            // Run encodings on option changes
+            encodeAllChars.addEventListener('change', function() {
+                if (encodeInput.value) {
+                    encodeBtn.click();
+                }
+            });
+            
+            preserveSpaceAsPlus.addEventListener('change', function() {
+                if (encodeInput.value) {
+                    encodeBtn.click();
+                }
+            });
+            
+            decodePlusAsSpace.addEventListener('change', function() {
+                if (decodeInput.value) {
+                    decodeBtn.click();
+                }
+            });
+            
+            tryMultipleDecodes.addEventListener('change', function() {
+                if (decodeInput.value) {
+                    decodeBtn.click();
+                }
+            });
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    e.preventDefault();
+                    const activePanel = document.querySelector('.converter-panel.active');
+                    if (activePanel.id === 'encoder-panel') {
+                        encodeBtn.click();
+                    } else {
+                        decodeBtn.click();
+                    }
+                }
+            });
+            
+            // Initialize with examples
+            loadEncodeExample();
+            loadDecodeExample();
+            
+            // Run initial encoding and decoding
+            setTimeout(() => {
+                encodeBtn.click();
+                setTimeout(() => decodeBtn.click(), 100);
+            }, 100);
+        });
+    </script>
+</body>
+</html>

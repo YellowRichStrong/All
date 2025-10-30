@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB/HEX Color Converter - OOPEN AII</title>
+    <meta name="description" content="Free online RGB/HEX color converter tool to convert between RGB, HEX, HSL color formats with color preview.">
+    <meta name="keywords" content="rgb/hex color converter, online color converter, hsl converter, rgb to hex, hex to rgb">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .converter-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .converter-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+        }
+        
+        .color-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            transition: border-color 0.3s ease;
+        }
+        
+        .rgb-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .rgb-input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .rgb-input-group label {
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: #666;
+        }
+        
+        .rgb-input-group input {
+            width: 100%;
+        }
+        
+        .slider-container {
+            margin-top: 5px;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .slider:hover {
+            opacity: 1;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #2196F3;
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #2196F3;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+        }
+        
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1976D2;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #2196F3;
+            color: #2196F3;
+        }
+        
+        .btn-outline:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .hsl-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .hsl-input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hsl-input-group label {
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: #666;
+        }
+        
+        .preset-colors {
+            margin-top: 30px;
+        }
+        
+        .preset-colors h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 10px;
+        }
+        
+        .color-swatch {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        
+        .color-swatch:hover {
+            transform: scale(1.1);
+            border-color: #333;
+        }
+        
+        .message {
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 20px;
+            }
+            
+            .rgb-inputs,
+            .hsl-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .color-palette {
+                grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">🌈</div>
+                <h2>RGB/HEX Color Converter</h2>
+                <p class="tool-description">Convert between RGB, HEX, and HSL color formats with real-time preview.</p>
+            </div>
+            
+            <div class="tool-content">
+                <!-- Color Preview -->
+                <div class="color-preview" id="colorPreview" style="background-color: #000000;"></div>
+                
+                <div class="converter-container">
+                    <!-- HEX Input -->
+                    <div class="form-group">
+                        <label for="hexInput">HEX Color</label>
+                        <input type="text" id="hexInput" placeholder="#000000" value="#000000">
+                        <div class="button-group">
+                            <button class="btn btn-outline" id="copyHexBtn">Copy HEX</button>
+                        </div>
+                    </div>
+                    
+                    <!-- RGB Input -->
+                    <div class="form-group">
+                        <label>RGB Color</label>
+                        <div class="rgb-inputs">
+                            <div class="rgb-input-group">
+                                <label for="rInput">R</label>
+                                <input type="number" id="rInput" min="0" max="255" value="0">
+                                <div class="slider-container">
+                                    <input type="range" class="slider" id="rSlider" min="0" max="255" value="0">
+                                </div>
+                            </div>
+                            <div class="rgb-input-group">
+                                <label for="gInput">G</label>
+                                <input type="number" id="gInput" min="0" max="255" value="0">
+                                <div class="slider-container">
+                                    <input type="range" class="slider" id="gSlider" min="0" max="255" value="0">
+                                </div>
+                            </div>
+                            <div class="rgb-input-group">
+                                <label for="bInput">B</label>
+                                <input type="number" id="bInput" min="0" max="255" value="0">
+                                <div class="slider-container">
+                                    <input type="range" class="slider" id="bSlider" min="0" max="255" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-outline" id="copyRgbBtn">Copy RGB</button>
+                        </div>
+                    </div>
+                    
+                    <!-- HSL Input -->
+                    <div class="form-group">
+                        <label>HSL Color</label>
+                        <div class="hsl-inputs">
+                            <div class="hsl-input-group">
+                                <label for="hInput">H</label>
+                                <input type="number" id="hInput" min="0" max="360" value="0">
+                                <div class="slider-container">
+                                    <input type="range" class="slider" id="hSlider" min="0" max="360" value="0">
+                                </div>
+                            </div>
+                            <div class="hsl-input-group">
+                                <label for="sInput">S</label>
+                                <input type="number" id="sInput" min="0" max="100" value="0">
+                                <div class="slider-container">
+                                    <input type="range" class="slider" id="sSlider" min="0" max="100" value="0">
+                                </div>
+                            </div>
+                            <div class="hsl-input-group">
+                                <label for="lInput">L</label>
+                                <input type="number" id="lInput" min="0" max="100" value="0">
+                                <div class="slider-container">
+                                    <input type="range" class="slider" id="lSlider" min="0" max="100" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-outline" id="copyHslBtn">Copy HSL</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Actions -->
+                    <div class="form-group">
+                        <label>Actions</label>
+                        <div class="button-group" style="margin-top: 10px;">
+                            <button class="btn btn-primary" id="randomColorBtn">Random Color</button>
+                            <button class="btn btn-secondary" id="resetColorBtn">Reset</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preset Colors -->
+                <div class="preset-colors">
+                    <h3>Preset Colors</h3>
+                    <div class="color-palette" id="presetColors">
+                        <!-- Preset colors will be added here via JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="message" id="message"></div>
+            </div>
+
+            <!-- Features Section -->
+            <div style="margin-top: 40px; background-color: #f9f9f9; padding: 30px; border-radius: 8px;">
+                <h3>Features</h3>
+                <ul style="list-style-type: none; padding: 0; max-width: 600px; margin: 0 auto;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">✨ Convert between RGB, HEX, and HSL color formats</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🎨 Real-time color preview</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📊 Interactive sliders for RGB and HSL values</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🎲 Generate random colors</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🎯 Use preset color palette</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📋 Easy copy to clipboard functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💻 Works entirely in your browser</li>
+                </ul>
+            </div>
+
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <a href="../dav.html" style="text-decoration: none; color: #2196F3;">View All Development Tools</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const hexInput = document.getElementById('hexInput');
+        const rInput = document.getElementById('rInput');
+        const gInput = document.getElementById('gInput');
+        const bInput = document.getElementById('bInput');
+        const hInput = document.getElementById('hInput');
+        const sInput = document.getElementById('sInput');
+        const lInput = document.getElementById('lInput');
+        const rSlider = document.getElementById('rSlider');
+        const gSlider = document.getElementById('gSlider');
+        const bSlider = document.getElementById('bSlider');
+        const hSlider = document.getElementById('hSlider');
+        const sSlider = document.getElementById('sSlider');
+        const lSlider = document.getElementById('lSlider');
+        const colorPreview = document.getElementById('colorPreview');
+        const copyHexBtn = document.getElementById('copyHexBtn');
+        const copyRgbBtn = document.getElementById('copyRgbBtn');
+        const copyHslBtn = document.getElementById('copyHslBtn');
+        const randomColorBtn = document.getElementById('randomColorBtn');
+        const resetColorBtn = document.getElementById('resetColorBtn');
+        const presetColors = document.getElementById('presetColors');
+        const message = document.getElementById('message');
+        
+        // Preset colors
+        const defaultColors = [
+            '#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF',
+            '#FFFF00', '#FF00FF', '#00FFFF', '#FF5733', '#33FF57',
+            '#3357FF', '#F5B041', '#8E44AD', '#2ECC71', '#E74C3C',
+            '#3498DB', '#95A5A6', '#F39C12', '#1ABC9C', '#34495E'
+        ];
+        
+        // Initialize preset colors
+        function initPresetColors() {
+            defaultColors.forEach(color => {
+                const swatch = document.createElement('div');
+                swatch.className = 'color-swatch';
+                swatch.style.backgroundColor = color;
+                swatch.title = color;
+                swatch.addEventListener('click', () => {
+                    setColorFromHex(color);
+                });
+                presetColors.appendChild(swatch);
+            });
+        }
+        
+        // RGB to HEX conversion
+        function rgbToHex(r, g, b) {
+            return '#' + [r, g, b].map(x => {
+                const hex = x.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }).join('').toUpperCase();
+        }
+        
+        // HEX to RGB conversion
+        function hexToRgb(hex) {
+            hex = hex.replace('#', '');
+            const bigint = parseInt(hex, 16);
+            const r = (bigint >> 16) & 255;
+            const g = (bigint >> 8) & 255;
+            const b = bigint & 255;
+            return { r, g, b };
+        }
+        
+        // RGB to HSL conversion
+        function rgbToHsl(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            
+            if (max === min) {
+                h = s = 0; // achromatic
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                
+                h *= 60;
+            }
+            
+            return { h: Math.round(h), s: Math.round(s * 100), l: Math.round(l * 100) };
+        }
+        
+        // HSL to RGB conversion
+        function hslToRgb(h, s, l) {
+            h /= 360;
+            s /= 100;
+            l /= 100;
+            
+            let r, g, b;
+            
+            if (s === 0) {
+                r = g = b = l; // achromatic
+            } else {
+                const hue2rgb = (p, q, t) => {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1/6) return p + (q - p) * 6 * t;
+                    if (t < 1/2) return q;
+                    if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                    return p;
+                };
+                
+                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                const p = 2 * l - q;
+                
+                r = hue2rgb(p, q, h + 1/3);
+                g = hue2rgb(p, q, h);
+                b = hue2rgb(p, q, h - 1/3);
+            }
+            
+            return {
+                r: Math.round(r * 255),
+                g: Math.round(g * 255),
+                b: Math.round(b * 255)
+            };
+        }
+        
+        // Set color from HEX
+        function setColorFromHex(hex) {
+            try {
+                hex = hex.toUpperCase();
+                const rgb = hexToRgb(hex);
+                const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+                
+                // Update inputs
+                hexInput.value = hex;
+                rInput.value = rgb.r;
+                gInput.value = rgb.g;
+                bInput.value = rgb.b;
+                hInput.value = hsl.h;
+                sInput.value = hsl.s;
+                lInput.value = hsl.l;
+                
+                // Update sliders
+                rSlider.value = rgb.r;
+                gSlider.value = rgb.g;
+                bSlider.value = rgb.b;
+                hSlider.value = hsl.h;
+                sSlider.value = hsl.s;
+                lSlider.value = hsl.l;
+                
+                // Update color preview
+                colorPreview.style.backgroundColor = hex;
+                
+                // Update text color based on background brightness
+                updateTextColor();
+                
+                showMessage('success', 'Color updated successfully');
+            } catch (error) {
+                showMessage('error', 'Invalid HEX color format');
+            }
+        }
+        
+        // Set color from RGB
+        function setColorFromRgb(r, g, b) {
+            r = Math.max(0, Math.min(255, parseInt(r) || 0));
+            g = Math.max(0, Math.min(255, parseInt(g) || 0));
+            b = Math.max(0, Math.min(255, parseInt(b) || 0));
+            
+            const hex = rgbToHex(r, g, b);
+            const hsl = rgbToHsl(r, g, b);
+            
+            // Update inputs
+            hexInput.value = hex;
+            hInput.value = hsl.h;
+            sInput.value = hsl.s;
+            lInput.value = hsl.l;
+            
+            // Update color preview
+            colorPreview.style.backgroundColor = hex;
+            
+            // Update text color based on background brightness
+            updateTextColor();
+        }
+        
+        // Set color from HSL
+        function setColorFromHsl(h, s, l) {
+            h = Math.max(0, Math.min(360, parseInt(h) || 0));
+            s = Math.max(0, Math.min(100, parseInt(s) || 0));
+            l = Math.max(0, Math.min(100, parseInt(l) || 0));
+            
+            const rgb = hslToRgb(h, s, l);
+            const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+            
+            // Update inputs
+            hexInput.value = hex;
+            rInput.value = rgb.r;
+            gInput.value = rgb.g;
+            bInput.value = rgb.b;
+            
+            // Update sliders
+            rSlider.value = rgb.r;
+            gSlider.value = rgb.g;
+            bSlider.value = rgb.b;
+            
+            // Update color preview
+            colorPreview.style.backgroundColor = hex;
+            
+            // Update text color based on background brightness
+            updateTextColor();
+        }
+        
+        // Update text color based on background brightness
+        function updateTextColor() {
+            const rgb = hexToRgb(hexInput.value);
+            const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+            
+            // No text to update here, but keeping the function for future use
+        }
+        
+        // Generate random color
+        function generateRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            const hex = rgbToHex(r, g, b);
+            setColorFromHex(hex);
+        }
+        
+        // Reset to black
+        function resetColor() {
+            setColorFromHex('#000000');
+        }
+        
+        // Copy to clipboard
+        function copyToClipboard(text, messageText) {
+            navigator.clipboard.writeText(text).then(() => {
+                showMessage('success', messageText);
+            }).catch(err => {
+                showMessage('error', 'Failed to copy text');
+            });
+        }
+        
+        // Show message
+        function showMessage(type, text) {
+            message.textContent = text;
+            message.className = 'message ' + type;
+            
+            setTimeout(() => {
+                message.className = 'message';
+            }, 3000);
+        }
+        
+        // Event Listeners
+        hexInput.addEventListener('input', () => {
+            setColorFromHex(hexInput.value);
+        });
+        
+        // RGB input listeners
+        rInput.addEventListener('input', () => {
+            setColorFromRgb(rInput.value, gInput.value, bInput.value);
+            rSlider.value = rInput.value;
+        });
+        
+        gInput.addEventListener('input', () => {
+            setColorFromRgb(rInput.value, gInput.value, bInput.value);
+            gSlider.value = gInput.value;
+        });
+        
+        bInput.addEventListener('input', () => {
+            setColorFromRgb(rInput.value, gInput.value, bInput.value);
+            bSlider.value = bInput.value;
+        });
+        
+        // RGB slider listeners
+        rSlider.addEventListener('input', () => {
+            rInput.value = rSlider.value;
+            setColorFromRgb(rSlider.value, gSlider.value, bSlider.value);
+        });
+        
+        gSlider.addEventListener('input', () => {
+            gInput.value = gSlider.value;
+            setColorFromRgb(rSlider.value, gSlider.value, bSlider.value);
+        });
+        
+        bSlider.addEventListener('input', () => {
+            bInput.value = bSlider.value;
+            setColorFromRgb(rSlider.value, gSlider.value, bSlider.value);
+        });
+        
+        // HSL input listeners
+        hInput.addEventListener('input', () => {
+            setColorFromHsl(hInput.value, sInput.value, lInput.value);
+            hSlider.value = hInput.value;
+        });
+        
+        sInput.addEventListener('input', () => {
+            setColorFromHsl(hInput.value, sInput.value, lInput.value);
+            sSlider.value = sInput.value;
+        });
+        
+        lInput.addEventListener('input', () => {
+            setColorFromHsl(hInput.value, sInput.value, lInput.value);
+            lSlider.value = lInput.value;
+        });
+        
+        // HSL slider listeners
+        hSlider.addEventListener('input', () => {
+            hInput.value = hSlider.value;
+            setColorFromHsl(hSlider.value, sSlider.value, lSlider.value);
+        });
+        
+        sSlider.addEventListener('input', () => {
+            sInput.value = sSlider.value;
+            setColorFromHsl(hSlider.value, sSlider.value, lSlider.value);
+        });
+        
+        lSlider.addEventListener('input', () => {
+            lInput.value = lSlider.value;
+            setColorFromHsl(hSlider.value, sSlider.value, lSlider.value);
+        });
+        
+        // Button listeners
+        copyHexBtn.addEventListener('click', () => {
+            copyToClipboard(hexInput.value, 'HEX copied to clipboard');
+        });
+        
+        copyRgbBtn.addEventListener('click', () => {
+            const rgbText = `rgb(${rInput.value}, ${gInput.value}, ${bInput.value})`;
+            copyToClipboard(rgbText, 'RGB copied to clipboard');
+        });
+        
+        copyHslBtn.addEventListener('click', () => {
+            const hslText = `hsl(${hInput.value}, ${sInput.value}%, ${lInput.value}%)`;
+            copyToClipboard(hslText, 'HSL copied to clipboard');
+        });
+        
+        randomColorBtn.addEventListener('click', generateRandomColor);
+        
+        resetColorBtn.addEventListener('click', resetColor);
+        
+        // Initialize
+        initPresetColors();
+        setColorFromHex('#000000');
+    </script>
+</body>
+</html>

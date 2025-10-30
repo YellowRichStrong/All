@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Minify/Format - OOPEN AII</title>
+    <meta name="description" content="Free online SQL minify and format tool to beautify or compress your SQL queries with syntax highlighting and customization options.">
+    <meta name="keywords" content="sql minify, sql format, sql beautifier, sql compressor, online sql tool">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-description {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .tab.active {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .tab:hover:not(.active) {
+            background-color: #e9ecef;
+        }
+        
+        .input-output-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .input-output-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .text-area-container {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+        }
+        
+        .text-area-header {
+            background-color: #f8f9fa;
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .text-area-content {
+            flex: 1;
+            overflow: auto;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: none;
+            box-sizing: border-box;
+        }
+        
+        textarea:focus {
+            outline: none;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+        }
+        
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1976D2;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #2196F3;
+            color: #2196F3;
+        }
+        
+        .btn-outline:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .options-group {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .options-group h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .option-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .option-item input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        
+        .option-item label {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .option-item input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .message {
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .examples-section {
+            margin-top: 30px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .examples-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .example-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .example-btn {
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .example-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        /* SQL syntax highlighting */
+        .sql-highlight {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 15px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow: auto;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        
+        .sql-keyword {
+            color: #0000ff;
+            font-weight: bold;
+        }
+        
+        .sql-function {
+            color: #ff7b00;
+            font-weight: bold;
+        }
+        
+        .sql-string {
+            color: #a31515;
+        }
+        
+        .sql-comment {
+            color: #008000;
+            font-style: italic;
+        }
+        
+        .sql-number {
+            color: #098658;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 10px;
+            }
+            
+            .tool-content {
+                padding: 15px;
+            }
+            
+            .tab {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-icon-large">🗄️</div>
+                <h2>SQL Minify/Format</h2>
+                <p class="tool-description">Minify or format your SQL queries with syntax highlighting and customization options.</p>
+            </div>
+            
+            <div class="tool-content">
+                <div class="tabs">
+                    <button class="tab active" data-action="format">Format SQL</button>
+                    <button class="tab" data-action="minify">Minify SQL</button>
+                </div>
+                
+                <div class="input-output-container">
+                    <div class="text-area-container">
+                        <div class="text-area-header">SQL Input</div>
+                        <div class="text-area-content">
+                            <textarea id="inputText" placeholder="Enter your SQL query here...">SELECT id, name, email FROM users WHERE age > 18 AND status = 'active' ORDER BY name ASC LIMIT 10;</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="text-area-container">
+                        <div class="text-area-header">Processed Output</div>
+                        <div class="text-area-content">
+                            <div id="outputHighlight" class="sql-highlight"></div>
+                            <textarea id="outputText" placeholder="Processed SQL will appear here..." readonly style="display: none;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="formatOptions" class="options-group">
+                    <h4>Formatting Options</h4>
+                    <div class="option-item">
+                        <input type="checkbox" id="uppercaseKeywords" checked>
+                        <label for="uppercaseKeywords">Uppercase SQL keywords</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="indentStatements" checked>
+                        <label for="indentStatements">Indent SQL statements</label>
+                    </div>
+                    <div class="option-item">
+                        <label for="indentSize">Indent size:</label>
+                        <input type="number" id="indentSize" min="1" max="8" value="2">
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="newlineAfterClause" checked>
+                        <label for="newlineAfterClause">New line after each clause</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="newlineAfterComma" checked>
+                        <label for="newlineAfterComma">New line after comma</label>
+                    </div>
+                </div>
+                
+                <div id="minifyOptions" class="options-group" style="display: none;">
+                    <h4>Minification Options</h4>
+                    <div class="option-item">
+                        <input type="checkbox" id="preserveComments" checked>
+                        <label for="preserveComments">Preserve comments</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="compressSpaces" checked>
+                        <label for="compressSpaces">Compress multiple spaces</label>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" id="processBtn">Process SQL</button>
+                    <button class="btn btn-outline" id="clearBtn">Clear</button>
+                    <button class="btn btn-outline" id="copyBtn">Copy Output</button>
+                    <button class="btn btn-outline" id="downloadBtn">Download</button>
+                </div>
+                
+                <div class="examples-section">
+                    <h3>SQL Examples</h3>
+                    <div class="example-buttons">
+                        <button class="example-btn" id="simpleSelectBtn">Simple SELECT</button>
+                        <button class="example-btn" id="joinQueryBtn">JOIN Query</button>
+                        <button class="example-btn" id="complexQueryBtn">Complex Query</button>
+                        <button class="example-btn" id="insertUpdateBtn">INSERT/UPDATE</button>
+                    </div>
+                </div>
+                
+                <div class="message" id="message"></div>
+            </div>
+
+            <!-- Features Section -->
+            <div style="margin-top: 40px; background-color: #f9f9fa; padding: 30px; border-radius: 8px;">
+                <h3>Features</h3>
+                <ul style="list-style-type: none; padding: 0; max-width: 600px; margin: 0 auto;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">✨ SQL formatting with customizable options</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">✨ SQL minification to reduce query size</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🎨 Syntax highlighting for better readability</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">⚙️ Customizable indentation and formatting preferences</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">⚡ Fast and efficient processing</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">📋 Easy copy to clipboard functionality</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💾 Download formatted/minified SQL as file</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">🎯 Ready-to-use SQL examples</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee; text-align: left;">💻 Works entirely in your browser</li>
+                </ul>
+            </div>
+
+            <!-- Related Tools -->
+            <div style="margin-top: 40px;">
+                <h3>Related Tools</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <a href="json-formatter.html" style="text-decoration: none; color: #2196F3;">JSON Formatter</a>
+                    <a href="xml-json-converter.html" style="text-decoration: none; color: #2196F3;">XML/JSON Converter</a>
+                    <a href="../dav.html" style="text-decoration: none; color: #2196F3;">View All Development Tools</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const tabs = document.querySelectorAll('.tab');
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const outputHighlight = document.getElementById('outputHighlight');
+        const processBtn = document.getElementById('processBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const formatOptions = document.getElementById('formatOptions');
+        const minifyOptions = document.getElementById('minifyOptions');
+        const uppercaseKeywords = document.getElementById('uppercaseKeywords');
+        const indentStatements = document.getElementById('indentStatements');
+        const indentSize = document.getElementById('indentSize');
+        const newlineAfterClause = document.getElementById('newlineAfterClause');
+        const newlineAfterComma = document.getElementById('newlineAfterComma');
+        const preserveComments = document.getElementById('preserveComments');
+        const compressSpaces = document.getElementById('compressSpaces');
+        const message = document.getElementById('message');
+        const simpleSelectBtn = document.getElementById('simpleSelectBtn');
+        const joinQueryBtn = document.getElementById('joinQueryBtn');
+        const complexQueryBtn = document.getElementById('complexQueryBtn');
+        const insertUpdateBtn = document.getElementById('insertUpdateBtn');
+        
+        // Current action mode
+        let currentAction = 'format';
+        
+        // SQL keywords and functions for highlighting and formatting
+        const sqlKeywords = [
+            'SELECT', 'FROM', 'WHERE', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'DROP', 'ALTER',
+            'TABLE', 'DATABASE', 'INDEX', 'VIEW', 'JOIN', 'INNER', 'LEFT', 'RIGHT', 'FULL',
+            'OUTER', 'ON', 'AS', 'ORDER', 'BY', 'GROUP', 'HAVING', 'LIMIT', 'OFFSET',
+            'ASC', 'DESC', 'AND', 'OR', 'NOT', 'IN', 'EXISTS', 'BETWEEN', 'LIKE',
+            'IS', 'NULL', 'DISTINCT', 'ALL', 'ANY', 'UNION', 'INTERSECT', 'EXCEPT',
+            'VALUES', 'SET', 'INTO', 'FROM', 'WITH', 'AS', 'IF', 'THEN', 'ELSE',
+            'WHILE', 'BEGIN', 'END', 'TRANSACTION', 'COMMIT', 'ROLLBACK', 'SAVEPOINT'
+        ];
+        
+        const sqlFunctions = [
+            'COUNT', 'SUM', 'AVG', 'MIN', 'MAX', 'UPPER', 'LOWER', 'TRIM', 'LENGTH',
+            'SUBSTRING', 'CONCAT', 'CAST', 'CONVERT', 'DATE', 'TIME', 'DATETIME',
+            'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'SECOND', 'NOW', 'CURRENT_DATE',
+            'CURRENT_TIME', 'CURRENT_TIMESTAMP', 'ABS', 'ROUND', 'FLOOR', 'CEILING',
+            'COALESCE', 'ISNULL', 'NULLIF', 'CASE', 'WHEN', 'THEN', 'ELSE', 'END'
+        ];
+        
+        // SQL Examples
+        const sqlExamples = {
+            simpleSelect: `SELECT id, name, email, created_at
+FROM users
+WHERE age > 18 AND status = 'active'
+ORDER BY name ASC
+LIMIT 10;`,
+            joinQuery: `SELECT 
+    u.id, 
+    u.name, 
+    o.order_id, 
+    o.order_date, 
+    o.total_amount
+FROM 
+    users u
+INNER JOIN 
+    orders o ON u.id = o.user_id
+WHERE 
+    o.order_date >= '2023-01-01'
+ORDER BY 
+    o.order_date DESC;
+`,
+            complexQuery: `WITH 
+    monthly_sales AS (
+        SELECT 
+            DATE_FORMAT(order_date, '%Y-%m') AS month,
+            SUM(total_amount) AS total_sales,
+            COUNT(*) AS order_count
+        FROM 
+            orders
+        WHERE 
+            order_date BETWEEN '2023-01-01' AND '2023-12-31'
+        GROUP BY 
+            DATE_FORMAT(order_date, '%Y-%m')
+    ),
+    top_products AS (
+        SELECT 
+            p.product_id,
+            p.product_name,
+            SUM(oi.quantity) AS total_quantity
+        FROM 
+            order_items oi
+        JOIN 
+            products p ON oi.product_id = p.product_id
+        GROUP BY 
+            p.product_id, p.product_name
+        ORDER BY 
+            total_quantity DESC
+        LIMIT 10
+    )
+SELECT 
+    ms.month,
+    ms.total_sales,
+    ms.order_count,
+    ROUND(ms.total_sales / ms.order_count, 2) AS avg_order_value
+FROM 
+    monthly_sales ms
+ORDER BY 
+    ms.month;
+`,
+            insertUpdate: `-- Insert a new user
+INSERT INTO users (name, email, password_hash, status, created_at)
+VALUES ('John Doe', 'john.doe@example.com', 'hashed_password', 'active', NOW());
+
+-- Update user status
+UPDATE users
+SET status = 'inactive', updated_at = NOW()
+WHERE last_login < '2023-01-01' AND status = 'active';
+
+-- Delete old users
+DELETE FROM users
+WHERE status = 'inactive' AND updated_at < '2022-01-01';
+`
+        };
+        
+        // Format SQL function
+        function formatSQL(sql) {
+            try {
+                let formatted = sql;
+                
+                // 1. Convert to uppercase keywords if option is enabled
+                if (uppercaseKeywords.checked) {
+                    sqlKeywords.forEach(keyword => {
+                        // Use word boundary to match whole keywords
+                        const regex = new RegExp(`\\b${keyword.toLowerCase()}\\b`, 'gi');
+                        formatted = formatted.replace(regex, keyword);
+                    });
+                }
+                
+                // 2. Format SQL structure
+                const indentStr = ' '.repeat(parseInt(indentSize.value));
+                let currentIndent = 0;
+                let result = '';
+                
+                // Split SQL into lines for processing
+                const lines = formatted.split('\n');
+                
+                lines.forEach(line => {
+                    const trimmedLine = line.trim();
+                    if (!trimmedLine) {
+                        return; // Skip empty lines
+                    }
+                    
+                    // Check for closing blocks to decrease indentation
+                    if (trimmedLine.includes('END;') || trimmedLine.includes('END') && !trimmedLine.includes('CASE')) {
+                        currentIndent = Math.max(0, currentIndent - 1);
+                    }
+                    
+                    // Apply indentation if option is enabled
+                    if (indentStatements.checked) {
+                        result += indentStr.repeat(currentIndent);
+                    }
+                    
+                    // Process the line
+                    let processedLine = trimmedLine;
+                    
+                    // Add new lines after clauses if option is enabled
+                    if (newlineAfterClause.checked) {
+                        sqlKeywords.forEach(keyword => {
+                            if (keyword !== 'SELECT' && keyword !== 'AS' && keyword !== 'ON' && keyword !== 'BY') {
+                                const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
+                                processedLine = processedLine.replace(regex, '\n' + indentStr.repeat(currentIndent) + keyword);
+                            }
+                        });
+                    }
+                    
+                    // Add new lines after commas if option is enabled
+                    if (newlineAfterComma.checked) {
+                        // Don't split inside quotes
+                        let inQuote = false;
+                        let quoteChar = '';
+                        let tempLine = '';
+                        
+                        for (let i = 0; i < processedLine.length; i++) {
+                            const char = processedLine[i];
+                            
+                            // Check for quote characters
+                            if ((char === '\'' || char === '"') && processedLine[i-1] !== '\\') {
+                                if (inQuote && char === quoteChar) {
+                                    inQuote = false;
+                                } else if (!inQuote) {
+                                    inQuote = true;
+                                    quoteChar = char;
+                                }
+                            }
+                            
+                            // Add newline after comma if not in quote
+                            if (char === ',' && !inQuote) {
+                                tempLine += char + '\n' + indentStr.repeat(currentIndent + 1);
+                            } else {
+                                tempLine += char;
+                            }
+                        }
+                        processedLine = tempLine;
+                    }
+                    
+                    result += processedLine + '\n';
+                    
+                    // Check for opening blocks to increase indentation
+                    if (trimmedLine.includes('BEGIN') || trimmedLine.includes('CASE') || 
+                        (newlineAfterClause.checked && (trimmedLine.includes('SELECT') || 
+                        trimmedLine.includes('FROM') || trimmedLine.includes('WHERE')))) {
+                        currentIndent++;
+                    }
+                });
+                
+                // Clean up extra newlines
+                return result.replace(/\n\s*\n/g, '\n').trim();
+            } catch (error) {
+                throw new Error(`Formatting failed: ${error.message}`);
+            }
+        }
+        
+        // Minify SQL function
+        function minifySQL(sql) {
+            try {
+                let minified = sql;
+                
+                // 1. Remove comments if option is not enabled
+                if (!preserveComments.checked) {
+                    // Remove single line comments
+                    minified = minified.replace(/--.*$/gm, '');
+                    // Remove multi-line comments
+                    minified = minified.replace(/\/\*[\s\S]*?\*\//g, '');
+                }
+                
+                // 2. Compress spaces if option is enabled
+                if (compressSpaces.checked) {
+                    minified = minified.replace(/\s+/g, ' ');
+                }
+                
+                // 3. Remove spaces around operators
+                minified = minified.replace(/\s*([=<>!]+)\s*/g, '$1');
+                minified = minified.replace(/\s*([+\-*/])\s*/g, '$1');
+                
+                // 4. Remove spaces after commas and semicolons
+                minified = minified.replace(/,\s+/g, ',');
+                minified = minified.replace(/;\s+/g, ';');
+                
+                // 5. Remove spaces before commas, parentheses, and semicolons
+                minified = minified.replace(/\s+,/g, ',');
+                minified = minified.replace(/\s+\(/g, '(');
+                minified = minified.replace(/\s+\)/g, ')');
+                minified = minified.replace(/\s+;/g, ';');
+                
+                // 6. Ensure space after keywords to prevent merging
+                sqlKeywords.forEach(keyword => {
+                    const regex = new RegExp(`\\b${keyword}(?=[a-zA-Z])`, 'gi');
+                    minified = minified.replace(regex, keyword + ' ');
+                });
+                
+                return minified.trim();
+            } catch (error) {
+                throw new Error(`Minification failed: ${error.message}`);
+            }
+        }
+        
+        // Apply syntax highlighting
+        function applySyntaxHighlighting(sql) {
+            let highlighted = sql;
+            
+            // Escape HTML special characters
+            highlighted = highlighted
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+            
+            // Highlight comments
+            highlighted = highlighted.replace(/(--.*$)/gm, '<span class="sql-comment">$1</span>');
+            highlighted = highlighted.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="sql-comment">$1</span>');
+            
+            // Highlight strings
+            highlighted = highlighted.replace(/('(?:[^'\\]|\\.)*')/g, '<span class="sql-string">$1</span>');
+            highlighted = highlighted.replace(/("(?:[^"\\]|\\.)*")/g, '<span class="sql-string">$1</span>');
+            
+            // Highlight numbers
+            highlighted = highlighted.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="sql-number">$1</span>');
+            
+            // Highlight functions
+            sqlFunctions.forEach(func => {
+                const regex = new RegExp(`\\b${func}\\b(?=\s*\()`, 'gi');
+                highlighted = highlighted.replace(regex, '<span class="sql-function">$1</span>');
+            });
+            
+            // Highlight keywords
+            sqlKeywords.forEach(keyword => {
+                // Avoid highlighting within strings or comments
+                const regex = new RegExp(`(?![^<]*>|[^<>]*</span>)\\b${keyword}\\b`, 'gi');
+                highlighted = highlighted.replace(regex, '<span class="sql-keyword">$1</span>');
+            });
+            
+            return highlighted;
+        }
+        
+        // Process SQL function
+        function processSQL() {
+            const input = inputText.value.trim();
+            
+            if (!input) {
+                showMessage('error', 'Please enter SQL to process');
+                return;
+            }
+            
+            try {
+                let result;
+                
+                if (currentAction === 'format') {
+                    result = formatSQL(input);
+                } else {
+                    result = minifySQL(input);
+                }
+                
+                // Update output
+                outputText.value = result;
+                outputHighlight.innerHTML = applySyntaxHighlighting(result);
+                
+                showMessage('success', `${currentAction === 'format' ? 'Formatting' : 'Minification'} completed successfully`);
+            } catch (error) {
+                showMessage('error', error.message);
+            }
+        }
+        
+        // Clear function
+        function clearText() {
+            inputText.value = '';
+            outputText.value = '';
+            outputHighlight.innerHTML = '';
+            showMessage('success', 'Text cleared');
+        }
+        
+        // Copy function
+        function copyOutput() {
+            if (!outputText.value) {
+                showMessage('error', 'No output to copy');
+                return;
+            }
+            
+            outputText.select();
+            navigator.clipboard.writeText(outputText.value).then(() => {
+                showMessage('success', 'Output copied to clipboard');
+            }).catch(err => {
+                showMessage('error', 'Failed to copy output');
+            });
+        }
+        
+        // Download function
+        function downloadSQL() {
+            if (!outputText.value) {
+                showMessage('error', 'No output to download');
+                return;
+            }
+            
+            const blob = new Blob([outputText.value], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `sql-query-${currentAction}.sql`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showMessage('success', 'SQL file downloaded successfully');
+        }
+        
+        // Set action mode
+        function setActionMode(mode) {
+            currentAction = mode;
+            
+            // Update active tab
+            tabs.forEach(tab => {
+                if (tab.dataset.action === mode) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            // Show/hide options
+            formatOptions.style.display = mode === 'format' ? 'block' : 'none';
+            minifyOptions.style.display = mode === 'minify' ? 'block' : 'none';
+        }
+        
+        // Load example
+        function loadExample(exampleType) {
+            inputText.value = sqlExamples[exampleType];
+            outputText.value = '';
+            outputHighlight.innerHTML = '';
+            showMessage('success', `Example ${exampleType.replace(/([A-Z])/g, ' $1').trim()} loaded`);
+        }
+        
+        // Show message
+        function showMessage(type, text) {
+            message.textContent = text;
+            message.className = 'message ' + type;
+            
+            setTimeout(() => {
+                message.className = 'message';
+            }, 3000);
+        }
+        
+        // Event Listeners
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                setActionMode(tab.dataset.action);
+            });
+        });
+        
+        processBtn.addEventListener('click', processSQL);
+        clearBtn.addEventListener('click', clearText);
+        copyBtn.addEventListener('click', copyOutput);
+        downloadBtn.addEventListener('click', downloadSQL);
+        
+        // Example buttons
+        simpleSelectBtn.addEventListener('click', () => loadExample('simpleSelect'));
+        joinQueryBtn.addEventListener('click', () => loadExample('joinQuery'));
+        complexQueryBtn.addEventListener('click', () => loadExample('complexQuery'));
+        insertUpdateBtn.addEventListener('click', () => loadExample('insertUpdate'));
+        
+        // Initial setup
+        setActionMode('format');
+        
+        // Process the initial example automatically
+        setTimeout(processSQL, 500);
+    </script>
+</body>
+</html>
