@@ -1,0 +1,5 @@
+# 统一使用 LF（推荐跨平台项目）
+* text=auto eol=lf
+
+# 或保持 Windows 习惯（仅 Windows 开发）
+# * text=auto eol=crlf

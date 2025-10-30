@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片处理类软件工具-在线软件工具集合-传道软件</title>
+    <meta name="keywords" content="在线软件工具集合、传道软件">
+    <meta name="description" content="传道软件是一款在线软件工具集合，无需登录，无需费用，用完就走的软件工具。包括生活类、开发类、编码解码、加密解密、图片类、娱乐类的软件工具结合。">
+    <link rel="canonical" href="https://www.openai2025.com/image.html">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/css.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* 响应式导航栏 */
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-categories {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-category {
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .nav-category:hover {
+            color: #007bff;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* 工具卡片布局 */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .tool-icon {
+            font-size: 1.5rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .category-title {
+            color: #444;
+            margin: 2rem 0 1rem;
+            padding-left: 1rem;
+        }
+
+        /* 移动端样式 */
+        @media (max-width: 768px) {
+            .nav-categories {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            .nav-categories.active {
+                display: flex;
+            }
+
+            .nav-category {
+                padding: 0.5rem 0;
+                text-decoration: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+        }
+    </style>
+    <!-- Google tag (gtag.js2) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWMGEQS9C0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HWMGEQS9C0');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7274710287377352"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<nav>
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html" class="nav-item">
+                <img src="static/images/logo.png" width="100px" style="margin-right: 60px"/>
+            </a>
+        </div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <div class="nav-categories">
+            <a href="index.html" class="nav-category">🔍 推荐工具</a>
+            <a href="life.html" class="nav-category">🏠 生活工具</a>
+            <a href="encry.html" class="nav-category">🔒 加密解密</a>
+            <a href="code.html" class="nav-category">📝 编码解码</a>
+            <a href="dev.html" class="nav-category">💻 开发工具</a>
+            <a href="image.html" class="nav-category">🖼️ 图片工具</a>
+            <a href="game.html" class="nav-category">🎮 娱乐工具</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- 推荐工具 -->
+    <h2 class="category-title">图片工具</h2>
+    <div class="tools-grid">
+
+
+        <div class="tool-card">
+            <a href="image/fav.html">
+
+                <img src="static/images/fav.png" class="tool-icon" alt="今天吃什么">
+                <div class="tool-info">
+                    <div class="tool-title">Favicon图标生成</div>
+                    <div class="tool-desc">一款安全的在线Favicon图标转换工具</div>
+                </div>
+
+
+            </a>
+        </div>
+
+
+        <div class="tool-card">
+
+            <a href="image/color.html">
+
+                <img src="static/images/color.png" class="tool-icon" alt="图片颜色拾取器">
+                <div class="tool-info">
+                    <div class="tool-title">图片颜色拾取器</div>
+                    <div class="tool-desc">在线图片颜色拾取器</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+
+            <a href="image/colorbyscreen.html">
+
+                <img src="static/images/colorbyscreen.png" class="tool-icon" alt="屏幕颜色拾取">
+                <div class="tool-info">
+                    <div class="tool-title">屏幕颜色拾取</div>
+                    <div class="tool-desc">在线屏幕颜色拾取</div>
+                </div>
+            </a>
+
+        </div>
+
+
+        <div class="tool-card">
+
+            <a href="image/convert.html">
+
+                <img src="static/images/convert.png" class="tool-icon" alt="图片格式转换">
+                <div class="tool-info">
+                    <div class="tool-title">图片格式转换</div>
+                    <div class="tool-desc">在线图片格式转换</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+
+            <a href="image/selectcolor.html">
+
+                <img src="static/images/selectcolor.png" class="tool-icon" alt="颜色选择器">
+                <div class="tool-info">
+                    <div class="tool-title">颜色选择器</div>
+                    <div class="tool-desc">在线颜色选择器</div>
+                </div>
+            </a>
+
+        </div>
+
+
+        <div class="tool-card">
+
+            <a href="image/blank.html">
+
+                <img src="static/images/blank.png" class="tool-icon" alt="彩图转黑白">
+                <div class="tool-info">
+                    <div class="tool-title">彩图转黑白</div>
+                    <div class="tool-desc">彩图转黑白</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+
+            <a href="image/base64toimage.html">
+
+                <img src="static/images/base64toimage.png" class="tool-icon" alt="Base64转图片">
+                <div class="tool-info">
+                    <div class="tool-title">Base64转图片</div>
+                    <div class="tool-desc">在线Base64转图片</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+
+            <a href="image/image2base64.html">
+
+                <img src="static/images/imagetobase64.png" class="tool-icon" alt="图片转Base64">
+                <div class="tool-info">
+                    <div class="tool-title">图片转Base64</div>
+                    <div class="tool-desc">在线图片转Base64</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+
+            <a href="image/compress/index.html">
+
+                <img src="static/images/compress.png" class="tool-icon" alt="在线图片压缩工具">
+                <div class="tool-info">
+                    <div class="tool-title">图片压缩工具</div>
+                    <div class="tool-desc">在线图片压缩工具</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+
+            <a href="image/excel/index.html">
+
+                <img src="static/images/excel.png" class="tool-icon" alt="图片转Excel工具">
+                <div class="tool-info">
+                    <div class="tool-title">图片转Excel工具</div>
+                    <div class="tool-desc">在线图片转Excel工具</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+
+            <a href="image/mosaic/index.html">
+
+                <img src="static/images/mosaic.png" class="tool-icon" alt="在线图片马赛克处理工具">
+                <div class="tool-info">
+                    <div class="tool-title">图片马赛克处理工具</div>
+                    <div class="tool-desc">在线图片马赛克处理工具</div>
+                </div>
+            </a>
+
+        </div>
+
+
+        <div class="tool-card">
+
+            <a href="image/watermark/index.html">
+
+                <img src="static/images/watermark.png" class="tool-icon" alt="在线图片水印处理工具">
+                <div class="tool-info">
+                    <div class="tool-title">图片水印处理工具</div>
+                    <div class="tool-desc">在线图片水印处理工具</div>
+                </div>
+            </a>
+
+        </div>
+
+
+        <div class="tool-card">
+
+            <a href="image/icon/index.html">
+
+                <img src="static/images/icon.png" class="tool-icon" alt="在线免费转换icon图标工具">
+                <div class="tool-info">
+                    <div class="tool-title">在线免费转换icon工具</div>
+                    <div class="tool-desc">在线免费转换icon工具</div>
+                </div>
+            </a>
+
+        </div>
+
+
+        <div class="tool-card">
+
+            <a href="image/cropper.html">
+
+                <img src="static/images/cropper.jpg" class="tool-icon" alt="图片裁剪工具">
+                <div class="tool-info">
+                    <div class="tool-title">图片裁剪工具</div>
+                    <div class="tool-desc">图片裁剪工具</div>
+                </div>
+            </a>
+
+        </div>
+
+
+
+        <div class="tool-card">
+
+            <a href="image/ninegrid.html">
+
+                <img src="static/images/ninegrid.png" class="tool-icon" alt="九宫格切图工具">
+                <div class="tool-info">
+                    <div class="tool-title">九宫格切图工具</div>
+                    <div class="tool-desc">九宫格切图工具</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+
+            <a href="image/text2img.html">
+                <img src="static/images/text2img.png" class="tool-icon" alt="文字生成图片工具">
+                <div class="tool-info">
+                    <div class="tool-title">文字生成图片工具</div>
+                    <div class="tool-desc">文字生成图片工具</div>
+                </div>
+            </a>
+
+        </div>
+
+
+        <div class="tool-card">
+
+            <a href="image/joinImg.html">
+                <img src="static/images/joinImg.jpg" class="tool-icon" alt="图片拼接工具">
+                <div class="tool-info">
+                    <div class="tool-title">图片拼接工具</div>
+                    <div class="tool-desc">图片拼接工具</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+
+            <a href="image/round.html">
+                <img src="static/images/round.jpeg" class="tool-icon" alt="图片圆角处理">
+                <div class="tool-info">
+                    <div class="tool-title">图片圆角处理</div>
+                    <div class="tool-desc">图片圆角处理工具</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+
+            <a href="image/textInImg.html">
+                <img src="static/images/textInImg.png" class="tool-icon" alt="图片加文字">
+                <div class="tool-info">
+                    <div class="tool-title">图片加文字</div>
+                    <div class="tool-desc">图片加文字</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="tool-card">
+            <a href="image/placeholder.html">
+                <img src="static/images/placeholder.png" class="tool-icon" alt="占位符图片生成">
+                <div class="tool-info">
+                    <div class="tool-title">占位符图片生成</div>
+                    <div class="tool-desc">在线占位符图片生成</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="tool-card">
+            <a href="image/maze.html">
+                <img src="static/images/gen_maze.png" class="tool-icon" alt="在线生成迷宫图片">
+                <div class="tool-info">
+                    <div class="tool-title">生成迷宫图片</div>
+                    <div class="tool-desc">在线生成迷宫图片</div>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+
+</div>
+
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('.nav-categories');
+        nav.classList.toggle('active');
+
+        // 点击菜单项后自动关闭
+        document.querySelectorAll('.nav-category').forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    nav.classList.remove('active');
+                }
+            });
+        });
+    }
+</script>
+<footer style="background:#fff;border-top:1px solid #eee;margin-top:40px;">
+    <div style="max-width:1200px;margin:0 auto;padding:16px 16px;display:flex;gap:16px;flex-wrap:wrap;color:#666;font-size:14px;justify-content:center;">
+        <a href="about.html" style="color:#666;text-decoration:none;">关于我们</a>
+        <span>|</span>
+        <a href="contact.html" style="color:#666;text-decoration:none;">联系我们</a>
+        <span>|</span>
+        <a href="privacy.html" style="color:#666;text-decoration:none;">隐私政策</a>
+    </div>
+    <div style="max-width:1200px;margin:0 auto;padding:0 16px 16px 16px;text-align:center;color:#999;font-size:12px;">
+        © 2025 传道AI · 版权所有
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /tools/
+
+Sitemap: https://oopenai2026.com/sitemap.xml
+
+# 阻止爬取不必要的目录
+Disallow: /images/
+Disallow: /css/
