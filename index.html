@@ -1,31 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>免费在线图片工具 - OOPEN AII - 图片编辑、转换、压缩和优化</title>
-    <meta name="description" content="OOPEN AII提供免费在线图片工具，包括图片编辑、转换、压缩、裁剪、添加文字、水印等功能。所有工具无需安装，直接在浏览器中使用。">
-    <meta name="keywords" content="在线图片工具,图片编辑,图片转换,图片压缩,图片裁剪,添加文字,水印,免费图片工具,图像处理,图片优化">
+    <title>Free Online Image Tools - OOPEN AII - Image Editing, Conversion, Compression and Optimization</title>
+    <meta name="description" content="OOPEN AII provides free online image tools, including image editing, conversion, compression, cropping, adding text, watermarks, and more. All tools are browser-based with no installation required.">
+    <meta name="keywords" content="online image tools, image editing, image conversion, image compression, image cropping, add text, watermark, free image tools, image processing, image optimization">
     <meta name="robots" content="index, follow">
     <meta name="author" content="OOPEN AII">
     <meta name="google" content="notranslate">
     <link rel="canonical" href="https://oopenai2026.com/">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <link rel="icon" href="images/favicon.png" type="image/png">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://oopenai2026.com/">
-    <meta property="og:title" content="免费在线图片工具 - OOPEN AII">
-    <meta property="og:description" content="OOPEN AII提供免费在线图片工具，包括图片编辑、转换、压缩、裁剪、添加文字、水印等功能。">
+    <meta property="og:title" content="Free Online Image Tools - OOPEN AII">
+    <meta property="og:description" content="OOPEN AII provides free online image tools, including image editing, conversion, compression, cropping, adding text, watermarks, and more.">
     <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://oopenai2026.com/">
-    <meta property="twitter:title" content="免费在线图片工具 - OOPEN AII">
-    <meta property="twitter:description" content="OOPEN AII提供免费在线图片工具，包括图片编辑、转换、压缩、裁剪、添加文字、水印等功能。">
+    <meta property="twitter:title" content="Free Online Image Tools - OOPEN AII">
+    <meta property="twitter:description" content="OOPEN AII provides free online image tools, including image editing, conversion, compression, cropping, adding text, watermarks, and more.">
     <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
       crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
     <style>
         /* Tool Card Link Styles */
         .tool-card-link {
@@ -62,8 +77,8 @@
             <nav>
                 <ul>
                     <li class="active"><a href="index.html">Image Tools</a></li>
+                    <li><a href="encry.html">Encry Tools</a></li>
                     <li><a href="dav.html">Dav</a></li>
-                    <li><a href="about.html">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -75,43 +90,172 @@
             <div class="hero-content">
                 <h2>Free Online Image Tools</h2>
                 <p>Create, edit, and optimize your images with our powerful and easy-to-use tools. All tools work right in your browser without installing any software.</p>
-                <div class="search-box">
-                    <input type="text" id="toolSearch" placeholder="Search tools...">
-                    <button id="searchBtn">Search</button>
-                </div>
+    
             </div>
         </div>
     </section>
 
+    <!-- IP Address Lookup Section -->
+    <section class="ip-lookup-section">
+        <div class="container">
+            <div class="ip-lookup-content">
+                <h2>IP Address Lookup Tool</h2>
+                <div class="ip-lookup-form">
+                    <input type="text" id="ipAddress" placeholder="Enter IP address or domain, leave empty to check your IP" />
+                    <button id="lookupBtn" class="ip-lookup-btn">Lookup IP</button>
+                    <button id="clearBtn" class="ip-clear-btn">Clear</button>
+                </div>
+                <div id="ipResult" class="ip-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .ip-lookup-section {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+            margin: 20px 0;
+        }
+        
+        .ip-lookup-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .ip-lookup-content h2 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+        
+        .ip-lookup-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        #ipAddress {
+            flex: 1;
+            min-width: 300px;
+            padding: 12px 16px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        #ipAddress:focus {
+            border-color: #4CAF50;
+        }
+        
+        .ip-lookup-btn, .ip-clear-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .ip-lookup-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .ip-lookup-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ip-clear-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .ip-clear-btn:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ip-result {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            min-height: 80px;
+        }
+        
+        .ip-result.loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+        
+        .ip-result.hidden {
+            display: none;
+        }
+        
+        .ip-info-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .ip-info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .ip-info-label {
+            font-weight: 600;
+            color: #666;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .ip-info-value {
+            font-size: 16px;
+            color: #333;
+            word-break: break-all;
+        }
+        
+        .ip-info-error {
+            color: #f44336;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .ip-lookup-form {
+                flex-direction: column;
+            }
+            
+            #ipAddress {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .ip-lookup-btn, .ip-clear-btn {
+                width: 100%;
+            }
+        }
+    </style>
+
     <!-- Main Content -->
     <main>
         <div class="container">
-            <!-- Categories Section -->
-            <section class="categories">
-                <div class="section-header">
-                    <h2>Categories</h2>
-                </div>
-                <div class="category-grid">
-                    <div class="category-item" data-category="all">
-                        <span>All Tools</span>
-                    </div>
-                    <div class="category-item" data-category="conversion">
-                        <span>Conversion</span>
-                    </div>
-                    <div class="category-item" data-category="editing">
-                        <span>Editing</span>
-                    </div>
-                    <div class="category-item" data-category="text">
-                        <span>Text & Images</span>
-                    </div>
-                    <div class="category-item" data-category="color">
-                        <span>Color Tools</span>
-                    </div>
-                    <div class="category-item" data-category="generator">
-                        <span>Generators</span>
-                    </div>
-                </div>
-            </section>
+
 
             <!-- Tools Grid -->
             <section class="tools-section">
@@ -415,42 +559,7 @@
                 </div>
             </section>
 
-            <!-- Features Section -->
-            <section class="features">
-                <div class="section-header">
-                    <h2>Why Use Our Tools</h2>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="18" x2="12" y2="18"></line></svg>
-                        </div>
-                        <h3>100% Free</h3>
-                        <p>All our image tools are completely free to use with no hidden costs.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        </div>
-                        <h3>Privacy Protected</h3>
-                        <p>All processing happens in your browser. Your images never leave your device.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        </div>
-                        <h3>Fast Processing</h3>
-                        <p>Quick and efficient tools that work instantly in your browser.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                        </div>
-                        <h3>No Installation</h3>
-                        <p>Use all tools directly from your browser without any downloads.</p>
-                    </div>
-                </div>
-            </section>
+
 
             <!-- Testimonials Section -->
             <section class="testimonials">
@@ -516,60 +625,10 @@
     <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Tool search functionality
-            const searchInput = document.getElementById('toolSearch');
-            const searchBtn = document.getElementById('searchBtn');
-            const toolCards = document.querySelectorAll('.tool-card');
-            const categoryItems = document.querySelectorAll('.category-item');
-            const backToTopBtn = document.getElementById('backToTop');
-
-            // Filter tools based on search
-            function filterTools(searchTerm, category = 'all') {
-                toolCards.forEach(card => {
-                    const title = card.querySelector('h3').textContent.toLowerCase();
-                    const description = card.querySelector('p').textContent.toLowerCase();
-                    const cardCategory = card.dataset.category;
-                    
-                    const matchesSearch = title.includes(searchTerm.toLowerCase()) || description.includes(searchTerm.toLowerCase());
-                    const matchesCategory = category === 'all' || cardCategory === category;
-                    
-                    if (matchesSearch && matchesCategory) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            }
-
-            // Search button click event
-            searchBtn.addEventListener('click', function() {
-                const searchTerm = searchInput.value.trim();
-                filterTools(searchTerm);
-            });
-
-            // Search input keypress event (Enter key)
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const searchTerm = searchInput.value.trim();
-                    filterTools(searchTerm);
-                }
-            });
-
-            // Category filter click event
-            categoryItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // Remove active class from all items
-                    categoryItems.forEach(cat => cat.classList.remove('active'));
-                    // Add active class to clicked item
-                    this.classList.add('active');
-                    
-                    const category = this.dataset.category;
-                    const searchTerm = searchInput.value.trim();
-                    filterTools(searchTerm, category);
-                });
-            });
-
             // Back to top functionality
+            const backToTopBtn = document.getElementById('backToTop');
+            const toolCards = document.querySelectorAll('.tool-card');
+            
             window.addEventListener('scroll', function() {
                 if (window.pageYOffset > 300) {
                     backToTopBtn.classList.add('visible');
@@ -598,9 +657,102 @@
                 });
             });
 
-            // Set the first category item as active initially
-            if (categoryItems.length > 0) {
-                categoryItems[0].classList.add('active');
+            // IP Lookup functionality
+            const ipAddressInput = document.getElementById('ipAddress');
+            const lookupBtn = document.getElementById('lookupBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const ipResult = document.getElementById('ipResult');
+
+            // Event listeners
+            lookupBtn.addEventListener('click', lookupIP);
+            clearBtn.addEventListener('click', clearResults);
+            ipAddressInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    lookupIP();
+                }
+            });
+
+            // Function to lookup IP
+            function lookupIP() {
+                const ipAddress = ipAddressInput.value.trim();
+                
+                // Validate IP or domain format (basic validation)
+                if (ipAddress && !isValidIP(ipAddress) && !isValidDomain(ipAddress)) {
+                    showError('请输入有效的IP地址或域名');
+                    return;
+                }
+
+                // Show loading state
+                ipResult.innerHTML = '<div class="loading">查询中，请稍候...</div>';
+                
+                // Determine API URL
+                const apiUrl = ipAddress ? 
+                    `https://ipapi.co/${ipAddress}/json/` : 
+                    `https://ipapi.co/json/`;
+
+                // Fetch IP information
+                fetch(apiUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('无法获取IP信息');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.error) {
+                            throw new Error(data.reason || 'Failed to lookup IP information');
+                        }
+                        displayIPInfo(data);
+                    })
+                    .catch(error => {
+                        showError(error.message);
+                    });
+            }
+
+            // Function to display IP information
+            function displayIPInfo(data) {
+                // Basic IP info to display
+                const ipInfo = [
+                    { label: 'IP Address', value: data.ip },
+                    { label: 'Location', value: `${data.country_name || 'Unknown'} ${data.region || ''} ${data.city || ''}`.trim() },
+                    { label: 'ISP Provider', value: data.org || 'Unknown' }
+                ];
+
+                let html = '';
+                ipInfo.forEach(info => {
+                    html += `
+                        <div class="ip-info-item">
+                            <span class="ip-info-label">${info.label}:</span>
+                            <span class="ip-info-value">${info.value}</span>
+                        </div>
+                    `;
+                });
+
+                ipResult.innerHTML = html;
+            }
+
+            // Function to show error
+            function showError(message) {
+                ipResult.innerHTML = `<div class="ip-info-error">${message}</div>`;
+            }
+
+            // Function to clear results
+            function clearResults() {
+                ipAddressInput.value = '';
+                ipResult.innerHTML = '';
+            }
+
+            // Basic IP validation function
+            function isValidIP(ip) {
+                const ipRegex = /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+                const ipv6Regex = /^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$/;
+                return ipRegex.test(ip) || ipv6Regex.test(ip);
+            }
+
+            // Basic domain validation function
+            function isValidDomain(domain) {
+                const domainRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
+                return domainRegex.test(domain);
             }
         });
     </script>

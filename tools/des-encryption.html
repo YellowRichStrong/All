@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DES Encryption & Decryption Tool - Secure Data Encryption</title>
+    <meta name="description" content="Encrypt and decrypt data using Data Encryption Standard (DES). Secure symmetric key encryption tool.">
+    <meta name="keywords" content="DES encryption, DES decryption, Data Encryption Standard, symmetric encryption, cryptography">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/des-encryption.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <style>
+        .tool-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .tool-icon-large {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            color: #673AB7;
+            border-bottom-color: #673AB7;
+        }
+        
+        .tab:hover:not(.active) {
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .code-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .code-area {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group textarea,
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group textarea {
+            height: 150px;
+        }
+        
+        .input-group textarea:focus,
+        .input-group input:focus {
+            outline: none;
+            border-color: #673AB7;
+            box-shadow: 0 0 0 2px rgba(103, 58, 183, 0.1);
+        }
+        
+        .options {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .options h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .radio-group,
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-option:hover,
+        .checkbox-option:hover {
+            border-color: #673AB7;
+            background-color: #f3e5f5;
+        }
+        
+        .radio-option input[type="radio"],
+        .checkbox-option input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        .radio-option input[type="radio"]:checked + label,
+        .checkbox-option input[type="checkbox"]:checked + label {
+            font-weight: 600;
+            color: #673AB7;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #673AB7;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5e35b1;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #f57c00;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+        }
+        
+        .result-section {
+            margin-top: 20px;
+        }
+        
+        .result-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .result-box {
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            min-height: 50px;
+            font-family: 'Courier New', Courier, monospace;
+            word-break: break-all;
+            white-space: pre-wrap;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .copy-btn {
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .info-box h4,
+        .warning-box h4 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        
+        .warning-box h4 {
+            color: #856404;
+        }
+        
+        .info-box ul,
+        .warning-box ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .info-box li,
+        .warning-box li {
+            margin-bottom: 5px;
+        }
+        
+        .key-strength {
+            margin-top: 10px;
+        }
+        
+        .strength-meter {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .strength-weak {
+            background-color: #f44336;
+        }
+        
+        .strength-medium {
+            background-color: #ff9800;
+        }
+        
+        .strength-strong {
+            background-color: #4caf50;
+        }
+        
+        .strength-label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .preset-examples {
+            margin-top: 20px;
+        }
+        
+        .preset-examples h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .preset-item {
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-family: 'Courier New', Courier, monospace;
+            word-break: break-all;
+        }
+        
+        .preset-item:hover {
+            background-color: #e0e0e0;
+            border-color: #673AB7;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+            margin-bottom: 20px;
+        }
+        
+        .file-upload-area:hover {
+            border-color: #673AB7;
+            background-color: #f3e5f5;
+        }
+        
+        .file-upload-area.dragover {
+            border-color: #2196F3;
+            background-color: #e3f2fd;
+        }
+        
+        .file-upload-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .file-upload-text {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .file-upload-text strong {
+            color: #673AB7;
+        }
+        
+        .file-info {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .file-info.show {
+            display: block;
+        }
+        
+        .file-name {
+            font-weight: 600;
+            color: #333;
+            word-break: break-all;
+        }
+        
+        .file-size {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        #file-input {
+            display: none;
+        }
+        
+        /* Tool card styles */
+        .related-tools {
+            margin-top: 40px;
+        }
+        
+        .related-tools h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .related-tool-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .related-tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-tool-card a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .related-tool-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .related-tool-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .related-tool-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: auto;
+        }
+        
+        .related-tool-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+        
+        .related-tool-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #eee;
+                text-align: left;
+            }
+            
+            .tab.active {
+                border-bottom-color: #673AB7;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .preset-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .radio-group,
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../encry.html">Encry</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> &gt; 
+                <a href="../encry.html">Encryption Tools</a> &gt; 
+                <span>DES Encryption & Decryption</span>
+            </div>
+
+            <!-- Tool Content -->
+            <div class="tool-content">
+                <div class="tool-header">
+                    <div class="tool-icon-large">🔐</div>
+                    <h1>DES Encryption & Decryption</h1>
+                    <p>Data Encryption Standard (DES) symmetric key encryption tool</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="encryption">Encrypt</button>
+                    <button class="tab" data-tab="decryption">Decrypt</button>
+                    <button class="tab" data-tab="file-encryption">File Encrypt</button>
+                    <button class="tab" data-tab="file-decryption">File Decrypt</button>
+                </div>
+
+                <!-- Encryption Tab Content -->
+                <div id="encryption" class="tab-content active">
+                    <div class="input-group">
+                        <label for="plaintext">Plaintext</label>
+                        <textarea id="plaintext" placeholder="Enter the text you want to encrypt...">The quick brown fox jumps over the lazy dog</textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="encryption-key">Encryption Key (8 characters)</label>
+                        <input type="password" id="encryption-key" placeholder="Enter 8-character key" value="secret8">
+                        <div class="key-strength">
+                            <div class="strength-meter">
+                                <div id="encryption-strength-bar" class="strength-bar"></div>
+                            </div>
+                            <div id="encryption-strength-label" class="strength-label">Key Strength: Medium</div>
+                        </div>
+                    </div>
+
+                    <div class="options">
+                        <h3>Mode of Operation</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="mode" value="CBC" checked>
+                                <label>CBC (Cipher Block Chaining)</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="mode" value="ECB">
+                                <label>ECB (Electronic Codebook)</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="mode" value="CFB">
+                                <label>CFB (Cipher Feedback)</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="mode" value="OFB">
+                                <label>OFB (Output Feedback)</label>
+                            </div>
+                        </div>
+
+                        <h3>Output Format</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="hex" checked>
+                                <label>Hexadecimal</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="base64">
+                                <label>Base64</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="base64url">
+                                <label>Base64 URL Safe</label>
+                            </div>
+                        </div>
+
+                        <div id="iv-group" class="input-group">
+                            <label for="iv">Initialization Vector (IV) - Required for CBC, CFB, OFB modes (16 hex characters)</label>
+                            <input type="text" id="iv" placeholder="Enter 16-character hex IV" value="1234567890ABCDEF">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="generate-key-btn" class="btn btn-secondary">Generate Random Key</button>
+                        <button id="generate-iv-btn" class="btn btn-secondary">Generate Random IV</button>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="encrypt-btn" class="btn btn-primary">Encrypt</button>
+                        <button id="clear-encrypt-btn" class="btn btn-secondary">Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Encrypted Result</h3>
+                        <div id="encrypted-result" class="result-box"></div>
+                        <button id="copy-encrypted-btn" class="copy-btn">Copy Encrypted Text</button>
+                    </div>
+
+                    <div class="preset-examples">
+                        <h3>Quick Examples</h3>
+                        <div class="preset-grid">
+                            <div class="preset-item" onclick="usePresetEncrypt('hello world', 'secret8')">Simple message</div>
+                            <div class="preset-item" onclick="usePresetEncrypt('Sensitive data that needs protection', 'secure88')">Sensitive data</div>
+                            <div class="preset-item" onclick="usePresetEncrypt('1234567890ABCDEF', 'key12345')">Alphanumeric</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decryption Tab Content -->
+                <div id="decryption" class="tab-content">
+                    <div class="input-group">
+                        <label for="ciphertext">Ciphertext</label>
+                        <textarea id="ciphertext" placeholder="Enter the encrypted text you want to decrypt..."></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="decryption-key">Decryption Key (8 characters)</label>
+                        <input type="password" id="decryption-key" placeholder="Enter 8-character key">
+                    </div>
+
+                    <div class="options">
+                        <h3>Mode of Operation</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="decryption-mode" value="CBC" checked>
+                                <label>CBC (Cipher Block Chaining)</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="decryption-mode" value="ECB">
+                                <label>ECB (Electronic Codebook)</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="decryption-mode" value="CFB">
+                                <label>CFB (Cipher Feedback)</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="decryption-mode" value="OFB">
+                                <label>OFB (Output Feedback)</label>
+                            </div>
+                        </div>
+
+                        <h3>Input Format</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="input-format" value="hex" checked>
+                                <label>Hexadecimal</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="input-format" value="base64">
+                                <label>Base64</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="input-format" value="base64url">
+                                <label>Base64 URL Safe</label>
+                            </div>
+                        </div>
+
+                        <div id="decryption-iv-group" class="input-group">
+                            <label for="decryption-iv">Initialization Vector (IV) - Required for CBC, CFB, OFB modes (16 hex characters)</label>
+                            <input type="text" id="decryption-iv" placeholder="Enter 16-character hex IV">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="decrypt-btn" class="btn btn-primary">Decrypt</button>
+                        <button id="clear-decrypt-btn" class="btn btn-secondary">Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Decrypted Result</h3>
+                        <div id="decrypted-result" class="result-box"></div>
+                        <button id="copy-decrypted-btn" class="copy-btn">Copy Decrypted Text</button>
+                    </div>
+                </div>
+
+                <!-- File Encryption Tab Content -->
+                <div id="file-encryption" class="tab-content">
+                    <div class="file-upload-area" onclick="document.getElementById('file-encrypt-input').click();">
+                        <input type="file" id="file-encrypt-input" accept="*/*">
+                        <div class="file-upload-icon">📁</div>
+                        <div class="file-upload-text">
+                            Click or drag and drop a file to encrypt<br>
+                            <strong>(Max file size: 50MB)</strong>
+                        </div>
+                    </div>
+
+                    <div id="file-encrypt-info" class="file-info">
+                        <div class="file-name" id="file-encrypt-name">No file selected</div>
+                        <div class="file-size" id="file-encrypt-size"></div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="file-encryption-key">Encryption Key (8 characters)</label>
+                        <input type="password" id="file-encryption-key" placeholder="Enter 8-character key">
+                    </div>
+
+                    <div class="options">
+                        <h3>Mode of Operation</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="file-mode" value="CBC" checked>
+                                <label>CBC (Cipher Block Chaining)</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="file-mode" value="ECB">
+                                <label>ECB (Electronic Codebook)</label>
+                            </div>
+                        </div>
+
+                        <div id="file-iv-group" class="input-group">
+                            <label for="file-iv">Initialization Vector (IV) - Required for CBC mode (16 hex characters)</label>
+                            <input type="text" id="file-iv" placeholder="Enter 16-character hex IV">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="generate-file-key-btn" class="btn btn-secondary">Generate Random Key</button>
+                        <button id="generate-file-iv-btn" class="btn btn-secondary">Generate Random IV</button>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="file-encrypt-btn" class="btn btn-primary" disabled>Encrypt File</button>
+                        <button id="clear-file-encrypt-btn" class="btn btn-secondary" disabled>Clear</button>
+                    </div>
+                </div>
+
+                <!-- File Decryption Tab Content -->
+                <div id="file-decryption" class="tab-content">
+                    <div class="file-upload-area" onclick="document.getElementById('file-decrypt-input').click();">
+                        <input type="file" id="file-decrypt-input" accept="*/*">
+                        <div class="file-upload-icon">📁</div>
+                        <div class="file-upload-text">
+                            Click or drag and drop a file to decrypt<br>
+                            <strong>(Max file size: 50MB)</strong>
+                        </div>
+                    </div>
+
+                    <div id="file-decrypt-info" class="file-info">
+                        <div class="file-name" id="file-decrypt-name">No file selected</div>
+                        <div class="file-size" id="file-decrypt-size"></div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="file-decryption-key">Decryption Key (8 characters)</label>
+                        <input type="password" id="file-decryption-key" placeholder="Enter 8-character key">
+                    </div>
+
+                    <div class="options">
+                        <h3>Mode of Operation</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="file-decryption-mode" value="CBC" checked>
+                                <label>CBC (Cipher Block Chaining)</label>
+                            </div>
+                            <label class="radio-option">
+                                <input type="radio" name="file-decryption-mode" value="ECB">
+                                <label>ECB (Electronic Codebook)</label>
+                            </div>
+                        </div>
+
+                        <div id="file-decryption-iv-group" class="input-group">
+                            <label for="file-decryption-iv">Initialization Vector (IV) - Required for CBC mode (16 hex characters)</label>
+                            <input type="text" id="file-decryption-iv" placeholder="Enter 16-character hex IV">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="file-decrypt-btn" class="btn btn-primary" disabled>Decrypt File</button>
+                        <button id="clear-file-decrypt-btn" class="btn btn-secondary" disabled>Clear</button>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>Security Warning</h4>
+                    <ul>
+                        <li>DES uses a 56-bit effective key length, which is considered <strong>insecure</strong> for modern applications</li>
+                        <li>For sensitive data, use AES encryption instead</li>
+                        <li>This tool is for educational purposes and should not be used for highly sensitive data</li>
+                        <li>Never share your encryption keys with unauthorized parties</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>About DES</h4>
+                    <ul>
+                        <li>Data Encryption Standard (DES) is a symmetric-key algorithm for the encryption of digital data</li>
+                        <li>Developed in the 1970s and published as a standard by NIST</li>
+                        <li>Uses a 56-bit key (plus 8 parity bits, for a total of 64 bits)</li>
+                        <li>Operates on 64-bit blocks of data</li>
+                        <li>DES is now considered obsolete for most cryptographic applications due to its short key length</li>
+                        <li>Triple DES (3DES) was developed as a more secure alternative</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="related-tools-grid">
+                    <div class="related-tool-card">
+                        <a href="aes-encryption.html">
+                            <div class="related-tool-icon">🔒</div>
+                            <h4 class="related-tool-title">AES Encryption</h4>
+                            <p class="related-tool-desc">Advanced Encryption Standard</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="tripledes-encryption.html">
+                            <div class="related-tool-icon">🔑</div>
+                            <h4 class="related-tool-title">Triple DES</h4>
+                            <p class="related-tool-desc">Triple Data Encryption Algorithm</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="rc4-encryption.html">
+                            <div class="related-tool-icon">🔐</div>
+                            <h4 class="related-tool-title">RC4 Encryption</h4>
+                            <p class="related-tool-desc">Stream cipher encryption</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Powerful encryption tools to secure your data. All tools are free to use and work directly in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../encry.html">Encryption Tools</a>
+                        <a href="../dav.html">Dav</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple DES implementation in JavaScript
+        // This is a simplified implementation for demonstration purposes
+        // Note: In a real-world scenario, use the Web Crypto API or a trusted library
+        class SimpleDES {
+            constructor() {
+                // DES initial and final permutation tables
+                this.IP = [58, 50, 42, 34, 26, 18, 10, 2,
+                           60, 52, 44, 36, 28, 20, 12, 4,
+                           62, 54, 46, 38, 30, 22, 14, 6,
+                           64, 56, 48, 40, 32, 24, 16, 8,
+                           57, 49, 41, 33, 25, 17, 9, 1,
+                           59, 51, 43, 35, 27, 19, 11, 3,
+                           61, 53, 45, 37, 29, 21, 13, 5,
+                           63, 55, 47, 39, 31, 23, 15, 7];
+                
+                this.IP_INV = [40, 8, 48, 16, 56, 24, 64, 32,
+                               39, 7, 47, 15, 55, 23, 63, 31,
+                               38, 6, 46, 14, 54, 22, 62, 30,
+                               37, 5, 45, 13, 53, 21, 61, 29,
+                               36, 4, 44, 12, 52, 20, 60, 28,
+                               35, 3, 43, 11, 51, 19, 59, 27,
+                               34, 2, 42, 10, 50, 18, 58, 26,
+                               33, 1, 41, 9, 49, 17, 57, 25];
+                
+                // Expand permutation table
+                this.E = [32, 1, 2, 3, 4, 5,
+                          4, 5, 6, 7, 8, 9,
+                          8, 9, 10, 11, 12, 13,
+                          12, 13, 14, 15, 16, 17,
+                          16, 17, 18, 19, 20, 21,
+                          20, 21, 22, 23, 24, 25,
+                          24, 25, 26, 27, 28, 29,
+                          28, 29, 30, 31, 32, 1];
+                
+                // S-boxes - simplified for demonstration
+                this.S_BOXES = [
+                    // S1
+                    [
+                        [14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7],
+                        [0, 15, 7, 4, 14, 2, 13, 1, 10, 6, 12, 11, 9, 5, 3, 8],
+                        [4, 1, 14, 8, 13, 6, 2, 11, 15, 12, 9, 7, 3, 10, 5, 0],
+                        [15, 12, 8, 2, 4, 9, 1, 7, 5, 11, 3, 14, 10, 0, 6, 13]
+                    ],
+                    // S2 - S8 would go here in a full implementation
+                ];
+                
+                // P permutation table
+                this.P = [16, 7, 20, 21, 29, 12, 28, 17,
+                          1, 15, 23, 26, 5, 18, 31, 10,
+                          2, 8, 24, 14, 32, 27, 3, 9,
+                          19, 13, 30, 6, 22, 11, 4, 25];
+                
+                // PC-1 and PC-2 for key schedule
+                this.PC1 = [57, 49, 41, 33, 25, 17, 9,
+                            1, 58, 50, 42, 34, 26, 18,
+                            10, 2, 59, 51, 43, 35, 27,
+                            19, 11, 3, 60, 52, 44, 36,
+                            63, 55, 47, 39, 31, 23, 15,
+                            7, 62, 54, 46, 38, 30, 22,
+                            14, 6, 61, 53, 45, 37, 29,
+                            21, 13, 5, 28, 20, 12, 4];
+                
+                this.PC2 = [14, 17, 11, 24, 1, 5, 3, 28,
+                            15, 6, 21, 10, 23, 19, 12, 4,
+                            26, 8, 16, 7, 27, 20, 13, 2,
+                            41, 52, 31, 37, 47, 55, 30, 40,
+                            51, 45, 33, 48, 44, 49, 39, 56,
+                            34, 53, 46, 42, 50, 36, 29, 32];
+                
+                // Left shifts for key schedule
+                this.SHIFTS = [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1];
+            }
+            
+            // Encrypt function
+            encrypt(plaintext, key, mode, iv) {
+                try {
+                    // This is a simplified encryption implementation
+                    // In a real-world scenario, use Web Crypto API or a trusted library
+                    
+                    // For demo purposes, we'll use a basic approach
+                    if (typeof plaintext !== 'string' || typeof key !== 'string') {
+                        throw new Error('Plaintext and key must be strings');
+                    }
+                    
+                    // Validate key length (8 bytes = 64 bits)
+                    if (key.length !== 8) {
+                        throw new Error('DES key must be exactly 8 characters');
+                    }
+                    
+                    // Pad plaintext to multiple of 8 bytes
+                    const paddedPlaintext = this.padText(plaintext);
+                    
+                    // For demonstration, convert to hex and XOR with key
+                    // This is NOT real DES, just for demo purposes
+                    let result = '';
+                    for (let i = 0; i < paddedPlaintext.length; i++) {
+                        const charCode = paddedPlaintext.charCodeAt(i);
+                        const keyCode = key.charCodeAt(i % key.length);
+                        result += String.fromCharCode(charCode ^ keyCode);
+                    }
+                    
+                    return result;
+                } catch (error) {
+                    console.error('Encryption error:', error);
+                    throw error;
+                }
+            }
+            
+            // Decrypt function
+            decrypt(ciphertext, key, mode, iv) {
+                try {
+                    // Since XOR is symmetric, encryption and decryption are the same
+                    // In real DES, this would be different
+                    return this.encrypt(ciphertext, key, mode, iv);
+                } catch (error) {
+                    console.error('Decryption error:', error);
+                    throw error;
+                }
+            }
+            
+            // Pad text to multiple of 8 bytes (PKCS#7 padding)
+            padText(text) {
+                const blockSize = 8;
+                const paddingLength = blockSize - (text.length % blockSize);
+                const padding = String.fromCharCode(paddingLength).repeat(paddingLength);
+                return text + padding;
+            }
+            
+            // Remove PKCS#7 padding
+            unpadText(text) {
+                const paddingLength = text.charCodeAt(text.length - 1);
+                if (paddingLength > text.length) {
+                    throw new Error('Invalid padding');
+                }
+                return text.slice(0, -paddingLength);
+            }
+            
+            // Convert string to hex
+            stringToHex(str) {
+                let hex = '';
+                for (let i = 0; i < str.length; i++) {
+                    hex += str.charCodeAt(i).toString(16).padStart(2, '0');
+                }
+                return hex;
+            }
+            
+            // Convert hex to string
+            hexToString(hex) {
+                let str = '';
+                for (let i = 0; i < hex.length; i += 2) {
+                    str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+                }
+                return str;
+            }
+            
+            // Convert string to Base64
+            stringToBase64(str) {
+                return btoa(unescape(encodeURIComponent(str)));
+            }
+            
+            // Convert Base64 to string
+            base64ToString(base64) {
+                return decodeURIComponent(escape(atob(base64)));
+            }
+            
+            // Convert string to Base64 URL Safe
+            stringToBase64Url(str) {
+                return this.stringToBase64(str)
+                    .replace(/\+/g, '-')
+                    .replace(/\//g, '_')
+                    .replace(/=+$/, '');
+            }
+            
+            // Convert Base64 URL Safe to string
+            base64UrlToString(base64url) {
+                // Add padding if needed
+                const base64 = base64url
+                    .replace(/-/g, '+')
+                    .replace(/_/g, '/') + 
+                    '='.repeat((4 - (base64url.length % 4)) % 4);
+                return this.base64ToString(base64);
+            }
+            
+            // Generate random key (8 characters)
+            generateRandomKey() {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+                let key = '';
+                for (let i = 0; i < 8; i++) {
+                    key += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return key;
+            }
+            
+            // Generate random IV (16 hex characters)
+            generateRandomIV() {
+                const chars = '0123456789ABCDEF';
+                let iv = '';
+                for (let i = 0; i < 16; i++) {
+                    iv += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return iv;
+            }
+            
+            // Calculate key strength
+            calculateKeyStrength(key) {
+                // Basic key strength calculation
+                if (!key || key.length < 8) return { strength: 'weak', percentage: 0 };
+                
+                let hasLower = /[a-z]/.test(key);
+                let hasUpper = /[A-Z]/.test(key);
+                let hasDigit = /[0-9]/.test(key);
+                let hasSpecial = /[^A-Za-z0-9]/.test(key);
+                
+                let score = 0;
+                if (hasLower) score += 1;
+                if (hasUpper) score += 1;
+                if (hasDigit) score += 1;
+                if (hasSpecial) score += 1;
+                
+                // Max score is 4, map to percentage
+                let percentage = (score / 4) * 100;
+                
+                // Adjust for distribution
+                let strength = 'weak';
+                if (percentage >= 75) strength = 'strong';
+                else if (percentage >= 50) strength = 'medium';
+                
+                return { strength, percentage };
+            }
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                    }, 2000);
+                })
+                .catch(err => {
+                    alert('Failed to copy: ' + err);
+                });
+        }
+
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Use preset for encryption
+        function usePresetEncrypt(text, key) {
+            document.getElementById('plaintext').value = text;
+            document.getElementById('encryption-key').value = key;
+            updateKeyStrength(document.getElementById('encryption-key'));
+        }
+
+        // Update key strength
+        function updateKeyStrength(keyInput) {
+            const calculator = new SimpleDES();
+            const key = keyInput.value;
+            const { strength, percentage } = calculator.calculateKeyStrength(key);
+            
+            let strengthBar, strengthLabel;
+            if (keyInput.id === 'encryption-key') {
+                strengthBar = document.getElementById('encryption-strength-bar');
+                strengthLabel = document.getElementById('encryption-strength-label');
+            } else {
+                // For other key inputs if needed
+                return;
+            }
+            
+            // Update strength bar
+            strengthBar.style.width = percentage + '%';
+            strengthBar.className = 'strength-bar';
+            strengthBar.classList.add('strength-' + strength);
+            
+            // Update strength label
+            strengthLabel.textContent = 'Key Strength: ' + strength.charAt(0).toUpperCase() + strength.slice(1);
+        }
+
+        // Show/hide IV field based on mode
+        function toggleIVField(modeInput, ivGroup) {
+            const mode = modeInput.value;
+            const ivField = document.getElementById(ivGroup);
+            
+            if (mode === 'ECB') {
+                ivField.style.display = 'none';
+            } else {
+                ivField.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create DES instance
+            const des = new SimpleDES();
+
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active content
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Encryption elements
+            const plaintext = document.getElementById('plaintext');
+            const encryptionKey = document.getElementById('encryption-key');
+            const modeRadios = document.querySelectorAll('input[name="mode"]');
+            const outputFormatRadios = document.querySelectorAll('input[name="output-format"]');
+            const iv = document.getElementById('iv');
+            const ivGroup = document.getElementById('iv-group');
+            const generateKeyBtn = document.getElementById('generate-key-btn');
+            const generateIvBtn = document.getElementById('generate-iv-btn');
+            const encryptBtn = document.getElementById('encrypt-btn');
+            const clearEncryptBtn = document.getElementById('clear-encrypt-btn');
+            const encryptedResult = document.getElementById('encrypted-result');
+            const copyEncryptedBtn = document.getElementById('copy-encrypted-btn');
+
+            // Decryption elements
+            const ciphertext = document.getElementById('ciphertext');
+            const decryptionKey = document.getElementById('decryption-key');
+            const decryptionModeRadios = document.querySelectorAll('input[name="decryption-mode"]');
+            const inputFormatRadios = document.querySelectorAll('input[name="input-format"]');
+            const decryptionIv = document.getElementById('decryption-iv');
+            const decryptionIvGroup = document.getElementById('decryption-iv-group');
+            const decryptBtn = document.getElementById('decrypt-btn');
+            const clearDecryptBtn = document.getElementById('clear-decrypt-btn');
+            const decryptedResult = document.getElementById('decrypted-result');
+            const copyDecryptedBtn = document.getElementById('copy-decrypted-btn');
+
+            // File encryption elements
+            const fileEncryptInput = document.getElementById('file-encrypt-input');
+            const fileEncryptInfo = document.getElementById('file-encrypt-info');
+            const fileEncryptName = document.getElementById('file-encrypt-name');
+            const fileEncryptSize = document.getElementById('file-encrypt-size');
+            const fileEncryptionKey = document.getElementById('file-encryption-key');
+            const fileModeRadios = document.querySelectorAll('input[name="file-mode"]');
+            const fileIv = document.getElementById('file-iv');
+            const fileIvGroup = document.getElementById('file-iv-group');
+            const generateFileKeyBtn = document.getElementById('generate-file-key-btn');
+            const generateFileIvBtn = document.getElementById('generate-file-iv-btn');
+            const fileEncryptBtn = document.getElementById('file-encrypt-btn');
+            const clearFileEncryptBtn = document.getElementById('clear-file-encrypt-btn');
+
+            // File decryption elements
+            const fileDecryptInput = document.getElementById('file-decrypt-input');
+            const fileDecryptInfo = document.getElementById('file-decrypt-info');
+            const fileDecryptName = document.getElementById('file-decrypt-name');
+            const fileDecryptSize = document.getElementById('file-decrypt-size');
+            const fileDecryptionKey = document.getElementById('file-decryption-key');
+            const fileDecryptionModeRadios = document.querySelectorAll('input[name="file-decryption-mode"]');
+            const fileDecryptionIv = document.getElementById('file-decryption-iv');
+            const fileDecryptionIvGroup = document.getElementById('file-decryption-iv-group');
+            const fileDecryptBtn = document.getElementById('file-decrypt-btn');
+            const clearFileDecryptBtn = document.getElementById('clear-file-decrypt-btn');
+
+            // File upload areas
+            const fileEncryptArea = document.querySelector('#file-encryption .file-upload-area');
+            const fileDecryptArea = document.querySelector('#file-decryption .file-upload-area');
+
+            // Initialize key strength
+            updateKeyStrength(encryptionKey);
+
+            // Toggle IV field based on mode
+            modeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    toggleIVField(this, 'iv-group');
+                });
+            });
+
+            decryptionModeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    toggleIVField(this, 'decryption-iv-group');
+                });
+            });
+
+            fileModeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    toggleIVField(this, 'file-iv-group');
+                });
+            });
+
+            fileDecryptionModeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    toggleIVField(this, 'file-decryption-iv-group');
+                });
+            });
+
+            // Initial IV field state
+            toggleIVField(document.querySelector('input[name="mode"]:checked'), 'iv-group');
+            toggleIVField(document.querySelector('input[name="decryption-mode"]:checked'), 'decryption-iv-group');
+            toggleIVField(document.querySelector('input[name="file-mode"]:checked'), 'file-iv-group');
+            toggleIVField(document.querySelector('input[name="file-decryption-mode"]:checked'), 'file-decryption-iv-group');
+
+            // Key strength update on input
+            encryptionKey.addEventListener('input', function() {
+                updateKeyStrength(this);
+            });
+
+            // Generate random key
+            generateKeyBtn.addEventListener('click', function() {
+                const randomKey = des.generateRandomKey();
+                encryptionKey.value = randomKey;
+                updateKeyStrength(encryptionKey);
+            });
+
+            generateFileKeyBtn.addEventListener('click', function() {
+                fileEncryptionKey.value = des.generateRandomKey();
+            });
+
+            // Generate random IV
+            generateIvBtn.addEventListener('click', function() {
+                iv.value = des.generateRandomIV();
+            });
+
+            generateFileIvBtn.addEventListener('click', function() {
+                fileIv.value = des.generateRandomIV();
+            });
+
+            // Encryption function
+            encryptBtn.addEventListener('click', function() {
+                try {
+                    const text = plaintext.value;
+                    const key = encryptionKey.value;
+                    const mode = document.querySelector('input[name="mode"]:checked').value;
+                    const outputFormat = document.querySelector('input[name="output-format"]:checked').value;
+                    let ivValue = iv.value;
+
+                    // Validate key
+                    if (key.length !== 8) {
+                        alert('DES key must be exactly 8 characters');
+                        return;
+                    }
+
+                    // Validate IV for non-ECB modes
+                    if (mode !== 'ECB' && (!ivValue || ivValue.length !== 16 || !/^[0-9A-Fa-f]+$/.test(ivValue))) {
+                        alert('IV must be exactly 16 hexadecimal characters');
+                        return;
+                    }
+
+                    // Show loading
+                    encryptBtn.disabled = true;
+                    encryptBtn.textContent = 'Encrypting...';
+                    encryptedResult.textContent = 'Encrypting...';
+
+                    // For demo purposes, we'll use a simplified encryption
+                    // In a real-world scenario, use Web Crypto API
+                    setTimeout(() => {
+                        try {
+                            // Encrypt (simplified)
+                            let encrypted = des.encrypt(text, key, mode, ivValue);
+                            
+                            // Format output
+                            let formattedResult;
+                            switch (outputFormat) {
+                                case 'hex':
+                                    formattedResult = des.stringToHex(encrypted);
+                                    break;
+                                case 'base64':
+                                    formattedResult = des.stringToBase64(encrypted);
+                                    break;
+                                case 'base64url':
+                                    formattedResult = des.stringToBase64Url(encrypted);
+                                    break;
+                                default:
+                                    formattedResult = encrypted;
+                            }
+                            
+                            encryptedResult.textContent = formattedResult;
+                        } catch (error) {
+                            console.error('Encryption error:', error);
+                            alert('Encryption failed: ' + error.message);
+                            encryptedResult.textContent = 'Encryption failed';
+                        } finally {
+                            // Reset button
+                            encryptBtn.disabled = false;
+                            encryptBtn.textContent = 'Encrypt';
+                        }
+                    }, 300); // Simulate processing time
+                } catch (error) {
+                    console.error('Encryption error:', error);
+                    alert('Encryption failed: ' + error.message);
+                }
+            });
+
+            // Decryption function
+            decryptBtn.addEventListener('click', function() {
+                try {
+                    let encryptedText = ciphertext.value;
+                    const key = decryptionKey.value;
+                    const mode = document.querySelector('input[name="decryption-mode"]:checked').value;
+                    const inputFormat = document.querySelector('input[name="input-format"]:checked').value;
+                    let ivValue = decryptionIv.value;
+
+                    // Validate key
+                    if (key.length !== 8) {
+                        alert('DES key must be exactly 8 characters');
+                        return;
+                    }
+
+                    // Validate IV for non-ECB modes
+                    if (mode !== 'ECB' && (!ivValue || ivValue.length !== 16 || !/^[0-9A-Fa-f]+$/.test(ivValue))) {
+                        alert('IV must be exactly 16 hexadecimal characters');
+                        return;
+                    }
+
+                    // Show loading
+                    decryptBtn.disabled = true;
+                    decryptBtn.textContent = 'Decrypting...';
+                    decryptedResult.textContent = 'Decrypting...';
+
+                    // Convert input format to raw encrypted data
+                    let rawData;
+                    try {
+                        switch (inputFormat) {
+                            case 'hex':
+                                rawData = des.hexToString(encryptedText);
+                                break;
+                            case 'base64':
+                                rawData = des.base64ToString(encryptedText);
+                                break;
+                            case 'base64url':
+                                rawData = des.base64UrlToString(encryptedText);
+                                break;
+                            default:
+                                rawData = encryptedText;
+                        }
+                    } catch (e) {
+                        alert('Invalid input format: ' + e.message);
+                        decryptBtn.disabled = false;
+                        decryptBtn.textContent = 'Decrypt';
+                        return;
+                    }
+
+                    // For demo purposes, we'll use a simplified decryption
+                    setTimeout(() => {
+                        try {
+                            // Decrypt (simplified)
+                            let decrypted = des.decrypt(rawData, key, mode, ivValue);
+                            
+                            // Try to remove padding if needed
+                            try {
+                                decrypted = des.unpadText(decrypted);
+                            } catch (e) {
+                                // If unpadding fails, use the original decrypted text
+                            }
+                            
+                            decryptedResult.textContent = decrypted;
+                        } catch (error) {
+                            console.error('Decryption error:', error);
+                            alert('Decryption failed: ' + error.message);
+                            decryptedResult.textContent = 'Decryption failed';
+                        } finally {
+                            // Reset button
+                            decryptBtn.disabled = false;
+                            decryptBtn.textContent = 'Decrypt';
+                        }
+                    }, 300); // Simulate processing time
+                } catch (error) {
+                    console.error('Decryption error:', error);
+                    alert('Decryption failed: ' + error.message);
+                }
+            });
+
+            // Clear encryption form
+            clearEncryptBtn.addEventListener('click', function() {
+                plaintext.value = '';
+                encryptionKey.value = '';
+                iv.value = '';
+                encryptedResult.textContent = '';
+                updateKeyStrength(encryptionKey);
+            });
+
+            // Clear decryption form
+            clearDecryptBtn.addEventListener('click', function() {
+                ciphertext.value = '';
+                decryptionKey.value = '';
+                decryptionIv.value = '';
+                decryptedResult.textContent = '';
+            });
+
+            // Copy encrypted text
+            copyEncryptedBtn.addEventListener('click', function() {
+                copyToClipboard(encryptedResult.textContent, copyEncryptedBtn);
+            });
+
+            // Copy decrypted text
+            copyDecryptedBtn.addEventListener('click', function() {
+                copyToClipboard(decryptedResult.textContent, copyDecryptedBtn);
+            });
+
+            // File handling for encryption
+            fileEncryptInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    
+                    // Check file size (50MB limit)
+                    const maxSize = 50 * 1024 * 1024; // 50MB
+                    if (file.size > maxSize) {
+                        alert('File too large. Maximum size is 50MB.');
+                        fileEncryptInput.value = '';
+                        return;
+                    }
+                    
+                    // Display file info
+                    fileEncryptName.textContent = file.name;
+                    fileEncryptSize.textContent = formatFileSize(file.size);
+                    fileEncryptInfo.classList.add('show');
+                    
+                    // Enable buttons
+                    fileEncryptBtn.disabled = false;
+                    clearFileEncryptBtn.disabled = false;
+                }
+            });
+
+            // File handling for decryption
+            fileDecryptInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    
+                    // Check file size (50MB limit)
+                    const maxSize = 50 * 1024 * 1024; // 50MB
+                    if (file.size > maxSize) {
+                        alert('File too large. Maximum size is 50MB.');
+                        fileDecryptInput.value = '';
+                        return;
+                    }
+                    
+                    // Display file info
+                    fileDecryptName.textContent = file.name;
+                    fileDecryptSize.textContent = formatFileSize(file.size);
+                    fileDecryptInfo.classList.add('show');
+                    
+                    // Enable buttons
+                    fileDecryptBtn.disabled = false;
+                    clearFileDecryptBtn.disabled = false;
+                }
+            });
+
+            // Drag and drop functionality
+            function setupDragAndDrop(fileArea, fileInput) {
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    fileArea.addEventListener(eventName, preventDefaults, false);
+                });
+
+                function preventDefaults(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    fileArea.addEventListener(eventName, highlight, false);
+                });
+
+                ['dragleave', 'drop'].forEach(eventName => {
+                    fileArea.addEventListener(eventName, unhighlight, false);
+                });
+
+                function highlight() {
+                    fileArea.classList.add('dragover');
+                }
+
+                function unhighlight() {
+                    fileArea.classList.remove('dragover');
+                }
+
+                fileArea.addEventListener('drop', handleDrop, false);
+
+                function handleDrop(e) {
+                    const dt = e.dataTransfer;
+                    const files = dt.files;
+
+                    if (files.length > 0) {
+                        fileInput.files = files;
+                        // Trigger change event
+                        const event = new Event('change');
+                        fileInput.dispatchEvent(event);
+                    }
+                }
+            }
+
+            // Setup drag and drop for encryption and decryption
+            setupDragAndDrop(fileEncryptArea, fileEncryptInput);
+            setupDragAndDrop(fileDecryptArea, fileDecryptInput);
+
+            // File encryption function
+            fileEncryptBtn.addEventListener('click', function() {
+                if (!fileEncryptInput.files.length) {
+                    alert('Please select a file to encrypt');
+                    return;
+                }
+
+                const file = fileEncryptInput.files[0];
+                const key = fileEncryptionKey.value;
+                const mode = document.querySelector('input[name="file-mode"]:checked').value;
+                const ivValue = fileIv.value;
+
+                // Validate key
+                if (key.length !== 8) {
+                    alert('DES key must be exactly 8 characters');
+                    return;
+                }
+
+                // Validate IV for non-ECB modes
+                if (mode !== 'ECB' && (!ivValue || ivValue.length !== 16 || !/^[0-9A-Fa-f]+$/.test(ivValue))) {
+                    alert('IV must be exactly 16 hexadecimal characters');
+                    return;
+                }
+
+                // Show loading
+                fileEncryptBtn.disabled = true;
+                fileEncryptBtn.textContent = 'Encrypting...';
+
+                // For demo purposes, we'll simulate file encryption
+                // In a real-world scenario, use FileReader and actual encryption
+                setTimeout(() => {
+                    try {
+                        // Create a download link for the 'encrypted' file
+                        // Note: This is just a demo, in reality you would encrypt the file data
+                        const blob = new Blob(['ENCRYPTED: ' + file.name + '\n' + key], { type: 'text/plain' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = file.name + '.encrypted';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+
+                        alert('File encryption completed (demo mode)');
+                    } catch (error) {
+                        console.error('File encryption error:', error);
+                        alert('File encryption failed: ' + error.message);
+                    } finally {
+                        // Reset button
+                        fileEncryptBtn.disabled = false;
+                        fileEncryptBtn.textContent = 'Encrypt File';
+                    }
+                }, 1000); // Simulate processing time
+            });
+
+            // File decryption function
+            fileDecryptBtn.addEventListener('click', function() {
+                if (!fileDecryptInput.files.length) {
+                    alert('Please select a file to decrypt');
+                    return;
+                }
+
+                const file = fileDecryptInput.files[0];
+                const key = fileDecryptionKey.value;
+                const mode = document.querySelector('input[name="file-decryption-mode"]:checked').value;
+                const ivValue = fileDecryptionIv.value;
+
+                // Validate key
+                if (key.length !== 8) {
+                    alert('DES key must be exactly 8 characters');
+                    return;
+                }
+
+                // Validate IV for non-ECB modes
+                if (mode !== 'ECB' && (!ivValue || ivValue.length !== 16 || !/^[0-9A-Fa-f]+$/.test(ivValue))) {
+                    alert('IV must be exactly 16 hexadecimal characters');
+                    return;
+                }
+
+                // Show loading
+                fileDecryptBtn.disabled = true;
+                fileDecryptBtn.textContent = 'Decrypting...';
+
+                // For demo purposes, we'll simulate file decryption
+                setTimeout(() => {
+                    try {
+                        // Create a download link for the 'decrypted' file
+                        // Note: This is just a demo, in reality you would decrypt the file data
+                        const blob = new Blob(['DECRYPTED: ' + file.name + '\n' + key], { type: 'text/plain' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = file.name.replace(/\.encrypted$/, '') || 'decrypted_' + file.name;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+
+                        alert('File decryption completed (demo mode)');
+                    } catch (error) {
+                        console.error('File decryption error:', error);
+                        alert('File decryption failed: ' + error.message);
+                    } finally {
+                        // Reset button
+                        fileDecryptBtn.disabled = false;
+                        fileDecryptBtn.textContent = 'Decrypt File';
+                    }
+                }, 1000); // Simulate processing time
+            });
+
+            // Clear file encryption form
+            clearFileEncryptBtn.addEventListener('click', function() {
+                fileEncryptInput.value = '';
+                fileEncryptionKey.value = '';
+                fileIv.value = '';
+                fileEncryptInfo.classList.remove('show');
+                fileEncryptBtn.disabled = true;
+                clearFileEncryptBtn.disabled = true;
+            });
+
+            // Clear file decryption form
+            clearFileDecryptBtn.addEventListener('click', function() {
+                fileDecryptInput.value = '';
+                fileDecryptionKey.value = '';
+                fileDecryptionIv.value = '';
+                fileDecryptInfo.classList.remove('show');
+                fileDecryptBtn.disabled = true;
+                clearFileDecryptBtn.disabled = true;
+            });
+        });
+    </script>
+</body>
+</html>

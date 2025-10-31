@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Converter - Convert Between ASCII Codes and Text</title>
+    <meta name="description" content="Convert ASCII codes to text and text to ASCII codes online for free. Our tool supports decimal, hexadecimal, and binary ASCII representations.">
+    <meta name="keywords" content="ASCII converter, ASCII to text, text to ASCII, ASCII code, convert ASCII, string to ASCII">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/ascii-converter.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <style>
+        .tool-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .tool-icon-large {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .conversion-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .conversion-area {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .input-group textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+        
+        .options {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .options h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .radio-option input[type="radio"] {
+            margin-right: 8px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .result-info {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .info-box h4 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        
+        .info-box ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .info-box li {
+            margin-bottom: 5px;
+        }
+        
+        /* Tool card styles */
+        .related-tools {
+            margin-top: 40px;
+        }
+        
+        .related-tools h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .related-tool-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .related-tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-tool-card a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .related-tool-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .related-tool-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .related-tool-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: auto;
+        }
+        
+        .related-tool-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+        
+        .related-tool-btn:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../encry.html">Encry</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> &gt; 
+                <a href="../encry.html">Encryption Tools</a> &gt; 
+                <span>ASCII Converter</span>
+            </div>
+
+            <!-- Tool Content -->
+            <div class="tool-content">
+                <div class="tool-header">
+                    <div class="tool-icon-large">🔢</div>
+                    <h1>ASCII Converter</h1>
+                    <p>Convert between ASCII codes and text strings with ease</p>
+                </div>
+
+                <!-- Conversion Area -->
+                <div class="conversion-area">
+                    <div class="input-group">
+                        <label for="text-input">Text to ASCII</label>
+                        <textarea id="text-input" placeholder="Enter text to convert to ASCII codes..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="ascii-input">ASCII to Text</label>
+                        <textarea id="ascii-input" placeholder="Enter ASCII codes separated by spaces or commas..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Options -->
+                <div class="options">
+                    <h3>Options</h3>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="ascii-format" value="decimal" checked>
+                            Decimal (e.g., 65 66 67)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="ascii-format" value="hex">
+                            Hexadecimal (e.g., 41 42 43 or 0x41 0x42 0x43)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="ascii-format" value="binary">
+                            Binary (e.g., 01000001 01000010 01000011)
+                        </label>
+                    </div>
+                    
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="output-separator" value="space" checked>
+                            Space separator (65 66 67)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="output-separator" value="comma">
+                            Comma separator (65,66,67)
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="output-separator" value="none">
+                            No separator (656667)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button id="text-to-ascii-btn" class="btn btn-primary">Text to ASCII</button>
+                    <button id="ascii-to-text-btn" class="btn btn-primary">ASCII to Text</button>
+                    <button id="swap-btn" class="btn btn-secondary">Swap</button>
+                    <button id="clear-btn" class="btn btn-secondary">Clear</button>
+                </div>
+
+                <!-- Information Box -->
+                <div class="info-box">
+                    <h4>How to Use ASCII Converter</h4>
+                    <ul>
+                        <li>To convert text to ASCII: Enter text in the left box, select format and separator, then click "Text to ASCII"</li>
+                        <li>To convert ASCII to text: Enter ASCII codes in the right box, select format, then click "ASCII to Text"</li>
+                        <li>ASCII codes are separated by spaces, commas, or newlines</li>
+                        <li>Supported formats: Decimal (0-127), Hexadecimal (00-7F), and Binary (00000000-01111111)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="related-tools-grid">
+                    <div class="related-tool-card">
+                        <a href="jwt-encryption.html">
+                            <div class="related-tool-icon">🔐</div>
+                            <h4 class="related-tool-title">JWT Encryption</h4>
+                            <p class="related-tool-desc">Create and decode JSON Web Tokens</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="md5-encryption.html">
+                            <div class="related-tool-icon">🔑</div>
+                            <h4 class="related-tool-title">MD5 Encryption</h4>
+                            <p class="related-tool-desc">Generate MD5 hash for your text</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="sha-encryption.html">
+                            <div class="related-tool-icon">🔓</div>
+                            <h4 class="related-tool-title">SHA Encryption</h4>
+                            <p class="related-tool-desc">Generate SHA-1, SHA-256, SHA-512 hashes</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Powerful encryption tools to secure your data. All tools are free to use and work directly in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../encry.html">Encryption Tools</a>
+                        <a href="../dav.html">Dav</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get DOM elements
+            const textInput = document.getElementById('text-input');
+            const asciiInput = document.getElementById('ascii-input');
+            const textToAsciiBtn = document.getElementById('text-to-ascii-btn');
+            const asciiToTextBtn = document.getElementById('ascii-to-text-btn');
+            const swapBtn = document.getElementById('swap-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const asciiFormatRadios = document.querySelectorAll('input[name="ascii-format"]');
+            const separatorRadios = document.querySelectorAll('input[name="output-separator"]');
+
+            // Helper function to get selected format
+            function getSelectedFormat() {
+                for (const radio of asciiFormatRadios) {
+                    if (radio.checked) {
+                        return radio.value;
+                    }
+                }
+                return 'decimal';
+            }
+
+            // Helper function to get selected separator
+            function getSelectedSeparator() {
+                for (const radio of separatorRadios) {
+                    if (radio.checked) {
+                        return radio.value;
+                    }
+                }
+                return 'space';
+            }
+
+            // Helper function to get separator character
+            function getSeparatorChar() {
+                const separator = getSelectedSeparator();
+                switch (separator) {
+                    case 'space': return ' ';
+                    case 'comma': return ',';
+                    case 'none': return '';
+                    default: return ' ';
+                }
+            }
+
+            // Text to ASCII conversion
+            function textToAscii() {
+                const text = textInput.value;
+                if (!text) return;
+
+                const format = getSelectedFormat();
+                const separator = getSeparatorChar();
+                const results = [];
+
+                for (let i = 0; i < text.length; i++) {
+                    const charCode = text.charCodeAt(i);
+                    let formattedCode;
+
+                    switch (format) {
+                        case 'hex':
+                            formattedCode = charCode.toString(16).padStart(2, '0').toUpperCase();
+                            break;
+                        case 'binary':
+                            formattedCode = charCode.toString(2).padStart(8, '0');
+                            break;
+                        case 'decimal':
+                        default:
+                            formattedCode = charCode.toString();
+                    }
+
+                    results.push(formattedCode);
+                }
+
+                asciiInput.value = results.join(separator);
+            }
+
+            // ASCII to Text conversion
+            function asciiToText() {
+                const asciiStr = asciiInput.value;
+                if (!asciiStr) return;
+
+                const format = getSelectedFormat();
+                let asciiCodes = [];
+
+                // Parse input based on format
+                if (format === 'hex') {
+                    // Handle hexadecimal (with or without 0x prefix)
+                    asciiCodes = asciiStr.match(/(?:0x)?[0-9a-fA-F]{1,2}/g) || [];
+                } else if (format === 'binary') {
+                    // Handle binary
+                    asciiCodes = asciiStr.match(/[01]{1,8}/g) || [];
+                } else {
+                    // Handle decimal (split by spaces, commas, or newlines)
+                    asciiCodes = asciiStr.match(/\d+/g) || [];
+                }
+
+                let text = '';
+
+                for (const code of asciiCodes) {
+                    let charCode;
+                    switch (format) {
+                        case 'hex':
+                            charCode = parseInt(code, 16);
+                            break;
+                        case 'binary':
+                            charCode = parseInt(code, 2);
+                            break;
+                        case 'decimal':
+                        default:
+                            charCode = parseInt(code, 10);
+                    }
+
+                    // Ensure it's a valid ASCII character
+                    if (charCode >= 0 && charCode <= 127) {
+                        text += String.fromCharCode(charCode);
+                    }
+                }
+
+                textInput.value = text;
+            }
+
+            // Swap functionality
+            function swapInputs() {
+                const temp = textInput.value;
+                textInput.value = asciiInput.value;
+                asciiInput.value = temp;
+            }
+
+            // Clear functionality
+            function clearInputs() {
+                textInput.value = '';
+                asciiInput.value = '';
+            }
+
+            // Event listeners
+            textToAsciiBtn.addEventListener('click', textToAscii);
+            asciiToTextBtn.addEventListener('click', asciiToText);
+            swapBtn.addEventListener('click', swapInputs);
+            clearBtn.addEventListener('click', clearInputs);
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+Enter or Cmd+Enter for conversion
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    textToAscii();
+                    asciiToText();
+                }
+                
+                // Ctrl+Shift+X or Cmd+Shift+X for clear
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'X') {
+                    clearInputs();
+                }
+            });
+
+            // Add auto-conversion on change
+            textInput.addEventListener('input', textToAscii);
+            asciiInput.addEventListener('input', asciiToText);
+
+            // Tool tip for buttons
+            function addTooltip(element, text) {
+                element.setAttribute('title', text);
+            }
+
+            addTooltip(textToAsciiBtn, 'Convert text to ASCII codes (Ctrl+Enter)');
+            addTooltip(asciiToTextBtn, 'Convert ASCII codes to text (Ctrl+Enter)');
+            addTooltip(swapBtn, 'Swap input and output');
+            addTooltip(clearBtn, 'Clear all inputs (Ctrl+Shift+X)');
+        });
+    </script>
+</body>
+</html>

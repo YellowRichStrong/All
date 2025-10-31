@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMAC Hash Encryption - Keyed-Hash Message Authentication Code Tool</title>
+    <meta name="description" content="Generate HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512 hashes with your secret key. Secure keyed hash generator for message authentication.">
+    <meta name="keywords" content="HMAC, HMAC hash, HMAC-SHA256, keyed hash, message authentication, security tool, hash generator, cryptographic">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/hmac-hash-encryption.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <style>
+        .tool-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .tool-icon-large {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            color: #673AB7;
+            border-bottom-color: #673AB7;
+        }
+        
+        .tab:hover:not(.active) {
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group textarea,
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group textarea {
+            height: 120px;
+        }
+        
+        .input-group textarea:focus,
+        .input-group input:focus {
+            outline: none;
+            border-color: #673AB7;
+            box-shadow: 0 0 0 2px rgba(103, 58, 183, 0.1);
+        }
+        
+        .key-input-container {
+            position: relative;
+        }
+        
+        .toggle-visibility {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .toggle-visibility:hover {
+            color: #673AB7;
+        }
+        
+        .options {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .options h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .algorithm-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .algorithm-option {
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .algorithm-option.active {
+            border-color: #673AB7;
+            background-color: #673AB7;
+            color: white;
+        }
+        
+        .algorithm-option:hover:not(.active) {
+            border-color: #9c27b0;
+        }
+        
+        .output-format-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .format-option {
+            padding: 8px 16px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .format-option.active {
+            border-color: #673AB7;
+            background-color: #673AB7;
+            color: white;
+        }
+        
+        .format-option:hover:not(.active) {
+            border-color: #9c27b0;
+        }
+        
+        .key-generation-options {
+            margin-top: 20px;
+        }
+        
+        .key-length-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .key-length-option {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .key-length-option.active {
+            border-color: #673AB7;
+            background-color: #f3e5f5;
+            color: #673AB7;
+            font-weight: 600;
+        }
+        
+        .key-length-option:hover:not(.active) {
+            border-color: #9c27b0;
+        }
+        
+        .key-generation-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #673AB7;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5e35b1;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        .result-section {
+            margin-top: 20px;
+        }
+        
+        .result-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .hash-result {
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            word-break: break-all;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+        }
+        
+        .hash-label {
+            font-weight: 600;
+            color: #673AB7;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 16px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .danger-box {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .info-box h4,
+        .warning-box h4,
+        .danger-box h4 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        
+        .warning-box h4 {
+            color: #856404;
+        }
+        
+        .danger-box h4 {
+            color: #721c24;
+        }
+        
+        .info-box ul,
+        .warning-box ul,
+        .danger-box ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .info-box li,
+        .warning-box li,
+        .danger-box li {
+            margin-bottom: 5px;
+        }
+        
+        .preset-examples {
+            margin-top: 20px;
+        }
+        
+        .preset-examples h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .preset-item {
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-family: 'Courier New', Courier, monospace;
+            word-break: break-all;
+        }
+        
+        .preset-item:hover {
+            background-color: #e0e0e0;
+            border-color: #673AB7;
+        }
+        
+        .key-strength-meter {
+            width: 100%;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .key-strength-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 4px;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .key-strength-weak .key-strength-fill {
+            width: 33%;
+            background-color: #f44336;
+        }
+        
+        .key-strength-medium .key-strength-fill {
+            width: 66%;
+            background-color: #ffc107;
+        }
+        
+        .key-strength-strong .key-strength-fill {
+            width: 100%;
+            background-color: #4CAF50;
+        }
+        
+        .key-strength-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .preset-keys {
+            margin-top: 15px;
+        }
+        
+        .preset-keys h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .preset-key-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .preset-key-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .preset-key-btn:hover {
+            border-color: #673AB7;
+            background-color: #f3e5f5;
+        }
+        
+        .timing-info {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .compare-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .compare-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .comparison-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .match {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .no-match {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* Tool card styles */
+        .related-tools {
+            margin-top: 40px;
+        }
+        
+        .related-tools h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .related-tool-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .related-tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-tool-card a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .related-tool-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .related-tool-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .related-tool-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: auto;
+        }
+        
+        .related-tool-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+        
+        .related-tool-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #eee;
+                text-align: left;
+            }
+            
+            .tab.active {
+                border-bottom-color: #673AB7;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .algorithm-options,
+            .output-format-options,
+            .key-length-options {
+                flex-direction: column;
+            }
+            
+            .preset-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .compare-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .copy-btn {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-top: 10px;
+                width: 100%;
+            }
+            
+            .hash-result {
+                padding-bottom: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../encry.html">Encry</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> &gt; 
+                <a href="../encry.html">Encryption Tools</a> &gt; 
+                <span>HMAC Hash Encryption</span>
+            </div>
+
+            <!-- Tool Content -->
+            <div class="tool-content">
+                <div class="tool-header">
+                    <div class="tool-icon-large">🔐</div>
+                    <h1>HMAC Hash Encryption</h1>
+                    <p>Generate Keyed-Hash Message Authentication Code with your secret key</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="hmac-generator">HMAC Generator</button>
+                    <button class="tab" data-tab="key-generator">Key Generator</button>
+                    <button class="tab" data-tab="hmac-verify">HMAC Verify</button>
+                </div>
+
+                <!-- HMAC Generator Tab Content -->
+                <div id="hmac-generator" class="tab-content active">
+                    <div class="input-group">
+                        <label for="message-input">Message</label>
+                        <textarea id="message-input" placeholder="Enter the message to authenticate...">The quick brown fox jumps over the lazy dog</textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="key-input">Secret Key</label>
+                        <div class="key-input-container">
+                            <input type="password" id="key-input" placeholder="Enter your secret key..." value="secret-key">
+                            <button type="button" class="toggle-visibility" onclick="toggleKeyVisibility('key-input', this)">👁️</button>
+                        </div>
+                        <div class="key-strength-meter">
+                            <div class="key-strength-fill" id="key-strength-fill"></div>
+                        </div>
+                        <div class="key-strength-text" id="key-strength-text">Key strength: Medium</div>
+                    </div>
+
+                    <div class="options">
+                        <h3>HMAC Algorithm</h3>
+                        <div class="algorithm-options">
+                            <div class="algorithm-option active" data-algorithm="SHA-1">HMAC-SHA-1</div>
+                            <div class="algorithm-option" data-algorithm="SHA-256">HMAC-SHA-256</div>
+                            <div class="algorithm-option" data-algorithm="SHA-384">HMAC-SHA-384</div>
+                            <div class="algorithm-option" data-algorithm="SHA-512">HMAC-SHA-512</div>
+                        </div>
+
+                        <h3>Output Format</h3>
+                        <div class="output-format-options">
+                            <div class="format-option active" data-format="hex">Hexadecimal</div>
+                            <div class="format-option" data-format="upper-hex">UPPERCASE HEX</div>
+                            <div class="format-option" data-format="base64">Base64</div>
+                            <div class="format-option" data-format="base64url">Base64 URL Safe</div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="generate-hmac-btn" class="btn btn-primary">Generate HMAC</button>
+                        <button id="clear-hmac-btn" class="btn btn-secondary">Clear</button>
+                        <button id="generate-random-key-btn" class="btn btn-success btn-small">Generate Random Key</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>HMAC Result</h3>
+                        <div class="hash-result" id="hmac-result">
+                            <span class="hash-label">HMAC-SHA-256:</span>
+                            <div id="hmac-value">HMAC will be displayed here...</div>
+                            <button class="copy-btn" onclick="copyToClipboard('hmac-value')">Copy</button>
+                        </div>
+                        <div class="timing-info" id="generation-time"></div>
+                    </div>
+
+                    <div class="preset-examples">
+                        <h3>Quick Examples</h3>
+                        <div class="preset-grid">
+                            <div class="preset-item" onclick="usePresetMessage('hello world')">hello world</div>
+                            <div class="preset-item" onclick="usePresetMessage('https://api.example.com/v1/users')">API Endpoint</div>
+                            <div class="preset-item" onclick="usePresetMessage('{\"action\":\"login\",\"timestamp\":1634567890}')">JSON Payload</div>
+                            <div class="preset-item" onclick="usePresetMessage('')">Empty string</div>
+                        </div>
+                    </div>
+
+                    <div class="preset-keys">
+                        <h4>Preset Keys</h4>
+                        <div class="preset-key-buttons">
+                            <button class="preset-key-btn" onclick="usePresetKey('secret-key')">Simple Key</button>
+                            <button class="preset-key-btn" onclick="usePresetKey('p@ssw0rd!2023')">Medium Complexity</button>
+                            <button class="preset-key-btn" onclick="usePresetKey('A$c!@89&Zq#P23x5V')">Complex Key</button>
+                            <button class="preset-key-btn" onclick="usePresetKey(crypto.randomUUID())">Random UUID</button>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>Security Note</h4>
+                        <ul>
+                            <li>Keep your secret key confidential</li>
+                            <li>For optimal security, use strong, randomly generated keys</li>
+                            <li>Never transmit your secret key over insecure channels</li>
+                            <li>HMAC operations are performed entirely in your browser</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Key Generator Tab Content -->
+                <div id="key-generator" class="tab-content">
+                    <div class="options">
+                        <h3>Key Options</h3>
+                        <div class="key-generation-options">
+                            <div class="key-length-options">
+                                <div class="key-length-option active" data-length="16">16 bytes (128 bits)</div>
+                                <div class="key-length-option" data-length="24">24 bytes (192 bits)</div>
+                                <div class="key-length-option" data-length="32">32 bytes (256 bits)</div>
+                                <div class="key-length-option" data-length="64">64 bytes (512 bits)</div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="custom-length">Custom Length (bytes)</label>
+                                <input type="number" id="custom-length" min="8" max="512" value="32" placeholder="Enter custom length">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="key-format-select">Key Format</label>
+                                <select id="key-format-select">
+                                    <option value="hex">Hexadecimal</option>
+                                    <option value="base64">Base64</option>
+                                    <option value="base64url">Base64 URL Safe</option>
+                                    <option value="raw">Raw Bytes</option>
+                                    <option value="ascii">ASCII (Printable)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="generate-key-btn" class="btn btn-primary">Generate Key</button>
+                        <button id="copy-key-btn" class="btn btn-secondary">Copy Key</button>
+                        <button id="download-key-btn" class="btn btn-secondary">Download Key</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Generated Key</h3>
+                        <div class="hash-result" id="generated-key-result">
+                            <span class="hash-label" id="generated-key-label">32-byte (256-bit) Hex Key:</span>
+                            <div id="generated-key-value">Key will be displayed here...</div>
+                            <button class="copy-btn" onclick="copyToClipboard('generated-key-value')">Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Key Generation Notes</h4>
+                        <ul>
+                            <li>Keys are generated using cryptographically secure random numbers</li>
+                            <li>For HMAC-SHA-256, a 32-byte key is recommended</li>
+                            <li>For HMAC-SHA-512, a 64-byte key is recommended</li>
+                            <li>Store your generated keys securely</li>
+                            <li>Generated keys are only available in your browser</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- HMAC Verify Tab Content -->
+                <div id="hmac-verify" class="tab-content">
+                    <div class="input-group">
+                        <label for="verify-message-input">Message</label>
+                        <textarea id="verify-message-input" placeholder="Enter the message to verify...">The quick brown fox jumps over the lazy dog</textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="verify-key-input">Secret Key</label>
+                        <div class="key-input-container">
+                            <input type="password" id="verify-key-input" placeholder="Enter your secret key..." value="secret-key">
+                            <button type="button" class="toggle-visibility" onclick="toggleKeyVisibility('verify-key-input', this)">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="compare-section">
+                        <h3>Compare HMAC Values</h3>
+                        <div class="compare-inputs">
+                            <div class="input-group">
+                                <label for="computed-hmac-input">Computed HMAC</label>
+                                <textarea id="computed-hmac-input" placeholder="Computed HMAC will appear here..." readonly></textarea>
+                            </div>
+                            <div class="input-group">
+                                <label for="expected-hmac-input">Expected HMAC</label>
+                                <textarea id="expected-hmac-input" placeholder="Enter the expected HMAC to verify..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="options">
+                            <h3>Verification Options</h3>
+                            <div class="algorithm-options">
+                                <div class="algorithm-option active" data-algorithm="SHA-256">HMAC-SHA-256</div>
+                                <div class="algorithm-option" data-algorithm="SHA-1">HMAC-SHA-1</div>
+                                <div class="algorithm-option" data-algorithm="SHA-384">HMAC-SHA-384</div>
+                                <div class="algorithm-option" data-algorithm="SHA-512">HMAC-SHA-512</div>
+                            </div>
+
+                            <div class="output-format-options">
+                                <div class="format-option active" data-format="hex">Hexadecimal</div>
+                                <div class="format-option" data-format="upper-hex">UPPERCASE HEX</div>
+                                <div class="format-option" data-format="base64">Base64</div>
+                                <div class="format-option" data-format="base64url">Base64 URL Safe</div>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button id="compute-verification-hmac-btn" class="btn btn-primary">Compute HMAC</button>
+                            <button id="verify-hmac-btn" class="btn btn-success">Verify HMAC</button>
+                            <button id="clear-verify-btn" class="btn btn-secondary">Clear</button>
+                        </div>
+
+                        <div class="comparison-result" id="verification-result" style="display: none;">
+                            <!-- Verification result will be displayed here -->
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>About HMAC Verification</h4>
+                        <ul>
+                            <li>HMAC verification ensures that a message has not been tampered with</li>
+                            <li>Both parties must know the same secret key</li>
+                            <li>The sender computes the HMAC and sends both the message and HMAC</li>
+                            <li>The receiver computes the HMAC of the received message and compares it to the received HMAC</li>
+                            <li>If the HMACs match, the message is authentic and has not been altered</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>About HMAC</h4>
+                    <ul>
+                        <li><strong>HMAC</strong> stands for Keyed-Hash Message Authentication Code</li>
+                        <li>HMAC combines a cryptographic hash function with a secret key</li>
+                        <li>It provides both message integrity and authentication</li>
+                        <li>HMAC is resistant to collision attacks, even if the underlying hash function is not</li>
+                        <li>Common use cases include API authentication, message signing, and data integrity verification</li>
+                        <li>All operations are performed locally in your browser, your data never leaves your device</li>
+                    </ul>
+                </div>
+
+                <div class="danger-box">
+                    <h4>Important Security Considerations</h4>
+                    <ul>
+                        <li>Never share your secret keys with unauthorized parties</li>
+                        <li>Rotate your keys periodically to maintain security</li>
+                        <li>Use a key management system for production applications</li>
+                        <li>HMAC-SHA-1 is less secure than SHA-2 based HMACs and should be avoided for new applications</li>
+                        <li>Always use HTTPS when transmitting HMACs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="related-tools-grid">
+                    <div class="related-tool-card">
+                        <a href="sha-encryption.html">
+                            <div class="related-tool-icon">🔒</div>
+                            <h4 class="related-tool-title">SHA Hash Generator</h4>
+                            <p class="related-tool-desc">Generate SHA-1, SHA-256, SHA-384, SHA-512 hashes</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="aes-encryption.html">
+                            <div class="related-tool-icon">🔑</div>
+                            <h4 class="related-tool-title">AES Encryption</h4>
+                            <p class="related-tool-desc">Encrypt and decrypt data using AES algorithm</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="jwt-encryption.html">
+                            <div class="related-tool-icon">📝</div>
+                            <h4 class="related-tool-title">JWT Encryption</h4>
+                            <p class="related-tool-desc">Create and verify JSON Web Tokens</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Powerful encryption tools to secure your data. All tools are free to use and work directly in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../encry.html">Encryption Tools</a>
+                        <a href="../dav.html">Dav</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // HMAC implementation using Web Crypto API
+        class HMACGenerator {
+            constructor() {
+                // Check if Web Crypto API is supported
+                this.isSupported = typeof window !== 'undefined' && window.crypto && window.crypto.subtle;
+                if (!this.isSupported) {
+                    console.warn('Web Crypto API not supported. Some features may not work.');
+                }
+            }
+
+            // Generate HMAC from message and key using specified algorithm
+            async generateHMAC(message, key, algorithm) {
+                if (!this.isSupported) {
+                    throw new Error('Web Crypto API not supported');
+                }
+
+                try {
+                    // Convert message to ArrayBuffer
+                    const encoder = new TextEncoder();
+                    const messageBuffer = encoder.encode(message);
+
+                    // Convert key to CryptoKey
+                    const keyBuffer = encoder.encode(key);
+                    const cryptoKey = await crypto.subtle.importKey(
+                        'raw',
+                        keyBuffer,
+                        { name: 'HMAC', hash: algorithm },
+                        false,
+                        ['sign', 'verify']
+                    );
+
+                    // Generate HMAC
+                    const hmacBuffer = await crypto.subtle.sign('HMAC', cryptoKey, messageBuffer);
+                    return hmacBuffer;
+                } catch (error) {
+                    console.error('Error generating HMAC:', error);
+                    throw new Error('Failed to generate HMAC: ' + error.message);
+                }
+            }
+
+            // Verify HMAC
+            async verifyHMAC(message, key, expectedHMAC, algorithm, format) {
+                try {
+                    // Generate HMAC from message and key
+                    const hmacBuffer = await this.generateHMAC(message, key, algorithm);
+                    const computedHMAC = this.formatHMAC(hmacBuffer, format);
+
+                    // Compare with expected HMAC
+                    return this.compareHMACs(computedHMAC, expectedHMAC, format);
+                } catch (error) {
+                    console.error('Error verifying HMAC:', error);
+                    throw error;
+                }
+            }
+
+            // Generate random key of specified length
+            generateRandomKey(length = 32, format = 'hex') {
+                if (!this.isSupported) {
+                    throw new Error('Web Crypto API not supported');
+                }
+
+                try {
+                    // Generate random bytes
+                    const array = new Uint8Array(length);
+                    window.crypto.getRandomValues(array);
+
+                    // Format according to specified format
+                    return this.formatKey(array, format);
+                } catch (error) {
+                    console.error('Error generating random key:', error);
+                    throw new Error('Failed to generate random key: ' + error.message);
+                }
+            }
+
+            // Format HMAC buffer to string
+            formatHMAC(buffer, format) {
+                switch (format) {
+                    case 'hex':
+                        return this.bufferToHex(buffer);
+                    case 'upper-hex':
+                        return this.bufferToHex(buffer).toUpperCase();
+                    case 'base64':
+                        return this.bufferToBase64(buffer);
+                    case 'base64url':
+                        return this.bufferToBase64Url(buffer);
+                    default:
+                        return this.bufferToHex(buffer);
+                }
+            }
+
+            // Format key array to string
+            formatKey(array, format) {
+                switch (format) {
+                    case 'hex':
+                        return this.arrayToHex(array);
+                    case 'base64':
+                        return btoa(String.fromCharCode.apply(null, array));
+                    case 'base64url':
+                        return btoa(String.fromCharCode.apply(null, array))
+                            .replace(/\+/g, '-')
+                            .replace(/\//g, '_')
+                            .replace(/=+$/, '');
+                    case 'ascii':
+                        return this.arrayToPrintableASCII(array);
+                    default:
+                        return this.arrayToHex(array);
+                }
+            }
+
+            // Convert ArrayBuffer to hex string
+            bufferToHex(buffer) {
+                const hexCodes = [];
+                const view = new DataView(buffer);
+                for (let i = 0; i < view.byteLength; i += 4) {
+                    const value = view.getUint32(i);
+                    const stringValue = value.toString(16);
+                    const padding = '00000000';
+                    const paddedValue = (padding + stringValue).slice(-padding.length);
+                    hexCodes.push(paddedValue);
+                }
+                return hexCodes.join('');
+            }
+
+            // Convert Uint8Array to hex string
+            arrayToHex(array) {
+                return Array.from(array, byte => 
+                    byte.toString(16).padStart(2, '0')
+                ).join('');
+            }
+
+            // Convert ArrayBuffer to Base64 string
+            bufferToBase64(buffer) {
+                const bytes = new Uint8Array(buffer);
+                let binary = '';
+                for (let i = 0; i < bytes.byteLength; i++) {
+                    binary += String.fromCharCode(bytes[i]);
+                }
+                return btoa(binary);
+            }
+
+            // Convert ArrayBuffer to Base64 URL Safe string
+            bufferToBase64Url(buffer) {
+                return this.bufferToBase64(buffer)
+                    .replace(/\+/g, '-')
+                    .replace(/\//g, '_')
+                    .replace(/=+$/, '');
+            }
+
+            // Convert Uint8Array to printable ASCII string
+            arrayToPrintableASCII(array) {
+                // Use printable ASCII characters (32-126)
+                return Array.from(array, byte => 
+                    String.fromCharCode(32 + (byte % 95))
+                ).join('');
+            }
+
+            // Compare two HMACs
+            compareHMACs(hmac1, hmac2, format) {
+                // For hex formats, do case-insensitive comparison
+                if (format === 'hex' || format === 'upper-hex') {
+                    return hmac1.toLowerCase() === hmac2.toLowerCase();
+                }
+                // For other formats, do exact comparison
+                return hmac1 === hmac2;
+            }
+
+            // Calculate key strength
+            calculateKeyStrength(key) {
+                // Simple key strength calculator
+                let score = 0;
+                
+                // Length check
+                if (key.length >= 32) score += 3;
+                else if (key.length >= 20) score += 2;
+                else if (key.length >= 12) score += 1;
+                
+                // Character variety checks
+                if (/[a-z]/.test(key)) score += 1;
+                if (/[A-Z]/.test(key)) score += 1;
+                if (/[0-9]/.test(key)) score += 1;
+                if (/[^a-zA-Z0-9]/.test(key)) score += 2;
+                
+                // Determine strength
+                if (score >= 8) return { strength: 'strong', message: 'Key strength: Strong' };
+                else if (score >= 5) return { strength: 'medium', message: 'Key strength: Medium' };
+                else return { strength: 'weak', message: 'Key strength: Weak - Consider using a stronger key' };
+            }
+        }
+
+        // Toggle password visibility
+        function toggleKeyVisibility(inputId, button) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.textContent = '👁️‍🗨️';
+            } else {
+                input.type = 'password';
+                button.textContent = '👁️';
+            }
+        }
+
+        // Copy content to clipboard
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    // Show feedback
+                    const originalText = element.textContent;
+                    element.textContent = 'Copied to clipboard!';
+                    setTimeout(() => {
+                        element.textContent = originalText;
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                    alert('Failed to copy text: ' + err.message);
+                });
+        }
+
+        // Use preset message
+        function usePresetMessage(message) {
+            document.getElementById('message-input').value = message;
+        }
+
+        // Use preset key
+        function usePresetKey(key) {
+            document.getElementById('key-input').value = key;
+            updateKeyStrength(key);
+        }
+
+        // Update key strength indicator
+        function updateKeyStrength(key) {
+            const strengthMeter = document.getElementById('key-strength-fill').parentElement;
+            const strengthText = document.getElementById('key-strength-text');
+            
+            // Clear existing classes
+            strengthMeter.classList.remove('key-strength-weak', 'key-strength-medium', 'key-strength-strong');
+            
+            // Calculate strength
+            const hmacGenerator = new HMACGenerator();
+            const { strength, message } = hmacGenerator.calculateKeyStrength(key);
+            
+            // Update UI
+            strengthMeter.classList.add(`key-strength-${strength}`);
+            strengthText.textContent = message;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create HMAC generator instance
+            const hmacGenerator = new HMACGenerator();
+
+            // Initialize UI elements
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            // Initialize HMAC generator tab elements
+            const messageInput = document.getElementById('message-input');
+            const keyInput = document.getElementById('key-input');
+            const algorithmOptions = document.querySelectorAll('#hmac-generator .algorithm-options .algorithm-option');
+            const formatOptions = document.querySelectorAll('#hmac-generator .output-format-options .format-option');
+            const generateHMACBtn = document.getElementById('generate-hmac-btn');
+            const clearHMACBtn = document.getElementById('clear-hmac-btn');
+            const generateRandomKeyBtn = document.getElementById('generate-random-key-btn');
+            const hmacValue = document.getElementById('hmac-value');
+            const hmacResult = document.getElementById('hmac-result');
+            const generationTime = document.getElementById('generation-time');
+            
+            // Initialize Key generator tab elements
+            const keyLengthOptions = document.querySelectorAll('#key-generator .key-length-option');
+            const customLengthInput = document.getElementById('custom-length');
+            const keyFormatSelect = document.getElementById('key-format-select');
+            const generateKeyBtn = document.getElementById('generate-key-btn');
+            const copyKeyBtn = document.getElementById('copy-key-btn');
+            const downloadKeyBtn = document.getElementById('download-key-btn');
+            const generatedKeyValue = document.getElementById('generated-key-value');
+            const generatedKeyLabel = document.getElementById('generated-key-label');
+            
+            // Initialize HMAC verify tab elements
+            const verifyMessageInput = document.getElementById('verify-message-input');
+            const verifyKeyInput = document.getElementById('verify-key-input');
+            const computedHMACInput = document.getElementById('computed-hmac-input');
+            const expectedHMACInput = document.getElementById('expected-hmac-input');
+            const verifyAlgorithmOptions = document.querySelectorAll('#hmac-verify .algorithm-options .algorithm-option');
+            const verifyFormatOptions = document.querySelectorAll('#hmac-verify .output-format-options .format-option');
+            const computeVerificationHMACBtn = document.getElementById('compute-verification-hmac-btn');
+            const verifyHMACBtn = document.getElementById('verify-hmac-btn');
+            const clearVerifyBtn = document.getElementById('clear-verify-btn');
+            const verificationResult = document.getElementById('verification-result');
+
+            // Set up tab switching
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active content
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Set up algorithm selection
+            function setupAlgorithmOptions(options) {
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        options.forEach(opt => opt.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+            }
+
+            setupAlgorithmOptions(algorithmOptions);
+            setupAlgorithmOptions(verifyAlgorithmOptions);
+
+            // Set up format selection
+            function setupFormatOptions(options) {
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        options.forEach(opt => opt.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+            }
+
+            setupFormatOptions(formatOptions);
+            setupFormatOptions(verifyFormatOptions);
+
+            // Set up key length selection
+            keyLengthOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    keyLengthOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    const length = this.getAttribute('data-length');
+                    customLengthInput.value = length;
+                });
+            });
+
+            // Get selected algorithm
+            function getSelectedAlgorithm(options) {
+                return options.find(option => option.classList.contains('active')).getAttribute('data-algorithm');
+            }
+
+            // Get selected format
+            function getSelectedFormat(options) {
+                return options.find(option => option.classList.contains('active')).getAttribute('data-format');
+            }
+
+            // Update key strength on input
+            keyInput.addEventListener('input', function() {
+                updateKeyStrength(this.value);
+            });
+
+            // Generate HMAC
+            generateHMACBtn.addEventListener('click', async function() {
+                try {
+                    const message = messageInput.value;
+                    const key = keyInput.value;
+                    const algorithm = getSelectedAlgorithm(algorithmOptions);
+                    const format = getSelectedFormat(formatOptions);
+
+                    if (!message) {
+                        alert('Please enter a message');
+                        return;
+                    }
+
+                    if (!key) {
+                        alert('Please enter a secret key');
+                        return;
+                    }
+
+                    // Show loading
+                    generateHMACBtn.disabled = true;
+                    generateHMACBtn.textContent = 'Generating...';
+                    hmacValue.textContent = 'Generating HMAC...';
+
+                    // Measure time
+                    const startTime = performance.now();
+
+                    // Generate HMAC
+                    const hmacBuffer = await hmacGenerator.generateHMAC(message, key, algorithm);
+                    const hmacString = hmacGenerator.formatHMAC(hmacBuffer, format);
+
+                    // Calculate generation time
+                    const endTime = performance.now();
+                    const timeMs = (endTime - startTime).toFixed(2);
+
+                    // Update UI
+                    hmacValue.textContent = hmacString;
+                    hmacResult.querySelector('.hash-label').textContent = `HMAC-${algorithm}:`;
+                    generationTime.textContent = `Generated in ${timeMs}ms`;
+                } catch (error) {
+                    console.error('Error generating HMAC:', error);
+                    hmacValue.textContent = 'Error: ' + error.message;
+                    generationTime.textContent = '';
+                } finally {
+                    generateHMACBtn.disabled = false;
+                    generateHMACBtn.textContent = 'Generate HMAC';
+                }
+            });
+
+            // Clear HMAC form
+            clearHMACBtn.addEventListener('click', function() {
+                messageInput.value = '';
+                keyInput.value = '';
+                hmacValue.textContent = 'HMAC will be displayed here...';
+                generationTime.textContent = '';
+                updateKeyStrength('');
+            });
+
+            // Generate random key for HMAC
+            generateRandomKeyBtn.addEventListener('click', function() {
+                try {
+                    // Generate 32-byte (256-bit) key in hex format
+                    const randomKey = hmacGenerator.generateRandomKey(32, 'hex');
+                    keyInput.value = randomKey;
+                    updateKeyStrength(randomKey);
+                } catch (error) {
+                    console.error('Error generating random key:', error);
+                    alert('Failed to generate random key: ' + error.message);
+                }
+            });
+
+            // Generate random key
+            generateKeyBtn.addEventListener('click', function() {
+                try {
+                    const length = parseInt(customLengthInput.value);
+                    const format = keyFormatSelect.value;
+
+                    // Validate length
+                    if (isNaN(length) || length < 8 || length > 512) {
+                        alert('Please enter a valid key length (8-512 bytes)');
+                        return;
+                    }
+
+                    // Show loading
+                    generateKeyBtn.disabled = true;
+                    generateKeyBtn.textContent = 'Generating...';
+
+                    // Generate key
+                    const key = hmacGenerator.generateRandomKey(length, format);
+
+                    // Update UI
+                    generatedKeyValue.textContent = key;
+                    generatedKeyLabel.textContent = `${length}-byte (${length * 8}-bit) ${format.toUpperCase()} Key:`;
+
+                    // Enable copy button
+                    copyKeyBtn.disabled = false;
+                    downloadKeyBtn.disabled = false;
+                } catch (error) {
+                    console.error('Error generating key:', error);
+                    generatedKeyValue.textContent = 'Error: ' + error.message;
+                } finally {
+                    generateKeyBtn.disabled = false;
+                    generateKeyBtn.textContent = 'Generate Key';
+                }
+            });
+
+            // Copy generated key
+            copyKeyBtn.addEventListener('click', function() {
+                copyToClipboard('generated-key-value');
+            });
+
+            // Download generated key
+            downloadKeyBtn.addEventListener('click', function() {
+                const key = generatedKeyValue.textContent;
+                const length = parseInt(customLengthInput.value);
+                const format = keyFormatSelect.value;
+
+                // Create content
+                const content = `Key Information:\n` +
+                               `Length: ${length} bytes (${length * 8} bits)\n` +
+                               `Format: ${format}\n` +
+                               `Generated: ${new Date().toISOString()}\n\n` +
+                               `Key:\n${key}`;
+
+                // Create download link
+                const blob = new Blob([content], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `hmac-key-${length}bytes-${Date.now()}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+
+            // Compute verification HMAC
+            computeVerificationHMACBtn.addEventListener('click', async function() {
+                try {
+                    const message = verifyMessageInput.value;
+                    const key = verifyKeyInput.value;
+                    const algorithm = getSelectedAlgorithm(verifyAlgorithmOptions);
+                    const format = getSelectedFormat(verifyFormatOptions);
+
+                    if (!message) {
+                        alert('Please enter a message');
+                        return;
+                    }
+
+                    if (!key) {
+                        alert('Please enter a secret key');
+                        return;
+                    }
+
+                    // Show loading
+                    computeVerificationHMACBtn.disabled = true;
+                    computeVerificationHMACBtn.textContent = 'Computing...';
+                    computedHMACInput.value = 'Computing HMAC...';
+
+                    // Generate HMAC
+                    const hmacBuffer = await hmacGenerator.generateHMAC(message, key, algorithm);
+                    const hmacString = hmacGenerator.formatHMAC(hmacBuffer, format);
+
+                    // Update UI
+                    computedHMACInput.value = hmacString;
+                } catch (error) {
+                    console.error('Error computing HMAC:', error);
+                    computedHMACInput.value = 'Error: ' + error.message;
+                } finally {
+                    computeVerificationHMACBtn.disabled = false;
+                    computeVerificationHMACBtn.textContent = 'Compute HMAC';
+                }
+            });
+
+            // Verify HMAC
+            verifyHMACBtn.addEventListener('click', async function() {
+                try {
+                    const message = verifyMessageInput.value;
+                    const key = verifyKeyInput.value;
+                    const expectedHMAC = expectedHMACInput.value;
+                    const algorithm = getSelectedAlgorithm(verifyAlgorithmOptions);
+                    const format = getSelectedFormat(verifyFormatOptions);
+
+                    if (!message) {
+                        alert('Please enter a message');
+                        return;
+                    }
+
+                    if (!key) {
+                        alert('Please enter a secret key');
+                        return;
+                    }
+
+                    if (!expectedHMAC) {
+                        alert('Please enter the expected HMAC');
+                        return;
+                    }
+
+                    // Show loading
+                    verifyHMACBtn.disabled = true;
+                    verifyHMACBtn.textContent = 'Verifying...';
+                    verificationResult.style.display = 'none';
+
+                    // Verify HMAC
+                    const isValid = await hmacGenerator.verifyHMAC(message, key, expectedHMAC, algorithm, format);
+
+                    // Update UI
+                    verificationResult.style.display = 'block';
+                    if (isValid) {
+                        verificationResult.textContent = '✓ HMAC Verification Successful! The message is authentic.';
+                        verificationResult.className = 'comparison-result match';
+                    } else {
+                        verificationResult.textContent = '✗ HMAC Verification Failed! The message may have been tampered with.';
+                        verificationResult.className = 'comparison-result no-match';
+                    }
+                } catch (error) {
+                    console.error('Error verifying HMAC:', error);
+                    verificationResult.style.display = 'block';
+                    verificationResult.textContent = 'Error: ' + error.message;
+                    verificationResult.className = 'comparison-result no-match';
+                } finally {
+                    verifyHMACBtn.disabled = false;
+                    verifyHMACBtn.textContent = 'Verify HMAC';
+                }
+            });
+
+            // Clear verification form
+            clearVerifyBtn.addEventListener('click', function() {
+                verifyMessageInput.value = '';
+                verifyKeyInput.value = '';
+                computedHMACInput.value = '';
+                expectedHMACInput.value = '';
+                verificationResult.style.display = 'none';
+            });
+
+            // Initialize key strength
+            updateKeyStrength(keyInput.value);
+
+            // Initialize copy and download buttons state
+            copyKeyBtn.disabled = true;
+            downloadKeyBtn.disabled = true;
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl/Cmd + Enter to generate HMAC or verify
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    if (document.getElementById('hmac-generator').classList.contains('active')) {
+                        generateHMACBtn.click();
+                    } else if (document.getElementById('key-generator').classList.contains('active')) {
+                        generateKeyBtn.click();
+                    } else if (document.getElementById('hmac-verify').classList.contains('active')) {
+                        if (e.shiftKey) {
+                            verifyHMACBtn.click();
+                        } else {
+                            computeVerificationHMACBtn.click();
+                        }
+                    }
+                }
+
+                // Escape to clear active tab
+                if (e.key === 'Escape') {
+                    if (document.getElementById('hmac-generator').classList.contains('active')) {
+                        clearHMACBtn.click();
+                    } else if (document.getElementById('key-generator').classList.contains('active')) {
+                        generatedKeyValue.textContent = 'Key will be displayed here...';
+                        copyKeyBtn.disabled = true;
+                        downloadKeyBtn.disabled = true;
+                    } else if (document.getElementById('hmac-verify').classList.contains('active')) {
+                        clearVerifyBtn.click();
+                    }
+                }
+            });
+
+            // Pre-generate an HMAC on page load
+            window.addEventListener('load', function() {
+                setTimeout(() => {
+                    generateHMACBtn.click();
+                }, 500);
+            });
+
+            // Add keyboard focus effects to interactive elements
+            document.querySelectorAll('.btn, .algorithm-option, .format-option, .key-length-option').forEach(elem => {
+                elem.addEventListener('focus', function() {
+                    this.style.outline = '2px solid #673AB7';
+                    this.style.outlineOffset = '2px';
+                });
+                
+                elem.addEventListener('blur', function() {
+                    this.style.outline = 'none';
+                    this.style.outlineOffset = '0';
+                });
+            });
+
+            // Add tooltips for buttons
+            const tooltips = {
+                'generate-hmac-btn': 'Generate HMAC (Ctrl+Enter)',
+                'clear-hmac-btn': 'Clear form (Escape)',
+                'generate-random-key-btn': 'Generate random 256-bit key',
+                'generate-key-btn': 'Generate random key (Ctrl+Enter)',
+                'copy-key-btn': 'Copy key to clipboard',
+                'download-key-btn': 'Download key as text file',
+                'compute-verification-hmac-btn': 'Compute HMAC (Ctrl+Enter)',
+                'verify-hmac-btn': 'Verify HMAC (Ctrl+Shift+Enter)',
+                'clear-verify-btn': 'Clear form (Escape)'
+            };
+
+            Object.entries(tooltips).forEach(([id, text]) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.setAttribute('title', text);
+                    
+                    // Add custom tooltip styling
+                    element.addEventListener('mouseenter', function() {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'custom-tooltip';
+                        tooltip.textContent = text;
+                        tooltip.style.cssText = `
+                            position: absolute;
+                            background: #333;
+                            color: white;
+                            padding: 5px 10px;
+                            border-radius: 4px;
+                            font-size: 12px;
+                            white-space: nowrap;
+                            z-index: 1000;
+                            pointer-events: none;
+                        `;
+                        document.body.appendChild(tooltip);
+                        
+                        const rect = this.getBoundingClientRect();
+                        tooltip.style.left = `${rect.left + rect.width / 2 - tooltip.offsetWidth / 2}px`;
+                        tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
+                        
+                        if (tooltip.offsetLeft < 0) {
+                            tooltip.style.left = '0px';
+                        } else if (tooltip.offsetLeft + tooltip.offsetWidth > window.innerWidth) {
+                            tooltip.style.left = `${window.innerWidth - tooltip.offsetWidth}px`;
+                        }
+                        
+                        this.tooltip = tooltip;
+                    });
+                    
+                    element.addEventListener('mouseleave', function() {
+                        if (this.tooltip) {
+                            document.body.removeChild(this.tooltip);
+                            this.tooltip = null;
+                        }
+                    });
+                }
+            });
+
+            // Add dark/light mode toggle suggestion
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                const style = document.createElement('style');
+                style.textContent = `
+                    body {
+                        background-color: #121212;
+                        color: #f0f0f0;
+                    }
+                    .tool-content {
+                        background-color: #1e1e1e;
+                        color: #f0f0f0;
+                    }
+                    .tool-header h1 {
+                        color: #f0f0f0;
+                    }
+                    .input-group textarea,
+                    .input-group input {
+                        background-color: #2d2d2d;
+                        border-color: #444;
+                        color: #f0f0f0;
+                    }
+                    .hash-result {
+                        background-color: #2d2d2d;
+                        border-color: #444;
+                        color: #f0f0f0;
+                    }
+                    .options {
+                        background-color: #2d2d2d;
+                    }
+                    .info-box,
+                    .warning-box,
+                    .danger-box {
+                        background-color: rgba(0, 0, 0, 0.3);
+                    }
+                    .related-tool-card {
+                        background-color: #1e1e1e;
+                        border-color: #444;
+                    }
+                    .related-tool-title {
+                        color: #f0f0f0;
+                    }
+                    .related-tool-desc {
+                        color: #ccc;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        });
+    </script>
+</body>
+</html>

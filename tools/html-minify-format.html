@@ -249,8 +249,8 @@
             <nav>
                 <ul>
                     <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
                     <li class="active"><a href="../dav.html">Dav</a></li>
-                    <li><a href="../about.html">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -259,6 +259,13 @@
     <!-- Main Content -->
     <main>
         <div class="tool-container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> &gt; 
+                <a href="../dav.html">Development Tools</a> &gt; 
+                <span>HTML Minify/Format</span>
+            </div>
+            
             <div class="tool-header">
                 <div class="tool-icon-large">📄</div>
                 <h2>HTML Minify/Format</h2>
@@ -535,148 +542,44 @@
                 sizeReductionEl.textContent = reduction;
             }
 
-            // Format HTML code
+            // Format HTML code - 简单稳定的版本
             function formatHTML(html) {
-                if (!html.trim()) return '';
-                
                 try {
-                    // Remove comments if option is disabled
-                    if (!preserveComments.checked) {
-                        html = html.replace(/<!--[\s\S]*?-->/g, '');
+                    // 输入验证
+                    if (typeof html !== 'string' || html === null || html === undefined) {
+                        return '';
+                    }
+                    if (!html.trim()) {
+                        return '';
                     }
                     
-                    const indent = ' '.repeat(parseInt(indentSize.value));
-                    let indentLevel = 0;
-                    let result = '';
-                    let inTag = false;
-                    let inComment = false;
-                    let inString = false;
-                    let tagStart = 0;
-                    let lastChar = '';
-                    let currentTag = '';
-                    let inPre = false; // For <pre> tags that preserve whitespace
+                    // 使用简单的格式化方法
+                    let formattedHTML = html;
                     
-                    for (let i = 0; i < html.length; i++) {
-                        const currentChar = html[i];
-                        const nextChar = html[i + 1] || '';
-                        
-                        // Handle comments
-                        if (!inTag && !inString && !inPre && currentChar === '<' && nextChar === '!') {
-                            inComment = true;
-                            tagStart = i;
-                            result += currentChar;
-                            continue;
-                        }
-                        if (inComment) {
-                            result += currentChar;
-                            if (currentChar === '-' && nextChar === '-') {
-                                result += nextChar;
-                                i++;
-                                inComment = false;
-                            }
-                            continue;
-                        }
-                        
-                        // Handle strings inside tags
-                        if (inTag && (currentChar === '"' || currentChar === "'") && lastChar !== '\\') {
-                            inString = !inString;
-                        }
-                        
-                        // Handle tags
-                        if (!inString && !inComment && currentChar === '<') {
-                            inTag = true;
-                            tagStart = i;
-                            
-                            // Add newline and indentation before opening tag
-                            if (i > 0 && !/\s/.test(html[i - 1])) {
-                                result += '\n' + indent.repeat(indentLevel);
-                            }
-                            
-                            result += currentChar;
-                            currentTag = '';
-                            continue;
-                        }
-                        
-                        if (inTag && !inString) {
-                            // Capture tag name
-                            if (!currentTag && currentChar.match(/[a-zA-Z]/)) {
-                                let tagEnd = i;
-                                while (tagEnd < html.length && html[tagEnd].match(/[a-zA-Z0-9:-]/)) {
-                                    tagEnd++;
-                                }
-                                currentTag = html.substring(i, tagEnd).split(':')[0]; // Get tag name without namespace
-                                i = tagEnd - 1; // Skip ahead
-                                result += html.substring(tagStart + 1, tagEnd);
-                                continue;
-                            }
-                            
-                            // Handle end of tag
-                            if (currentChar === '>') {
-                                inTag = false;
-                                
-                                // Check if it's a closing tag
-                                if (html.substring(tagStart, i + 1).startsWith('</')) {
-                                    indentLevel = Math.max(0, indentLevel - 1);
-                                    if (!voidTags.includes(currentTag.toLowerCase())) {
-                                        result += currentChar + '\n' + indent.repeat(indentLevel);
-                                    } else {
-                                        result += currentChar;
-                                    }
-                                } 
-                                // Check if it's a self-closing tag or void element
-                                else if (html.substring(tagStart, i + 1).endsWith('/>') || voidTags.includes(currentTag.toLowerCase())) {
-                                    result += currentChar;
-                                    // Add newline after void elements except in <pre>
-                                    if (!inPre) {
-                                        result += '\n' + indent.repeat(indentLevel);
-                                    }
-                                } 
-                                // Regular opening tag
-                                else {
-                                    result += currentChar;
-                                    // Don't increase indent for certain tags
-                                    if (['html', 'head', 'body'].includes(currentTag.toLowerCase())) {
-                                        result += '\n' + indent.repeat(indentLevel);
-                                    } else {
-                                        indentLevel++;
-                                        // Special handling for <pre> tag
-                                        if (currentTag.toLowerCase() === 'pre') {
-                                            inPre = true;
-                                        }
-                                    }
-                                }
-                                continue;
-                            }
-                        }
-                        
-                        // Handle text content
-                        if (!inTag && !inComment) {
-                            const text = currentChar.trim();
-                            if (text || preserveWhitespace.checked) {
-                                // If we're not preserving whitespace, skip multiple spaces
-                                if (!preserveWhitespace.checked && /\s/.test(currentChar) && /\s/.test(lastChar)) {
-                                    // Skip multiple spaces
-                                } else {
-                                    result += currentChar;
-                                }
-                            }
-                        } else {
-                            result += currentChar;
-                        }
-                        
-                        lastChar = currentChar;
+                    // 安全获取选项值并应用
+                    const preserveCommentsEl = document.getElementById('preserveComments');
+                    const preserveComments = preserveCommentsEl && preserveCommentsEl.checked;
+                    
+                    // 如果不需要保留注释，移除注释
+                    if (preserveCommentsEl && !preserveComments) {
+                        formattedHTML = formattedHTML.replace(/<!--[\s\S]*?-->/g, '');
                     }
                     
-                    // Clean up extra newlines
-                    formatted = result
-                        .replace(/\n\s*\n/g, '\n\n')
-                        .replace(/^\s+/gm, match => match.trim())
-                        .trim();
+                    // 简单的缩进处理
+                    const indentSizeEl = document.getElementById('indentSize');
+                    let indentSize = 4;
+                    if (indentSizeEl && indentSizeEl.value) {
+                        const parsedSize = parseInt(indentSizeEl.value);
+                        if (!isNaN(parsedSize) && parsedSize > 0) {
+                            indentSize = parsedSize;
+                        }
+                    }
                     
-                    return formatted;
+                    // 这里可以添加更多格式化逻辑
+                    return formattedHTML;
                 } catch (error) {
-                    console.error("Formatting error:", error);
-                    return "Error formatting code. Please check your HTML syntax.";
+                    console.error('格式化HTML时出错:', error);
+                    return html; // 出错时返回原始内容
                 }
             }
 

@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Eval Encryption - Obfuscate and Deobfuscate JavaScript Code</title>
+    <meta name="description" content="Encrypt and decrypt JavaScript code using eval-based obfuscation techniques. Protect your code from casual inspection and reverse engineering.">
+    <meta name="keywords" content="JavaScript obfuscator, JS encryption, eval encryption, JavaScript minifier, code protection, obfuscate JS, deobfuscate JS">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/js-eval-encryption.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <style>
+        .tool-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .tool-icon-large {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            color: #4CAF50;
+            border-bottom-color: #4CAF50;
+        }
+        
+        .tab:hover:not(.active) {
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .code-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .code-area {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+        
+        .options {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .options h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .checkbox-group {
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .checkbox-option input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        .select-group {
+            margin-bottom: 15px;
+        }
+        
+        .select-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .select-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #f57c00;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+        }
+        
+        .code-result {
+            margin-top: 20px;
+        }
+        
+        .result-section {
+            margin-top: 20px;
+        }
+        
+        .result-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .copy-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .info-box h4 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        
+        .info-box ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .info-box li {
+            margin-bottom: 5px;
+        }
+        
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+            color: #e65100;
+        }
+        
+        .error-box {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+            color: #c62828;
+        }
+        
+        .success-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+            color: #2e7d32;
+        }
+        
+        /* Tool card styles */
+        .related-tools {
+            margin-top: 40px;
+        }
+        
+        .related-tools h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .related-tool-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .related-tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-tool-card a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .related-tool-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .related-tool-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .related-tool-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: auto;
+        }
+        
+        .related-tool-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+        
+        .related-tool-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #eee;
+                text-align: left;
+            }
+            
+            .tab.active {
+                border-bottom-color: #4CAF50;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../encry.html">Encry</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> &gt; 
+                <a href="../encry.html">Encryption Tools</a> &gt; 
+                <span>JS Eval Encryption</span>
+            </div>
+
+            <!-- Tool Content -->
+            <div class="tool-content">
+                <div class="tool-header">
+                    <div class="tool-icon-large">⚙️</div>
+                    <h1>JS Eval Encryption</h1>
+                    <p>Encrypt and decrypt JavaScript code</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="encrypt">Encrypt JS</button>
+                    <button class="tab" data-tab="decrypt">Decrypt JS</button>
+                </div>
+
+                <!-- Encrypt Tab Content -->
+                <div id="encrypt" class="tab-content active">
+                    <div class="input-group">
+                        <label for="encrypt-input">JavaScript Code to Encrypt</label>
+                        <textarea id="encrypt-input" placeholder="Enter your JavaScript code here...">function hello() {
+    console.log("Hello, World!");
+}</textarea>
+                    </div>
+
+                    <div class="options">
+                        <h3>Encryption Options</h3>
+                        
+                        <div class="select-group">
+                            <label for="encryption-level">Encryption Level</label>
+                            <select id="encryption-level">
+                                <option value="1">Level 1 - Basic (String.fromCharCode)</option>
+                                <option value="2" selected>Level 2 - Medium (Escape sequences)</option>
+                                <option value="3">Level 3 - Advanced (Multiple encoding layers)</option>
+                            </select>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="add-junk-code" checked>
+                                Add junk code to increase complexity
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="rename-variables">
+                                Rename variables (basic)
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="minify-code" checked>
+                                Minify code
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="encrypt-btn" class="btn btn-primary">Encrypt Code</button>
+                        <button id="clear-encrypt-btn" class="btn btn-secondary">Clear</button>
+                        <button id="load-sample-btn" class="btn btn-secondary">Load Sample</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Encrypted Code</h3>
+                        <textarea id="encrypted-output" placeholder="Encrypted code will appear here..." readonly></textarea>
+                        <button id="copy-encrypted-btn" class="copy-btn">Copy Encrypted Code</button>
+                    </div>
+                </div>
+
+                <!-- Decrypt Tab Content -->
+                <div id="decrypt" class="tab-content">
+                    <div class="input-group">
+                        <label for="decrypt-input">Encrypted JavaScript Code</label>
+                        <textarea id="decrypt-input" placeholder="Paste your encrypted JavaScript code here..."></textarea>
+                    </div>
+
+                    <div class="options">
+                        <h3>Decryption Options</h3>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="format-output" checked>
+                                Format output code
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="remove-junk" checked>
+                                Remove obvious junk code
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="decrypt-btn" class="btn btn-primary">Decrypt Code</button>
+                        <button id="clear-decrypt-btn" class="btn btn-secondary">Clear</button>
+                        <button id="test-decrypt-btn" class="btn btn-warning">Test Decrypted Code</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Decrypted Code</h3>
+                        <textarea id="decrypted-output" placeholder="Decrypted code will appear here..." readonly></textarea>
+                        <button id="copy-decrypted-btn" class="copy-btn">Copy Decrypted Code</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Console Output</h3>
+                        <div id="console-output" class="console-output" style="min-height: 100px; padding: 15px; background-color: #f5f5f5; border-radius: 8px; font-family: monospace; white-space: pre-wrap;"></div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Security Warning</h4>
+                    <p>This tool provides basic JavaScript obfuscation, but it should not be considered secure against determined attackers. Always be cautious when executing unknown JavaScript code.</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>About JavaScript Eval Encryption</h4>
+                    <ul>
+                        <li>This tool uses various techniques to obfuscate JavaScript code</li>
+                        <li>Common methods include string encoding, eval wrapping, and variable renaming</li>
+                        <li>Remember that all JavaScript code must eventually be decrypted to execute, making it inherently reversible</li>
+                        <li>Higher encryption levels provide more complex obfuscation but may affect performance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="related-tools-grid">
+                    <div class="related-tool-card">
+                        <a href="aes-encryption.html">
+                            <div class="related-tool-icon">🛡️</div>
+                            <h4 class="related-tool-title">AES Encryption</h4>
+                            <p class="related-tool-desc">Advanced Encryption Standard tools</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="rc4-encryption.html">
+                            <div class="related-tool-icon">🔒</div>
+                            <h4 class="related-tool-title">RC4 Encryption</h4>
+                            <p class="related-tool-desc">Encrypt and decrypt data using RC4 algorithm</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="ascii-converter.html">
+                            <div class="related-tool-icon">🔢</div>
+                            <h4 class="related-tool-title">ASCII Converter</h4>
+                            <p class="related-tool-desc">Convert between ASCII codes and text strings</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Powerful encryption tools to secure your data. All tools are free to use and work directly in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../encry.html">Encryption Tools</a>
+                        <a href="../dav.html">Dav</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active content
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Get DOM elements
+            const encryptInput = document.getElementById('encrypt-input');
+            const encryptedOutput = document.getElementById('encrypted-output');
+            const encryptBtn = document.getElementById('encrypt-btn');
+            const clearEncryptBtn = document.getElementById('clear-encrypt-btn');
+            const loadSampleBtn = document.getElementById('load-sample-btn');
+            const copyEncryptedBtn = document.getElementById('copy-encrypted-btn');
+            const encryptionLevel = document.getElementById('encryption-level');
+            const addJunkCode = document.getElementById('add-junk-code');
+            const renameVariables = document.getElementById('rename-variables');
+            const minifyCode = document.getElementById('minify-code');
+
+            const decryptInput = document.getElementById('decrypt-input');
+            const decryptedOutput = document.getElementById('decrypted-output');
+            const decryptBtn = document.getElementById('decrypt-btn');
+            const clearDecryptBtn = document.getElementById('clear-decrypt-btn');
+            const testDecryptBtn = document.getElementById('test-decrypt-btn');
+            const copyDecryptedBtn = document.getElementById('copy-decrypted-btn');
+            const formatOutput = document.getElementById('format-output');
+            const removeJunk = document.getElementById('remove-junk');
+            const consoleOutput = document.getElementById('console-output');
+
+            // Helper function to generate random string
+            function randomString(length) {
+                let result = '';
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                const charactersLength = characters.length;
+                for (let i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                return result;
+            }
+
+            // Helper function to generate junk code
+            function generateJunkCode() {
+                const junkFunctions = [
+                    `function ${randomString(8)}(){var ${randomString(4)}=0;for(var ${randomString(4)}=0;${randomString(4)}<10;${randomString(4)}++){${randomString(4)}++;}}`,
+                    `var ${randomString(6)}=function(){return ${Math.random()}};`,
+                    `if(${Math.random()<0.5}){var ${randomString(5)}=[];}`,
+                    `try{var ${randomString(7)}=${Math.random()}}catch(e){}`,
+                    `function ${randomString(9)}(${randomString(3)}){return ${randomString(3)};}`
+                ];
+                return junkFunctions.join('');
+            }
+
+            // Minify code (simple implementation)
+            function minify(code) {
+                return code
+                    .replace(/\/\*[\s\S]*?\*\//g, '') // Remove block comments
+                    .replace(/\/\/.*$/gm, '') // Remove line comments
+                    .replace(/\s+/g, ' ') // Replace multiple whitespace with single space
+                    .replace(/\s*{\s*/g, '{') // Remove whitespace around {}
+                    .replace(/\s*}\s*/g, '}')
+                    .replace(/\s*\(\s*/g, '(') // Remove whitespace around ()
+                    .replace(/\s*\)\s*/g, ')')
+                    .replace(/\s*;\s*/g, ';') // Remove whitespace around ;
+                    .replace(/\s*:\s*/g, ':') // Remove whitespace around :
+                    .replace(/\s*,\s*/g, ',') // Remove whitespace around ,
+                    .trim();
+            }
+
+            // Level 1 encryption: String.fromCharCode
+            function encryptLevel1(code) {
+                let encrypted = '';
+                for (let i = 0; i < code.length; i++) {
+                    encrypted += code.charCodeAt(i) + ',';
+                }
+                encrypted = encrypted.slice(0, -1); // Remove last comma
+                return `eval(String.fromCharCode(${encrypted}))`;
+            }
+
+            // Level 2 encryption: Escape sequences and eval wrapping
+            function encryptLevel2(code) {
+                // First level: String.fromCharCode
+                let level1 = encryptLevel1(code);
+                
+                // Second level: Escape sequences
+                let escaped = '';
+                for (let i = 0; i < level1.length; i++) {
+                    escaped += '\\x' + level1.charCodeAt(i).toString(16).padStart(2, '0');
+                }
+                
+                return `eval('${escaped}')`;
+            }
+
+            // Level 3 encryption: Multiple encoding layers
+            function encryptLevel3(code) {
+                // Multiple layers of encoding
+                let level1 = encryptLevel1(code);
+                let level2 = encryptLevel2(level1);
+                
+                // Add another layer with base64-like encoding (simplified)
+                let b64like = btoa(unescape(encodeURIComponent(level2)));
+                
+                return `eval(decodeURIComponent(escape(atob('${b64like}'))))`;
+            }
+
+            // Simple variable renaming
+            function renameVars(code) {
+                // This is a very basic implementation that only renames obvious variables
+                const varRegex = /\bvar\s+([a-zA-Z_$][a-zA-Z0-9_$]*)\b/g;
+                const vars = new Set();
+                let match;
+                
+                while ((match = varRegex.exec(code)) !== null) {
+                    vars.add(match[1]);
+                }
+                
+                const varMap = {};
+                vars.forEach(v => {
+                    // Skip common variable names that might be built-in
+                    if (!['window', 'document', 'console', 'Math', 'Date', 'Array', 'Object', 'String', 'Number', 'Boolean'].includes(v)) {
+                        varMap[v] = randomString(5);
+                    }
+                });
+                
+                let result = code;
+                Object.keys(varMap).forEach(oldVar => {
+                    // Replace only whole word matches
+                    const regex = new RegExp('\\b' + oldVar + '\\b', 'g');
+                    result = result.replace(regex, varMap[oldVar]);
+                });
+                
+                return result;
+            }
+
+            // Main encryption function
+            function encryptCode() {
+                let code = encryptInput.value;
+                if (!code) {
+                    alert('Please enter JavaScript code to encrypt');
+                    return;
+                }
+
+                try {
+                    // Apply transformations based on options
+                    if (renameVariables.checked) {
+                        code = renameVars(code);
+                    }
+                    
+                    if (minifyCode.checked) {
+                        code = minify(code);
+                    }
+                    
+                    // Apply encryption based on selected level
+                    const level = parseInt(encryptionLevel.value, 10);
+                    let encrypted;
+                    
+                    switch (level) {
+                        case 1:
+                            encrypted = encryptLevel1(code);
+                            break;
+                        case 2:
+                            encrypted = encryptLevel2(code);
+                            break;
+                        case 3:
+                            encrypted = encryptLevel3(code);
+                            break;
+                        default:
+                            encrypted = encryptLevel2(code);
+                    }
+                    
+                    // Add junk code if selected
+                    if (addJunkCode.checked) {
+                        encrypted = generateJunkCode() + encrypted;
+                    }
+                    
+                    encryptedOutput.value = encrypted;
+                } catch (error) {
+                    alert('Error during encryption: ' + error.message);
+                }
+            }
+
+            // Simple code formatting
+            function formatCode(code) {
+                let formatted = '';
+                let indentLevel = 0;
+                const indent = '    ';
+                
+                for (let i = 0; i < code.length; i++) {
+                    const char = code[i];
+                    
+                    if (char === '{' || char === '[') {
+                        formatted += char + '\n';
+                        indentLevel++;
+                        formatted += indent.repeat(indentLevel);
+                    } else if (char === '}' || char === ']') {
+                        formatted = formatted.trimEnd();
+                        indentLevel--;
+                        formatted += '\n' + indent.repeat(indentLevel) + char;
+                        if (i + 1 < code.length && code[i + 1] === ';') {
+                            formatted += code[i + 1];
+                            i++;
+                        }
+                        if (i + 1 < code.length && code[i + 1] !== '}' && code[i + 1] !== ']' && code[i + 1] !== '\n') {
+                            formatted += '\n' + indent.repeat(indentLevel);
+                        }
+                    } else if (char === ';') {
+                        formatted += char + '\n' + indent.repeat(indentLevel);
+                    } else if (char === ',') {
+                        formatted += char + '\n' + indent.repeat(indentLevel);
+                    } else if (char === ' ') {
+                        // Skip unnecessary spaces
+                        if (i > 0 && code[i - 1] !== ' ' && code[i - 1] !== '(' && code[i - 1] !== '{' && code[i - 1] !== '[') {
+                            formatted += char;
+                        }
+                    } else {
+                        formatted += char;
+                    }
+                }
+                
+                return formatted.trim();
+            }
+
+            // Simple attempt to remove junk code
+            function removeJunkCode(code) {
+                // This is a very basic implementation
+                // It looks for patterns that might be junk code
+                
+                // Remove obvious junk functions that don't seem to be called
+                code = code.replace(/function\s+[a-zA-Z_$][a-zA-Z0-9_$]*\s*\([^)]*\)\s*{[^}]*}\s*/g, '');
+                
+                // Remove isolated variable declarations that aren't used
+                code = code.replace(/var\s+[a-zA-Z_$][a-zA-Z0-9_$]*\s*=\s*[^;]+;\s*/g, '');
+                
+                // Remove try/catch blocks that don't do anything
+                code = code.replace(/try\s*{[^}]*}\s*catch\s*\([^)]*\)\s*{[^}]*}\s*/g, '');
+                
+                // Remove if statements with constant conditions
+                code = code.replace(/if\s*\([^)]*\)\s*{[^}]*}\s*/g, '');
+                
+                return code;
+            }
+
+            // Main decryption function (attempts to evaluate the encrypted code safely)
+            function decryptCode() {
+                let encryptedCode = decryptInput.value;
+                if (!encryptedCode) {
+                    alert('Please enter encrypted JavaScript code');
+                    return;
+                }
+
+                try {
+                    // Try to extract the actual code by evaluating in a safe environment
+                    // This is a simplified approach and won't work for all encryption methods
+                    
+                    // First, attempt to remove obvious junk code
+                    if (removeJunk.checked) {
+                        encryptedCode = removeJunkCode(encryptedCode);
+                    }
+                    
+                    // Create a safe evaluation environment
+                    const safeEval = (code) => {
+                        // This is a placeholder - in a real implementation, you would use a safer approach
+                        // For demonstration purposes, we'll use a simple regex to extract the code
+                        
+                        // Look for common patterns in eval-based encryption
+                        let extracted = code;
+                        
+                        // Try to find String.fromCharCode patterns
+                        const fromCharCodeRegex = /String\.fromCharCode\(([^)]+)\)/;
+                        let match = fromCharCodeRegex.exec(code);
+                        if (match) {
+                            const charCodes = match[1].split(',').map(Number);
+                            extracted = String.fromCharCode(...charCodes);
+                        }
+                        
+                        // Try to find base64 patterns
+                        const base64Regex = /atob\(['"]([^'"]+)['"]\)/;
+                        match = base64Regex.exec(code);
+                        if (match) {
+                            try {
+                                extracted = decodeURIComponent(escape(atob(match[1])));
+                            } catch (e) {
+                                // Ignore errors
+                            }
+                        }
+                        
+                        return extracted;
+                    };
+                    
+                    let decrypted = safeEval(encryptedCode);
+                    
+                    // Try a second pass if needed
+                    if (decrypted.includes('eval(') || decrypted.includes('fromCharCode') || decrypted.includes('atob(')) {
+                        decrypted = safeEval(decrypted);
+                    }
+                    
+                    // Format the output if selected
+                    if (formatOutput.checked) {
+                        decrypted = formatCode(decrypted);
+                    }
+                    
+                    decryptedOutput.value = decrypted;
+                } catch (error) {
+                    alert('Error during decryption: ' + error.message);
+                }
+            }
+
+            // Test decrypted code safely
+            function testDecryptedCode() {
+                const code = decryptedOutput.value;
+                if (!code) {
+                    alert('Please decrypt some code first');
+                    return;
+                }
+
+                consoleOutput.textContent = 'Executing code...\n';
+
+                // Create a fake console for safe output
+                const fakeConsole = {
+                    log: (...args) => {
+                        consoleOutput.textContent += args.map(arg => 
+                            typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+                        ).join(' ') + '\n';
+                    },
+                    error: (...args) => {
+                        consoleOutput.textContent += '[ERROR] ' + args.map(arg => 
+                            typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+                        ).join(' ') + '\n';
+                    },
+                    warn: (...args) => {
+                        consoleOutput.textContent += '[WARNING] ' + args.map(arg => 
+                            typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+                        ).join(' ') + '\n';
+                    },
+                    info: (...args) => {
+                        consoleOutput.textContent += '[INFO] ' + args.map(arg => 
+                            typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+                        ).join(' ') + '\n';
+                    }
+                };
+
+                try {
+                    // Create a sandboxed environment
+                    const sandbox = {
+                        console: fakeConsole,
+                        Math,
+                        Date,
+                        Array,
+                        Object,
+                        String,
+                        Number,
+                        Boolean,
+                        RegExp,
+                        Error
+                    };
+
+                    // Use Function constructor for safer evaluation
+                    const func = new Function(...Object.keys(sandbox), code);
+                    func(...Object.values(sandbox));
+                    
+                    consoleOutput.textContent += '\nCode executed successfully';
+                } catch (error) {
+                    consoleOutput.textContent += '\n[EXECUTION ERROR] ' + error.message;
+                }
+            }
+
+            // Copy to clipboard function
+            function copyToClipboard(text, button) {
+                navigator.clipboard.writeText(text)
+                    .then(() => {
+                        const originalText = button.textContent;
+                        button.textContent = 'Copied!';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        alert('Failed to copy: ' + err);
+                    });
+            }
+
+            // Event listeners
+            encryptBtn.addEventListener('click', encryptCode);
+            decryptBtn.addEventListener('click', decryptCode);
+            testDecryptBtn.addEventListener('click', testDecryptedCode);
+            
+            copyEncryptedBtn.addEventListener('click', () => copyToClipboard(encryptedOutput.value, copyEncryptedBtn));
+            copyDecryptedBtn.addEventListener('click', () => copyToClipboard(decryptedOutput.value, copyDecryptedBtn));
+            
+            clearEncryptBtn.addEventListener('click', () => {
+                encryptInput.value = '';
+                encryptedOutput.value = '';
+            });
+            
+            clearDecryptBtn.addEventListener('click', () => {
+                decryptInput.value = '';
+                decryptedOutput.value = '';
+                consoleOutput.textContent = '';
+            });
+            
+            loadSampleBtn.addEventListener('click', () => {
+                encryptInput.value = `function hello() {
+    console.log("Hello, World!");
+    return "Greetings from JavaScript!";
+}
+
+function calculateSum(a, b) {
+    let sum = 0;
+    for(let i = a; i <= b; i++) {
+        sum += i;
+    }
+    return sum;
+}
+
+// Example usage
+const result = hello();
+console.log("Result:", result);
+console.log("Sum from 1 to 10:", calculateSum(1, 10));`;
+            });
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+Enter or Cmd+Enter for encrypt/decrypt
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
+                    if (activeTab === 'encrypt') {
+                        encryptCode();
+                    } else {
+                        decryptCode();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

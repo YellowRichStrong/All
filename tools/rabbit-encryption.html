@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabbit Encryption - Stream Cipher Encryption Tool</title>
+    <meta name="description" content="Encrypt and decrypt text using Rabbit stream cipher algorithm with options for different key sizes and output formats.">
+    <meta name="keywords" content="Rabbit encryption, stream cipher, encryption tool, decrypt text, online encryption, Rabbit algorithm">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/rabbit-encryption.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <style>
+        .tool-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .tool-icon-large {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            color: #4CAF50;
+            border-bottom-color: #4CAF50;
+        }
+        
+        .tab:hover:not(.active) {
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group textarea,
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group textarea {
+            height: 150px;
+        }
+        
+        .input-group textarea:focus,
+        .input-group input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+        
+        .key-input-container {
+            position: relative;
+        }
+        
+        .toggle-visibility {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .toggle-visibility:hover {
+            color: #4CAF50;
+        }
+        
+        .options {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .options h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .output-format-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .format-option {
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .format-option.active {
+            border-color: #4CAF50;
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .format-option:hover:not(.active) {
+            border-color: #66bb6a;
+        }
+        
+        .key-strength-meter {
+            width: 100%;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .key-strength-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 4px;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .key-strength-weak .key-strength-fill {
+            width: 33%;
+            background-color: #f44336;
+        }
+        
+        .key-strength-medium .key-strength-fill {
+            width: 66%;
+            background-color: #ffc107;
+        }
+        
+        .key-strength-strong .key-strength-fill {
+            width: 100%;
+            background-color: #4CAF50;
+        }
+        
+        .key-strength-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background-color: #00bcd4;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #00acc1;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        .result-section {
+            margin-top: 20px;
+        }
+        
+        .result-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .result-output {
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            word-break: break-all;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            min-height: 100px;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 16px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .danger-box {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .info-box h4,
+        .warning-box h4,
+        .danger-box h4 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        
+        .warning-box h4 {
+            color: #856404;
+        }
+        
+        .danger-box h4 {
+            color: #721c24;
+        }
+        
+        .info-box ul,
+        .warning-box ul,
+        .danger-box ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .info-box li,
+        .warning-box li,
+        .danger-box li {
+            margin-bottom: 5px;
+        }
+        
+        .preset-examples {
+            margin-top: 20px;
+        }
+        
+        .preset-examples h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .preset-item {
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .preset-item:hover {
+            background-color: #e0e0e0;
+            border-color: #4CAF50;
+        }
+        
+        .preset-keys {
+            margin-top: 15px;
+        }
+        
+        .preset-keys h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .preset-key-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .preset-key-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .preset-key-btn:hover {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+        
+        .timing-info {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+        
+        .file-upload-area:hover {
+            border-color: #4CAF50;
+            background-color: #f9fff9;
+        }
+        
+        .file-upload-area.dragover {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+        
+        .file-upload-area input[type="file"] {
+            display: none;
+        }
+        
+        .file-upload-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .file-upload-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .file-info {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .file-upload-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+        
+        .upload-options {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .upload-option {
+            flex: 1 1 200px;
+        }
+        
+        .upload-option label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .upload-option select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .batch-operations {
+            margin-top: 20px;
+        }
+        
+        .batch-operations h3 {
+            margin-bottom: 15px;
+        }
+        
+        .batch-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .operation-result {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .operation-status {
+            margin-top: 10px;
+            font-weight: 600;
+            color: #4CAF50;
+        }
+        
+        /* Tool card styles */
+        .related-tools {
+            margin-top: 40px;
+        }
+        
+        .related-tools h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .related-tool-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .related-tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-tool-card a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .related-tool-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .related-tool-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .related-tool-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: auto;
+        }
+        
+        .related-tool-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+        
+        .related-tool-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #eee;
+                text-align: left;
+            }
+            
+            .tab.active {
+                border-bottom-color: #4CAF50;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .output-format-options {
+                flex-direction: column;
+            }
+            
+            .preset-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .copy-btn {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-top: 10px;
+                width: 100%;
+            }
+            
+            .result-output {
+                padding-bottom: 50px;
+            }
+            
+            .batch-inputs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../encry.html">Encry</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> &gt; 
+                <a href="../encry.html">Encryption Tools</a> &gt; 
+                <span>Rabbit Encryption</span>
+            </div>
+
+            <!-- Tool Content -->
+            <div class="tool-content">
+                <div class="tool-header">
+                    <div class="tool-icon-large">🐇</div>
+                    <h1>Rabbit Encryption</h1>
+                    <p>Encrypt and decrypt data using Rabbit stream cipher algorithm</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="encrypt">Encrypt</button>
+                    <button class="tab" data-tab="decrypt">Decrypt</button>
+                    <button class="tab" data-tab="file-encryption">File Encryption</button>
+                </div>
+
+                <!-- Encrypt Tab Content -->
+                <div id="encrypt" class="tab-content active">
+                    <div class="input-group">
+                        <label for="encrypt-text">Plaintext</label>
+                        <textarea id="encrypt-text" placeholder="Enter text to encrypt...">The quick brown fox jumps over the lazy dog. This is a sample text for Rabbit encryption.</textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="encrypt-key">Encryption Key</label>
+                        <div class="key-input-container">
+                            <input type="password" id="encrypt-key" placeholder="Enter encryption key (16 bytes recommended)..." value="RabbitStreamCipher">
+                            <button type="button" class="toggle-visibility" onclick="toggleKeyVisibility('encrypt-key', this)">👁️</button>
+                        </div>
+                        <div class="key-strength-meter">
+                            <div class="key-strength-fill" id="encrypt-key-strength-fill"></div>
+                        </div>
+                        <div class="key-strength-text" id="encrypt-key-strength-text">Key strength: Medium</div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="encrypt-iv">Initialization Vector (Optional)</label>
+                        <div class="key-input-container">
+                            <input type="password" id="encrypt-iv" placeholder="Enter IV (8 bytes recommended)..." value="12345678">
+                            <button type="button" class="toggle-visibility" onclick="toggleKeyVisibility('encrypt-iv', this)">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="options">
+                        <h3>Output Format</h3>
+                        <div class="output-format-options">
+                            <div class="format-option active" data-format="hex">Hexadecimal</div>
+                            <div class="format-option" data-format="base64">Base64</div>
+                            <div class="format-option" data-format="urlencode">URL Encoded</div>
+                            <div class="format-option" data-format="binary">Binary (Raw)</div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="encrypt-btn" class="btn btn-primary">Encrypt</button>
+                        <button id="generate-random-key-btn" class="btn btn-success btn-small">Generate Random Key</button>
+                        <button id="clear-encrypt-btn" class="btn btn-secondary">Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Encrypted Result</h3>
+                        <div class="result-output" id="encrypted-output">
+                            <div id="encrypted-content">Encrypted text will appear here...</div>
+                            <button class="copy-btn" onclick="copyToClipboard('encrypted-content')">Copy</button>
+                        </div>
+                        <div class="timing-info" id="encryption-time"></div>
+                    </div>
+
+                    <div class="preset-examples">
+                        <h3>Quick Examples</h3>
+                        <div class="preset-grid">
+                            <div class="preset-item" onclick="usePresetText('hello world')">hello world</div>
+                            <div class="preset-item" onclick="usePresetText('https://example.com/api')">API URL</div>
+                            <div class="preset-item" onclick="usePresetText('{\"user\":\"admin\",\"timestamp\":1234567890}')">JSON Payload</div>
+                            <div class="preset-item" onclick="usePresetText('')">Empty text</div>
+                        </div>
+                    </div>
+
+                    <div class="preset-keys">
+                        <h4>Preset Keys</h4>
+                        <div class="preset-key-buttons">
+                            <button class="preset-key-btn" onclick="usePresetKey('simple-key')">Simple Key</button>
+                            <button class="preset-key-btn" onclick="usePresetKey('RabbitStreamCipher')">Medium Key</button>
+                            <button class="preset-key-btn" onclick="usePresetKey('R@bb1t5tr3@mC1ph3r2023!')">Complex Key</button>
+                            <button class="preset-key-btn" onclick="usePresetKey('')">Clear Key</button>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>Security Note</h4>
+                        <ul>
+                            <li>Keep your encryption key secure and never share it</li>
+                            <li>For optimal security, use keys that are at least 16 bytes long</li>
+                            <li>Always use a unique initialization vector (IV) for each encryption</li>
+                            <li>All operations are performed locally in your browser</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Decrypt Tab Content -->
+                <div id="decrypt" class="tab-content">
+                    <div class="input-group">
+                        <label for="decrypt-text">Ciphertext</label>
+                        <textarea id="decrypt-text" placeholder="Enter text to decrypt..."></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="decrypt-key">Decryption Key</label>
+                        <div class="key-input-container">
+                            <input type="password" id="decrypt-key" placeholder="Enter decryption key..." value="RabbitStreamCipher">
+                            <button type="button" class="toggle-visibility" onclick="toggleKeyVisibility('decrypt-key', this)">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="decrypt-iv">Initialization Vector (Optional)</label>
+                        <div class="key-input-container">
+                            <input type="password" id="decrypt-iv" placeholder="Enter IV used during encryption..." value="12345678">
+                            <button type="button" class="toggle-visibility" onclick="toggleKeyVisibility('decrypt-iv', this)">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="options">
+                        <h3>Input Format</h3>
+                        <div class="output-format-options">
+                            <div class="format-option active" data-format="hex">Hexadecimal</div>
+                            <div class="format-option" data-format="base64">Base64</div>
+                            <div class="format-option" data-format="urlencode">URL Encoded</div>
+                            <div class="format-option" data-format="binary">Binary (Raw)</div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="decrypt-btn" class="btn btn-primary">Decrypt</button>
+                        <button id="clear-decrypt-btn" class="btn btn-secondary">Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Decrypted Result</h3>
+                        <div class="result-output" id="decrypted-output">
+                            <div id="decrypted-content">Decrypted text will appear here...</div>
+                            <button class="copy-btn" onclick="copyToClipboard('decrypted-content')">Copy</button>
+                        </div>
+                        <div class="timing-info" id="decryption-time"></div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Decryption Tips</h4>
+                        <ul>
+                            <li>Ensure the key and IV exactly match those used for encryption</li>
+                            <li>Select the correct input format that matches the encrypted data</li>
+                            <li>If decryption fails, check that all parameters are correct</li>
+                            <li>Corrupted ciphertext may result in unreadable output</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- File Encryption Tab Content -->
+                <div id="file-encryption" class="tab-content">
+                    <div class="options">
+                        <h3>Operation Type</h3>
+                        <div class="output-format-options">
+                            <div class="format-option active" data-operation="encrypt">Encrypt File</div>
+                            <div class="format-option" data-operation="decrypt">Decrypt File</div>
+                        </div>
+                    </div>
+
+                    <div class="file-upload-area" id="file-upload-area">
+                        <div class="file-upload-icon">📁</div>
+                        <p>Drag and drop files here or click to upload</p>
+                        <label for="file-input" class="file-upload-btn">Select File</label>
+                        <input type="file" id="file-input" />
+                        <div class="file-info" id="file-info">No file selected</div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="file-key">Key</label>
+                        <div class="key-input-container">
+                            <input type="password" id="file-key" placeholder="Enter encryption/decryption key..." value="RabbitStreamCipher">
+                            <button type="button" class="toggle-visibility" onclick="toggleKeyVisibility('file-key', this)">👁️</button>
+                        </div>
+                        <div class="key-strength-meter">
+                            <div class="key-strength-fill" id="file-key-strength-fill"></div>
+                        </div>
+                        <div class="key-strength-text" id="file-key-strength-text">Key strength: Medium</div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="file-iv">Initialization Vector (Optional)</label>
+                        <div class="key-input-container">
+                            <input type="password" id="file-iv" placeholder="Enter IV..." value="12345678">
+                            <button type="button" class="toggle-visibility" onclick="toggleKeyVisibility('file-iv', this)">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="upload-options">
+                        <div class="upload-option">
+                            <label for="output-extension">Output Extension</label>
+                            <select id="output-extension">
+                                <option value=".enc">.enc</option>
+                                <option value=".crypt">.crypt</option>
+                                <option value=".rabbit">.rabbit</option>
+                            </select>
+                        </div>
+                        
+                        <div class="upload-option">
+                            <label for="chunk-size">Processing Chunk Size</label>
+                            <select id="chunk-size">
+                                <option value="1024">1KB</option>
+                                <option value="4096" selected>4KB</option>
+                                <option value="8192">8KB</option>
+                                <option value="16384">16KB</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="process-file-btn" class="btn btn-primary">Process File</button>
+                        <button id="generate-file-key-btn" class="btn btn-success btn-small">Generate Random Key</button>
+                        <button id="clear-file-btn" class="btn btn-secondary">Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Processing Status</h3>
+                        <div class="result-output" id="file-processing-status">
+                            <div id="processing-status-text">Ready to process files</div>
+                        </div>
+                    </div>
+
+                    <div class="progress-container" style="margin-top: 20px; display: none;">
+                        <div class="progress-bar" style="width: 0%; height: 20px; background-color: #4CAF50; border-radius: 10px; transition: width 0.3s ease;"></div>
+                        <div class="progress-text" style="text-align: center; margin-top: 10px; font-size: 14px; color: #666;">0%</div>
+                    </div>
+
+                    <div class="danger-box">
+                        <h4>Important File Processing Notes</h4>
+                        <ul>
+                            <li>Files are processed entirely in your browser, never sent to our servers</li>
+                            <li>Large files may take longer to process and could consume significant memory</li>
+                            <li>Always remember your encryption key - without it, your files cannot be decrypted</li>
+                            <li>Create backups of your original files before encryption</li>
+                            <li>Decryption requires the exact same key and IV used for encryption</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>About Rabbit Stream Cipher</h4>
+                    <ul>
+                        <li><strong>Rabbit</strong> is a fast software-oriented stream cipher developed by Martin Boesgaard, Mette Vesterager, Thomas Pedersen, Jesper Christiansen, and Ove Scavenius</li>
+                        <li>It was submitted to the eSTREAM project of the European Union's ECRYPT network</li>
+                        <li>Rabbit uses a 128-bit key and a 64-bit initialization vector (IV)</li>
+                        <li>It is known for its high performance on 32-bit architectures</li>
+                        <li>All operations are performed locally in your browser</li>
+                    </ul>
+                </div>
+
+                <div class="danger-box">
+                    <h4>Security Considerations</h4>
+                    <ul>
+                        <li>Never share your encryption keys with unauthorized parties</li>
+                        <li>For sensitive data, consider using stronger encryption algorithms like AES</li>
+                        <li>Always use a unique IV for each encryption operation</li>
+                        <li>Store your keys securely using a password manager or key vault</li>
+                        <li>Regularly rotate your encryption keys for enhanced security</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="related-tools-grid">
+                    <div class="related-tool-card">
+                        <a href="aes-encryption.html">
+                            <div class="related-tool-icon">🔒</div>
+                            <h4 class="related-tool-title">AES Encryption</h4>
+                            <p class="related-tool-desc">Encrypt and decrypt data using AES algorithm</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="rc4-encryption.html">
+                            <div class="related-tool-icon">🔑</div>
+                            <h4 class="related-tool-title">RC4 Encryption</h4>
+                            <p class="related-tool-desc">Encrypt and decrypt using RC4 stream cipher</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="des-encryption.html">
+                            <div class="related-tool-icon">🔐</div>
+                            <h4 class="related-tool-title">DES Encryption</h4>
+                            <p class="related-tool-desc">Encrypt and decrypt using DES symmetric cipher</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Powerful encryption tools to secure your data. All tools are free to use and work directly in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../encry.html">Encryption Tools</a>
+                        <a href="../dav.html">Dav</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Rabbit Cipher implementation in JavaScript
+        class RabbitCipher {
+            constructor() {
+                // State variables for Rabbit cipher
+                this.x = new Array(8); // State variables
+                this.c = new Array(8); // Counter variables
+                this.carry = 0;        // Carry flag
+                this.isSupported = typeof window !== 'undefined';
+            }
+
+            // Key setup function
+            setKey(key) {
+                // Convert key string to byte array
+                const keyBytes = this.stringToBytes(key);
+                
+                // Initialize state and counter variables
+                for (let i = 0; i < 8; i++) {
+                    this.x[i] = 0;
+                    this.c[i] = 0;
+                    
+                    if (i < 4) {
+                        // Use key bytes in pairs to initialize state
+                        const k1 = i * 4 < keyBytes.length ? keyBytes[i * 4] : 0;
+                        const k2 = (i * 4 + 1) < keyBytes.length ? keyBytes[i * 4 + 1] : 0;
+                        const k3 = (i * 4 + 2) < keyBytes.length ? keyBytes[i * 4 + 2] : 0;
+                        const k4 = (i * 4 + 3) < keyBytes.length ? keyBytes[i * 4 + 3] : 0;
+                        
+                        this.x[i] = (k1 << 24) | (k2 << 16) | (k3 << 8) | k4;
+                    } else {
+                        // Rotate key bytes for the second half of the state
+                        const k1 = ((i - 4) * 4 + 3) < keyBytes.length ? keyBytes[((i - 4) * 4 + 3)] : 0;
+                        const k2 = ((i - 4) * 4) < keyBytes.length ? keyBytes[((i - 4) * 4)] : 0;
+                        const k3 = ((i - 4) * 4 + 1) < keyBytes.length ? keyBytes[((i - 4) * 4 + 1)] : 0;
+                        const k4 = ((i - 4) * 4 + 2) < keyBytes.length ? keyBytes[((i - 4) * 4 + 2)] : 0;
+                        
+                        this.x[i] = (k1 << 24) | (k2 << 16) | (k3 << 8) | k4;
+                    }
+                }
+
+                // Initialize counter variables
+                for (let i = 0; i < 8; i += 2) {
+                    this.c[i] = (this.x[(i + 5) % 8] >>> 16) & 0xffff;
+                    this.c[i] |= (this.x[(i + 4) % 8] & 0xffff) << 16;
+                    
+                    this.c[i + 1] = (this.x[(i + 7) % 8] >>> 16) & 0xffff;
+                    this.c[i + 1] |= (this.x[(i + 6) % 8] & 0xffff) << 16;
+                }
+
+                // Clear carry bit
+                this.carry = 0;
+
+                // Run four iterations to mix the state
+                for (let i = 0; i < 4; i++) {
+                    this.nextState();
+                }
+
+                // Modify counters
+                for (let i = 0; i < 8; i += 4) {
+                    this.c[i] ^= this.x[(i + 3) % 8] >>> 16;
+                    this.c[i] ^= this.x[(i + 2) % 8] << 16;
+                    
+                    this.c[i + 1] ^= this.x[(i + 1) % 8] >>> 16;
+                    this.c[i + 1] ^= this.x[i] << 16;
+                    
+                    this.c[i + 2] ^= this.x[(i + 7) % 8] >>> 16;
+                    this.c[i + 2] ^= this.x[(i + 6) % 8] << 16;
+                    
+                    this.c[i + 3] ^= this.x[(i + 5) % 8] >>> 16;
+                    this.c[i + 3] ^= this.x[(i + 4) % 8] << 16;
+                }
+
+                // Run another four iterations to further mix the state
+                for (let i = 0; i < 4; i++) {
+                    this.nextState();
+                }
+            }
+
+            // Set IV function
+            setIV(iv) {
+                if (!iv) return; // IV is optional
+                
+                // Convert IV string to byte array
+                const ivBytes = this.stringToBytes(iv);
+                
+                // Create IV words
+                let iv0 = 0, iv1 = 0;
+                
+                if (ivBytes.length >= 4) {
+                    iv0 = (ivBytes[0] << 24) | (ivBytes[1] << 16) | (ivBytes[2] << 8) | ivBytes[3];
+                }
+                
+                if (ivBytes.length >= 8) {
+                    iv1 = (ivBytes[4] << 24) | (ivBytes[5] << 16) | (ivBytes[6] << 8) | ivBytes[7];
+                }
+                
+                // Modify counters
+                this.c[0] ^= iv0 & 0xffff0000;
+                this.c[1] ^= iv0 << 16;
+                this.c[2] ^= iv1 & 0xffff0000;
+                this.c[3] ^= iv1 << 16;
+                this.c[4] ^= iv0 & 0x0000ffff;
+                this.c[5] ^= iv0 >>> 16;
+                this.c[6] ^= iv1 & 0x0000ffff;
+                this.c[7] ^= iv1 >>> 16;
+                
+                // Run four iterations to mix the state
+                for (let i = 0; i < 4; i++) {
+                    this.nextState();
+                }
+            }
+
+            // Next state function
+            nextState() {
+                // Counter update
+                const GOLDEN_RATIO = 0x9e3779b9;
+                
+                for (let i = 0; i < 8; i++) {
+                    const temp = this.c[i] + GOLDEN_RATIO + this.carry;
+                    this.carry = (temp >>> 32) & 0x1;
+                    this.c[i] = temp & 0xffffffff;
+                }
+
+                // State update
+                const g = new Array(8);
+                
+                for (let i = 0; i < 8; i++) {
+                    // Compute g(x_i)
+                    const a = this.x[i];
+                    const b = (a << 8) | (a >>> 24);
+                    const c = (a << 16) | (a >>> 16);
+                    g[i] = (a * b) >>> 32;
+                    g[i] ^= (a * c) >>> 32;
+                }
+
+                // State update with g(x_i) and counters
+                this.x[0] = (g[0] + ((g[7] << 16) | (g[7] >>> 16)) + ((g[6] << 8) | (g[6] >>> 24)) + this.c[0]) >>> 0;
+                this.x[1] = (g[1] + ((g[0] << 8) | (g[0] >>> 24)) + ((g[7] << 16) | (g[7] >>> 16)) + this.c[1]) >>> 0;
+                this.x[2] = (g[2] + ((g[1] << 16) | (g[1] >>> 16)) + ((g[0] << 8) | (g[0] >>> 24)) + this.c[2]) >>> 0;
+                this.x[3] = (g[3] + ((g[2] << 8) | (g[2] >>> 24)) + ((g[1] << 16) | (g[1] >>> 16)) + this.c[3]) >>> 0;
+                this.x[4] = (g[4] + ((g[3] << 16) | (g[3] >>> 16)) + ((g[2] << 8) | (g[2] >>> 24)) + this.c[4]) >>> 0;
+                this.x[5] = (g[5] + ((g[4] << 8) | (g[4] >>> 24)) + ((g[3] << 16) | (g[3] >>> 16)) + this.c[5]) >>> 0;
+                this.x[6] = (g[6] + ((g[5] << 16) | (g[5] >>> 16)) + ((g[4] << 8) | (g[4] >>> 24)) + this.c[6]) >>> 0;
+                this.x[7] = (g[7] + ((g[6] << 8) | (g[6] >>> 24)) + ((g[5] << 16) | (g[5] >>> 16)) + this.c[7]) >>> 0;
+            }
+
+            // Generate keystream of specified length
+            generateKeystream(length) {
+                const keystream = new Uint8Array(length);
+                let offset = 0;
+                
+                while (offset < length) {
+                    // Get next state
+                    this.nextState();
+                    
+                    // Generate up to 32 bytes of keystream
+                    for (let i = 0; i < 8 && offset < length; i++) {
+                        const x = this.x[i];
+                        
+                        // Extract bytes from state variable
+                        keystream[offset++] = (x >>> 24) & 0xff;
+                        if (offset < length) keystream[offset++] = (x >>> 16) & 0xff;
+                        if (offset < length) keystream[offset++] = (x >>> 8) & 0xff;
+                        if (offset < length) keystream[offset++] = x & 0xff;
+                    }
+                }
+                
+                return keystream;
+            }
+
+            // Encrypt function
+            encrypt(plaintext) {
+                // Convert plaintext to bytes
+                const plaintextBytes = this.stringToBytes(plaintext);
+                
+                // Generate keystream
+                const keystream = this.generateKeystream(plaintextBytes.length);
+                
+                // XOR plaintext with keystream
+                const ciphertext = new Uint8Array(plaintextBytes.length);
+                for (let i = 0; i < plaintextBytes.length; i++) {
+                    ciphertext[i] = plaintextBytes[i] ^ keystream[i];
+                }
+                
+                return ciphertext;
+            }
+
+            // Decrypt function (same as encrypt for stream ciphers)
+            decrypt(ciphertext) {
+                // For stream ciphers, decryption is the same as encryption
+                return this.encrypt(this.bytesToString(ciphertext));
+            }
+
+            // Convert string to bytes
+            stringToBytes(str) {
+                const bytes = new Uint8Array(str.length);
+                for (let i = 0; i < str.length; i++) {
+                    bytes[i] = str.charCodeAt(i) & 0xff;
+                }
+                return bytes;
+            }
+
+            // Convert bytes to string
+            bytesToString(bytes) {
+                let str = '';
+                for (let i = 0; i < bytes.length; i++) {
+                    str += String.fromCharCode(bytes[i]);
+                }
+                return str;
+            }
+
+            // Convert bytes to hex string
+            bytesToHex(bytes) {
+                const hex = [];
+                for (let i = 0; i < bytes.length; i++) {
+                    const h = bytes[i].toString(16);
+                    hex.push(h.length === 1 ? '0' + h : h);
+                }
+                return hex.join('');
+            }
+
+            // Convert hex string to bytes
+            hexToBytes(hex) {
+                const bytes = new Uint8Array(hex.length / 2);
+                for (let i = 0; i < hex.length; i += 2) {
+                    bytes[i / 2] = parseInt(hex.substr(i, 2), 16);
+                }
+                return bytes;
+            }
+
+            // Convert bytes to base64
+            bytesToBase64(bytes) {
+                let binary = '';
+                for (let i = 0; i < bytes.length; i++) {
+                    binary += String.fromCharCode(bytes[i]);
+                }
+                return btoa(binary);
+            }
+
+            // Convert base64 to bytes
+            base64ToBytes(base64) {
+                const binary = atob(base64);
+                const bytes = new Uint8Array(binary.length);
+                for (let i = 0; i < binary.length; i++) {
+                    bytes[i] = binary.charCodeAt(i);
+                }
+                return bytes;
+            }
+
+            // Convert bytes to URL encoded string
+            bytesToUrlEncode(bytes) {
+                let str = '';
+                for (let i = 0; i < bytes.length; i++) {
+                    str += '%' + bytes[i].toString(16).padStart(2, '0').toUpperCase();
+                }
+                return str;
+            }
+
+            // Convert URL encoded string to bytes
+            urlEncodeToBytes(urlEncoded) {
+                // Remove all % and split into hex pairs
+                const hex = urlEncoded.replace(/%/g, '');
+                return this.hexToBytes(hex);
+            }
+
+            // Format bytes according to specified format
+            formatBytes(bytes, format) {
+                switch (format) {
+                    case 'hex':
+                        return this.bytesToHex(bytes).toLowerCase();
+                    case 'base64':
+                        return this.bytesToBase64(bytes);
+                    case 'urlencode':
+                        return this.bytesToUrlEncode(bytes);
+                    case 'binary':
+                        return this.bytesToString(bytes);
+                    default:
+                        return this.bytesToHex(bytes).toLowerCase();
+                }
+            }
+
+            // Parse formatted string back to bytes
+            parseFormattedString(str, format) {
+                try {
+                    switch (format) {
+                        case 'hex':
+                            return this.hexToBytes(str.replace(/[^0-9a-fA-F]/g, ''));
+                        case 'base64':
+                            return this.base64ToBytes(str);
+                        case 'urlencode':
+                            return this.urlEncodeToBytes(str);
+                        case 'binary':
+                            return this.stringToBytes(str);
+                        default:
+                            return this.hexToBytes(str.replace(/[^0-9a-fA-F]/g, ''));
+                    }
+                } catch (error) {
+                    throw new Error('Invalid format or corrupted data');
+                }
+            }
+
+            // Calculate key strength
+            calculateKeyStrength(key) {
+                let score = 0;
+                
+                // Length check
+                if (key.length >= 16) score += 3;
+                else if (key.length >= 12) score += 2;
+                else if (key.length >= 8) score += 1;
+                
+                // Character variety checks
+                if (/[a-z]/.test(key)) score += 1;
+                if (/[A-Z]/.test(key)) score += 1;
+                if (/[0-9]/.test(key)) score += 1;
+                if (/[^a-zA-Z0-9]/.test(key)) score += 2;
+                
+                // Determine strength
+                if (score >= 8) return { strength: 'strong', message: 'Key strength: Strong' };
+                else if (score >= 5) return { strength: 'medium', message: 'Key strength: Medium' };
+                else return { strength: 'weak', message: 'Key strength: Weak - Consider using a stronger key' };
+            }
+
+            // Generate random key
+            generateRandomKey(length = 16) {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?';
+                let key = '';
+                
+                for (let i = 0; i < length; i++) {
+                    key += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                
+                return key;
+            }
+        }
+
+        // Toggle password visibility
+        function toggleKeyVisibility(inputId, button) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.textContent = '👁️‍🗨️';
+            } else {
+                input.type = 'password';
+                button.textContent = '👁️';
+            }
+        }
+
+        // Copy content to clipboard
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    // Show feedback
+                    const originalText = element.textContent;
+                    element.textContent = 'Copied to clipboard!';
+                    setTimeout(() => {
+                        element.textContent = originalText;
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                    alert('Failed to copy text: ' + err.message);
+                });
+        }
+
+        // Use preset text
+        function usePresetText(text) {
+            document.getElementById('encrypt-text').value = text;
+        }
+
+        // Use preset key
+        function usePresetKey(key) {
+            document.getElementById('encrypt-key').value = key;
+            updateKeyStrength(key, 'encrypt');
+            
+            // Also update decrypt key for convenience
+            document.getElementById('decrypt-key').value = key;
+            document.getElementById('file-key').value = key;
+            updateKeyStrength(key, 'file');
+        }
+
+        // Update key strength indicator
+        function updateKeyStrength(key, type) {
+            const strengthMeter = document.getElementById(`${type}-key-strength-fill`).parentElement;
+            const strengthText = document.getElementById(`${type}-key-strength-text`);
+            
+            // Clear existing classes
+            strengthMeter.classList.remove('key-strength-weak', 'key-strength-medium', 'key-strength-strong');
+            
+            // Calculate strength
+            const rabbitCipher = new RabbitCipher();
+            const { strength, message } = rabbitCipher.calculateKeyStrength(key);
+            
+            // Update UI
+            strengthMeter.classList.add(`key-strength-${strength}`);
+            strengthText.textContent = message;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Rabbit cipher
+            const rabbitCipher = new RabbitCipher();
+
+            // Initialize UI elements
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            // Initialize Encrypt tab elements
+            const encryptText = document.getElementById('encrypt-text');
+            const encryptKey = document.getElementById('encrypt-key');
+            const encryptIv = document.getElementById('encrypt-iv');
+            const encryptFormatOptions = document.querySelectorAll('#encrypt .output-format-options .format-option');
+            const encryptBtn = document.getElementById('encrypt-btn');
+            const generateRandomKeyBtn = document.getElementById('generate-random-key-btn');
+            const clearEncryptBtn = document.getElementById('clear-encrypt-btn');
+            const encryptedContent = document.getElementById('encrypted-content');
+            const encryptionTime = document.getElementById('encryption-time');
+            
+            // Initialize Decrypt tab elements
+            const decryptText = document.getElementById('decrypt-text');
+            const decryptKey = document.getElementById('decrypt-key');
+            const decryptIv = document.getElementById('decrypt-iv');
+            const decryptFormatOptions = document.querySelectorAll('#decrypt .output-format-options .format-option');
+            const decryptBtn = document.getElementById('decrypt-btn');
+            const clearDecryptBtn = document.getElementById('clear-decrypt-btn');
+            const decryptedContent = document.getElementById('decrypted-content');
+            const decryptionTime = document.getElementById('decryption-time');
+            
+            // Initialize File Encryption tab elements
+            const fileOperationOptions = document.querySelectorAll('#file-encryption .output-format-options .format-option');
+            const fileUploadArea = document.getElementById('file-upload-area');
+            const fileInput = document.getElementById('file-input');
+            const fileInfo = document.getElementById('file-info');
+            const fileKey = document.getElementById('file-key');
+            const fileIv = document.getElementById('file-iv');
+            const outputExtension = document.getElementById('output-extension');
+            const chunkSize = document.getElementById('chunk-size');
+            const processFileBtn = document.getElementById('process-file-btn');
+            const generateFileKeyBtn = document.getElementById('generate-file-key-btn');
+            const clearFileBtn = document.getElementById('clear-file-btn');
+            const processingStatusText = document.getElementById('processing-status-text');
+            
+            let selectedFile = null;
+
+            // Set up tab switching
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active content
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Set up format selection
+            function setupFormatOptions(options) {
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        options.forEach(opt => opt.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+            }
+
+            setupFormatOptions(encryptFormatOptions);
+            setupFormatOptions(decryptFormatOptions);
+            setupFormatOptions(fileOperationOptions);
+
+            // Get selected format
+            function getSelectedFormat(options) {
+                return options.find(option => option.classList.contains('active')).getAttribute('data-format');
+            }
+
+            // Get selected operation
+            function getSelectedOperation(options) {
+                return options.find(option => option.classList.contains('active')).getAttribute('data-operation');
+            }
+
+            // Update key strength on input
+            encryptKey.addEventListener('input', function() {
+                updateKeyStrength(this.value, 'encrypt');
+            });
+
+            fileKey.addEventListener('input', function() {
+                updateKeyStrength(this.value, 'file');
+            });
+
+            // Encrypt button handler
+            encryptBtn.addEventListener('click', function() {
+                try {
+                    const text = encryptText.value;
+                    const key = encryptKey.value;
+                    const iv = encryptIv.value;
+                    const format = getSelectedFormat(encryptFormatOptions);
+
+                    if (!key) {
+                        alert('Please enter an encryption key');
+                        return;
+                    }
+
+                    // Show loading
+                    encryptBtn.disabled = true;
+                    encryptBtn.textContent = 'Encrypting...';
+                    encryptedContent.textContent = 'Encrypting...';
+
+                    // Measure time
+                    const startTime = performance.now();
+
+                    // Set up Rabbit cipher
+                    rabbitCipher.setKey(key);
+                    rabbitCipher.setIV(iv);
+
+                    // Encrypt
+                    const ciphertextBytes = rabbitCipher.encrypt(text);
+                    const formattedCiphertext = rabbitCipher.formatBytes(ciphertextBytes, format);
+
+                    // Calculate encryption time
+                    const endTime = performance.now();
+                    const timeMs = (endTime - startTime).toFixed(2);
+
+                    // Update UI
+                    encryptedContent.textContent = formattedCiphertext;
+                    encryptionTime.textContent = `Encryption completed in ${timeMs}ms`;
+
+                    // Auto-fill decrypt tab with result
+                    decryptText.value = formattedCiphertext;
+                } catch (error) {
+                    console.error('Error during encryption:', error);
+                    encryptedContent.textContent = 'Error: ' + error.message;
+                    encryptionTime.textContent = '';
+                } finally {
+                    encryptBtn.disabled = false;
+                    encryptBtn.textContent = 'Encrypt';
+                }
+            });
+
+            // Decrypt button handler
+            decryptBtn.addEventListener('click', function() {
+                try {
+                    const text = decryptText.value;
+                    const key = decryptKey.value;
+                    const iv = decryptIv.value;
+                    const format = getSelectedFormat(decryptFormatOptions);
+
+                    if (!text) {
+                        alert('Please enter ciphertext to decrypt');
+                        return;
+                    }
+
+                    if (!key) {
+                        alert('Please enter a decryption key');
+                        return;
+                    }
+
+                    // Show loading
+                    decryptBtn.disabled = true;
+                    decryptBtn.textContent = 'Decrypting...';
+                    decryptedContent.textContent = 'Decrypting...';
+
+                    // Measure time
+                    const startTime = performance.now();
+
+                    // Parse ciphertext
+                    const ciphertextBytes = rabbitCipher.parseFormattedString(text, format);
+
+                    // Set up Rabbit cipher
+                    rabbitCipher.setKey(key);
+                    rabbitCipher.setIV(iv);
+
+                    // Generate keystream
+                    const keystream = rabbitCipher.generateKeystream(ciphertextBytes.length);
+
+                    // XOR with keystream to decrypt
+                    const plaintextBytes = new Uint8Array(ciphertextBytes.length);
+                    for (let i = 0; i < ciphertextBytes.length; i++) {
+                        plaintextBytes[i] = ciphertextBytes[i] ^ keystream[i];
+                    }
+
+                    // Convert to string
+                    const plaintext = rabbitCipher.bytesToString(plaintextBytes);
+
+                    // Calculate decryption time
+                    const endTime = performance.now();
+                    const timeMs = (endTime - startTime).toFixed(2);
+
+                    // Update UI
+                    decryptedContent.textContent = plaintext;
+                    decryptionTime.textContent = `Decryption completed in ${timeMs}ms`;
+                } catch (error) {
+                    console.error('Error during decryption:', error);
+                    decryptedContent.textContent = 'Error: ' + error.message;
+                    decryptionTime.textContent = '';
+                } finally {
+                    decryptBtn.disabled = false;
+                    decryptBtn.textContent = 'Decrypt';
+                }
+            });
+
+            // Generate random key
+            generateRandomKeyBtn.addEventListener('click', function() {
+                try {
+                    const randomKey = rabbitCipher.generateRandomKey(16); // 16 bytes recommended for Rabbit
+                    encryptKey.value = randomKey;
+                    decryptKey.value = randomKey;
+                    fileKey.value = randomKey;
+                    updateKeyStrength(randomKey, 'encrypt');
+                    updateKeyStrength(randomKey, 'file');
+                } catch (error) {
+                    console.error('Error generating random key:', error);
+                    alert('Failed to generate random key: ' + error.message);
+                }
+            });
+
+            // Generate file random key
+            generateFileKeyBtn.addEventListener('click', function() {
+                try {
+                    const randomKey = rabbitCipher.generateRandomKey(16);
+                    fileKey.value = randomKey;
+                    updateKeyStrength(randomKey, 'file');
+                    
+                    // Also update other key fields for convenience
+                    encryptKey.value = randomKey;
+                    decryptKey.value = randomKey;
+                    updateKeyStrength(randomKey, 'encrypt');
+                } catch (error) {
+                    console.error('Error generating random key:', error);
+                    alert('Failed to generate random key: ' + error.message);
+                }
+            });
+
+            // Clear encrypt form
+            clearEncryptBtn.addEventListener('click', function() {
+                encryptText.value = '';
+                // encryptKey.value = '';
+                // encryptIv.value = '';
+                encryptedContent.textContent = 'Encrypted text will appear here...';
+                encryptionTime.textContent = '';
+                updateKeyStrength(encryptKey.value, 'encrypt');
+            });
+
+            // Clear decrypt form
+            clearDecryptBtn.addEventListener('click', function() {
+                decryptText.value = '';
+                // decryptKey.value = '';
+                // decryptIv.value = '';
+                decryptedContent.textContent = 'Decrypted text will appear here...';
+                decryptionTime.textContent = '';
+            });
+
+            // Clear file form
+            clearFileBtn.addEventListener('click', function() {
+                fileInput.value = '';
+                selectedFile = null;
+                fileInfo.textContent = 'No file selected';
+                processingStatusText.textContent = 'Ready to process files';
+                // fileKey.value = '';
+                // fileIv.value = '';
+                updateKeyStrength(fileKey.value, 'file');
+            });
+
+            // File input handling
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    selectedFile = this.files[0];
+                    fileInfo.textContent = `Selected file: ${selectedFile.name} (${formatFileSize(selectedFile.size)})`;
+                } else {
+                    selectedFile = null;
+                    fileInfo.textContent = 'No file selected';
+                }
+            });
+
+            // Drag and drop functionality
+            fileUploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            });
+
+            fileUploadArea.addEventListener('dragleave', function() {
+                this.classList.remove('dragover');
+            });
+
+            fileUploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length > 0) {
+                    selectedFile = e.dataTransfer.files[0];
+                    fileInput.files = e.dataTransfer.files;
+                    fileInfo.textContent = `Selected file: ${selectedFile.name} (${formatFileSize(selectedFile.size)})`;
+                }
+            });
+
+            // Make file upload area clickable
+            fileUploadArea.addEventListener('click', function(e) {
+                // Don't trigger if clicking on the button
+                if (e.target.tagName === 'LABEL' || e.target.tagName === 'INPUT') return;
+                fileInput.click();
+            });
+
+            // Process file button handler
+            processFileBtn.addEventListener('click', async function() {
+                try {
+                    if (!selectedFile) {
+                        alert('Please select a file to process');
+                        return;
+                    }
+
+                    const key = fileKey.value;
+                    const iv = fileIv.value;
+                    const operation = getSelectedOperation(fileOperationOptions);
+                    const extension = outputExtension.value;
+                    const chunkSizeValue = parseInt(chunkSize.value, 10) * 1024; // Convert KB to bytes
+
+                    if (!key) {
+                        alert('Please enter a key');
+                        return;
+                    }
+
+                    // Show loading
+                    processFileBtn.disabled = true;
+                    processFileBtn.textContent = operation === 'encrypt' ? 'Encrypting File...' : 'Decrypting File...';
+                    processingStatusText.textContent = `Starting ${operation} process...`;
+
+                    // Show progress bar
+                    const progressContainer = document.querySelector('.progress-container');
+                    const progressBar = document.querySelector('.progress-bar');
+                    const progressText = document.querySelector('.progress-text');
+                    progressContainer.style.display = 'block';
+                    progressBar.style.width = '0%';
+                    progressText.textContent = '0%';
+
+                    // Measure time
+                    const startTime = performance.now();
+
+                    // Process the file
+                    await processFile(selectedFile, key, iv, operation, extension, chunkSizeValue, {
+                        onProgress: (progress) => {
+                            const percent = Math.round(progress * 100);
+                            progressBar.style.width = `${percent}%`;
+                            progressText.textContent = `${percent}%`;
+                            processingStatusText.textContent = `Processing... ${percent}%`;
+                        },
+                        onComplete: (result) => {
+                            // Calculate processing time
+                            const endTime = performance.now();
+                            const timeSeconds = ((endTime - startTime) / 1000).toFixed(2);
+                            
+                            processingStatusText.textContent = `${operation.charAt(0).toUpperCase() + operation.slice(1)} completed in ${timeSeconds} seconds. Click below to download the result.`;
+                            
+                            // Create download link
+                            const downloadLink = document.createElement('a');
+                            downloadLink.href = result.blobUrl;
+                            downloadLink.download = result.filename;
+                            downloadLink.textContent = `Download ${result.filename}`;
+                            downloadLink.className = 'btn btn-primary';
+                            downloadLink.style.display = 'block';
+                            downloadLink.style.marginTop = '10px';
+                            
+                            // Clear any previous download links
+                            const existingLinks = progressContainer.parentNode.querySelectorAll('a');
+                            existingLinks.forEach(link => link.remove());
+                            
+                            progressContainer.parentNode.appendChild(downloadLink);
+                        },
+                        onError: (error) => {
+                            processingStatusText.textContent = 'Error: ' + error.message;
+                            console.error('File processing error:', error);
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error during file processing:', error);
+                    processingStatusText.textContent = 'Error: ' + error.message;
+                } finally {
+                    processFileBtn.disabled = false;
+                    processFileBtn.textContent = 'Process File';
+                }
+            });
+
+            // Process file function
+            async function processFile(file, key, iv, operation, outputExtension, chunkSize, callbacks) {
+                return new Promise((resolve, reject) => {
+                    try {
+                        const reader = new FileReader();
+                        const chunks = [];
+                        let processedSize = 0;
+                        
+                        reader.onload = function(e) {
+                            const arrayBuffer = e.target.result;
+                            const dataView = new DataView(arrayBuffer);
+                            const totalSize = arrayBuffer.byteLength;
+                            
+                            // Process file in chunks
+                            const processNextChunk = (start) => {
+                                if (start >= totalSize) {
+                                    // All chunks processed, combine and download
+                                    const combinedArray = new Uint8Array(totalSize);
+                                    let offset = 0;
+                                    
+                                    chunks.forEach(chunk => {
+                                        combinedArray.set(chunk, offset);
+                                        offset += chunk.length;
+                                    });
+                                    
+                                    // Create blob and download
+                                    const blob = new Blob([combinedArray], { type: 'application/octet-stream' });
+                                    const blobUrl = URL.createObjectURL(blob);
+                                    
+                                    // Generate filename
+                                    const originalName = file.name;
+                                    let outputName;
+                                    
+                                    if (operation === 'encrypt') {
+                                        outputName = originalName + outputExtension;
+                                    } else {
+                                        // For decryption, try to remove common encrypted extensions
+                                        const encryptedExtensions = ['.enc', '.crypt', '.rabbit'];
+                                        let foundExtension = false;
+                                        
+                                        for (const ext of encryptedExtensions) {
+                                            if (originalName.endsWith(ext)) {
+                                                outputName = originalName.slice(0, -ext.length);
+                                                foundExtension = true;
+                                                break;
+                                            }
+                                        }
+                                        
+                                        if (!foundExtension) {
+                                            outputName = originalName + '.decrypted';
+                                        }
+                                    }
+                                    
+                                    callbacks.onComplete({ blobUrl, filename: outputName });
+                                    resolve({ blobUrl, filename: outputName });
+                                    return;
+                                }
+                                
+                                // Determine chunk boundaries
+                                const end = Math.min(start + chunkSize, totalSize);
+                                const chunkLength = end - start;
+                                
+                                // Extract chunk
+                                const chunk = new Uint8Array(chunkLength);
+                                for (let i = 0; i < chunkLength; i++) {
+                                    chunk[i] = dataView.getUint8(start + i);
+                                }
+                                
+                                // Process chunk (simplified Rabbit encryption/decryption)
+                                const rabbitCipher = new RabbitCipher();
+                                rabbitCipher.setKey(key);
+                                rabbitCipher.setIV(iv);
+                                
+                                let processedChunk;
+                                if (operation === 'encrypt') {
+                                    // For encryption, generate keystream and XOR
+                                    const keystream = rabbitCipher.generateKeystream(chunk.length);
+                                    processedChunk = new Uint8Array(chunk.length);
+                                    for (let i = 0; i < chunk.length; i++) {
+                                        processedChunk[i] = chunk[i] ^ keystream[i];
+                                    }
+                                } else {
+                                    // For decryption, same as encryption for stream cipher
+                                    const keystream = rabbitCipher.generateKeystream(chunk.length);
+                                    processedChunk = new Uint8Array(chunk.length);
+                                    for (let i = 0; i < chunk.length; i++) {
+                                        processedChunk[i] = chunk[i] ^ keystream[i];
+                                    }
+                                }
+                                
+                                chunks.push(processedChunk);
+                                processedSize += chunkLength;
+                                
+                                // Update progress
+                                callbacks.onProgress(processedSize / totalSize);
+                                
+                                // Process next chunk asynchronously to avoid blocking
+                                setTimeout(() => {
+                                    processNextChunk(end);
+                                }, 0);
+                            };
+                            
+                            // Start processing first chunk
+                            processNextChunk(0);
+                        };
+                        
+                        reader.onerror = function() {
+                            const error = new Error('Failed to read file');
+                            callbacks.onError(error);
+                            reject(error);
+                        };
+                        
+                        // Read the file as ArrayBuffer
+                        reader.readAsArrayBuffer(file);
+                    } catch (error) {
+                        callbacks.onError(error);
+                        reject(error);
+                    }
+                });
+            }
+
+            // Format file size
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // Initialize key strength
+            updateKeyStrength(encryptKey.value, 'encrypt');
+            updateKeyStrength(fileKey.value, 'file');
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl/Cmd + Enter to encrypt
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    if (document.querySelector('#encrypt').classList.contains('active')) {
+                        encryptBtn.click();
+                    } else if (document.querySelector('#decrypt').classList.contains('active')) {
+                        decryptBtn.click();
+                    }
+                    e.preventDefault();
+                }
+                
+                // Escape to clear current form
+                if (e.key === 'Escape') {
+                    if (document.querySelector('#encrypt').classList.contains('active')) {
+                        clearEncryptBtn.click();
+                    } else if (document.querySelector('#decrypt').classList.contains('active')) {
+                        clearDecryptBtn.click();
+                    } else if (document.querySelector('#file-encryption').classList.contains('active')) {
+                        clearFileBtn.click();
+                    }
+                }
+            });
+
+            // Add focus effects for better accessibility
+            const allInputs = document.querySelectorAll('input, textarea, select, button');
+            allInputs.forEach(element => {
+                element.addEventListener('focus', function() {
+                    this.classList.add('focused');
+                });
+                
+                element.addEventListener('blur', function() {
+                    this.classList.remove('focused');
+                });
+            });
+
+            // Add tooltips for buttons
+            const tooltipButtons = document.querySelectorAll('.btn, .copy-btn, .format-option, .preset-item, .preset-key-btn');
+            tooltipButtons.forEach(button => {
+                button.setAttribute('title', button.textContent.trim());
+            });
+
+            // Add dark mode support
+            function applyDarkMode() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.body.classList.add('dark-mode');
+                }
+            }
+
+            // Apply dark mode initially
+            applyDarkMode();
+
+            // Listen for dark mode changes
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyDarkMode);
+        });
+    </script>
+</body>
+</html>

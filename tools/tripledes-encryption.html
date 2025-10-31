@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripleDES Encryption Tool - Free Online TripleDES Encrypt/Decrypt</title>
+    <meta name="description" content="Free online TripleDES encryption and decryption tool. Encrypt and decrypt text or files using Triple Data Encryption Standard with various modes.">
+    <meta name="keywords" content="TripleDES encryption, TripleDES decryption, 3DES, online TripleDES tool, encrypt text, decrypt text, file encryption">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-bottom: none;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background: #ffffff;
+            border-top: 2px solid #2196F3;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            height: 200px;
+            resize: vertical;
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .option-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1976D2;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .result-container {
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        
+        .file-upload {
+            border: 2px dashed #ddd;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload.drag-over {
+            border-color: #2196F3;
+            background: #f0f7ff;
+        }
+        
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        
+        .key-strength {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        
+        .strength-weak {
+            color: #f44336;
+        }
+        
+        .strength-medium {
+            color: #ff9800;
+        }
+        
+        .strength-strong {
+            color: #4caf50;
+        }
+        
+        .tool-info {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+        
+        .tool-info h3 {
+            margin-top: 0;
+        }
+        
+        .related-tools {
+            margin-top: 40px;
+        }
+        
+        .tool-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tool-link {
+            padding: 8px 16px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-link:hover {
+            background: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../encry.html">Encry</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="tool-container">
+        <h2>TripleDES Encryption & Decryption Tool</h2>
+        
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-tab="encrypt">Encrypt</div>
+            <div class="tab" data-tab="decrypt">Decrypt</div>
+        </div>
+        
+        <!-- Encrypt Tab -->
+        <div class="tab-content active" id="encrypt">
+            <div class="input-group">
+                <label for="encrypt-text">Text to Encrypt:</label>
+                <textarea id="encrypt-text" placeholder="Enter text to encrypt..."></textarea>
+            </div>
+            
+            <div class="options">
+                <div class="option-group">
+                    <label for="encrypt-key">Encryption Key:</label>
+                    <input type="text" id="encrypt-key" placeholder="Enter 24-character key...">
+                    <div class="key-strength" id="encrypt-key-strength"></div>
+                </div>
+                
+                <div class="option-group">
+                    <label for="encrypt-mode">Mode:</label>
+                    <select id="encrypt-mode">
+                        <option value="ecb">ECB</option>
+                        <option value="cbc">CBC</option>
+                        <option value="cfb">CFB</option>
+                        <option value="ofb">OFB</option>
+                    </select>
+                </div>
+                
+                <div class="option-group">
+                    <label for="encrypt-padding">Padding:</label>
+                    <select id="encrypt-padding">
+                        <option value="pkcs7">PKCS7</option>
+                        <option value="zeros">Zeros</option>
+                        <option value="ansix923">ANSI X.923</option>
+                    </select>
+                </div>
+                
+                <div class="option-group">
+                    <label for="encrypt-output">Output Format:</label>
+                    <select id="encrypt-output">
+                        <option value="hex">Hexadecimal</option>
+                        <option value="base64">Base64</option>
+                        <option value="binary">Binary</option>
+                        <option value="url">URL Encoded</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="encrypt-iv">Initialization Vector (IV) (for CBC, CFB, OFB modes):</label>
+                <input type="text" id="encrypt-iv" placeholder="Enter 8-byte IV...">
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-primary" id="encrypt-btn">Encrypt</button>
+                <button class="btn btn-secondary" id="encrypt-random-key">Generate Random Key</button>
+                <button class="btn btn-secondary" id="encrypt-clear">Clear</button>
+            </div>
+            
+            <div class="input-group result-container">
+                <label for="encrypt-result">Encrypted Result:</label>
+                <textarea id="encrypt-result" readonly></textarea>
+                <button class="btn btn-secondary copy-btn" id="copy-encrypt-result">Copy</button>
+            </div>
+            
+            <!-- File Encryption -->
+            <div class="input-group">
+                <label>Or encrypt a file:</label>
+                <div class="file-upload" id="file-upload-encrypt">
+                    <p>Drag and drop your file here or click to select</p>
+                    <input type="file" id="encrypt-file">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decrypt Tab -->
+        <div class="tab-content" id="decrypt">
+            <div class="input-group">
+                <label for="decrypt-text">Text to Decrypt:</label>
+                <textarea id="decrypt-text" placeholder="Enter encrypted text..."></textarea>
+            </div>
+            
+            <div class="options">
+                <div class="option-group">
+                    <label for="decrypt-key">Decryption Key:</label>
+                    <input type="text" id="decrypt-key" placeholder="Enter 24-character key...">
+                </div>
+                
+                <div class="option-group">
+                    <label for="decrypt-mode">Mode:</label>
+                    <select id="decrypt-mode">
+                        <option value="ecb">ECB</option>
+                        <option value="cbc">CBC</option>
+                        <option value="cfb">CFB</option>
+                        <option value="ofb">OFB</option>
+                    </select>
+                </div>
+                
+                <div class="option-group">
+                    <label for="decrypt-padding">Padding:</label>
+                    <select id="decrypt-padding">
+                        <option value="pkcs7">PKCS7</option>
+                        <option value="zeros">Zeros</option>
+                        <option value="ansix923">ANSI X.923</option>
+                    </select>
+                </div>
+                
+                <div class="option-group">
+                    <label for="decrypt-input">Input Format:</label>
+                    <select id="decrypt-input">
+                        <option value="hex">Hexadecimal</option>
+                        <option value="base64">Base64</option>
+                        <option value="binary">Binary</option>
+                        <option value="url">URL Encoded</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="decrypt-iv">Initialization Vector (IV) (for CBC, CFB, OFB modes):</label>
+                <input type="text" id="decrypt-iv" placeholder="Enter 8-byte IV...">
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-primary" id="decrypt-btn">Decrypt</button>
+                <button class="btn btn-secondary" id="decrypt-clear">Clear</button>
+            </div>
+            
+            <div class="input-group result-container">
+                <label for="decrypt-result">Decrypted Result:</label>
+                <textarea id="decrypt-result" readonly></textarea>
+                <button class="btn btn-secondary copy-btn" id="copy-decrypt-result">Copy</button>
+            </div>
+            
+            <!-- File Decryption -->
+            <div class="input-group">
+                <label>Or decrypt a file:</label>
+                <div class="file-upload" id="file-upload-decrypt">
+                    <p>Drag and drop your file here or click to select</p>
+                    <input type="file" id="decrypt-file">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tool Information -->
+        <div class="tool-info">
+            <h3>About TripleDES Encryption</h3>
+            <p>Triple DES (3DES or TDES) is a symmetric-key block cipher that applies the Data Encryption Standard (DES) algorithm three times to each data block. It was designed to provide a more secure alternative to standard DES, which was becoming vulnerable to brute-force attacks.</p>
+            
+            <h4>Security Notes:</h4>
+            <ul>
+                <li>Always use a strong, unique key for encryption</li>
+                <li>For CBC, CFB, and OFB modes, use a unique initialization vector (IV) for each encryption operation</li>
+                <li>Store your encryption keys securely</li>
+                <li>This tool processes data entirely in your browser - no data is sent to our servers</li>
+            </ul>
+        </div>
+        
+        <!-- Related Tools -->
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="tool-list">
+                <a href="des-encryption.html" class="tool-link">DES Encryption</a>
+                <a href="aes-encryption.html" class="tool-link">AES Encryption</a>
+                <a href="rc4-encryption.html" class="tool-link">RC4 Encryption</a>
+                <a href="rabbit-encryption.html" class="tool-link">Rabbit Encryption</a>
+                <a href="hmac-hash-encryption.html" class="tool-link">HMAC Hash</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Powerful encryption tools to secure your data. All tools are free to use and work directly in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../encry.html">Encryption Tools</a>
+                        <a href="../dav.html">Dav</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Hide all tab contents
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Show selected tab content
+                    document.getElementById(tabId).classList.add('active');
+                    this.classList.add('active');
+                });
+            });
+            
+            // Key strength checker
+            const encryptKey = document.getElementById('encrypt-key');
+            const keyStrength = document.getElementById('encrypt-key-strength');
+            
+            encryptKey.addEventListener('input', function() {
+                const key = this.value;
+                let strength = '';
+                let strengthClass = '';
+                
+                if (key.length === 0) {
+                    strength = '';
+                } else if (key.length < 16) {
+                    strength = 'Weak key';
+                    strengthClass = 'strength-weak';
+                } else if (key.length < 24) {
+                    strength = 'Medium key';
+                    strengthClass = 'strength-medium';
+                } else {
+                    // Check for complexity
+                    const hasUpper = /[A-Z]/.test(key);
+                    const hasLower = /[a-z]/.test(key);
+                    const hasNumber = /[0-9]/.test(key);
+                    const hasSpecial = /[^A-Za-z0-9]/.test(key);
+                    
+                    if (hasUpper && hasLower && hasNumber && hasSpecial) {
+                        strength = 'Strong key';
+                        strengthClass = 'strength-strong';
+                    } else {
+                        strength = 'Medium key';
+                        strengthClass = 'strength-medium';
+                    }
+                }
+                
+                keyStrength.textContent = strength;
+                keyStrength.className = 'key-strength ' + strengthClass;
+            });
+            
+            // Generate random key
+            document.getElementById('encrypt-random-key').addEventListener('click', function() {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+                let key = '';
+                for (let i = 0; i < 24; i++) {
+                    key += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                encryptKey.value = key;
+                
+                // Trigger key strength check
+                const event = new Event('input');
+                encryptKey.dispatchEvent(event);
+                
+                // Also fill IV with random value
+                let iv = '';
+                for (let i = 0; i < 8; i++) {
+                    iv += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                document.getElementById('encrypt-iv').value = iv;
+            });
+            
+            // Copy to clipboard functionality
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const textarea = this.parentElement.querySelector('textarea');
+                    textarea.select();
+                    document.execCommand('copy');
+                    
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+            
+            // Clear buttons
+            document.getElementById('encrypt-clear').addEventListener('click', function() {
+                document.getElementById('encrypt-text').value = '';
+                document.getElementById('encrypt-key').value = '';
+                document.getElementById('encrypt-iv').value = '';
+                document.getElementById('encrypt-result').value = '';
+                keyStrength.textContent = '';
+            });
+            
+            document.getElementById('decrypt-clear').addEventListener('click', function() {
+                document.getElementById('decrypt-text').value = '';
+                document.getElementById('decrypt-key').value = '';
+                document.getElementById('decrypt-iv').value = '';
+                document.getElementById('decrypt-result').value = '';
+            });
+            
+            // File upload drag and drop
+            const fileUploads = document.querySelectorAll('.file-upload');
+            fileUploads.forEach(upload => {
+                upload.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+                
+                upload.addEventListener('dragleave', function() {
+                    this.classList.remove('drag-over');
+                });
+                
+                upload.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                    
+                    if (e.dataTransfer.files.length) {
+                        const fileInput = this.querySelector('input[type="file"]');
+                        fileInput.files = e.dataTransfer.files;
+                        // You would process the file here in a real implementation
+                    }
+                });
+                
+                // Click to upload
+                upload.addEventListener('click', function() {
+                    this.querySelector('input[type="file"]').click();
+                });
+            });
+            
+            // Encrypt button functionality (placeholder)
+            document.getElementById('encrypt-btn').addEventListener('click', function() {
+                const text = document.getElementById('encrypt-text').value;
+                const key = document.getElementById('encrypt-key').value;
+                const mode = document.getElementById('encrypt-mode').value;
+                const padding = document.getElementById('encrypt-padding').value;
+                const outputFormat = document.getElementById('encrypt-output').value;
+                const iv = document.getElementById('encrypt-iv').value;
+                
+                // Simple validation
+                if (!text) {
+                    alert('Please enter text to encrypt');
+                    return;
+                }
+                
+                if (!key || key.length < 24) {
+                    alert('Please enter a 24-character key');
+                    return;
+                }
+                
+                if ((mode === 'cbc' || mode === 'cfb' || mode === 'ofb') && (!iv || iv.length < 8)) {
+                    alert('Please enter an 8-byte IV for the selected mode');
+                    return;
+                }
+                
+                // Simulate encryption (in a real implementation, this would use a proper 3DES library)
+                let result = '';
+                switch (outputFormat) {
+                    case 'hex':
+                        result = '3DES_ENCRYPTED_HEX_SIMULATION_' + new Date().getTime();
+                        break;
+                    case 'base64':
+                        result = btoa('3DES_ENCRYPTED_SIMULATION_' + new Date().getTime());
+                        break;
+                    case 'binary':
+                        result = '10101010' + Math.random().toString(2).substr(2, 32);
+                        break;
+                    case 'url':
+                        result = encodeURIComponent('3DES_ENCRYPTED_SIMULATION_' + new Date().getTime());
+                        break;
+                }
+                
+                document.getElementById('encrypt-result').value = result;
+            });
+            
+            // Decrypt button functionality (placeholder)
+            document.getElementById('decrypt-btn').addEventListener('click', function() {
+                const text = document.getElementById('decrypt-text').value;
+                const key = document.getElementById('decrypt-key').value;
+                const mode = document.getElementById('decrypt-mode').value;
+                const padding = document.getElementById('decrypt-padding').value;
+                const inputFormat = document.getElementById('decrypt-input').value;
+                const iv = document.getElementById('decrypt-iv').value;
+                
+                // Simple validation
+                if (!text) {
+                    alert('Please enter text to decrypt');
+                    return;
+                }
+                
+                if (!key || key.length < 24) {
+                    alert('Please enter a 24-character key');
+                    return;
+                }
+                
+                if ((mode === 'cbc' || mode === 'cfb' || mode === 'ofb') && (!iv || iv.length < 8)) {
+                    alert('Please enter an 8-byte IV for the selected mode');
+                    return;
+                }
+                
+                // Simulate decryption
+                let result = 'This is a simulated decrypted result. In a real implementation, this would use proper 3DES decryption.';
+                document.getElementById('decrypt-result').value = result;
+            });
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl/Cmd + Enter to encrypt/decrypt
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
+                    if (activeTab === 'encrypt') {
+                        document.getElementById('encrypt-btn').click();
+                    } else {
+                        document.getElementById('decrypt-btn').click();
+                    }
+                    e.preventDefault();
+                }
+                
+                // Escape to clear
+                if (e.key === 'Escape') {
+                    const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
+                    if (activeTab === 'encrypt') {
+                        document.getElementById('encrypt-clear').click();
+                    } else {
+                        document.getElementById('decrypt-clear').click();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

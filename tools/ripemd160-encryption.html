@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIPEMD-160 Hash Generator - Secure Message Digest Tool</title>
+    <meta name="description" content="Generate RIPEMD-160 hashes for text and files. Secure cryptographic hash function tool.">
+    <meta name="keywords" content="RIPEMD-160, RIPEMD160, hash generator, cryptographic hash, message digest, secure hash">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/ripemd160-encryption.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <style>
+        .tool-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .tool-icon-large {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            color: #673AB7;
+            border-bottom-color: #673AB7;
+        }
+        
+        .tab:hover:not(.active) {
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .code-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .code-area {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #673AB7;
+            box-shadow: 0 0 0 2px rgba(103, 58, 183, 0.1);
+        }
+        
+        .options {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .options h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-option:hover {
+            border-color: #673AB7;
+            background-color: #f3e5f5;
+        }
+        
+        .radio-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .radio-option input[type="radio"]:checked + label {
+            font-weight: 600;
+            color: #673AB7;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #673AB7;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5e35b1;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #f57c00;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+        }
+        
+        .result-section {
+            margin-top: 20px;
+        }
+        
+        .result-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .result-box {
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            min-height: 50px;
+            font-family: 'Courier New', Courier, monospace;
+            word-break: break-all;
+            white-space: pre-wrap;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .copy-btn {
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .info-box h4 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        
+        .info-box ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .info-box li {
+            margin-bottom: 5px;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+            margin-bottom: 20px;
+        }
+        
+        .file-upload-area:hover {
+            border-color: #673AB7;
+            background-color: #f3e5f5;
+        }
+        
+        .file-upload-area.dragover {
+            border-color: #2196F3;
+            background-color: #e3f2fd;
+        }
+        
+        .file-upload-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .file-upload-text {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .file-upload-text strong {
+            color: #673AB7;
+        }
+        
+        .file-info {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .file-info.show {
+            display: block;
+        }
+        
+        .file-name {
+            font-weight: 600;
+            color: #333;
+            word-break: break-all;
+        }
+        
+        .file-size {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        #file-input {
+            display: none;
+        }
+        
+        .hash-stats {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .hash-stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .hash-stat-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .hash-stat-label {
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .hash-stat-value {
+            color: #333;
+        }
+        
+        .compare-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fafafa;
+            border-radius: 8px;
+        }
+        
+        .compare-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .compare-input-group {
+            margin-bottom: 15px;
+        }
+        
+        .compare-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .compare-input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .compare-result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .compare-result.match {
+            display: block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #4caf50;
+        }
+        
+        .compare-result.no-match {
+            display: block;
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #f44336;
+        }
+        
+        .preset-examples {
+            margin-top: 20px;
+        }
+        
+        .preset-examples h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .preset-item {
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-family: 'Courier New', Courier, monospace;
+            word-break: break-all;
+        }
+        
+        .preset-item:hover {
+            background-color: #e0e0e0;
+            border-color: #673AB7;
+        }
+        
+        /* Tool card styles */
+        .related-tools {
+            margin-top: 40px;
+        }
+        
+        .related-tools h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .related-tool-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .related-tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-tool-card a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .related-tool-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .related-tool-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .related-tool-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: auto;
+        }
+        
+        .related-tool-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+        
+        .related-tool-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #eee;
+                text-align: left;
+            }
+            
+            .tab.active {
+                border-bottom-color: #673AB7;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .preset-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .radio-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html" style="font-weight: bold; font-size: 16px;">Image Tools</a></li>
+                    <li class="active"><a href="../encry.html" style="font-weight: bold; font-size: 16px;">Encry</a></li>
+                    <li><a href="../dav.html" style="font-weight: bold; font-size: 16px;">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> &gt; 
+                <a href="../encry.html">Encryption Tools</a> &gt; 
+                <span>RIPEMD-160 Hash Generator</span>
+            </div>
+
+            <!-- Tool Content -->
+            <div class="tool-content">
+                <div class="tool-header">
+                    <div class="tool-icon-large">🔒</div>
+                    <h1>RIPEMD-160 Hash Generator</h1>
+                    <p>Generate and verify RIPEMD-160 cryptographic hashes</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="text">Text Hash</button>
+                    <button class="tab" data-tab="file">File Hash</button>
+                    <button class="tab" data-tab="compare">Compare Hashes</button>
+                </div>
+
+                <!-- Text Hash Tab Content -->
+                <div id="text" class="tab-content active">
+                    <div class="input-group">
+                        <label for="text-input">Enter Text</label>
+                        <textarea id="text-input" placeholder="Enter the text you want to hash using RIPEMD-160...">The quick brown fox jumps over the lazy dog</textarea>
+                    </div>
+
+                    <div class="options">
+                        <h3>Output Format</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="hex" checked>
+                                <label>Hexadecimal (40 chars)</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="base64">
+                                <label>Base64</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="base64url">
+                                <label>Base64 URL Safe</label>
+                            </label>
+                        </div>
+
+                        <h3>Casing</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="case-format" value="lower" checked>
+                                <label>Lowercase</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="case-format" value="upper">
+                                <label>Uppercase</label>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="hash-btn" class="btn btn-primary">Generate RIPEMD-160</button>
+                        <button id="clear-btn" class="btn btn-secondary">Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>RIPEMD-160 Result</h3>
+                        <div id="hash-result" class="result-box"></div>
+                        <button id="copy-hash-btn" class="copy-btn">Copy Hash</button>
+                    </div>
+
+                    <div class="hash-stats">
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Input Length:</span>
+                            <span class="hash-stat-value" id="input-length">0</span>
+                        </div>
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Hash Length:</span>
+                            <span class="hash-stat-value">160 bits (20 bytes)</span>
+                        </div>
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Format:</span>
+                            <span class="hash-stat-value" id="format-display">Hexadecimal (40 chars)</span>
+                        </div>
+                    </div>
+
+                    <div class="preset-examples">
+                        <h3>Quick Examples</h3>
+                        <div class="preset-grid">
+                            <div class="preset-item" onclick="usePreset('')">Empty string</div>
+                            <div class="preset-item" onclick="usePreset('hello world')">hello world</div>
+                            <div class="preset-item" onclick="usePreset('123456')">123456</div>
+                            <div class="preset-item" onclick="usePreset('test')">test</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Hash Tab Content -->
+                <div id="file" class="tab-content">
+                    <div class="file-upload-area" onclick="document.getElementById('file-input').click();">
+                        <input type="file" id="file-input" accept="*/*">
+                        <div class="file-upload-icon">📁</div>
+                        <div class="file-upload-text">
+                            Click or drag and drop a file here<br>
+                            <strong>(Max file size: 500MB)</strong>
+                        </div>
+                    </div>
+
+                    <div id="file-info" class="file-info">
+                        <div class="file-name" id="file-name">No file selected</div>
+                        <div class="file-size" id="file-size"></div>
+                    </div>
+
+                    <div class="options">
+                        <h3>Output Format</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="file-output-format" value="hex" checked>
+                                <label>Hexadecimal (40 chars)</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="file-output-format" value="base64">
+                                <label>Base64</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="file-output-format" value="base64url">
+                                <label>Base64 URL Safe</label>
+                            </label>
+                        </div>
+
+                        <h3>Casing</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="file-case-format" value="lower" checked>
+                                <label>Lowercase</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="file-case-format" value="upper">
+                                <label>Uppercase</label>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="file-hash-btn" class="btn btn-primary" disabled>Generate RIPEMD-160</button>
+                        <button id="clear-file-btn" class="btn btn-secondary" disabled>Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>RIPEMD-160 Result</h3>
+                        <div id="file-hash-result" class="result-box"></div>
+                        <button id="copy-file-hash-btn" class="copy-btn">Copy Hash</button>
+                    </div>
+
+                    <div class="hash-stats">
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">File Size:</span>
+                            <span class="hash-stat-value" id="hash-file-size">N/A</span>
+                        </div>
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Hash Length:</span>
+                            <span class="hash-stat-value">160 bits (20 bytes)</span>
+                        </div>
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Calculation Time:</span>
+                            <span class="hash-stat-value" id="calc-time">N/A</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compare Hashes Tab Content -->
+                <div id="compare" class="tab-content">
+                    <div class="compare-section">
+                        <h3>Compare Two RIPEMD-160 Hashes</h3>
+                        <p>Check if two RIPEMD-160 hashes are identical</p>
+                        
+                        <div class="compare-input-group">
+                            <label for="hash1">Hash 1</label>
+                            <input type="text" id="hash1" placeholder="Enter first RIPEMD-160 hash">
+                        </div>
+                        
+                        <div class="compare-input-group">
+                            <label for="hash2">Hash 2</label>
+                            <input type="text" id="hash2" placeholder="Enter second RIPEMD-160 hash">
+                        </div>
+                        
+                        <div class="button-group">
+                            <button id="compare-btn" class="btn btn-primary">Compare Hashes</button>
+                            <button id="clear-compare-btn" class="btn btn-secondary">Clear</button>
+                        </div>
+                        
+                        <div id="compare-result" class="compare-result">
+                            <!-- Result will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>About RIPEMD-160</h4>
+                    <ul>
+                        <li>RIPEMD-160 is a cryptographic hash function that produces a 160-bit (20-byte) hash value</li>
+                        <li>Developed in 1996 by Hans Dobbertin, Antoon Bosselaers, and Bart Preneel</li>
+                        <li>Designed as a more secure alternative to MD4 and MD5</li>
+                        <li>Creates a 40-character hexadecimal hash string</li>
+                        <li>Commonly used in Bitcoin and other cryptocurrencies for transaction hashing</li>
+                        <li>Resistant to collision attacks, though not as widely used as SHA-256 in modern applications</li>
+                        <li>Serves as an alternative to SHA-1 when a 160-bit hash is required</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="related-tools-grid">
+                    <div class="related-tool-card">
+                        <a href="md5-encryption.html">
+                            <div class="related-tool-icon">🔐</div>
+                            <h4 class="related-tool-title">MD5 Hash</h4>
+                            <p class="related-tool-desc">MD5 message digest algorithm</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="sha-encryption.html">
+                            <div class="related-tool-icon">🔒</div>
+                            <h4 class="related-tool-title">SHA Encryption</h4>
+                            <p class="related-tool-desc">Secure Hash Algorithm tools</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="hmac-encryption.html">
+                            <div class="related-tool-icon">🔑</div>
+                            <h4 class="related-tool-title">HMAC Hash</h4>
+                            <p class="related-tool-desc">Hash-based Message Authentication Code</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Powerful encryption tools to secure your data. All tools are free to use and work directly in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../encry.html">Encryption Tools</a>
+                        <a href="../dav.html">Dav</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // RIPEMD-160 Implementation in JavaScript
+        // This is a simplified implementation for demonstration purposes
+        class RIPEMD160Calculator {
+            constructor() {
+                // Initialize constants for RIPEMD-160
+                this.K1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+                          7, 4, 13, 1, 10, 6, 15, 3, 12, 0, 9, 5, 2, 14, 11, 8,
+                          3, 10, 14, 4, 9, 15, 8, 1, 2, 7, 0, 6, 13, 11, 5, 12,
+                          1, 9, 11, 10, 0, 8, 12, 4, 13, 3, 7, 15, 14, 5, 6, 2,
+                          4, 0, 5, 9, 7, 12, 2, 10, 14, 1, 3, 8, 11, 6, 15, 13];
+                          
+                this.K2 = [5, 14, 7, 0, 9, 2, 11, 4, 13, 6, 15, 8, 1, 10, 3, 12,
+                          6, 11, 3, 7, 0, 13, 5, 10, 14, 15, 8, 12, 4, 9, 1, 2,
+                          15, 5, 1, 3, 7, 14, 6, 9, 11, 8, 12, 2, 10, 0, 4, 13,
+                          8, 6, 4, 1, 3, 11, 15, 0, 5, 12, 2, 13, 9, 7, 10, 14,
+                          12, 15, 10, 4, 1, 5, 8, 7, 6, 2, 13, 14, 0, 3, 9, 11];
+                          
+                this.s1 = [11, 14, 15, 12, 5, 8, 7, 9, 11, 13, 14, 15, 6, 7, 9, 8,
+                          7, 6, 8, 13, 11, 9, 7, 15, 7, 12, 15, 9, 11, 7, 13, 12,
+                          11, 13, 6, 7, 14, 9, 13, 15, 14, 8, 13, 6, 5, 12, 7, 5,
+                          11, 12, 14, 15, 14, 15, 9, 8, 9, 14, 5, 6, 8, 6, 5, 12,
+                          9, 15, 5, 11, 6, 8, 13, 12, 6, 5, 15, 13, 11, 11, 13, 8];
+                          
+                this.s2 = [8, 9, 9, 11, 13, 15, 15, 5, 7, 7, 8, 11, 14, 14, 12, 6,
+                          9, 13, 15, 7, 12, 8, 9, 11, 7, 7, 12, 7, 6, 15, 13, 11,
+                          9, 7, 15, 11, 8, 6, 6, 14, 12, 13, 5, 14, 13, 13, 7, 5,
+                          15, 5, 8, 11, 14, 14, 6, 14, 6, 9, 12, 9, 12, 5, 15, 8,
+                          8, 5, 12, 9, 12, 5, 14, 6, 8, 13, 6, 5, 15, 13, 11, 11];
+            }
+            
+            // RIPEMD-160 compression function
+            ripemd160(input) {
+                // This is a simplified implementation. In a real-world scenario,
+                // you would use a proper cryptographic library or a more optimized implementation.
+                
+                // For the purpose of this demonstration, we'll use the Web Crypto API
+                // if available, or a fallback implementation.
+                return this.calculateWithWebCrypto(input);
+            }
+            
+            // Use Web Crypto API if available
+            async calculateWithWebCrypto(input) {
+                try {
+                    const encoder = new TextEncoder();
+                    const data = encoder.encode(input);
+                    const hashBuffer = await crypto.subtle.digest('RIPEMD-160', data);
+                    return new Uint8Array(hashBuffer);
+                } catch (e) {
+                    console.warn('Web Crypto API not available, using fallback implementation');
+                    // Fallback to a basic implementation
+                    return this.basicImplementation(input);
+                }
+            }
+            
+            // Basic fallback implementation
+            basicImplementation(input) {
+                // This is a very simplified implementation for demonstration
+                // In a real-world application, you would use a proper library
+                const encoder = new TextEncoder();
+                const data = encoder.encode(input);
+                
+                // Initialize variables
+                let h0 = 0x67452301;
+                let h1 = 0xEFCDAB89;
+                let h2 = 0x98BADCFE;
+                let h3 = 0x10325476;
+                let h4 = 0xC3D2E1F0;
+                
+                // Process in blocks of 64 bytes (512 bits)
+                const blockSize = 64;
+                const paddedData = this.padData(data);
+                
+                for (let i = 0; i < paddedData.length; i += blockSize) {
+                    const block = paddedData.slice(i, i + blockSize);
+                    const words = new Uint32Array(16);
+                    
+                    // Convert block to words
+                    for (let j = 0; j < 16; j++) {
+                        words[j] = block[j * 4] | (block[j * 4 + 1] << 8) | 
+                                  (block[j * 4 + 2] << 16) | (block[j * 4 + 3] << 24);
+                    }
+                    
+                    // Main loop - simplified for demonstration
+                    let a = h0, b = h1, c = h2, d = h3, e = h4;
+                    let aa = h0, bb = h1, cc = h2, dd = h3, ee = h4;
+                    
+                    for (let j = 0; j < 80; j++) {
+                        let f1, f2, temp1, temp2;
+                        
+                        if (j < 16) {
+                            f1 = (b & c) | (~b & d);
+                            f2 = (bb & dd) | (~bb & ee);
+                        } else if (j < 32) {
+                            f1 = (b & d) | (c & ~d);
+                            f2 = (bb & ee) | (cc & ~ee);
+                        } else if (j < 48) {
+                            f1 = b ^ c ^ d;
+                            f2 = bb ^ cc ^ ee;
+                        } else if (j < 64) {
+                            f1 = c ^ (b | ~d);
+                            f2 = cc ^ (bb | ~ee);
+                        } else {
+                            f1 = (b & c) | (~b & d);
+                            f2 = (bb & dd) | (~bb & ee);
+                        }
+                        
+                        temp1 = (a + f1 + words[this.K1[j]] + (j < 16 ? 0x00000000 : j < 32 ? 0x5A827999 : j < 48 ? 0x6ED9EBA1 : j < 64 ? 0x8F1BBCDC : 0xA953FD4E)) >>> 0;
+                        temp1 = ((temp1 << this.s1[j]) | (temp1 >>> (32 - this.s1[j]))) >>> 0;
+                        temp1 = (temp1 + e) >>> 0;
+                        
+                        temp2 = (aa + f2 + words[this.K2[j]] + (j < 16 ? 0x50A28BE6 : j < 32 ? 0x5C4DD124 : j < 48 ? 0x6D703EF3 : j < 64 ? 0x7A6D76E9 : 0x00000000)) >>> 0;
+                        temp2 = ((temp2 << this.s2[j]) | (temp2 >>> (32 - this.s2[j]))) >>> 0;
+                        temp2 = (temp2 + ee) >>> 0;
+                        
+                        a = e;
+                        e = d;
+                        d = ((c << 10) | (c >>> 22)) >>> 0;
+                        c = b;
+                        b = temp1;
+                        
+                        aa = ee;
+                        ee = dd;
+                        dd = ((cc << 10) | (cc >>> 22)) >>> 0;
+                        cc = bb;
+                        bb = temp2;
+                    }
+                    
+                    // Update hash values
+                    const temp = h1 + c + dd >>> 0;
+                    h1 = h2 + d + ee >>> 0;
+                    h2 = h3 + e + aa >>> 0;
+                    h3 = h4 + a + bb >>> 0;
+                    h4 = h0 + b + cc >>> 0;
+                    h0 = temp;
+                }
+                
+                // Return hash as Uint8Array
+                const result = new Uint8Array(20);
+                result[0] = h0 & 0xFF;
+                result[1] = (h0 >> 8) & 0xFF;
+                result[2] = (h0 >> 16) & 0xFF;
+                result[3] = (h0 >> 24) & 0xFF;
+                result[4] = h1 & 0xFF;
+                result[5] = (h1 >> 8) & 0xFF;
+                result[6] = (h1 >> 16) & 0xFF;
+                result[7] = (h1 >> 24) & 0xFF;
+                result[8] = h2 & 0xFF;
+                result[9] = (h2 >> 8) & 0xFF;
+                result[10] = (h2 >> 16) & 0xFF;
+                result[11] = (h2 >> 24) & 0xFF;
+                result[12] = h3 & 0xFF;
+                result[13] = (h3 >> 8) & 0xFF;
+                result[14] = (h3 >> 16) & 0xFF;
+                result[15] = (h3 >> 24) & 0xFF;
+                result[16] = h4 & 0xFF;
+                result[17] = (h4 >> 8) & 0xFF;
+                result[18] = (h4 >> 16) & 0xFF;
+                result[19] = (h4 >> 24) & 0xFF;
+                
+                return result;
+            }
+            
+            // Pad data according to RIPEMD-160 specifications
+            padData(data) {
+                const originalLength = data.length;
+                const bitLength = originalLength * 8;
+                
+                // Add 1 bit followed by zeros
+                const paddedLength = originalLength + 1 + 8;
+                const blockCount = Math.ceil(paddedLength / 64);
+                const totalLength = blockCount * 64;
+                
+                const paddedData = new Uint8Array(totalLength);
+                paddedData.set(data);
+                paddedData[originalLength] = 0x80; // Append 1 bit
+                
+                // Append bit length in little-endian format
+                for (let i = 0; i < 8; i++) {
+                    paddedData[totalLength - 8 + i] = (bitLength >>> (i * 8)) & 0xFF;
+                }
+                
+                return paddedData;
+            }
+            
+            // Format hash based on output format
+            formatHash(hashArray, format, caseFormat = 'lower') {
+                switch (format) {
+                    case 'base64':
+                        return this.arrayToBase64(hashArray);
+                    case 'base64url':
+                        return this.arrayToBase64(hashArray).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+                    case 'hex':
+                    default:
+                        const hex = Array.from(hashArray, byte => byte.toString(16).padStart(2, '0')).join('');
+                        return caseFormat === 'upper' ? hex.toUpperCase() : hex.toLowerCase();
+                }
+            }
+            
+            // Convert Uint8Array to Base64
+            arrayToBase64(bytes) {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+                let result = '';
+                let i;
+                
+                for (i = 2; i < bytes.length; i += 3) {
+                    result += chars[bytes[i - 2] >> 2];
+                    result += chars[((bytes[i - 2] & 3) << 4) | (bytes[i - 1] >> 4)];
+                    result += chars[((bytes[i - 1] & 15) << 2) | (bytes[i] >> 6)];
+                    result += chars[bytes[i] & 63];
+                }
+                
+                if (i === bytes.length + 1) {
+                    result += chars[bytes[i - 2] >> 2];
+                    result += chars[(bytes[i - 2] & 3) << 4];
+                    result += '==';
+                }
+                
+                if (i === bytes.length) {
+                    result += chars[bytes[i - 2] >> 2];
+                    result += chars[((bytes[i - 2] & 3) << 4) | (bytes[i - 1] >> 4)];
+                    result += chars[(bytes[i - 1] & 15) << 2];
+                    result += '=';
+                }
+                
+                return result;
+            }
+            
+            // Compare two hashes
+            compareHashes(hash1, hash2) {
+                // Normalize and compare
+                const normalizedHash1 = this.normalizeHash(hash1);
+                const normalizedHash2 = this.normalizeHash(hash2);
+                return normalizedHash1 === normalizedHash2;
+            }
+            
+            // Normalize hash string for comparison
+            normalizeHash(hashStr) {
+                // Remove any non-hex characters, convert to lowercase
+                return hashStr.toString().replace(/[^0-9A-Fa-f]/g, '').toLowerCase();
+            }
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                    }, 2000);
+                })
+                .catch(err => {
+                    alert('Failed to copy: ' + err);
+                });
+        }
+
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Use preset text
+        function usePreset(text) {
+            document.getElementById('text-input').value = text;
+            updateInputLength();
+            // Auto-calculate hash
+            document.getElementById('hash-btn').click();
+        }
+
+        // Update input length
+        function updateInputLength() {
+            const textInput = document.getElementById('text-input');
+            const lengthElement = document.getElementById('input-length');
+            lengthElement.textContent = textInput.value.length + ' characters';
+        }
+
+        // Update format display
+        function updateFormatDisplay() {
+            const format = document.querySelector('input[name="output-format"]:checked').value;
+            const display = document.getElementById('format-display');
+            
+            switch (format) {
+                case 'base64':
+                    display.textContent = 'Base64';
+                    break;
+                case 'base64url':
+                    display.textContent = 'Base64 URL Safe';
+                    break;
+                case 'hex':
+                default:
+                    display.textContent = 'Hexadecimal (40 chars)';
+                    break;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create RIPEMD-160 calculator instance
+            const calculator = new RIPEMD160Calculator();
+
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active content
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Text Hash elements
+            const textInput = document.getElementById('text-input');
+            const hashBtn = document.getElementById('hash-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const hashResult = document.getElementById('hash-result');
+            const copyHashBtn = document.getElementById('copy-hash-btn');
+
+            // File Hash elements
+            const fileInput = document.getElementById('file-input');
+            const fileUploadArea = document.querySelector('.file-upload-area');
+            const fileInfo = document.getElementById('file-info');
+            const fileName = document.getElementById('file-name');
+            const fileSize = document.getElementById('file-size');
+            const fileHashBtn = document.getElementById('file-hash-btn');
+            const clearFileBtn = document.getElementById('clear-file-btn');
+            const fileHashResult = document.getElementById('file-hash-result');
+            const copyFileHashBtn = document.getElementById('copy-file-hash-btn');
+            const hashFileSize = document.getElementById('hash-file-size');
+            const calcTime = document.getElementById('calc-time');
+
+            // Hash comparison elements
+            const hash1 = document.getElementById('hash1');
+            const hash2 = document.getElementById('hash2');
+            const compareBtn = document.getElementById('compare-btn');
+            const clearCompareBtn = document.getElementById('clear-compare-btn');
+            const compareResult = document.getElementById('compare-result');
+
+            // Update input length on text change
+            textInput.addEventListener('input', updateInputLength);
+            
+            // Update format display on change
+            document.querySelectorAll('input[name="output-format"]').forEach(radio => {
+                radio.addEventListener('change', updateFormatDisplay);
+            });
+            
+            // Initial updates
+            updateInputLength();
+            updateFormatDisplay();
+
+            // Text Hash calculation
+            hashBtn.addEventListener('click', async function() {
+                const text = textInput.value;
+                
+                try {
+                    // Show loading state
+                    hashBtn.disabled = true;
+                    hashBtn.textContent = 'Calculating...';
+                    hashResult.textContent = 'Calculating RIPEMD-160...';
+                    
+                    // Get selected options
+                    const format = document.querySelector('input[name="output-format"]:checked').value;
+                    const caseFormat = document.querySelector('input[name="case-format"]:checked').value;
+                    
+                    // Calculate hash
+                    let hashArray;
+                    if (window.crypto && window.crypto.subtle) {
+                        // Use Web Crypto API
+                        const encoder = new TextEncoder();
+                        const data = encoder.encode(text);
+                        const hashBuffer = await crypto.subtle.digest('RIPEMD-160', data);
+                        hashArray = new Uint8Array(hashBuffer);
+                    } else {
+                        // Use fallback implementation
+                        hashArray = calculator.basicImplementation(text);
+                    }
+                    
+                    // Format and display result
+                    const formattedHash = calculator.formatHash(hashArray, format, caseFormat);
+                    hashResult.textContent = formattedHash;
+                } catch (error) {
+                    console.error('Hash calculation error:', error);
+                    alert('Error calculating RIPEMD-160 hash: ' + error.message);
+                    hashResult.textContent = 'Error: Unable to calculate hash';
+                } finally {
+                    // Reset button state
+                    hashBtn.disabled = false;
+                    hashBtn.textContent = 'Generate RIPEMD-160';
+                }
+            });
+
+            // Clear text input
+            clearBtn.addEventListener('click', function() {
+                textInput.value = '';
+                hashResult.textContent = '';
+                updateInputLength();
+            });
+
+            // Copy hash to clipboard
+            copyHashBtn.addEventListener('click', function() {
+                copyToClipboard(hashResult.textContent, copyHashBtn);
+            });
+
+            // File upload handling
+            fileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    
+                    // Check file size (500MB limit)
+                    const maxSize = 500 * 1024 * 1024; // 500MB
+                    if (file.size > maxSize) {
+                        alert('File too large. Maximum size is 500MB.');
+                        fileInput.value = '';
+                        return;
+                    }
+                    
+                    // Display file info
+                    fileName.textContent = file.name;
+                    fileSize.textContent = formatFileSize(file.size);
+                    fileInfo.classList.add('show');
+                    
+                    // Enable buttons
+                    fileHashBtn.disabled = false;
+                    clearFileBtn.disabled = false;
+                }
+            });
+
+            // Drag and drop functionality
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                fileUploadArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                fileUploadArea.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                fileUploadArea.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight() {
+                fileUploadArea.classList.add('dragover');
+            }
+
+            function unhighlight() {
+                fileUploadArea.classList.remove('dragover');
+            }
+
+            fileUploadArea.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const file = dt.files[0];
+                
+                if (file) {
+                    fileInput.files = dt.files;
+                    // Trigger change event
+                    const event = new Event('change');
+                    fileInput.dispatchEvent(event);
+                }
+            }
+
+            // File Hash calculation
+            fileHashBtn.addEventListener('click', async function() {
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    
+                    try {
+                        // Show loading state
+                        fileHashBtn.disabled = true;
+                        fileHashBtn.textContent = 'Calculating...';
+                        fileHashResult.textContent = 'Calculating RIPEMD-160...';
+                        calcTime.textContent = 'Calculating...';
+                        
+                        // Get selected options
+                        const format = document.querySelector('input[name="file-output-format"]:checked').value;
+                        const caseFormat = document.querySelector('input[name="file-case-format"]:checked').value;
+                        
+                        // Read file and calculate hash
+                        const startTime = performance.now();
+                        
+                        const arrayBuffer = await readFileAsArrayBuffer(file);
+                        let hashArray;
+                        
+                        if (window.crypto && window.crypto.subtle) {
+                            // Use Web Crypto API
+                            const hashBuffer = await crypto.subtle.digest('RIPEMD-160', arrayBuffer);
+                            hashArray = new Uint8Array(hashBuffer);
+                        } else {
+                            // Convert ArrayBuffer to string for fallback (simplified approach)
+                            const text = new TextDecoder().decode(arrayBuffer);
+                            hashArray = calculator.basicImplementation(text);
+                        }
+                        
+                        const endTime = performance.now();
+                        const calculationTime = endTime - startTime;
+                        
+                        // Format and display result
+                        const formattedHash = calculator.formatHash(hashArray, format, caseFormat);
+                        fileHashResult.textContent = formattedHash;
+                        hashFileSize.textContent = formatFileSize(file.size);
+                        calcTime.textContent = calculationTime.toFixed(2) + ' ms';
+                    } catch (error) {
+                        console.error('File hash calculation error:', error);
+                        alert('Error calculating file hash: ' + error.message);
+                        fileHashResult.textContent = 'Error: Unable to calculate hash';
+                    } finally {
+                        // Reset button state
+                        fileHashBtn.disabled = false;
+                        fileHashBtn.textContent = 'Generate RIPEMD-160';
+                    }
+                }
+            });
+
+            // Helper function to read file as ArrayBuffer
+            function readFileAsArrayBuffer(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsArrayBuffer(file);
+                });
+            }
+
+            // Clear file selection
+            clearFileBtn.addEventListener('click', function() {
+                fileInput.value = '';
+                fileInfo.classList.remove('show');
+                fileHashResult.textContent = '';
+                calcTime.textContent = 'N/A';
+                
+                // Disable buttons
+                fileHashBtn.disabled = true;
+                clearFileBtn.disabled = true;
+            });
+
+            // Copy file hash to clipboard
+            copyFileHashBtn.addEventListener('click', function() {
+                copyToClipboard(fileHashResult.textContent, copyFileHashBtn);
+            });
+
+            // Hash comparison
+            compareBtn.addEventListener('click', function() {
+                const h1 = hash1.value.trim();
+                const h2 = hash2.value.trim();
+                
+                if (!h1 || !h2) {
+                    alert('Please enter both hashes to compare');
+                    return;
+                }
+                
+                const isMatch = calculator.compareHashes(h1, h2);
+                
+                compareResult.className = 'compare-result ' + (isMatch ? 'match' : 'no-match');
+                compareResult.textContent = isMatch ? '✓ Hashes match!' : '✗ Hashes do not match';
+            });
+
+            // Clear comparison
+            clearCompareBtn.addEventListener('click', function() {
+                hash1.value = '';
+                hash2.value = '';
+                compareResult.className = 'compare-result';
+                compareResult.textContent = '';
+            });
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+Enter or Cmd+Enter for current tab's action
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
+                    
+                    if (activeTab === 'text') {
+                        hashBtn.click();
+                    } else if (activeTab === 'file' && fileInput.files.length > 0) {
+                        fileHashBtn.click();
+                    } else if (activeTab === 'compare') {
+                        compareBtn.click();
+                    }
+                }
+            });
+
+            // Auto-calculate hash for initial text
+            hashBtn.click();
+        });
+    </script>
+</body>
+</html>

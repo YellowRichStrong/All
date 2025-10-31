@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRC32 Checksum Calculator - Cyclic Redundancy Check Tool</title>
+    <meta name="description" content="Calculate CRC32 checksums for text and files. Verify data integrity with this online CRC32 calculator.">
+    <meta name="keywords" content="CRC32, CRC32 checksum, checksum calculator, cyclic redundancy check, data integrity, file verification">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/crc32-encryption.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <style>
+        .tool-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .tool-icon-large {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            color: #4CAF50;
+            border-bottom-color: #4CAF50;
+        }
+        
+        .tab:hover:not(.active) {
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .code-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .code-area {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+        
+        .options {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .options h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-option:hover {
+            border-color: #4CAF50;
+            background-color: #f9fff9;
+        }
+        
+        .radio-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .radio-option input[type="radio"]:checked + label {
+            font-weight: 600;
+            color: #4CAF50;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #f57c00;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+        }
+        
+        .result-section {
+            margin-top: 20px;
+        }
+        
+        .result-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .result-box {
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            min-height: 50px;
+            font-family: 'Courier New', Courier, monospace;
+            word-break: break-all;
+            white-space: pre-wrap;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .copy-btn {
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .info-box h4 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        
+        .info-box ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .info-box li {
+            margin-bottom: 5px;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+            margin-bottom: 20px;
+        }
+        
+        .file-upload-area:hover {
+            border-color: #4CAF50;
+            background-color: #f9fff9;
+        }
+        
+        .file-upload-area.dragover {
+            border-color: #2196F3;
+            background-color: #e3f2fd;
+        }
+        
+        .file-upload-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .file-upload-text {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .file-upload-text strong {
+            color: #4CAF50;
+        }
+        
+        .file-info {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .file-info.show {
+            display: block;
+        }
+        
+        .file-name {
+            font-weight: 600;
+            color: #333;
+            word-break: break-all;
+        }
+        
+        .file-size {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        #file-input {
+            display: none;
+        }
+        
+        .hash-stats {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .hash-stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .hash-stat-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .hash-stat-label {
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .hash-stat-value {
+            color: #333;
+        }
+        
+        .compare-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fafafa;
+            border-radius: 8px;
+        }
+        
+        .compare-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .compare-input-group {
+            margin-bottom: 15px;
+        }
+        
+        .compare-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .compare-input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .compare-result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .compare-result.match {
+            display: block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #4caf50;
+        }
+        
+        .compare-result.no-match {
+            display: block;
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #f44336;
+        }
+        
+        .preset-examples {
+            margin-top: 20px;
+        }
+        
+        .preset-examples h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .preset-item {
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-family: 'Courier New', Courier, monospace;
+            word-break: break-all;
+        }
+        
+        .preset-item:hover {
+            background-color: #e0e0e0;
+            border-color: #4CAF50;
+        }
+        
+        /* Tool card styles */
+        .related-tools {
+            margin-top: 40px;
+        }
+        
+        .related-tools h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .related-tool-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .related-tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-tool-card a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .related-tool-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .related-tool-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .related-tool-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: auto;
+        }
+        
+        .related-tool-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+        
+        .related-tool-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #eee;
+                text-align: left;
+            }
+            
+            .tab.active {
+                border-bottom-color: #4CAF50;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .preset-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .radio-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../encry.html">Encry</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> &gt; 
+                <a href="../encry.html">Encryption Tools</a> &gt; 
+                <span>CRC32 Checksum Calculator</span>
+            </div>
+
+            <!-- Tool Content -->
+            <div class="tool-content">
+                <div class="tool-header">
+                    <div class="tool-icon-large">📊</div>
+                    <h1>CRC32 Checksum Calculator</h1>
+                    <p>Calculate and verify Cyclic Redundancy Check values</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="text">Text Checksum</button>
+                    <button class="tab" data-tab="file">File Checksum</button>
+                    <button class="tab" data-tab="compare">Compare Checksums</button>
+                </div>
+
+                <!-- Text Checksum Tab Content -->
+                <div id="text" class="tab-content active">
+                    <div class="input-group">
+                        <label for="text-input">Enter Text</label>
+                        <textarea id="text-input" placeholder="Enter the text you want to calculate CRC32 for...">The quick brown fox jumps over the lazy dog</textarea>
+                    </div>
+
+                    <div class="options">
+                        <h3>Output Format</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="hex" checked>
+                                <label>Hexadecimal</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="decimal">
+                                <label>Decimal</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="binary">
+                                <label>Binary</label>
+                            </label>
+                        </div>
+
+                        <h3>CRC32 Variant</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="crc-variant" value="standard" checked>
+                                <label>Standard (IEEE 802.3)</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="crc-variant" value="mpeg">
+                                <label>MPEG-2</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="crc-variant" value="posix">
+                                <label>POSIX</label>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="calculate-btn" class="btn btn-primary">Calculate CRC32</button>
+                        <button id="clear-btn" class="btn btn-secondary">Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>CRC32 Result</h3>
+                        <div id="crc-result" class="result-box"></div>
+                        <button id="copy-crc-btn" class="copy-btn">Copy Checksum</button>
+                    </div>
+
+                    <div class="hash-stats">
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Input Length:</span>
+                            <span class="hash-stat-value" id="input-length">0</span>
+                        </div>
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Checksum Length:</span>
+                            <span class="hash-stat-value">32 bits (8 hex characters)</span>
+                        </div>
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Variant:</span>
+                            <span class="hash-stat-value" id="crc-variant-display">Standard (IEEE 802.3)</span>
+                        </div>
+                    </div>
+
+                    <div class="preset-examples">
+                        <h3>Quick Examples</h3>
+                        <div class="preset-grid">
+                            <div class="preset-item" onclick="usePreset('')">Empty string</div>
+                            <div class="preset-item" onclick="usePreset('hello world')">hello world</div>
+                            <div class="preset-item" onclick="usePreset('123456')">123456</div>
+                            <div class="preset-item" onclick="usePreset('test')">test</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Checksum Tab Content -->
+                <div id="file" class="tab-content">
+                    <div class="file-upload-area" onclick="document.getElementById('file-input').click();">
+                        <input type="file" id="file-input" accept="*/*">
+                        <div class="file-upload-icon">📁</div>
+                        <div class="file-upload-text">
+                            Click or drag and drop a file here<br>
+                            <strong>(Max file size: 500MB)</strong>
+                        </div>
+                    </div>
+
+                    <div id="file-info" class="file-info">
+                        <div class="file-name" id="file-name">No file selected</div>
+                        <div class="file-size" id="file-size"></div>
+                    </div>
+
+                    <div class="options">
+                        <h3>Output Format</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="file-output-format" value="hex" checked>
+                                <label>Hexadecimal</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="file-output-format" value="decimal">
+                                <label>Decimal</label>
+                            </label>
+                        </div>
+
+                        <h3>CRC32 Variant</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="file-crc-variant" value="standard" checked>
+                                <label>Standard (IEEE 802.3)</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="file-crc-variant" value="mpeg">
+                                <label>MPEG-2</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="file-crc-variant" value="posix">
+                                <label>POSIX</label>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="file-calculate-btn" class="btn btn-primary" disabled>Calculate File CRC32</button>
+                        <button id="clear-file-btn" class="btn btn-secondary" disabled>Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>CRC32 Result</h3>
+                        <div id="file-crc-result" class="result-box"></div>
+                        <button id="copy-file-crc-btn" class="copy-btn">Copy Checksum</button>
+                    </div>
+
+                    <div class="hash-stats">
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">File Size:</span>
+                            <span class="hash-stat-value" id="hash-file-size">N/A</span>
+                        </div>
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Checksum Length:</span>
+                            <span class="hash-stat-value">32 bits (8 hex characters)</span>
+                        </div>
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Variant:</span>
+                            <span class="hash-stat-value" id="file-crc-variant-display">Standard (IEEE 802.3)</span>
+                        </div>
+                        <div class="hash-stat-item">
+                            <span class="hash-stat-label">Calculation Time:</span>
+                            <span class="hash-stat-value" id="calc-time">N/A</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compare Checksums Tab Content -->
+                <div id="compare" class="tab-content">
+                    <div class="compare-section">
+                        <h3>Compare Two CRC32 Checksums</h3>
+                        <p>Check if two CRC32 checksums are identical</p>
+                        
+                        <div class="compare-input-group">
+                            <label for="crc1">Checksum 1</label>
+                            <input type="text" id="crc1" placeholder="Enter first CRC32 checksum">
+                        </div>
+                        
+                        <div class="compare-input-group">
+                            <label for="crc2">Checksum 2</label>
+                            <input type="text" id="crc2" placeholder="Enter second CRC32 checksum">
+                        </div>
+                        
+                        <div class="button-group">
+                            <button id="compare-btn" class="btn btn-primary">Compare Checksums</button>
+                            <button id="clear-compare-btn" class="btn btn-secondary">Clear</button>
+                        </div>
+                        
+                        <div id="compare-result" class="compare-result">
+                            <!-- Result will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>About CRC32</h4>
+                    <ul>
+                        <li>CRC32 (Cyclic Redundancy Check) is a hash function that produces a 32-bit checksum</li>
+                        <li>Used primarily for detecting data corruption in digital transmission or storage</li>
+                        <li>Common applications include data verification in network protocols, file integrity checks, and archive formats</li>
+                        <li>Not cryptographically secure - designed for error detection, not confidentiality</li>
+                        <li>Different variants use different polynomials and initial values:</li>
+                        <li>Standard (IEEE 802.3): Uses polynomial 0xEDB88320</li>
+                        <li>MPEG-2: Uses polynomial 0x04C11DB7 with different initialization</li>
+                        <li>POSIX: Uses polynomial 0x04C11DB7 with different processing order</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="related-tools-grid">
+                    <div class="related-tool-card">
+                        <a href="md5-encryption.html">
+                            <div class="related-tool-icon">🔐</div>
+                            <h4 class="related-tool-title">MD5 Hash</h4>
+                            <p class="related-tool-desc">MD5 message digest algorithm</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="sha-encryption.html">
+                            <div class="related-tool-icon">🔒</div>
+                            <h4 class="related-tool-title">SHA Encryption</h4>
+                            <p class="related-tool-desc">Secure Hash Algorithm tools</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="hmac-encryption.html">
+                            <div class="related-tool-icon">🔑</div>
+                            <h4 class="related-tool-title">HMAC Hash</h4>
+                            <p class="related-tool-desc">Hash-based Message Authentication Code</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Powerful encryption tools to secure your data. All tools are free to use and work directly in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../encry.html">Encryption Tools</a>
+                        <a href="../dav.html">Dav</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // CRC32 implementation with different variants
+        class CRC32Calculator {
+            constructor() {
+                // Precompute CRC32 tables for different variants
+                this.standardTable = this.createCRCTable(0x04C11DB7);
+                this.mpegTable = this.createCRCTable(0x04C11DB7);
+                this.posixTable = this.createCRCTable(0x04C11DB7);
+            }
+
+            // Create CRC32 lookup table
+            createCRCTable(polynomial) {
+                const table = new Uint32Array(256);
+                let c;
+                
+                for (let n = 0; n < 256; n++) {
+                    c = n;
+                    for (let k = 0; k < 8; k++) {
+                        c = ((c & 1) ? (polynomial ^ (c >>> 1)) : (c >>> 1));
+                    }
+                    table[n] = c;
+                }
+                
+                return table;
+            }
+
+            // CRC32 calculation for string
+            crc32String(str, variant = 'standard') {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(str);
+                return this.crc32ArrayBuffer(data.buffer, variant);
+            }
+
+            // CRC32 calculation for ArrayBuffer
+            crc32ArrayBuffer(buffer, variant = 'standard') {
+                const bytes = new Uint8Array(buffer);
+                let crc, table;
+                
+                switch (variant) {
+                    case 'mpeg':
+                        crc = 0xFFFFFFFF;
+                        table = this.mpegTable;
+                        break;
+                    case 'posix':
+                        crc = 0;
+                        table = this.posixTable;
+                        break;
+                    case 'standard':
+                    default:
+                        crc = 0xFFFFFFFF;
+                        table = this.standardTable;
+                        break;
+                }
+                
+                for (let i = 0; i < bytes.length; i++) {
+                    if (variant === 'posix') {
+                        // POSIX: Process in reverse order
+                        crc = (crc << 8) ^ table[(crc >>> 24) ^ bytes[i]];
+                    } else {
+                        // Standard and MPEG: Normal processing
+                        crc = (crc >>> 8) ^ table[(crc ^ bytes[i]) & 0xFF];
+                    }
+                }
+                
+                // Final XOR based on variant
+                switch (variant) {
+                    case 'mpeg':
+                        // MPEG-2 doesn't do final XOR
+                        break;
+                    case 'posix':
+                        // POSIX has no final XOR but output is in big-endian format
+                        crc = ((crc >> 24) & 0xFF) | ((crc >> 8) & 0xFF00) | ((crc << 8) & 0xFF0000) | ((crc << 24) & 0xFF000000);
+                        break;
+                    case 'standard':
+                    default:
+                        // Standard IEEE 802.3 final XOR
+                        crc ^= 0xFFFFFFFF;
+                        break;
+                }
+                
+                return crc >>> 0; // Convert to unsigned 32-bit integer
+            }
+
+            // Format CRC32 value based on output format
+            formatCRC32(crc, format = 'hex') {
+                switch (format) {
+                    case 'decimal':
+                        return crc.toString();
+                    case 'binary':
+                        return crc.toString(2).padStart(32, '0');
+                    case 'hex':
+                    default:
+                        return crc.toString(16).toUpperCase().padStart(8, '0');
+                }
+            }
+
+            // Compare two CRC32 values
+            compareCRC32(crc1, crc2) {
+                // Normalize and compare
+                const normalizedCrc1 = this.normalizeCRC32(crc1);
+                const normalizedCrc2 = this.normalizeCRC32(crc2);
+                return normalizedCrc1 === normalizedCrc2;
+            }
+
+            // Normalize CRC32 string for comparison
+            normalizeCRC32(crcStr) {
+                // Remove any non-hex characters, convert to uppercase
+                return crcStr.toString().replace(/[^0-9A-Fa-f]/g, '').toUpperCase().padStart(8, '0');
+            }
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                    }, 2000);
+                })
+                .catch(err => {
+                    alert('Failed to copy: ' + err);
+                });
+        }
+
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Use preset text
+        function usePreset(text) {
+            document.getElementById('text-input').value = text;
+            updateInputLength();
+            // Auto-calculate CRC32
+            document.getElementById('calculate-btn').click();
+        }
+
+        // Update input length
+        function updateInputLength() {
+            const textInput = document.getElementById('text-input');
+            const lengthElement = document.getElementById('input-length');
+            lengthElement.textContent = textInput.value.length + ' characters';
+        }
+
+        // Update CRC variant display
+        function updateCRCVariantDisplay() {
+            const variant = document.querySelector('input[name="crc-variant"]:checked').value;
+            const display = document.getElementById('crc-variant-display');
+            
+            switch (variant) {
+                case 'mpeg':
+                    display.textContent = 'MPEG-2';
+                    break;
+                case 'posix':
+                    display.textContent = 'POSIX';
+                    break;
+                case 'standard':
+                default:
+                    display.textContent = 'Standard (IEEE 802.3)';
+                    break;
+            }
+        }
+
+        // Update file CRC variant display
+        function updateFileCRCVariantDisplay() {
+            const variant = document.querySelector('input[name="file-crc-variant"]:checked').value;
+            const display = document.getElementById('file-crc-variant-display');
+            
+            switch (variant) {
+                case 'mpeg':
+                    display.textContent = 'MPEG-2';
+                    break;
+                case 'posix':
+                    display.textContent = 'POSIX';
+                    break;
+                case 'standard':
+                default:
+                    display.textContent = 'Standard (IEEE 802.3)';
+                    break;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create CRC32 calculator instance
+            const calculator = new CRC32Calculator();
+
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active content
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Text CRC elements
+            const textInput = document.getElementById('text-input');
+            const calculateBtn = document.getElementById('calculate-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const crcResult = document.getElementById('crc-result');
+            const copyCrcBtn = document.getElementById('copy-crc-btn');
+
+            // File CRC elements
+            const fileInput = document.getElementById('file-input');
+            const fileUploadArea = document.querySelector('.file-upload-area');
+            const fileInfo = document.getElementById('file-info');
+            const fileName = document.getElementById('file-name');
+            const fileSize = document.getElementById('file-size');
+            const fileCalculateBtn = document.getElementById('file-calculate-btn');
+            const clearFileBtn = document.getElementById('clear-file-btn');
+            const fileCrcResult = document.getElementById('file-crc-result');
+            const copyFileCrcBtn = document.getElementById('copy-file-crc-btn');
+            const hashFileSize = document.getElementById('hash-file-size');
+            const calcTime = document.getElementById('calc-time');
+
+            // Hash comparison elements
+            const crc1 = document.getElementById('crc1');
+            const crc2 = document.getElementById('crc2');
+            const compareBtn = document.getElementById('compare-btn');
+            const clearCompareBtn = document.getElementById('clear-compare-btn');
+            const compareResult = document.getElementById('compare-result');
+
+            // Update input length on text change
+            textInput.addEventListener('input', updateInputLength);
+            
+            // Update CRC variant display on change
+            document.querySelectorAll('input[name="crc-variant"]').forEach(radio => {
+                radio.addEventListener('change', updateCRCVariantDisplay);
+            });
+            
+            // Update file CRC variant display on change
+            document.querySelectorAll('input[name="file-crc-variant"]').forEach(radio => {
+                radio.addEventListener('change', updateFileCRCVariantDisplay);
+            });
+            
+            // Initial updates
+            updateInputLength();
+            updateCRCVariantDisplay();
+            updateFileCRCVariantDisplay();
+
+            // Text CRC calculation
+            calculateBtn.addEventListener('click', function() {
+                const text = textInput.value;
+                
+                try {
+                    // Show loading state
+                    calculateBtn.disabled = true;
+                    calculateBtn.textContent = 'Calculating...';
+                    crcResult.textContent = 'Calculating CRC32...';
+                    
+                    // Get selected options
+                    const variant = document.querySelector('input[name="crc-variant"]:checked').value;
+                    const format = document.querySelector('input[name="output-format"]:checked').value;
+                    
+                    // Calculate CRC32
+                    const crc = calculator.crc32String(text, variant);
+                    
+                    // Format and display result
+                    const formattedCrc = calculator.formatCRC32(crc, format);
+                    crcResult.textContent = formattedCrc;
+                } catch (error) {
+                    alert('Error calculating CRC32: ' + error.message);
+                    crcResult.textContent = 'Error: Unable to calculate CRC32';
+                } finally {
+                    // Reset button state
+                    calculateBtn.disabled = false;
+                    calculateBtn.textContent = 'Calculate CRC32';
+                }
+            });
+
+            // Clear text input
+            clearBtn.addEventListener('click', function() {
+                textInput.value = '';
+                crcResult.textContent = '';
+                updateInputLength();
+            });
+
+            // Copy CRC to clipboard
+            copyCrcBtn.addEventListener('click', function() {
+                copyToClipboard(crcResult.textContent, copyCrcBtn);
+            });
+
+            // File upload handling
+            fileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    
+                    // Check file size (500MB limit)
+                    const maxSize = 500 * 1024 * 1024; // 500MB
+                    if (file.size > maxSize) {
+                        alert('File too large. Maximum size is 500MB.');
+                        fileInput.value = '';
+                        return;
+                    }
+                    
+                    // Display file info
+                    fileName.textContent = file.name;
+                    fileSize.textContent = formatFileSize(file.size);
+                    fileInfo.classList.add('show');
+                    
+                    // Enable buttons
+                    fileCalculateBtn.disabled = false;
+                    clearFileBtn.disabled = false;
+                }
+            });
+
+            // Drag and drop functionality
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                fileUploadArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                fileUploadArea.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                fileUploadArea.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight() {
+                fileUploadArea.classList.add('dragover');
+            }
+
+            function unhighlight() {
+                fileUploadArea.classList.remove('dragover');
+            }
+
+            fileUploadArea.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const file = dt.files[0];
+                
+                if (file) {
+                    fileInput.files = dt.files;
+                    // Trigger change event
+                    const event = new Event('change');
+                    fileInput.dispatchEvent(event);
+                }
+            }
+
+            // File CRC calculation
+            fileCalculateBtn.addEventListener('click', function() {
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    
+                    try {
+                        // Show loading state
+                        fileCalculateBtn.disabled = true;
+                        fileCalculateBtn.textContent = 'Calculating...';
+                        fileCrcResult.textContent = 'Calculating CRC32...';
+                        calcTime.textContent = 'Calculating...';
+                        
+                        // Get selected options
+                        const variant = document.querySelector('input[name="file-crc-variant"]:checked').value;
+                        const format = document.querySelector('input[name="file-output-format"]:checked').value;
+                        
+                        // Read file and calculate CRC32
+                        const reader = new FileReader();
+                        const startTime = performance.now();
+                        
+                        reader.onload = function(e) {
+                            try {
+                                const arrayBuffer = e.target.result;
+                                const crc = calculator.crc32ArrayBuffer(arrayBuffer, variant);
+                                const formattedCrc = calculator.formatCRC32(crc, format);
+                                
+                                const endTime = performance.now();
+                                const calculationTime = endTime - startTime;
+                                
+                                // Display results
+                                fileCrcResult.textContent = formattedCrc;
+                                hashFileSize.textContent = formatFileSize(file.size);
+                                calcTime.textContent = calculationTime.toFixed(2) + ' ms';
+                            } catch (error) {
+                                alert('Error calculating file CRC32: ' + error.message);
+                                fileCrcResult.textContent = 'Error: Unable to calculate CRC32';
+                            } finally {
+                                // Reset button state
+                                fileCalculateBtn.disabled = false;
+                                fileCalculateBtn.textContent = 'Calculate File CRC32';
+                            }
+                        };
+                        
+                        reader.onerror = function() {
+                            alert('Error reading file');
+                            fileCrcResult.textContent = 'Error: Unable to read file';
+                            fileCalculateBtn.disabled = false;
+                            fileCalculateBtn.textContent = 'Calculate File CRC32';
+                        };
+                        
+                        reader.readAsArrayBuffer(file);
+                    } catch (error) {
+                        alert('Error processing file: ' + error.message);
+                        fileCrcResult.textContent = 'Error: Unable to process file';
+                        fileCalculateBtn.disabled = false;
+                        fileCalculateBtn.textContent = 'Calculate File CRC32';
+                    }
+                }
+            });
+
+            // Clear file selection
+            clearFileBtn.addEventListener('click', function() {
+                fileInput.value = '';
+                fileInfo.classList.remove('show');
+                fileCrcResult.textContent = '';
+                calcTime.textContent = 'N/A';
+                
+                // Disable buttons
+                fileCalculateBtn.disabled = true;
+                clearFileBtn.disabled = true;
+            });
+
+            // Copy file CRC to clipboard
+            copyFileCrcBtn.addEventListener('click', function() {
+                copyToClipboard(fileCrcResult.textContent, copyFileCrcBtn);
+            });
+
+            // CRC comparison
+            compareBtn.addEventListener('click', function() {
+                const c1 = crc1.value.trim();
+                const c2 = crc2.value.trim();
+                
+                if (!c1 || !c2) {
+                    alert('Please enter both checksums to compare');
+                    return;
+                }
+                
+                const isMatch = calculator.compareCRC32(c1, c2);
+                
+                compareResult.className = 'compare-result ' + (isMatch ? 'match' : 'no-match');
+                compareResult.textContent = isMatch ? '✓ Checksums match!' : '✗ Checksums do not match';
+            });
+
+            // Clear comparison
+            clearCompareBtn.addEventListener('click', function() {
+                crc1.value = '';
+                crc2.value = '';
+                compareResult.className = 'compare-result';
+                compareResult.textContent = '';
+            });
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+Enter or Cmd+Enter for current tab's action
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
+                    
+                    if (activeTab === 'text') {
+                        calculateBtn.click();
+                    } else if (activeTab === 'file' && fileInput.files.length > 0) {
+                        fileCalculateBtn.click();
+                    } else if (activeTab === 'compare') {
+                        compareBtn.click();
+                    }
+                }
+            });
+
+            // Auto-calculate CRC32 for initial text
+            calculateBtn.click();
+        });
+    </script>
+</body>
+</html>

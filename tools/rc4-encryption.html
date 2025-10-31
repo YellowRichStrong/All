@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC4 Encryption - Secure Data with RC4 Algorithm</title>
+    <meta name="description" content="Encrypt and decrypt text using the RC4 symmetric encryption algorithm. Supports various output formats including hexadecimal, Base64, and binary.">
+    <meta name="keywords" content="RC4 encryption, RC4 decryption, symmetric encryption, stream cipher, text encryption, data security, encryption tool">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/rc4-encryption.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+    <style>
+        .tool-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .tool-icon-large {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            color: #4CAF50;
+            border-bottom-color: #4CAF50;
+        }
+        
+        .tab:hover:not(.active) {
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .code-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .code-area {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input[type="text"],
+        .input-group input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group input[type="text"]:focus,
+        .input-group input[type="password"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+        
+        .input-group textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+        
+        .options {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .options h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-option:hover {
+            border-color: #4CAF50;
+            background-color: #f9fff9;
+        }
+        
+        .radio-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .radio-option input[type="radio"]:checked + label {
+            font-weight: 600;
+            color: #4CAF50;
+        }
+        
+        .checkbox-group {
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .checkbox-option input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #f57c00;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+        }
+        
+        .result-section {
+            margin-top: 20px;
+        }
+        
+        .result-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .result-box {
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            min-height: 100px;
+            font-family: 'Courier New', Courier, monospace;
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+        
+        .copy-btn {
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .info-box h4 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        
+        .info-box ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .info-box li {
+            margin-bottom: 5px;
+        }
+        
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+            color: #e65100;
+        }
+        
+        .key-strength-meter {
+            margin-top: 10px;
+        }
+        
+        .strength-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+        
+        .strength-fill {
+            height: 100%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .strength-weak .strength-fill {
+            width: 25%;
+            background-color: #f44336;
+        }
+        
+        .strength-medium .strength-fill {
+            width: 50%;
+            background-color: #ff9800;
+        }
+        
+        .strength-strong .strength-fill {
+            width: 75%;
+            background-color: #4CAF50;
+        }
+        
+        .strength-very-strong .strength-fill {
+            width: 100%;
+            background-color: #2196F3;
+        }
+        
+        .strength-text {
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .show-hide-password {
+            position: relative;
+        }
+        
+        .show-hide-password .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+            user-select: none;
+        }
+        
+        /* Tool card styles */
+        .related-tools {
+            margin-top: 40px;
+        }
+        
+        .related-tools h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .related-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .related-tool-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .related-tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-tool-card a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .related-tool-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .related-tool-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .related-tool-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: auto;
+        }
+        
+        .related-tool-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+        
+        .related-tool-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #eee;
+                text-align: left;
+            }
+            
+            .tab.active {
+                border-bottom-color: #4CAF50;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .radio-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li class="active"><a href="../encry.html">Encry</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> &gt; 
+                <a href="../encry.html">Encryption Tools</a> &gt; 
+                <span>RC4 Encryption</span>
+            </div>
+
+            <!-- Tool Content -->
+            <div class="tool-content">
+                <div class="tool-header">
+                    <div class="tool-icon-large">🔒</div>
+                    <h1>RC4 Encryption</h1>
+                    <p>Encrypt and decrypt text using the RC4 symmetric algorithm</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="encrypt">Encrypt</button>
+                    <button class="tab" data-tab="decrypt">Decrypt</button>
+                </div>
+
+                <!-- Encrypt Tab Content -->
+                <div id="encrypt" class="tab-content active">
+                    <div class="input-group">
+                        <label for="encrypt-input">Plain Text</label>
+                        <textarea id="encrypt-input" placeholder="Enter the text you want to encrypt...">Hello, this is a test message for RC4 encryption.</textarea>
+                    </div>
+
+                    <div class="input-group show-hide-password">
+                        <label for="encryption-key">Encryption Key</label>
+                        <input type="password" id="encryption-key" placeholder="Enter a secret key" value="SecretKey123">
+                        <span class="toggle-password" onclick="togglePasswordVisibility('encryption-key')">👁️</span>
+                    </div>
+
+                    <div class="key-strength-meter" id="key-strength-meter">
+                        <div class="strength-bar">
+                            <div class="strength-fill"></div>
+                        </div>
+                        <div class="strength-text">Password Strength: Medium</div>
+                    </div>
+
+                    <div class="options">
+                        <h3>Output Options</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="hex" checked>
+                                <label>Hexadecimal</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="base64">
+                                <label>Base64</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="binary">
+                                <label>Binary</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="output-format" value="url-encode">
+                                <label>URL Encoded</label>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="encrypt-btn" class="btn btn-primary">Encrypt</button>
+                        <button id="clear-encrypt-btn" class="btn btn-secondary">Clear</button>
+                        <button id="generate-key-btn" class="btn btn-secondary">Generate Random Key</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Encrypted Result</h3>
+                        <div id="encrypted-output" class="result-box"></div>
+                        <button id="copy-encrypted-btn" class="copy-btn">Copy Encrypted Text</button>
+                    </div>
+                </div>
+
+                <!-- Decrypt Tab Content -->
+                <div id="decrypt" class="tab-content">
+                    <div class="input-group">
+                        <label for="decrypt-input">Encrypted Text</label>
+                        <textarea id="decrypt-input" placeholder="Paste the encrypted text here..."></textarea>
+                    </div>
+
+                    <div class="input-group show-hide-password">
+                        <label for="decryption-key">Decryption Key</label>
+                        <input type="password" id="decryption-key" placeholder="Enter the secret key">
+                        <span class="toggle-password" onclick="togglePasswordVisibility('decryption-key')">👁️</span>
+                    </div>
+
+                    <div class="options">
+                        <h3>Input Format</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="input-format" value="hex" checked>
+                                <label>Hexadecimal</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="input-format" value="base64">
+                                <label>Base64</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="input-format" value="binary">
+                                <label>Binary</label>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="input-format" value="url-encode">
+                                <label>URL Encoded</label>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="decrypt-btn" class="btn btn-primary">Decrypt</button>
+                        <button id="clear-decrypt-btn" class="btn btn-secondary">Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Decrypted Result</h3>
+                        <div id="decrypted-output" class="result-box"></div>
+                        <button id="copy-decrypted-btn" class="copy-btn">Copy Decrypted Text</button>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Security Note</h4>
+                    <p>RC4 is no longer recommended for highly secure applications due to known vulnerabilities. Consider using more modern encryption algorithms like AES for sensitive data.</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>About RC4 Encryption</h4>
+                    <ul>
+                        <li>RC4 (Rivest Cipher 4) is a stream cipher designed by Ronald Rivest in 1987</li>
+                        <li>It's a symmetric encryption algorithm, meaning the same key is used for both encryption and decryption</li>
+                        <li>RC4 is fast and efficient, making it suitable for applications where speed is important</li>
+                        <li>While once widely used in protocols like SSL/TLS, it has been deprecated due to security weaknesses</li>
+                        <li>For the best security, always use a strong, random key and consider more modern alternatives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="related-tools-grid">
+                    <div class="related-tool-card">
+                        <a href="aes-encryption.html">
+                            <div class="related-tool-icon">🛡️</div>
+                            <h4 class="related-tool-title">AES Encryption</h4>
+                            <p class="related-tool-desc">Advanced Encryption Standard tools</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="des-encryption.html">
+                            <div class="related-tool-icon">🔐</div>
+                            <h4 class="related-tool-title">DES Encryption</h4>
+                            <p class="related-tool-desc">Data Encryption Standard tools</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                    <div class="related-tool-card">
+                        <a href="tripledes-encryption.html">
+                            <div class="related-tool-icon">🔒🔒🔒</div>
+                            <h4 class="related-tool-title">Triple DES</h4>
+                            <p class="related-tool-desc">Enhanced DES with triple encryption</p>
+                            <button class="related-tool-btn">Use Tool</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Powerful encryption tools to secure your data. All tools are free to use and work directly in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../encry.html">Encryption Tools</a>
+                        <a href="../dav.html">Dav</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle password visibility function
+        function togglePasswordVisibility(fieldId) {
+            const field = document.getElementById(fieldId);
+            const icon = field.nextElementSibling;
+            
+            if (field.type === "password") {
+                field.type = "text";
+                icon.textContent = "👁️‍🗨️";
+            } else {
+                field.type = "password";
+                icon.textContent = "👁️";
+            }
+        }
+
+        // RC4 Algorithm Implementation
+        function rc4(key, plaintext) {
+            // Key Scheduling Algorithm (KSA)
+            const S = new Array(256);
+            const keyLength = key.length;
+            
+            for (let i = 0; i < 256; i++) {
+                S[i] = i;
+            }
+            
+            let j = 0;
+            for (let i = 0; i < 256; i++) {
+                j = (j + S[i] + key.charCodeAt(i % keyLength)) % 256;
+                // Swap S[i] and S[j]
+                [S[i], S[j]] = [S[j], S[i]];
+            }
+            
+            // Pseudo-Random Generation Algorithm (PRGA)
+            const ciphertext = new Array(plaintext.length);
+            let i = 0;
+            j = 0;
+            
+            for (let k = 0; k < plaintext.length; k++) {
+                i = (i + 1) % 256;
+                j = (j + S[i]) % 256;
+                // Swap S[i] and S[j]
+                [S[i], S[j]] = [S[j], S[i]];
+                
+                const t = (S[i] + S[j]) % 256;
+                const keystreamByte = S[t];
+                ciphertext[k] = String.fromCharCode(plaintext.charCodeAt(k) ^ keystreamByte);
+            }
+            
+            return ciphertext.join('');
+        }
+
+        // Helper functions for different formats
+        function textToHex(text) {
+            let hex = '';
+            for (let i = 0; i < text.length; i++) {
+                hex += text.charCodeAt(i).toString(16).padStart(2, '0');
+            }
+            return hex;
+        }
+
+        function hexToText(hex) {
+            let text = '';
+            for (let i = 0; i < hex.length; i += 2) {
+                text += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+            }
+            return text;
+        }
+
+        function textToBinary(text) {
+            let binary = '';
+            for (let i = 0; i < text.length; i++) {
+                binary += text.charCodeAt(i).toString(2).padStart(8, '0');
+            }
+            return binary;
+        }
+
+        function binaryToText(binary) {
+            let text = '';
+            for (let i = 0; i < binary.length; i += 8) {
+                text += String.fromCharCode(parseInt(binary.substr(i, 8), 2));
+            }
+            return text;
+        }
+
+        // Simple base64 encoding/decoding (using built-in functions for reliability)
+        function textToBase64(text) {
+            try {
+                return btoa(unescape(encodeURIComponent(text)));
+            } catch (e) {
+                // Fallback for older browsers
+                const base64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+                let result = '';
+                let i;
+                
+                for (i = 0; i < text.length - 2; i += 3) {
+                    result += base64chars[text.charCodeAt(i) >> 2];
+                    result += base64chars[((text.charCodeAt(i) & 3) << 4) | (text.charCodeAt(i + 1) >> 4)];
+                    result += base64chars[((text.charCodeAt(i + 1) & 15) << 2) | (text.charCodeAt(i + 2) >> 6)];
+                    result += base64chars[text.charCodeAt(i + 2) & 63];
+                }
+                
+                if (i === text.length - 2) {
+                    result += base64chars[text.charCodeAt(i) >> 2];
+                    result += base64chars[((text.charCodeAt(i) & 3) << 4) | (text.charCodeAt(i + 1) >> 4)];
+                    result += base64chars[(text.charCodeAt(i + 1) & 15) << 2];
+                    result += '=';
+                } else if (i === text.length - 1) {
+                    result += base64chars[text.charCodeAt(i) >> 2];
+                    result += base64chars[(text.charCodeAt(i) & 3) << 4];
+                    result += '==';
+                }
+                
+                return result;
+            }
+        }
+
+        function base64ToText(base64) {
+            try {
+                return decodeURIComponent(escape(atob(base64)));
+            } catch (e) {
+                // Fallback for older browsers
+                const base64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+                let result = '';
+                let i;
+                let j = 0;
+                let k = 0;
+                let temp = 0;
+                let char1, char2, char3;
+                
+                // Remove any non-base64 characters
+                base64 = base64.replace(/[^A-Za-z0-9+/=]/g, '');
+                
+                for (i = 0; i < base64.length; i += 4) {
+                    char1 = base64chars.indexOf(base64.charAt(i));
+                    char2 = base64chars.indexOf(base64.charAt(i + 1));
+                    char3 = base64chars.indexOf(base64.charAt(i + 2));
+                    
+                    temp = (char1 << 18) | (char2 << 12) | (char3 << 6);
+                    
+                    result += String.fromCharCode((temp >> 16) & 255);
+                    if (base64.charAt(i + 2) !== '=') {
+                        result += String.fromCharCode((temp >> 8) & 255);
+                    }
+                    if (base64.charAt(i + 3) !== '=') {
+                        result += String.fromCharCode(temp & 255);
+                    }
+                }
+                
+                return result;
+            }
+        }
+
+        // Generate random key
+        function generateRandomKey(length = 16) {
+            const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+            let key = '';
+            for (let i = 0; i < length; i++) {
+                key += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+            return key;
+        }
+
+        // Password strength checker
+        function checkPasswordStrength(password) {
+            let score = 0;
+            
+            // Length check
+            if (password.length >= 8) score += 1;
+            if (password.length >= 12) score += 1;
+            if (password.length >= 16) score += 1;
+            
+            // Character variety checks
+            if (/[a-z]/.test(password)) score += 1;
+            if (/[A-Z]/.test(password)) score += 1;
+            if (/[0-9]/.test(password)) score += 1;
+            if (/[^A-Za-z0-9]/.test(password)) score += 1;
+            
+            // Calculate strength
+            if (score <= 2) return { strength: 'weak', text: 'Weak' };
+            if (score <= 4) return { strength: 'medium', text: 'Medium' };
+            if (score <= 6) return { strength: 'strong', text: 'Strong' };
+            return { strength: 'very-strong', text: 'Very Strong' };
+        }
+
+        // Update key strength meter
+        function updateKeyStrengthMeter() {
+            const keyInput = document.getElementById('encryption-key');
+            const meter = document.getElementById('key-strength-meter');
+            const textElement = meter.querySelector('.strength-text');
+            
+            if (!keyInput.value) {
+                meter.className = 'key-strength-meter';
+                textElement.textContent = 'Enter a password';
+                return;
+            }
+            
+            const strength = checkPasswordStrength(keyInput.value);
+            meter.className = `key-strength-meter strength-${strength.strength}`;
+            textElement.textContent = `Password Strength: ${strength.text}`;
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                    }, 2000);
+                })
+                .catch(err => {
+                    alert('Failed to copy: ' + err);
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active content
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Get DOM elements
+            const encryptInput = document.getElementById('encrypt-input');
+            const encryptionKey = document.getElementById('encryption-key');
+            const encryptedOutput = document.getElementById('encrypted-output');
+            const encryptBtn = document.getElementById('encrypt-btn');
+            const clearEncryptBtn = document.getElementById('clear-encrypt-btn');
+            const generateKeyBtn = document.getElementById('generate-key-btn');
+            const copyEncryptedBtn = document.getElementById('copy-encrypted-btn');
+
+            const decryptInput = document.getElementById('decrypt-input');
+            const decryptionKey = document.getElementById('decryption-key');
+            const decryptedOutput = document.getElementById('decrypted-output');
+            const decryptBtn = document.getElementById('decrypt-btn');
+            const clearDecryptBtn = document.getElementById('clear-decrypt-btn');
+            const copyDecryptedBtn = document.getElementById('copy-decrypted-btn');
+
+            // Add key strength event listener
+            encryptionKey.addEventListener('input', updateKeyStrengthMeter);
+            
+            // Initial update of key strength
+            updateKeyStrengthMeter();
+
+            // Encrypt function
+            encryptBtn.addEventListener('click', function() {
+                const plaintext = encryptInput.value;
+                const key = encryptionKey.value;
+                
+                if (!plaintext) {
+                    alert('Please enter text to encrypt');
+                    return;
+                }
+                
+                if (!key) {
+                    alert('Please enter an encryption key');
+                    return;
+                }
+                
+                try {
+                    // Get selected output format
+                    const outputFormat = document.querySelector('input[name="output-format"]:checked').value;
+                    
+                    // Perform RC4 encryption
+                    const rawEncrypted = rc4(key, plaintext);
+                    
+                    // Format the output based on the selected option
+                    let formattedOutput;
+                    switch (outputFormat) {
+                        case 'hex':
+                            formattedOutput = textToHex(rawEncrypted);
+                            break;
+                        case 'base64':
+                            formattedOutput = textToBase64(rawEncrypted);
+                            break;
+                        case 'binary':
+                            formattedOutput = textToBinary(rawEncrypted);
+                            break;
+                        case 'url-encode':
+                            formattedOutput = encodeURIComponent(rawEncrypted);
+                            break;
+                        default:
+                            formattedOutput = textToHex(rawEncrypted);
+                    }
+                    
+                    encryptedOutput.textContent = formattedOutput;
+                    
+                    // Auto-populate decryption fields for convenience
+                    decryptInput.value = formattedOutput;
+                    decryptionKey.value = key;
+                } catch (error) {
+                    alert('Error during encryption: ' + error.message);
+                }
+            });
+
+            // Decrypt function
+            decryptBtn.addEventListener('click', function() {
+                const encryptedText = decryptInput.value;
+                const key = decryptionKey.value;
+                
+                if (!encryptedText) {
+                    alert('Please enter encrypted text');
+                    return;
+                }
+                
+                if (!key) {
+                    alert('Please enter a decryption key');
+                    return;
+                }
+                
+                try {
+                    // Get selected input format
+                    const inputFormat = document.querySelector('input[name="input-format"]:checked').value;
+                    
+                    // Convert from the selected format to raw encrypted text
+                    let rawEncrypted;
+                    switch (inputFormat) {
+                        case 'hex':
+                            rawEncrypted = hexToText(encryptedText);
+                            break;
+                        case 'base64':
+                            rawEncrypted = base64ToText(encryptedText);
+                            break;
+                        case 'binary':
+                            rawEncrypted = binaryToText(encryptedText);
+                            break;
+                        case 'url-encode':
+                            rawEncrypted = decodeURIComponent(encryptedText);
+                            break;
+                        default:
+                            rawEncrypted = hexToText(encryptedText);
+                    }
+                    
+                    // Perform RC4 decryption (same as encryption for stream ciphers)
+                    const decrypted = rc4(key, rawEncrypted);
+                    
+                    decryptedOutput.textContent = decrypted;
+                } catch (error) {
+                    alert('Error during decryption: ' + error.message);
+                }
+            });
+
+            // Generate random key
+            generateKeyBtn.addEventListener('click', function() {
+                encryptionKey.value = generateRandomKey(16);
+                updateKeyStrengthMeter();
+            });
+
+            // Clear functions
+            clearEncryptBtn.addEventListener('click', function() {
+                encryptInput.value = '';
+                encryptionKey.value = '';
+                encryptedOutput.textContent = '';
+                updateKeyStrengthMeter();
+            });
+            
+            clearDecryptBtn.addEventListener('click', function() {
+                decryptInput.value = '';
+                decryptionKey.value = '';
+                decryptedOutput.textContent = '';
+            });
+
+            // Copy to clipboard
+            copyEncryptedBtn.addEventListener('click', function() {
+                copyToClipboard(encryptedOutput.textContent, copyEncryptedBtn);
+            });
+            
+            copyDecryptedBtn.addEventListener('click', function() {
+                copyToClipboard(decryptedOutput.textContent, copyDecryptedBtn);
+            });
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+Enter or Cmd+Enter for encrypt/decrypt
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
+                    if (activeTab === 'encrypt') {
+                        encryptBtn.click();
+                    } else {
+                        decryptBtn.click();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
