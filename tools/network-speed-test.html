@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Speed Test - Check Your Internet Connection Speed</title>
+    <meta name="description" content="Test your internet connection speed with our free network speed test tool. Measure download speed, upload speed, and ping with detailed results and analysis.">
+    <meta name="keywords" content="network speed test, internet speed test, check internet speed, download speed, upload speed, ping test">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/network-speed-test.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/network-speed-test.html">
+    <meta property="og:title" content="Network Speed Test - OOPEN AII">
+    <meta property="og:description" content="Test your internet connection speed with our free network speed test tool. Measure download speed, upload speed, and ping.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/network-speed-test.html">
+    <meta property="twitter:title" content="Network Speed Test - OOPEN AII">
+    <meta property="twitter:description" content="Test your internet connection speed with our free network speed test tool. Measure download speed, upload speed, and ping.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        /* Network Speed Test Specific Styles */
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tool-description {
+            background-color: #e9f7fe;
+            border-left: 4px solid #007bff;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .test-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        #testButton {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+
+        #testButton:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        #testButton:active {
+            transform: translateY(0);
+        }
+
+        #testButton:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .test-progress {
+            display: none;
+            margin: 2rem 0;
+        }
+
+        .progress-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #007bff, #00bfff);
+            width: 0%;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .speed-results {
+            display: none;
+            margin: 2rem 0;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .result-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #007bff;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .detailed-results {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e9ecef;
+        }
+
+        .detailed-results h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item-label {
+            color: #666;
+        }
+
+        .result-item-value {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .speed-grade {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .grade-excellent {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .grade-good {
+            background-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .grade-fair {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .grade-poor {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .tips-section {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tips-section h3 {
+            color: #856404;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .tips-section ul {
+            margin-bottom: 0;
+            padding-left: 1.5rem;
+        }
+
+        .tips-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .current-stage {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 1.5rem;
+            }
+
+            #testButton {
+                padding: 0.75rem 1.5rem;
+                font-size: 1.1rem;
+            }
+
+            .result-value {
+                font-size: 1.75rem;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../index.html">Home</a> &gt; 
+            <a href="../network.html">Network Tools</a> &gt; 
+            <span>Network Speed Test</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <section class="tool-section">
+                <div class="tool-header">
+                    <h1>Network Speed Test</h1>
+                    <p>Test your internet connection speed including download and upload rates</p>
+                </div>
+
+                <div class="tool-container">
+                    <div class="tool-description">
+                        <p>This tool measures your internet connection's performance by testing download speed, upload speed, and ping (latency). For accurate results, please ensure no other applications are using your internet connection during the test.</p>
+                    </div>
+
+                    <div class="test-container">
+                        <button id="testButton">Start Speed Test</button>
+                    </div>
+
+                    <div id="loadingIndicator" class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Preparing for speed test...</p>
+                    </div>
+
+                    <div id="testProgress" class="test-progress">
+                        <div class="progress-title">
+                            <span id="currentTestStage">Testing Download Speed</span>
+                            <div class="current-stage" id="stageDescription">Measuring how quickly data can be downloaded to your device...</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progressFill" class="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <div id="speedResults" class="speed-results">
+                        <h2>Speed Test Results</h2>
+                        
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="result-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                </div>
+                                <div class="result-value" id="downloadSpeed">0.00</div>
+                                <div class="result-label">Download Speed (Mbps)</div>
+                            </div>
+
+                            <div class="result-card">
+                                <div class="result-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 9v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9"></path>
+                                        <polyline points="7 14 12 9 17 14"></polyline>
+                                        <line x1="12" y1="9" x2="12" y2="21"></line>
+                                    </svg>
+                                </div>
+                                <div class="result-value" id="uploadSpeed">0.00</div>
+                                <div class="result-label">Upload Speed (Mbps)</div>
+                            </div>
+
+                            <div class="result-card">
+                                <div class="result-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                    </svg>
+                                </div>
+                                <div class="result-value" id="pingValue">0</div>
+                                <div class="result-label">Ping (ms)</div>
+                            </div>
+                        </div>
+
+                        <div class="detailed-results">
+                            <h3>Detailed Results</h3>
+                            <div class="result-item">
+                                <span class="result-item-label">Connection Type:</span>
+                                <span class="result-item-value" id="connectionType">Unknown</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-item-label">Test Duration:</span>
+                                <span class="result-item-value" id="testDuration">0 seconds</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-item-label">Data Transferred:</span>
+                                <span class="result-item-value" id="dataTransferred">0 MB</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-item-label">Speed Grade:</span>
+                                <span class="result-item-value" id="speedGrade"></span>
+                            </div>
+                        </div>
+
+                        <div class="tips-section">
+                            <h3>Improve Your Connection Speed</h3>
+                            <ul>
+                                <li>Restart your router and modem</li>
+                                <li>Move closer to your Wi-Fi router or use a wired connection</li>
+                                <li>Close unused applications and browser tabs</li>
+                                <li>Update your router firmware</li>
+                                <li>Contact your internet service provider if speeds are consistently slow</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools Section -->
+            <section class="related-tools">
+                <div class="section-header">
+                    <h2>Related Network Tools</h2>
+                </div>
+                <div class="tools-grid">
+                    <!-- Ping Test -->
+                    <a href="ping-test.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+                                </svg>
+                            </div>
+                            <h3>Ping Test</h3>
+                            <p>Check the connectivity and response time to a specific domain or IP address.</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+
+                    <!-- Website Performance Test -->
+                    <a href="website-performance.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                                </svg>
+                            </div>
+                            <h3>Website Performance Test</h3>
+                            <p>Analyze website load speed and performance metrics. Get optimization suggestions.</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+
+                    <!-- Traceroute -->
+                    <a href="traceroute.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </div>
+                            <h3>Traceroute</h3>
+                            <p>Trace the path packets take from your browser to a destination server.</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const testButton = document.getElementById('testButton');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const testProgress = document.getElementById('testProgress');
+            const currentTestStage = document.getElementById('currentTestStage');
+            const stageDescription = document.getElementById('stageDescription');
+            const progressFill = document.getElementById('progressFill');
+            const speedResults = document.getElementById('speedResults');
+            const downloadSpeed = document.getElementById('downloadSpeed');
+            const uploadSpeed = document.getElementById('uploadSpeed');
+            const pingValue = document.getElementById('pingValue');
+            const connectionType = document.getElementById('connectionType');
+            const testDuration = document.getElementById('testDuration');
+            const dataTransferred = document.getElementById('dataTransferred');
+            const speedGrade = document.getElementById('speedGrade');
+
+            let testStartTime;
+            let testEndTime;
+
+            // Determine connection type
+            function getConnectionType() {
+                // This is a simplified detection, in a real-world scenario you might want to use
+                // the Network Information API if available
+                if (navigator.connection) {
+                    return navigator.connection.effectiveType || 'Unknown';
+                }
+                return 'Unknown';
+            }
+
+            // Calculate speed grade based on download speed
+            function calculateSpeedGrade(downloadMbps) {
+                if (downloadMbps >= 100) return { grade: 'Excellent', className: 'grade-excellent' };
+                if (downloadMbps >= 50) return { grade: 'Good', className: 'grade-good' };
+                if (downloadMbps >= 25) return { grade: 'Fair', className: 'grade-fair' };
+                return { grade: 'Poor', className: 'grade-poor' };
+            }
+
+            // Simulate speed test stages
+            function simulateSpeedTest() {
+                testStartTime = new Date();
+                
+                // Show loading indicator
+                testButton.style.display = 'none';
+                loadingIndicator.style.display = 'block';
+                
+                // Simulate preparation delay
+                setTimeout(() => {
+                    loadingIndicator.style.display = 'none';
+                    testProgress.style.display = 'block';
+                    
+                    // Start ping test
+                    runPingTest();
+                }, 2000);
+            }
+
+            // Simulate ping test
+            function runPingTest() {
+                currentTestStage.textContent = 'Testing Ping';
+                stageDescription.textContent = 'Measuring network latency...';
+                progressFill.style.width = '0%';
+                
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 2;
+                    progressFill.style.width = `${progress}%`;
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        
+                        // Generate random ping value (between 10-100ms for demo)
+                        const ping = Math.floor(Math.random() * 90) + 10;
+                        pingValue.textContent = ping;
+                        
+                        // Move to download test
+                        setTimeout(() => runDownloadTest(), 500);
+                    }
+                }, 50);
+            }
+
+            // Simulate download speed test
+            function runDownloadTest() {
+                currentTestStage.textContent = 'Testing Download Speed';
+                stageDescription.textContent = 'Measuring how quickly data can be downloaded to your device...';
+                progressFill.style.width = '0%';
+                
+                let progress = 0;
+                let simulatedSpeed = 0;
+                
+                // Generate random base speed (between 20-100 Mbps for demo)
+                const baseSpeed = Math.random() * 80 + 20;
+                
+                const interval = setInterval(() => {
+                    progress += 1;
+                    progressFill.style.width = `${progress}%`;
+                    
+                    // Simulate speed fluctuation
+                    const fluctuation = (Math.random() - 0.5) * 10;
+                    simulatedSpeed = Math.max(0, baseSpeed + fluctuation);
+                    downloadSpeed.textContent = simulatedSpeed.toFixed(2);
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        
+                        // Finalize download speed
+                        downloadSpeed.textContent = baseSpeed.toFixed(2);
+                        
+                        // Move to upload test
+                        setTimeout(() => runUploadTest(), 500);
+                    }
+                }, 40);
+            }
+
+            // Simulate upload speed test
+            function runUploadTest() {
+                currentTestStage.textContent = 'Testing Upload Speed';
+                stageDescription.textContent = 'Measuring how quickly data can be uploaded from your device...';
+                progressFill.style.width = '0%';
+                
+                let progress = 0;
+                let simulatedSpeed = 0;
+                
+                // Generate random base upload speed (typically lower than download)
+                const downloadMbps = parseFloat(downloadSpeed.textContent);
+                const baseSpeed = Math.max(5, downloadMbps * (Math.random() * 0.3 + 0.1)); // 10-40% of download speed
+                
+                const interval = setInterval(() => {
+                    progress += 1;
+                    progressFill.style.width = `${progress}%`;
+                    
+                    // Simulate speed fluctuation
+                    const fluctuation = (Math.random() - 0.5) * 5;
+                    simulatedSpeed = Math.max(0, baseSpeed + fluctuation);
+                    uploadSpeed.textContent = simulatedSpeed.toFixed(2);
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        
+                        // Finalize upload speed
+                        uploadSpeed.textContent = baseSpeed.toFixed(2);
+                        
+                        // Complete test and show results
+                        setTimeout(showResults, 500);
+                    }
+                }, 40);
+            }
+
+            // Show final results
+            function showResults() {
+                testEndTime = new Date();
+                
+                // Calculate test duration
+                const durationSeconds = Math.round((testEndTime - testStartTime) / 1000);
+                testDuration.textContent = `${durationSeconds} seconds`;
+                
+                // Estimate data transferred (simplified)
+                const downloadMbps = parseFloat(downloadSpeed.textContent);
+                const uploadMbps = parseFloat(uploadSpeed.textContent);
+                const estimatedDataMB = ((downloadMbps + uploadMbps) * durationSeconds / 8).toFixed(2);
+                dataTransferred.textContent = `${estimatedDataMB} MB`;
+                
+                // Set connection type
+                connectionType.textContent = getConnectionType();
+                
+                // Calculate and display speed grade
+                const gradeInfo = calculateSpeedGrade(downloadMbps);
+                speedGrade.textContent = gradeInfo.grade;
+                speedGrade.className = `speed-grade ${gradeInfo.className}`;
+                
+                // Hide progress and show results
+                testProgress.style.display = 'none';
+                speedResults.style.display = 'block';
+                
+                // Show reset button
+                testButton.textContent = 'Run Test Again';
+                testButton.style.display = 'inline-block';
+                testButton.disabled = false;
+            }
+
+            // Event listener for test button
+            testButton.addEventListener('click', function() {
+                testButton.disabled = true;
+                speedResults.style.display = 'none';
+                simulateSpeedTest();
+            });
+        });
+    </script>
+</body>
+</html>

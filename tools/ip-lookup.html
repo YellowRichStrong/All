@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Lookup - Free IP Geolocation Tool - OOPEN AII</title>
+    <meta name="description" content="Free IP lookup tool to get detailed information about any IP address including geolocation, ISP, country, city, timezone and more.">
+    <meta name="keywords" content="IP lookup,IP geolocation,IP address lookup,IP information,IP location,free IP checker">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/ip-lookup.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/ip-lookup.html">
+    <meta property="og:title" content="IP Lookup - Free IP Geolocation Tool">
+    <meta property="og:description" content="Get detailed information about any IP address including geolocation, ISP, country, city, timezone and more.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/ip-lookup.html">
+    <meta property="twitter:title" content="IP Lookup - Free IP Geolocation Tool">
+    <meta property="twitter:description" content="Get detailed information about any IP address including geolocation, ISP, country, city, timezone and more.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tool-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .ip-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .primary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #1E88E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .primary-btn:hover {
+            background: #1976D2;
+        }
+        
+        .secondary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+        }
+        
+        .result-header {
+            margin-bottom: 20px;
+        }
+        
+        .result-header h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .ip-result {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+        }
+        
+        .ip-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .ip-info-item {
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ip-info-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .ip-info-value {
+            color: #333;
+            font-size: 16px;
+            word-break: break-all;
+        }
+        
+        .map-container {
+            margin-top: 20px;
+            height: 300px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .map-placeholder {
+            text-align: center;
+            color: #999;
+        }
+        
+        .ip-result.hidden {
+            display: none;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .error-message.hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+            
+            .ip-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb">
+                <a href="../index.html">index</a>
+                <span>/</span>
+                <a href="../network.html">Network Tools</a>
+                <span>/</span>
+                <span>IP Lookup</span>
+            </div>
+
+            <!-- Tool Container -->
+            <div class="tool-container">
+                <!-- Tool Header -->
+                <div class="tool-header">
+                    <h2>IP Lookup</h2>
+                    <p>Get detailed information about any IP address including geolocation, ISP, country, city, timezone and more.</p>
+                </div>
+
+                <!-- IP Lookup Form -->
+                <form class="ip-form" id="ipLookupForm">
+                    <div class="input-group">
+                        <label for="ipAddress">IP Address or Domain</label>
+                        <input type="text" id="ipAddress" placeholder="Enter IP address (e.g., 8.8.8.8) or domain (e.g., google.com)" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn">Lookup IP</button>
+                        <button type="button" class="secondary-btn" id="checkMyIpBtn">Check My IP</button>
+                        <button type="button" class="secondary-btn" id="clearBtn">Clear</button>
+                    </div>
+                </form>
+
+                <!-- Error Message -->
+                <div class="error-message hidden" id="errorMessage">
+                    <p id="errorText">An error occurred while processing your request.</p>
+                </div>
+
+                <!-- Result Section -->
+                <div class="result-section">
+                    <div class="result-header">
+                        <h3>IP Information</h3>
+                    </div>
+                    <div class="ip-result hidden" id="ipResult">
+                        <div class="ip-info-grid">
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">IP Address</div>
+                                <div class="ip-info-value" id="ipValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">Hostname</div>
+                                <div class="ip-info-value" id="hostnameValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">Country</div>
+                                <div class="ip-info-value" id="countryValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">Region</div>
+                                <div class="ip-info-value" id="regionValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">City</div>
+                                <div class="ip-info-value" id="cityValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">ZIP Code</div>
+                                <div class="ip-info-value" id="zipValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">Latitude</div>
+                                <div class="ip-info-value" id="latitudeValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">Longitude</div>
+                                <div class="ip-info-value" id="longitudeValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">Timezone</div>
+                                <div class="ip-info-value" id="timezoneValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">ISP</div>
+                                <div class="ip-info-value" id="ispValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">ASN</div>
+                                <div class="ip-info-value" id="asnValue">--</div>
+                            </div>
+                            <div class="ip-info-item">
+                                <div class="ip-info-label">Proxy</div>
+                                <div class="ip-info-value" id="proxyValue">--</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Map Placeholder -->
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <p>Location Map</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const ipLookupForm = document.getElementById('ipLookupForm');
+        const ipAddressInput = document.getElementById('ipAddress');
+        const checkMyIpBtn = document.getElementById('checkMyIpBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const ipResult = document.getElementById('ipResult');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        
+        // Result fields
+        const ipValue = document.getElementById('ipValue');
+        const hostnameValue = document.getElementById('hostnameValue');
+        const countryValue = document.getElementById('countryValue');
+        const regionValue = document.getElementById('regionValue');
+        const cityValue = document.getElementById('cityValue');
+        const zipValue = document.getElementById('zipValue');
+        const latitudeValue = document.getElementById('latitudeValue');
+        const longitudeValue = document.getElementById('longitudeValue');
+        const timezoneValue = document.getElementById('timezoneValue');
+        const ispValue = document.getElementById('ispValue');
+        const asnValue = document.getElementById('asnValue');
+        const proxyValue = document.getElementById('proxyValue');
+        
+        // Form submission handler
+        ipLookupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const ipAddress = ipAddressInput.value.trim();
+            lookupIP(ipAddress);
+        });
+        
+        // Check My IP button handler
+        checkMyIpBtn.addEventListener('click', function() {
+            lookupIP(''); // Empty string to check user's IP
+        });
+        
+        // Clear button handler
+        clearBtn.addEventListener('click', function() {
+            ipAddressInput.value = '';
+            ipResult.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+        });
+        
+        // IP lookup function (using a mock API for demonstration)
+        function lookupIP(ip) {
+            // Show loading state (optional)
+            errorMessage.classList.add('hidden');
+            
+            // Simulate API call with mock data
+            setTimeout(() => {
+                try {
+                    // Mock data based on input
+                    let mockData;
+                    
+                    if (ip === '' || ip.toLowerCase().includes('myip')) {
+                        // User's IP (mock)
+                        mockData = {
+                            ip: '192.168.1.1',
+                            hostname: 'user.local',
+                            country: 'China',
+                            region: 'Beijing',
+                            city: 'Beijing',
+                            zip: '100000',
+                            latitude: 39.9042,
+                            longitude: 116.4074,
+                            timezone: 'Asia/Shanghai',
+                            isp: 'China Telecom',
+                            asn: 'AS4812',
+                            proxy: false
+                        };
+                    } else if (ip === '8.8.8.8' || ip.toLowerCase().includes('google')) {
+                        // Google DNS
+                        mockData = {
+                            ip: '8.8.8.8',
+                            hostname: 'dns.google',
+                            country: 'United States',
+                            region: 'California',
+                            city: 'Mountain View',
+                            zip: '94043',
+                            latitude: 37.386,
+                            longitude: -122.084,
+                            timezone: 'America/Los_Angeles',
+                            isp: 'Google LLC',
+                            asn: 'AS15169',
+                            proxy: false
+                        };
+                    } else {
+                        // Default mock data for any other IP
+                        mockData = {
+                            ip: ip,
+                            hostname: 'example.com',
+                            country: 'Unknown',
+                            region: 'Unknown',
+                            city: 'Unknown',
+                            zip: 'Unknown',
+                            latitude: 0,
+                            longitude: 0,
+                            timezone: 'UTC',
+                            isp: 'Unknown ISP',
+                            asn: 'Unknown',
+                            proxy: false
+                        };
+                    }
+                    
+                    // Update result fields
+                    ipValue.textContent = mockData.ip;
+                    hostnameValue.textContent = mockData.hostname;
+                    countryValue.textContent = mockData.country;
+                    regionValue.textContent = mockData.region;
+                    cityValue.textContent = mockData.city;
+                    zipValue.textContent = mockData.zip;
+                    latitudeValue.textContent = mockData.latitude;
+                    longitudeValue.textContent = mockData.longitude;
+                    timezoneValue.textContent = mockData.timezone;
+                    ispValue.textContent = mockData.isp;
+                    asnValue.textContent = mockData.asn;
+                    proxyValue.textContent = mockData.proxy ? 'Yes' : 'No';
+                    
+                    // Show result
+                    ipResult.classList.remove('hidden');
+                } catch (error) {
+                    // Show error
+                    errorText.textContent = 'Failed to lookup IP information. Please try again.';
+                    errorMessage.classList.remove('hidden');
+                    ipResult.classList.add('hidden');
+                }
+            }, 1000); // Simulate network delay
+        }
+        
+        // Validate IP address format (simple regex)
+        function isValidIP(ip) {
+            const ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+            const domainRegex = /^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
+            return ipRegex.test(ip) || domainRegex.test(ip) || ip === '';
+        }
+    </script>
+</body>
+</html>

@@ -250,7 +250,9 @@
                 <ul>
                     <li><a href="../index.html">Image Tools</a></li>
                     <li><a href="../encry.html">Encry Tools</a></li>
-                    <li class="active"><a href="../dav.html">Dav</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
                 </ul>
             </nav>
         </div>
@@ -261,7 +263,7 @@
         <div class="tool-container">
             <!-- Breadcrumb -->
             <div class="breadcrumb">
-                <a href="../index.html">Home</a> &gt; 
+                <a href="../index.html">index</a> &gt; 
                 <a href="../dav.html">Development Tools</a> &gt; 
                 <span>HTML Minify/Format</span>
             </div>
@@ -426,7 +428,7 @@
   <header>
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="#">index</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
@@ -569,7 +571,7 @@
                     const indentSizeEl = document.getElementById('indentSize');
                     let indentSize = 4;
                     if (indentSizeEl && indentSizeEl.value) {
-                        const parsedSize = parseInt(indentSizeEl.value);
+                        const parsedSize = parseInt(indentSizeEl.value, 10);
                         if (!isNaN(parsedSize) && parsedSize > 0) {
                             indentSize = parsedSize;
                         }

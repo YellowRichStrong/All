@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port Scanner - Free Online Network Port Scan Tool - OOPEN AII</title>
+    <meta name="description" content="Free online port scanner tool to check open ports on any IP address or domain. Scan common ports quickly and identify potential vulnerabilities.">
+    <meta name="keywords" content="port scanner,open port check,network scan,security scanner,port scanning,open ports">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/port-scanner.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/port-scanner.html">
+    <meta property="og:title" content="Port Scanner - Free Online Network Port Scan Tool">
+    <meta property="og:description" content="Free online port scanner tool to check open ports on any IP address or domain.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/port-scanner.html">
+    <meta property="twitter:title" content="Port Scanner - Free Online Network Port Scan Tool">
+    <meta property="twitter:description" content="Free online port scanner tool to check open ports on any IP address or domain.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tool-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .scan-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input,
+        .input-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .primary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #1E88E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .primary-btn:hover {
+            background: #1976D2;
+        }
+        
+        .primary-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .scan-options {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        
+        .scan-options h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .port-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .port-range {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+        
+        .port-range input {
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .port-range span {
+            padding-bottom: 12px;
+            color: #666;
+        }
+        
+        .common-ports {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .port-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .port-checkbox input[type="checkbox"] {
+            margin: 0;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .result-header h3 {
+            color: #333;
+            margin: 0;
+        }
+        
+        .result-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1E88E5;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .scan-result {
+            background: #f8f9fa;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .scan-result.hidden {
+            display: none;
+        }
+        
+        .ports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+        
+        .port-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .port-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .port-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .port-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .port-status {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .port-status.open {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .port-status.closed {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .port-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .port-info-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        
+        .port-info-label {
+            color: #666;
+        }
+        
+        .port-info-value {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .scan-log {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        
+        .scan-log.hidden {
+            display: none;
+        }
+        
+        .scan-log-toggle {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: #1E88E5;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .error-message.hidden {
+            display: none;
+        }
+        
+        .loading-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #1E88E5;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: loading 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loading {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .scan-progress {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: #1E88E5;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+            
+            .result-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .ports-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb">
+                <a href="../index.html">index</a>
+                <span>/</span>
+                <a href="../network.html">Network Tools</a>
+                <span>/</span>
+                <span>Port Scanner</span>
+            </div>
+
+            <!-- Tool Container -->
+            <div class="tool-container">
+                <!-- Tool Header -->
+                <div class="tool-header">
+                    <h2>Port Scanner</h2>
+                    <p>Free online port scanner tool to check open ports on any IP address or domain. Scan common ports quickly and identify potential vulnerabilities.</p>
+                </div>
+
+                <!-- Port Scanner Form -->
+                <form class="scan-form" id="portScanForm">
+                    <div class="input-group">
+                        <label for="target">Target IP or Domain</label>
+                        <input type="text" id="target" placeholder="Enter IP address or domain name (e.g., 192.168.1.1 or example.com)" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="scanType">Scan Type</label>
+                        <select id="scanType" required>
+                            <option value="common">Common Ports (Fast)</option>
+                            <option value="specific">Specific Ports</option>
+                            <option value="range">Port Range</option>
+                        </select>
+                    </div>
+                    
+                    <div id="specificPortsSection" class="port-selector hidden">
+                        <div class="input-group">
+                            <label for="specificPorts">Specific Ports</label>
+                            <input type="text" id="specificPorts" placeholder="Enter ports separated by commas (e.g., 80,443,8080)">
+                        </div>
+                    </div>
+                    
+                    <div id="rangePortsSection" class="port-range hidden">
+                        <div class="input-group">
+                            <label for="startPort">Start Port</label>
+                            <input type="number" id="startPort" min="1" max="65535" placeholder="Start Port">
+                        </div>
+                        <span>to</span>
+                        <div class="input-group">
+                            <label for="endPort">End Port</label>
+                            <input type="number" id="endPort" min="1" max="65535" placeholder="End Port">
+                        </div>
+                    </div>
+                    
+                    <div class="scan-options">
+                        <h4>Common Ports to Scan</h4>
+                        <div class="common-ports">
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="21" checked>FTP (21)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="22" checked>SSH (22)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="23" checked>Telnet (23)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="25" checked>SMTP (25)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="53" checked>DNS (53)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="80" checked>HTTP (80)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="110" checked>POP3 (110)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="143" checked>IMAP (143)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="443" checked>HTTPS (443)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="465" checked>SMTPS (465)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="587" checked>SMTP (587)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="993" checked>IMAPS (993)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="995" checked>POP3S (995)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="1723" checked>PPTP (1723)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="3306" checked>MySQL (3306)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="3389" checked>RDP (3389)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="5432" checked>PostgreSQL (5432)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="5900" checked>VNC (5900)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="8080" checked>HTTP-Proxy (8080)
+                            </label>
+                            <label class="port-checkbox">
+                                <input type="checkbox" class="common-port" value="8443" checked>HTTPS-Proxy (8443)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="scanBtn">Start Scan</button>
+                        <button type="button" class="secondary-btn" id="clearBtn">Clear</button>
+                    </div>
+                </form>
+
+                <!-- Error Message -->
+                <div class="error-message hidden" id="errorMessage">
+                    <p id="errorText">An error occurred while processing your request.</p>
+                </div>
+
+                <!-- Result Section -->
+                <div class="result-section">
+                    <div class="result-header">
+                        <h3>Scan Results for <span id="resultTarget">example.com</span></h3>
+                        <div class="result-stats">
+                            <div class="stat-item">
+                                <div class="stat-value" id="openPortsCount">0</div>
+                                <div class="stat-label">Open Ports</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="closedPortsCount">0</div>
+                                <div class="stat-label">Closed Ports</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="scanDuration">0</div>
+                                <div class="stat-label">Seconds</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="scan-progress">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    
+                    <div class="scan-result hidden" id="scanResult">
+                        <!-- Scan results will be displayed here -->
+                    </div>
+                    
+                    <div class="scan-log hidden" id="scanLog">
+                        <!-- Scan log will be displayed here -->
+                    </div>
+                    
+                    <div class="scan-log-toggle hidden" id="scanLogToggle">
+                        <button type="button" class="toggle-btn" id="toggleLog">Show Scan Log</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const portScanForm = document.getElementById('portScanForm');
+        const targetInput = document.getElementById('target');
+        const scanTypeSelect = document.getElementById('scanType');
+        const specificPortsSection = document.getElementById('specificPortsSection');
+        const specificPortsInput = document.getElementById('specificPorts');
+        const rangePortsSection = document.getElementById('rangePortsSection');
+        const startPortInput = document.getElementById('startPort');
+        const endPortInput = document.getElementById('endPort');
+        const commonPortCheckboxes = document.querySelectorAll('.common-port');
+        const scanBtn = document.getElementById('scanBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const scanResult = document.getElementById('scanResult');
+        const resultTarget = document.getElementById('resultTarget');
+        const openPortsCount = document.getElementById('openPortsCount');
+        const closedPortsCount = document.getElementById('closedPortsCount');
+        const scanDuration = document.getElementById('scanDuration');
+        const progressBar = document.getElementById('progressBar');
+        const scanLog = document.getElementById('scanLog');
+        const scanLogToggle = document.getElementById('scanLogToggle');
+        const toggleLogBtn = document.getElementById('toggleLog');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        
+        // Common port information
+        const commonPortInfo = {
+            "21": { "name": "FTP", "description": "File Transfer Protocol" },
+            "22": { "name": "SSH", "description": "Secure Shell" },
+            "23": { "name": "Telnet", "description": "Remote Terminal Protocol" },
+            "25": { "name": "SMTP", "description": "Simple Mail Transfer Protocol" },
+            "53": { "name": "DNS", "description": "Domain Name System" },
+            "80": { "name": "HTTP", "description": "Hypertext Transfer Protocol" },
+            "110": { "name": "POP3", "description": "Post Office Protocol v3" },
+            "143": { "name": "IMAP", "description": "Internet Message Access Protocol" },
+            "443": { "name": "HTTPS", "description": "HTTP Secure" },
+            "465": { "name": "SMTPS", "description": "SMTP Secure" },
+            "587": { "name": "SMTP", "description": "SMTP Submission" },
+            "993": { "name": "IMAPS", "description": "IMAP Secure" },
+            "995": { "name": "POP3S", "description": "POP3 Secure" },
+            "1723": { "name": "PPTP", "description": "Point-to-Point Tunneling Protocol" },
+            "3306": { "name": "MySQL", "description": "MySQL Database" },
+            "3389": { "name": "RDP", "description": "Remote Desktop Protocol" },
+            "5432": { "name": "PostgreSQL", "description": "PostgreSQL Database" },
+            "5900": { "name": "VNC", "description": "Virtual Network Computing" },
+            "8080": { "name": "HTTP-Proxy", "description": "HTTP Proxy" },
+            "8443": { "name": "HTTPS-Proxy", "description": "HTTPS Proxy" }
+        };
+        
+        // Show/hide port input sections based on scan type
+        scanTypeSelect.addEventListener('change', function() {
+            const scanType = this.value;
+            specificPortsSection.classList.add('hidden');
+            rangePortsSection.classList.add('hidden');
+            
+            if (scanType === 'specific') {
+                specificPortsSection.classList.remove('hidden');
+            } else if (scanType === 'range') {
+                rangePortsSection.classList.remove('hidden');
+            }
+        });
+        
+        // Form submission handler
+        portScanForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const target = targetInput.value.trim();
+            const scanType = scanTypeSelect.value;
+            
+            // Validate input based on scan type
+            let ports = [];
+            
+            if (scanType === 'common') {
+                // Get selected common ports
+                ports = Array.from(commonPortCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => parseInt(checkbox.value));
+                
+                if (ports.length === 0) {
+                    showError('Please select at least one port to scan.');
+                    return;
+                }
+            } else if (scanType === 'specific') {
+                // Parse specific ports
+                const portsStr = specificPortsInput.value.trim();
+                if (!portsStr) {
+                    showError('Please enter specific ports to scan.');
+                    return;
+                }
+                
+                try {
+                    ports = portsStr.split(',')
+                        .map(port => parseInt(port.trim()))
+                        .filter(port => !isNaN(port) && port >= 1 && port <= 65535);
+                    
+                    if (ports.length === 0) {
+                        showError('Invalid port numbers. Please enter valid port numbers (1-65535).');
+                        return;
+                    }
+                } catch (e) {
+                    showError('Invalid port format. Please separate ports with commas.');
+                    return;
+                }
+            } else if (scanType === 'range') {
+                // Validate port range
+                const startPort = parseInt(startPortInput.value);
+                const endPort = parseInt(endPortInput.value);
+                
+                if (isNaN(startPort) || isNaN(endPort)) {
+                    showError('Please enter valid start and end ports.');
+                    return;
+                }
+                
+                if (startPort < 1 || endPort > 65535) {
+                    showError('Port numbers must be between 1 and 65535.');
+                    return;
+                }
+                
+                if (startPort > endPort) {
+                    showError('Start port must be less than or equal to end port.');
+                    return;
+                }
+                
+                // Generate port range
+                const rangeSize = endPort - startPort + 1;
+                if (rangeSize > 1000) {
+                    showError('Port range too large. Please limit to 1000 ports or less.');
+                    return;
+                }
+                
+                for (let i = startPort; i <= endPort; i++) {
+                    ports.push(i);
+                }
+            }
+            
+            // Perform port scan
+            performPortScan(target, ports);
+        });
+        
+        // Clear button handler
+        clearBtn.addEventListener('click', function() {
+            targetInput.value = '';
+            scanTypeSelect.value = 'common';
+            specificPortsInput.value = '';
+            startPortInput.value = '';
+            endPortInput.value = '';
+            commonPortCheckboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            specificPortsSection.classList.add('hidden');
+            rangePortsSection.classList.add('hidden');
+            scanResult.classList.add('hidden');
+            scanLog.classList.add('hidden');
+            scanLogToggle.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+            progressBar.style.width = '0%';
+        });
+        
+        // Toggle log visibility
+        toggleLogBtn.addEventListener('click', function() {
+            if (scanLog.classList.contains('hidden')) {
+                scanLog.classList.remove('hidden');
+                toggleLogBtn.textContent = 'Hide Scan Log';
+            } else {
+                scanLog.classList.add('hidden');
+                toggleLogBtn.textContent = 'Show Scan Log';
+            }
+        });
+        
+        // Perform port scan (simulated)
+        function performPortScan(target, ports) {
+            // Show loading state
+            errorMessage.classList.add('hidden');
+            scanResult.classList.remove('hidden');
+            scanResult.innerHTML = '<div class="loading-indicator">Scanning ports for <strong>' + target + '</strong>... <div class="loading-dots"><span></span><span></span><span></span></div></div>';
+            resultTarget.textContent = target;
+            scanBtn.disabled = true;
+            progressBar.style.width = '0%';
+            
+            // Initialize counters
+            let openCount = 0;
+            let closedCount = 0;
+            const scanResults = [];
+            const logEntries = [];
+            const startTime = Date.now();
+            
+            // Add log entry
+            addLogEntry(`Starting port scan on ${target}`, logEntries);
+            addLogEntry(`Scanning ${ports.length} ports: ${ports.join(', ')}`, logEntries);
+            
+            // Simulate port scanning with progressive results
+            let currentPortIndex = 0;
+            
+            const scanNextPort = () => {
+                if (currentPortIndex >= ports.length) {
+                    // Scan complete
+                    const endTime = Date.now();
+                    const duration = ((endTime - startTime) / 1000).toFixed(2);
+                    
+                    addLogEntry(`Scan completed in ${duration} seconds`, logEntries);
+                    addLogEntry(`${openCount} ports open, ${closedCount} ports closed`, logEntries);
+                    
+                    // Update statistics
+                    openPortsCount.textContent = openCount;
+                    closedPortsCount.textContent = closedCount;
+                    scanDuration.textContent = duration;
+                    
+                    // Display results
+                    displayScanResults(scanResults);
+                    displayScanLog(logEntries);
+                    
+                    scanBtn.disabled = false;
+                    return;
+                }
+                
+                const port = ports[currentPortIndex];
+                const isOpen = simulatePortScan(target, port);
+                
+                if (isOpen) {
+                    openCount++;
+                } else {
+                    closedCount++;
+                }
+                
+                // Generate port info
+                const portInfo = commonPortInfo[port.toString()] || { name: 'Unknown', description: 'Unknown service' };
+                
+                scanResults.push({
+                    port: port,
+                    status: isOpen ? 'open' : 'closed',
+                    service: portInfo.name,
+                    description: portInfo.description
+                });
+                
+                // Add log entry
+                addLogEntry(`Port ${port}: ${isOpen ? 'OPEN' : 'CLOSED'} (${portInfo.name})`, logEntries);
+                
+                // Update progress
+                currentPortIndex++;
+                const progress = (currentPortIndex / ports.length) * 100;
+                progressBar.style.width = progress + '%';
+                
+                // Update counters
+                openPortsCount.textContent = openCount;
+                closedPortsCount.textContent = closedCount;
+                
+                // Continue with next port
+                setTimeout(scanNextPort, getRandomScanDelay());
+            };
+            
+            // Start scanning ports
+            scanNextPort();
+        }
+        
+        // Simulate port scan (returns true if port is open, false otherwise)
+        function simulatePortScan(target, port) {
+            // This is a simulation - in a real application, this would use WebSockets or other methods
+            // For common ports, we'll make some ports open based on probability and port type
+            const commonPorts = [80, 443, 8080, 8443];
+            
+            if (commonPorts.includes(port)) {
+                // For common web ports, 70% chance to be open
+                return Math.random() < 0.7;
+            } else {
+                // For other ports, 20% chance to be open
+                return Math.random() < 0.2;
+            }
+        }
+        
+        // Get random scan delay to simulate real scanning
+        function getRandomScanDelay() {
+            // Random delay between 100-500ms to simulate network latency
+            return Math.floor(Math.random() * 400) + 100;
+        }
+        
+        // Add log entry with timestamp
+        function addLogEntry(message, logEntries) {
+            const timestamp = new Date().toLocaleTimeString();
+            logEntries.push(`[${timestamp}] ${message}`);
+        }
+        
+        // Display scan results
+        function displayScanResults(results) {
+            // Sort results by port number
+            results.sort((a, b) => a.port - b.port);
+            
+            let html = '<div class="ports-grid">';
+            
+            results.forEach(result => {
+                html += `
+                <div class="port-card">
+                    <div class="port-card-header">
+                        <span class="port-number">Port ${result.port}</span>
+                        <span class="port-status ${result.status}">${result.status}</span>
+                    </div>
+                    <div class="port-info">
+                        <div class="port-info-item">
+                            <span class="port-info-label">Service:</span>
+                            <span class="port-info-value">${result.service}</span>
+                        </div>
+                        <div class="port-info-item">
+                            <span class="port-info-label">Description:</span>
+                            <span class="port-info-value">${result.description}</span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+            
+            html += '</div>';
+            scanResult.innerHTML = html;
+        }
+        
+        // Display scan log
+        function displayScanLog(logEntries) {
+            scanLog.innerHTML = logEntries.join('\n');
+            scanLogToggle.classList.remove('hidden');
+        }
+        
+        // Show error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            scanResult.classList.add('hidden');
+            scanLog.classList.add('hidden');
+            scanLogToggle.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

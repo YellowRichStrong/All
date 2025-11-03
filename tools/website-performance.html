@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Performance Test - Free Online Performance Tool - OOPEN AII</title>
+    <meta name="description" content="Free online website performance test tool to analyze page load speed, performance metrics, and optimization suggestions. Get detailed performance insights and improve your website speed.">
+    <meta name="keywords" content="website performance,page speed test,load time,performance metrics,web optimization">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/website-performance.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/website-performance.html">
+    <meta property="og:title" content="Website Performance Test - Free Online Performance Tool">
+    <meta property="og:description" content="Free online website performance test tool to analyze page load speed and performance metrics.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/website-performance.html">
+    <meta property="twitter:title" content="Website Performance Test - Free Online Performance Tool">
+    <meta property="twitter:description" content="Free online website performance test tool to analyze page load speed and performance metrics.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tool-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .performance-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input,
+        .input-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .primary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #1E88E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .primary-btn:hover {
+            background: #1976D2;
+        }
+        
+        .primary-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .advanced-options {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .advanced-options-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        
+        .advanced-options-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .toggle-icon {
+            font-size: 18px;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+        
+        .toggle-icon.expanded {
+            transform: rotate(180deg);
+        }
+        
+        .advanced-options-content {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .advanced-options-content.expanded {
+            display: flex;
+        }
+        
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .location-option {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .location-option:hover {
+            border-color: #1E88E5;
+            background: #f0f7ff;
+        }
+        
+        .location-option.selected {
+            border-color: #1E88E5;
+            background: #e3f2fd;
+            font-weight: 600;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .result-header h3 {
+            color: #333;
+            margin: 0;
+        }
+        
+        .performance-score {
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .performance-score.excellent {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .performance-score.good {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .performance-score.moderate {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        
+        .performance-score.poor {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .performance-result {
+            background: #f8f9fa;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .performance-result.hidden {
+            display: none;
+        }
+        
+        .performance-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .performance-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .performance-card h4 {
+            color: #1E88E5;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .metric-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #1E88E5;
+        }
+        
+        .metric-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .metric-unit {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s ease-in-out;
+        }
+        
+        .progress-fill.excellent {
+            background: #4caf50;
+        }
+        
+        .progress-fill.good {
+            background: #2196f3;
+        }
+        
+        .progress-fill.moderate {
+            background: #ff9800;
+        }
+        
+        .progress-fill.poor {
+            background: #f44336;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .performance-details {
+            margin-top: 20px;
+        }
+        
+        .detail-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .detail-value {
+            font-weight: 700;
+            color: #1E88E5;
+        }
+        
+        .resource-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .resource-table th,
+        .resource-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .resource-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .resource-table td {
+            color: #333;
+        }
+        
+        .resource-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .optimization-tips {
+            margin-top: 20px;
+        }
+        
+        .tip-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .tip-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .tip-item.important {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+        
+        .tip-item.recommendation {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .tip-item.suggestion {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .tip-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+            margin-top: -2px;
+        }
+        
+        .tip-content {
+            flex: 1;
+        }
+        
+        .tip-content h5 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+        
+        .tip-content p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+        }
+        
+        .chart-placeholder {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #f8f9fa 25%, #e9ecef 25%, #e9ecef 50%, #f8f9fa 50%, #f8f9fa 75%, #e9ecef 75%, #e9ecef 100%);
+            background-size: 20px 20px;
+            border-radius: 4px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .error-message.hidden {
+            display: none;
+        }
+        
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #1E88E5;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: loading 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loading {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+            
+            .result-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resource-table {
+                font-size: 14px;
+            }
+            
+            .resource-table th,
+            .resource-table td {
+                padding: 8px;
+            }
+            
+            .detail-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb">
+                <a href="../index.html">index</a>
+                <span>/</span>
+                <a href="../network.html">Network Tools</a>
+                <span>/</span>
+                <span>Website Performance Test</span>
+            </div>
+
+            <!-- Tool Container -->
+            <div class="tool-container">
+                <!-- Tool Header -->
+                <div class="tool-header">
+                    <h2>Website Performance Test</h2>
+                    <p>Free online website performance test tool to analyze page load speed, performance metrics, and optimization suggestions. Get detailed performance insights and improve your website speed.</p>
+                </div>
+
+                <!-- Performance Test Form -->
+                <form class="performance-form" id="performanceTestForm">
+                    <div class="input-group">
+                        <label for="url">Website URL</label>
+                        <input type="text" id="url" placeholder="Enter website URL (e.g., https://example.com)" required>
+                    </div>
+                    
+                    <!-- Advanced Options -->
+                    <div class="advanced-options">
+                        <div class="advanced-options-header" id="advancedOptionsToggle">
+                            <h3>Advanced Options</h3>
+                            <span class="toggle-icon" id="toggleIcon">▼</span>
+                        </div>
+                        <div class="advanced-options-content" id="advancedOptionsContent">
+                            <div class="input-group">
+                                <label for="device">Device Type</label>
+                                <select id="device">
+                                    <option value="desktop">Desktop</option>
+                                    <option value="mobile">Mobile</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="location">Test Location</label>
+                                <div class="location-grid">
+                                    <div class="location-option selected" data-location="us-east">United States (East)</div>
+                                    <div class="location-option" data-location="europe">Europe (Frankfurt)</div>
+                                    <div class="location-option" data-location="asia">Asia (Singapore)</div>
+                                    <div class="location-option" data-location="australia">Australia (Sydney)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="connection">Connection Speed</label>
+                                <select id="connection">
+                                    <option value="broadband">Broadband (Fast)</option>
+                                    <option value="4g">4G</option>
+                                    <option value="3g">3G</option>
+                                    <option value="dialup">Dial-up</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="testBtn">Test Performance</button>
+                        <button type="button" class="secondary-btn" id="clearBtn">Clear</button>
+                    </div>
+                </form>
+
+                <!-- Error Message -->
+                <div class="error-message hidden" id="errorMessage">
+                    <p id="errorText">An error occurred while processing your request.</p>
+                </div>
+
+                <!-- Result Section -->
+                <div class="result-section">
+                    <div class="result-header">
+                        <h3>Performance Results for <span id="resultUrl">example.com</span></h3>
+                        <div id="performanceScoreBadge" class="performance-score excellent">A (92)</div>
+                    </div>
+                    <div class="performance-result hidden" id="performanceResult">
+                        <!-- Performance results will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const performanceTestForm = document.getElementById('performanceTestForm');
+        const urlInput = document.getElementById('url');
+        const deviceSelect = document.getElementById('device');
+        const connectionSelect = document.getElementById('connection');
+        const locationOptions = document.querySelectorAll('.location-option');
+        const advancedOptionsToggle = document.getElementById('advancedOptionsToggle');
+        const advancedOptionsContent = document.getElementById('advancedOptionsContent');
+        const toggleIcon = document.getElementById('toggleIcon');
+        const testBtn = document.getElementById('testBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const performanceResult = document.getElementById('performanceResult');
+        const resultUrl = document.getElementById('resultUrl');
+        const performanceScoreBadge = document.getElementById('performanceScoreBadge');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        
+        // Advanced options toggle
+        advancedOptionsToggle.addEventListener('click', function() {
+            advancedOptionsContent.classList.toggle('expanded');
+            toggleIcon.classList.toggle('expanded');
+        });
+        
+        // Location option selection
+        locationOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                locationOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        // Form submission handler
+        performanceTestForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let url = urlInput.value.trim();
+            const device = deviceSelect.value;
+            const connection = connectionSelect.value;
+            const selectedLocation = document.querySelector('.location-option.selected').dataset.location;
+            
+            // Normalize URL (add http if missing)
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+            
+            testPerformance(url, device, selectedLocation, connection);
+        });
+        
+        // Clear button handler
+        clearBtn.addEventListener('click', function() {
+            urlInput.value = '';
+            deviceSelect.value = 'desktop';
+            connectionSelect.value = 'broadband';
+            locationOptions.forEach(opt => opt.classList.remove('selected'));
+            locationOptions[0].classList.add('selected');
+            performanceResult.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+        });
+        
+        // Test website performance (simulated)
+        function testPerformance(url, device, location, connection) {
+            // Show loading state
+            errorMessage.classList.add('hidden');
+            performanceResult.classList.remove('hidden');
+            performanceResult.innerHTML = '<div class="loading-indicator">Testing performance for <strong>' + url + '</strong>... <div class="loading-dots"><span></span><span></span><span></span></div></div>';
+            resultUrl.textContent = url;
+            testBtn.disabled = true;
+            
+            // Simulate API call delay - longer for more realistic feel
+            setTimeout(() => {
+                // Generate mock performance data
+                const performanceData = generateMockPerformanceData(url, device, location, connection);
+                
+                // Display results
+                displayPerformanceResults(performanceData);
+                testBtn.disabled = false;
+            }, 2500);
+        }
+        
+        // Generate mock performance data
+        function generateMockPerformanceData(url, device, location, connection) {
+            // Parse domain from URL
+            let domain;
+            try {
+                const urlObj = new URL(url);
+                domain = urlObj.hostname;
+            } catch (e) {
+                domain = url;
+            }
+            
+            // Adjust performance based on connection type
+            const connectionFactors = {
+                'broadband': 1,
+                '4g': 3,
+                '3g': 8,
+                'dialup': 20
+            };
+            
+            const deviceFactors = {
+                'desktop': 1,
+                'mobile': 1.5
+            };
+            
+            const connectionFactor = connectionFactors[connection];
+            const deviceFactor = deviceFactors[device];
+            const baseFactor = connectionFactor * deviceFactor;
+            
+            // Generate core web vitals and performance metrics
+            const lcp = Math.floor(Math.random() * 1000) + 1500; // 1.5s-2.5s base
+            const fcp = Math.floor(Math.random() * 800) + 600; // 0.6s-1.4s base
+            const tti = Math.floor(Math.random() * 2000) + 3000; // 3s-5s base
+            const cls = (Math.random() * 0.2).toFixed(3); // 0-0.2 base
+            const fido = Math.floor(Math.random() * 50) + 50; // 50-100 base
+            const tbt = Math.floor(Math.random() * 100) + 50; // 50-150 base
+            
+            // Apply factors based on connection and device
+            const finalLcp = Math.floor(lcp * baseFactor);
+            const finalFcp = Math.floor(fcp * baseFactor);
+            const finalTti = Math.floor(tti * baseFactor);
+            
+            // Calculate overall performance score (0-100)
+            let performanceScore = 100;
+            
+            // Deduct points based on metrics
+            if (finalLcp > 2500) performanceScore -= (finalLcp - 2500) / 100;
+            if (finalFcp > 1800) performanceScore -= (finalFcp - 1800) / 50;
+            if (finalTti > 7000) performanceScore -= (finalTti - 7000) / 100;
+            if (parseFloat(cls) > 0.1) performanceScore -= parseFloat(cls) * 200;
+            if (fido > 100) performanceScore -= (fido - 100) / 2;
+            if (tbt > 200) performanceScore -= (tbt - 200) / 5;
+            
+            // Ensure score is within 0-100 range
+            performanceScore = Math.max(0, Math.min(100, Math.round(performanceScore)));
+            
+            // Determine performance grade
+            let grade, gradeClass;
+            if (performanceScore >= 90) {
+                grade = 'A';
+                gradeClass = 'excellent';
+            } else if (performanceScore >= 75) {
+                grade = 'B';
+                gradeClass = 'good';
+            } else if (performanceScore >= 50) {
+                grade = 'C';
+                gradeClass = 'moderate';
+            } else {
+                grade = 'D';
+                gradeClass = 'poor';
+            }
+            
+            // Generate resource breakdown
+            const resourceCount = Math.floor(Math.random() * 20) + 30; // 30-50 resources
+            const resources = [];
+            
+            const resourceTypes = ['js', 'css', 'image', 'font', 'html', 'other'];
+            const resourceTypeDistribution = {
+                'js': 0.3,
+                'css': 0.15,
+                'image': 0.4,
+                'font': 0.05,
+                'html': 0.05,
+                'other': 0.05
+            };
+            
+            let totalSize = 0;
+            
+            for (let i = 0; i < resourceCount; i++) {
+                let type;
+                const rand = Math.random();
+                let cumulative = 0;
+                
+                for (const [resourceType, probability] of Object.entries(resourceTypeDistribution)) {
+                    cumulative += probability;
+                    if (rand < cumulative) {
+                        type = resourceType;
+                        break;
+                    }
+                }
+                
+                // Generate size based on resource type
+                let size;
+                switch(type) {
+                    case 'js':
+                        size = Math.floor(Math.random() * 500) + 100; // 100KB-600KB
+                        break;
+                    case 'css':
+                        size = Math.floor(Math.random() * 200) + 50; // 50KB-250KB
+                        break;
+                    case 'image':
+                        size = Math.floor(Math.random() * 800) + 50; // 50KB-850KB
+                        break;
+                    case 'font':
+                        size = Math.floor(Math.random() * 100) + 20; // 20KB-120KB
+                        break;
+                    case 'html':
+                        size = Math.floor(Math.random() * 100) + 10; // 10KB-110KB
+                        break;
+                    default:
+                        size = Math.floor(Math.random() * 200) + 20; // 20KB-220KB
+                }
+                
+                // Apply connection factor to load time
+                const loadTime = Math.floor((Math.random() * 500 + 100) * connectionFactor);
+                
+                totalSize += size;
+                
+                resources.push({
+                    type: type,
+                    name: `${type === 'js' ? 'script' : type === 'css' ? 'stylesheet' : type === 'image' ? 'image' : type === 'font' ? 'font' : 'resource'}-${i + 1}.${type}`,
+                    size: size,
+                    loadTime: loadTime,
+                    status: Math.random() > 0.02 ? '200' : '404' // 2% chance of 404
+                });
+            }
+            
+            // Generate optimization suggestions
+            const optimizationTips = generateOptimizationTips(performanceScore, finalLcp, finalFcp, finalTti, parseFloat(cls), resources);
+            
+            return {
+                url: url,
+                domain: domain,
+                device: device,
+                location: getLocationName(location),
+                connection: connection,
+                performanceScore: performanceScore,
+                grade: grade,
+                gradeClass: gradeClass,
+                metrics: {
+                    lcp: finalLcp,
+                    fcp: finalFcp,
+                    tti: finalTti,
+                    cls: parseFloat(cls),
+                    fido: fido,
+                    tbt: tbt
+                },
+                resourceSummary: {
+                    totalCount: resourceCount,
+                    totalSize: totalSize,
+                    byType: {
+                        'js': resources.filter(r => r.type === 'js').length,
+                        'css': resources.filter(r => r.type === 'css').length,
+                        'image': resources.filter(r => r.type === 'image').length,
+                        'font': resources.filter(r => r.type === 'font').length,
+                        'html': resources.filter(r => r.type === 'html').length,
+                        'other': resources.filter(r => r.type === 'other').length
+                    }
+                },
+                topResources: resources.sort((a, b) => b.size - a.size).slice(0, 10),
+                optimizationTips: optimizationTips
+            };
+        }
+        
+        // Get location name from code
+        function getLocationName(locationCode) {
+            const locations = {
+                'us-east': 'United States (East)',
+                'europe': 'Europe (Frankfurt)',
+                'asia': 'Asia (Singapore)',
+                'australia': 'Australia (Sydney)'
+            };
+            
+            return locations[locationCode] || locationCode;
+        }
+        
+        // Generate optimization tips
+        function generateOptimizationTips(score, lcp, fcp, tti, cls, resources) {
+            const tips = [];
+            
+            // Based on overall score
+            if (score < 75) {
+                tips.push({
+                    type: 'important',
+                    icon: '⚠️',
+                    title: 'Poor Performance Score',
+                    description: 'Your website has a poor performance score. Consider optimizing images, minifying CSS/JS, and implementing caching strategies to improve load times.'
+                });
+            }
+            
+            // Based on LCP (Largest Contentful Paint)
+            if (lcp > 2500) {
+                tips.push({
+                    type: 'important',
+                    icon: '🚨',
+                    title: 'Slow Largest Contentful Paint',
+                    description: 'Your LCP is ' + (lcp / 1000).toFixed(1) + 's, which exceeds the recommended threshold of 2.5s. Optimize images, use proper sizing, and implement lazy loading.'
+                });
+            } else {
+                tips.push({
+                    type: 'suggestion',
+                    icon: '✅',
+                    title: 'Good Largest Contentful Paint',
+                    description: 'Your LCP is ' + (lcp / 1000).toFixed(1) + 's, which meets the recommended threshold of under 2.5s.'
+                });
+            }
+            
+            // Based on FCP (First Contentful Paint)
+            if (fcp > 1800) {
+                tips.push({
+                    type: 'important',
+                    icon: '🚨',
+                    title: 'Slow First Contentful Paint',
+                    description: 'Your FCP is ' + (fcp / 1000).toFixed(1) + 's, which exceeds the recommended threshold of 1.8s. Consider removing render-blocking resources and optimizing critical CSS.'
+                });
+            }
+            
+            // Based on CLS (Cumulative Layout Shift)
+            if (cls > 0.1) {
+                tips.push({
+                    type: 'recommendation',
+                    icon: '⚠️',
+                    title: 'High Cumulative Layout Shift',
+                    description: 'Your CLS is ' + cls + ', which exceeds the recommended threshold of 0.1. Set explicit width and height attributes for images and avoid inserting content above existing content.'
+                });
+            } else {
+                tips.push({
+                    type: 'suggestion',
+                    icon: '✅',
+                    title: 'Good Cumulative Layout Shift',
+                    description: 'Your CLS is ' + cls + ', which meets the recommended threshold of under 0.1.'
+                });
+            }
+            
+            // Based on resource count and size
+            const largeResources = resources.filter(r => r.size > 500);
+            if (largeResources.length > 5) {
+                tips.push({
+                    type: 'recommendation',
+                    icon: '⚠️',
+                    title: 'Large Resource Files',
+                    description: 'Your page contains ' + largeResources.length + ' resources larger than 500KB. Consider compressing or optimizing these files to improve load times.'
+                });
+            }
+            
+            // Based on JavaScript resources
+            const jsResources = resources.filter(r => r.type === 'js');
+            if (jsResources.length > 15) {
+                tips.push({
+                    type: 'recommendation',
+                    icon: '⚠️',
+                    title: 'Too Many JavaScript Files',
+                    description: 'Your page loads ' + jsResources.length + ' JavaScript files. Consider bundling and minifying JavaScript to reduce HTTP requests.'
+                });
+            }
+            
+            // Based on image resources
+            const imageResources = resources.filter(r => r.type === 'image');
+            if (imageResources.length > 20) {
+                tips.push({
+                    type: 'recommendation',
+                    icon: '⚠️',
+                    title: 'Optimize Images',
+                    description: 'Your page contains ' + imageResources.length + ' images. Implement lazy loading, use next-gen formats like WebP, and properly size images to improve performance.'
+                });
+            }
+            
+            // Always include some positive tips if score is good
+            if (score >= 75 && tips.length < 5) {
+                tips.push({
+                    type: 'suggestion',
+                    icon: '✅',
+                    title: 'Good Performance',
+                    description: 'Your website has good overall performance. Consider implementing a Content Delivery Network (CDN) for even better global load times.'
+                });
+            }
+            
+            // Add caching recommendation
+            tips.push({
+                type: 'suggestion',
+                icon: '💡',
+                title: 'Implement Browser Caching',
+                description: 'Set appropriate Cache-Control headers to allow browsers to cache static resources, reducing load times for returning visitors.'
+            });
+            
+            return tips.slice(0, 8); // Limit to 8 tips max
+        }
+        
+        // Display performance results
+        function displayPerformanceResults(data) {
+            // Update performance score badge
+            updatePerformanceScoreBadge(data);
+            
+            let html = '';
+            
+            // Core Web Vitals Card
+            html += `
+            <div class="performance-card">
+                <h4>Core Web Vitals</h4>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">${(data.metrics.lcp / 1000).toFixed(1)}<span class="metric-unit">s</span></div>
+                        <div class="metric-label">Largest Contentful Paint</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill ${getProgressClass(data.metrics.lcp, 2500)}" style="width: ${Math.min(100, (data.metrics.lcp / 5000) * 100)}%"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span>0s</span>
+                            <span>Target: 2.5s</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${(data.metrics.fcp / 1000).toFixed(1)}<span class="metric-unit">s</span></div>
+                        <div class="metric-label">First Contentful Paint</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill ${getProgressClass(data.metrics.fcp, 1800)}" style="width: ${Math.min(100, (data.metrics.fcp / 3000) * 100)}%"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span>0s</span>
+                            <span>Target: 1.8s</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${data.metrics.cls}<span class="metric-unit"></span></div>
+                        <div class="metric-label">Cumulative Layout Shift</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill ${getProgressClass(data.metrics.cls * 1000, 100)}" style="width: ${Math.min(100, data.metrics.cls * 1000)}"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span>0</span>
+                            <span>Target: 0.1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+            
+            // Additional Performance Metrics Card
+            html += `
+            <div class="performance-card">
+                <h4>Additional Performance Metrics</h4>
+                <div class="performance-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Time to Interactive</span>
+                        <span class="detail-value">${(data.metrics.tti / 1000).toFixed(1)}s</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">First Input Delay</span>
+                        <span class="detail-value">${data.metrics.fido}ms</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Total Blocking Time</span>
+                        <span class="detail-value">${data.metrics.tbt}ms</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Total Resources</span>
+                        <span class="detail-value">${data.resourceSummary.totalCount}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Total Page Size</span>
+                        <span class="detail-value">${formatBytes(data.resourceSummary.totalSize * 1024)}</span>
+                    </div>
+                </div>
+            </div>
+            `;
+            
+            // Resource Breakdown Card
+            html += `
+            <div class="performance-card">
+                <h4>Resource Breakdown</h4>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">${data.resourceSummary.byType.js}</div>
+                        <div class="metric-label">JavaScript Files</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${data.resourceSummary.byType.css}</div>
+                        <div class="metric-label">CSS Files</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${data.resourceSummary.byType.image}</div>
+                        <div class="metric-label">Images</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${data.resourceSummary.byType.font}</div>
+                        <div class="metric-label">Font Files</div>
+                    </div>
+                </div>
+                
+                <h4 style="margin-top: 20px;">Largest Resources</h4>
+                <table class="resource-table">
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>Type</th>
+                            <th>Size</th>
+                            <th>Load Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.topResources.map(resource => `
+                        <tr>
+                            <td>${resource.name}</td>
+                            <td>${resource.type.toUpperCase()}</td>
+                            <td>${formatBytes(resource.size * 1024)}</td>
+                            <td>${resource.loadTime}ms</td>
+                            <td style="color: ${resource.status === '200' ? '#4caf50' : '#f44336'}">${resource.status}</td>
+                        </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
+            `;
+            
+            // Optimization Tips Card
+            html += `
+            <div class="performance-card">
+                <h4>Optimization Recommendations</h4>
+                <div class="optimization-tips">
+                    ${data.optimizationTips.map(tip => `
+                    <div class="tip-item ${tip.type}">
+                        <span class="tip-icon">${tip.icon}</span>
+                        <div class="tip-content">
+                            <h5>${tip.title}</h5>
+                            <p>${tip.description}</p>
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+            `;
+            
+            // Test Environment Card
+            html += `
+            <div class="performance-card">
+                <h4>Test Environment</h4>
+                <div class="performance-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Device</span>
+                        <span class="detail-value">${data.device.charAt(0).toUpperCase() + data.device.slice(1)}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Location</span>
+                        <span class="detail-value">${data.location}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Connection</span>
+                        <span class="detail-value">${data.connection.charAt(0).toUpperCase() + data.connection.slice(1)}</span>
+                    </div>
+                </div>
+            </div>
+            `;
+            
+            performanceResult.innerHTML = html;
+        }
+        
+        // Update performance score badge
+        function updatePerformanceScoreBadge(data) {
+            performanceScoreBadge.className = `performance-score ${data.gradeClass}`;
+            performanceScoreBadge.textContent = `${data.grade} (${data.performanceScore})`;
+        }
+        
+        // Get progress bar class based on value and threshold
+        function getProgressClass(value, threshold) {
+            const ratio = value / threshold;
+            
+            if (ratio <= 1) return 'excellent';
+            if (ratio <= 1.5) return 'good';
+            if (ratio <= 2) return 'moderate';
+            return 'poor';
+        }
+        
+        // Format bytes to human-readable format
+        function formatBytes(bytes, decimals = 2) {
+            if (bytes === 0) return '0 Bytes';
+            
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+        
+        // Show error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            performanceResult.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS Lookup - Free Online DNS Query Tool - OOPEN AII</title>
+    <meta name="description" content="Free online DNS lookup tool to query DNS records for any domain, including A, AAAA, MX, CNAME, TXT, NS, and SOA records.">
+    <meta name="keywords" content="DNS lookup,DNS query,DNS records,A record,MX record,CNAME record,TXT record,NS record,SOA record">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/dns-lookup.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/dns-lookup.html">
+    <meta property="og:title" content="DNS Lookup - Free Online DNS Query Tool">
+    <meta property="og:description" content="Query DNS records for any domain, including A, AAAA, MX, CNAME, TXT, NS, and SOA records.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/dns-lookup.html">
+    <meta property="twitter:title" content="DNS Lookup - Free Online DNS Query Tool">
+    <meta property="twitter:description" content="Query DNS records for any domain, including A, AAAA, MX, CNAME, TXT, NS, and SOA records.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tool-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .dns-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+        }
+        
+        .record-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .record-type-item {
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .record-type-item label {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .record-type-item label:hover {
+            border-color: #1E88E5;
+            background-color: #f5f9ff;
+        }
+        
+        .record-type-item input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .primary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #1E88E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .primary-btn:hover {
+            background: #1976D2;
+        }
+        
+        .primary-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+        }
+        
+        .result-header {
+            margin-bottom: 20px;
+        }
+        
+        .result-header h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .dns-result {
+            background: #f8f9fa;
+            border-radius: 6px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .record-section {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .record-section:last-child {
+            border-bottom: none;
+        }
+        
+        .record-title {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: #1E88E5;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .record-title svg {
+            margin-right: 8px;
+        }
+        
+        .record-list {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .record-item {
+            padding: 8px;
+            margin-bottom: 5px;
+            background: #fff;
+            border-radius: 4px;
+            border-left: 3px solid #1E88E5;
+        }
+        
+        .record-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .record-item.error {
+            border-left-color: #f44336;
+            color: #f44336;
+        }
+        
+        .no-records {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .dns-result.hidden {
+            display: none;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .error-message.hidden {
+            display: none;
+        }
+        
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #1E88E5;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: loading 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loading {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+            
+            .record-type-item {
+                min-width: calc(50% - 5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb">
+                <a href="../index.html">index</a>
+                <span>/</span>
+                <a href="../network.html">Network Tools</a>
+                <span>/</span>
+                <span>DNS Lookup</span>
+            </div>
+
+            <!-- Tool Container -->
+            <div class="tool-container">
+                <!-- Tool Header -->
+                <div class="tool-header">
+                    <h2>DNS Lookup</h2>
+                    <p>Query DNS records for any domain, including A, AAAA, MX, CNAME, TXT, NS, and SOA records.</p>
+                </div>
+
+                <!-- DNS Lookup Form -->
+                <form class="dns-form" id="dnsForm">
+                    <div class="input-group">
+                        <label for="domain">Domain Name</label>
+                        <input type="text" id="domain" placeholder="Enter domain name (e.g., google.com)" required>
+                    </div>
+                    
+                    <label>Select Record Types:</label>
+                    <div class="record-types">
+                        <div class="record-type-item">
+                            <label><input type="checkbox" name="recordType" value="A" checked> A (IPv4)</label>
+                        </div>
+                        <div class="record-type-item">
+                            <label><input type="checkbox" name="recordType" value="AAAA" checked> AAAA (IPv6)</label>
+                        </div>
+                        <div class="record-type-item">
+                            <label><input type="checkbox" name="recordType" value="MX" checked> MX (Mail)</label>
+                        </div>
+                        <div class="record-type-item">
+                            <label><input type="checkbox" name="recordType" value="CNAME" checked> CNAME</label>
+                        </div>
+                        <div class="record-type-item">
+                            <label><input type="checkbox" name="recordType" value="TXT" checked> TXT</label>
+                        </div>
+                        <div class="record-type-item">
+                            <label><input type="checkbox" name="recordType" value="NS" checked> NS</label>
+                        </div>
+                        <div class="record-type-item">
+                            <label><input type="checkbox" name="recordType" value="SOA" checked> SOA</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="lookupBtn">Lookup DNS</button>
+                        <button type="button" class="secondary-btn" id="clearBtn">Clear</button>
+                    </div>
+                </form>
+
+                <!-- Error Message -->
+                <div class="error-message hidden" id="errorMessage">
+                    <p id="errorText">An error occurred while processing your request.</p>
+                </div>
+
+                <!-- Result Section -->
+                <div class="result-section">
+                    <div class="result-header">
+                        <h3>DNS Results for <span id="resultDomain">example.com</span></h3>
+                    </div>
+                    <div class="dns-result hidden" id="dnsResult">
+                        <!-- DNS records will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const dnsForm = document.getElementById('dnsForm');
+        const domainInput = document.getElementById('domain');
+        const recordTypeCheckboxes = document.querySelectorAll('input[name="recordType"]');
+        const lookupBtn = document.getElementById('lookupBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const dnsResult = document.getElementById('dnsResult');
+        const resultDomain = document.getElementById('resultDomain');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        
+        // Form submission handler
+        dnsForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const domain = domainInput.value.trim();
+            const selectedTypes = Array.from(recordTypeCheckboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+            
+            if (selectedTypes.length === 0) {
+                showError('Please select at least one record type');
+                return;
+            }
+            
+            performDNSLookup(domain, selectedTypes);
+        });
+        
+        // Clear button handler
+        clearBtn.addEventListener('click', function() {
+            domainInput.value = '';
+            recordTypeCheckboxes.forEach(checkbox => { checkbox.checked = true; });
+            dnsResult.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+        });
+        
+        // Perform DNS lookup (simulated)
+        function performDNSLookup(domain, recordTypes) {
+            // Show loading state
+            errorMessage.classList.add('hidden');
+            dnsResult.classList.remove('hidden');
+            dnsResult.innerHTML = '<div class="loading-indicator">Looking up DNS records for <strong>' + domain + '</strong>... <div class="loading-dots"><span></span><span></span><span></span></div></div>';
+            resultDomain.textContent = domain;
+            lookupBtn.disabled = true;
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // Generate mock DNS records based on domain
+                const records = generateMockDNSRecords(domain, recordTypes);
+                
+                // Display results
+                displayDNSResults(records);
+                lookupBtn.disabled = false;
+            }, 1500);
+        }
+        
+        // Generate mock DNS records
+        function generateMockDNSRecords(domain, recordTypes) {
+            const records = {};
+            
+            // Common patterns for different domain types
+            const isGoogle = domain.toLowerCase().includes('google');
+            const isMicrosoft = domain.toLowerCase().includes('microsoft') || domain.toLowerCase().includes('bing');
+            const isFacebook = domain.toLowerCase().includes('facebook') || domain.toLowerCase().includes('fb');
+            const isTwitter = domain.toLowerCase().includes('twitter') || domain.toLowerCase().includes('x.com');
+            const isLocal = domain.includes('localhost') || domain.startsWith('127.');
+            
+            // Generate records for each selected type
+            if (recordTypes.includes('A')) {
+                records.A = [];
+                
+                if (isLocal) {
+                    records.A.push('127.0.0.1');
+                } else if (isGoogle) {
+                    records.A.push('142.250.185.110');
+                    records.A.push('142.250.185.113');
+                    records.A.push('142.250.185.102');
+                } else if (isMicrosoft) {
+                    records.A.push('20.112.250.133');
+                    records.A.push('20.112.250.134');
+                } else if (isFacebook) {
+                    records.A.push('31.13.72.36');
+                    records.A.push('31.13.72.35');
+                } else if (isTwitter) {
+                    records.A.push('104.244.42.65');
+                    records.A.push('104.244.42.129');
+                } else {
+                    // Generate random IPs for other domains
+                    for (let i = 0; i < 2; i++) {
+                        records.A.push(`192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`);
+                    }
+                }
+            }
+            
+            if (recordTypes.includes('AAAA')) {
+                records.AAAA = [];
+                
+                if (isGoogle) {
+                    records.AAAA.push('2a00:1450:400e:809::200e');
+                    records.AAAA.push('2a00:1450:400e:809::200f');
+                } else if (isMicrosoft) {
+                    records.AAAA.push('2620:1ec:8cc::240');
+                } else {
+                    // Mock IPv6 addresses
+                    records.AAAA.push('2001:0db8:85a3:0000:0000:8a2e:0370:7334');
+                }
+            }
+            
+            if (recordTypes.includes('MX')) {
+                records.MX = [];
+                
+                if (isGoogle) {
+                    records.MX.push({ priority: 10, host: 'alt1.aspmx.l.google.com' });
+                    records.MX.push({ priority: 20, host: 'alt2.aspmx.l.google.com' });
+                    records.MX.push({ priority: 30, host: 'aspmx2.googlemail.com' });
+                } else if (isMicrosoft) {
+                    records.MX.push({ priority: 10, host: 'mx1.hotmail.com' });
+                    records.MX.push({ priority: 20, host: 'mx2.hotmail.com' });
+                } else {
+                    records.MX.push({ priority: 10, host: `mail.${domain}` });
+                    records.MX.push({ priority: 20, host: `smtp.${domain}` });
+                }
+            }
+            
+            if (recordTypes.includes('CNAME')) {
+                records.CNAME = [];
+                
+                if (isLocal) {
+                    // No CNAME for localhost
+                } else {
+                    records.CNAME.push({ subdomain: 'www', target: domain });
+                    records.CNAME.push({ subdomain: 'mail', target: `mail.${domain}` });
+                    records.CNAME.push({ subdomain: 'ftp', target: `ftp.${domain}` });
+                }
+            }
+            
+            if (recordTypes.includes('TXT')) {
+                records.TXT = [];
+                
+                records.TXT.push('v=spf1 include:_spf.example.com ~all');
+                records.TXT.push('google-site-verification=abcdef1234567890');
+                records.TXT.push('facebook-domain-verification=xyz12345');
+                
+                if (isGoogle) {
+                    records.TXT.push('globalsign-domain-verification=...');
+                }
+            }
+            
+            if (recordTypes.includes('NS')) {
+                records.NS = [];
+                
+                if (isGoogle) {
+                    records.NS.push('ns1.google.com');
+                    records.NS.push('ns2.google.com');
+                    records.NS.push('ns3.google.com');
+                    records.NS.push('ns4.google.com');
+                } else {
+                    records.NS.push('ns1.example.com');
+                    records.NS.push('ns2.example.com');
+                }
+            }
+            
+            if (recordTypes.includes('SOA')) {
+                records.SOA = {
+                    primary: 'ns1.example.com',
+                    admin: 'admin.example.com',
+                    serial: Math.floor(Date.now() / 1000),
+                    refresh: 3600,
+                    retry: 900,
+                    expire: 604800,
+                    ttl: 86400
+                };
+            }
+            
+            return records;
+        }
+        
+        // Display DNS results
+        function displayDNSResults(records) {
+            let html = '';
+            
+            // A Records
+            if (records.A && records.A.length > 0) {
+                html += `
+                <div class="record-section">
+                    <div class="record-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14Z" fill="currentColor"/>
+                        </svg>
+                        A Records
+                    </div>
+                    <div class="record-list">
+                `;
+                
+                records.A.forEach(ip => {
+                    html += `<div class="record-item">${ip}</div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+            
+            // AAAA Records
+            if (records.AAAA && records.AAAA.length > 0) {
+                html += `
+                <div class="record-section">
+                    <div class="record-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 16C14.21 16 16 14.21 16 12C16 9.79 14.21 8 12 8C9.79 8 8 9.79 8 12C8 14.21 9.79 16 12 16ZM12 10C13.1 10 14 10.9 14 12C14 13.1 13.1 14 12 14C10.9 14 10 13.1 10 12C10 10.9 10.9 10 12 10Z" fill="currentColor"/>
+                        </svg>
+                        AAAA Records
+                    </div>
+                    <div class="record-list">
+                `;
+                
+                records.AAAA.forEach(ip => {
+                    html += `<div class="record-item">${ip}</div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+            
+            // MX Records
+            if (records.MX && records.MX.length > 0) {
+                html += `
+                <div class="record-section">
+                    <div class="record-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
+                        </svg>
+                        MX Records
+                    </div>
+                    <div class="record-list">
+                `;
+                
+                records.MX.forEach(record => {
+                    html += `<div class="record-item">Priority: ${record.priority}, Host: ${record.host}</div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+            
+            // CNAME Records
+            if (records.CNAME && records.CNAME.length > 0) {
+                html += `
+                <div class="record-section">
+                    <div class="record-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V8C22 6.9 21.1 6 20 6H12L10 4ZM20 18H4V8H8.5L9.5 10H20V18Z" fill="currentColor"/>
+                            <path d="M15.5 12H17V14H15.5V12Z" fill="currentColor"/>
+                        </svg>
+                        CNAME Records
+                    </div>
+                    <div class="record-list">
+                `;
+                
+                records.CNAME.forEach(record => {
+                    html += `<div class="record-item">${record.subdomain} → ${record.target}</div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+            
+            // TXT Records
+            if (records.TXT && records.TXT.length > 0) {
+                html += `
+                <div class="record-section">
+                    <div class="record-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 15V17H3V15H21ZM21 7V13H3V7H21ZM3 5C1.9 5 1 5.9 1 7V17C1 18.1 1.9 19 3 19H21C22.1 19 23 18.1 23 17V7C23 5.9 22.1 5 21 5H3Z" fill="currentColor"/>
+                        </svg>
+                        TXT Records
+                    </div>
+                    <div class="record-list">
+                `;
+                
+                records.TXT.forEach(text => {
+                    html += `<div class="record-item">${text}</div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+            
+            // NS Records
+            if (records.NS && records.NS.length > 0) {
+                html += `
+                <div class="record-section">
+                    <div class="record-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 17H4C2.9 17 2 16.1 2 15V9C2 7.9 2.9 7 4 7H5V5H19V7H20C21.1 7 22 7.9 22 9V15C22 16.1 21.1 17 20 17H19V19H5V17ZM17 15H7V9H17V15Z" fill="currentColor"/>
+                        </svg>
+                        NS Records
+                    </div>
+                    <div class="record-list">
+                `;
+                
+                records.NS.forEach(ns => {
+                    html += `<div class="record-item">${ns}</div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+            
+            // SOA Records
+            if (records.SOA) {
+                const soa = records.SOA;
+                html += `
+                <div class="record-section">
+                    <div class="record-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 7H7V17H13V7ZM5 5H15C16.1 5 17 5.9 17 7V17C17 18.1 16.1 19 15 19H5C3.9 19 3 18.1 3 17V7C3 5.9 3.9 5 5 5ZM9 11H11V13H9V11ZM18 11H21V13H18V11Z" fill="currentColor"/>
+                        </svg>
+                        SOA Record
+                    </div>
+                    <div class="record-list">
+                `;
+                
+                html += `<div class="record-item">Primary NS: ${soa.primary}</div>`;
+                html += `<div class="record-item">Admin Email: ${soa.admin}</div>`;
+                html += `<div class="record-item">Serial: ${soa.serial}</div>`;
+                html += `<div class="record-item">Refresh: ${soa.refresh} seconds</div>`;
+                html += `<div class="record-item">Retry: ${soa.retry} seconds</div>`;
+                html += `<div class="record-item">Expire: ${soa.expire} seconds</div>`;
+                html += `<div class="record-item">TTL: ${soa.ttl} seconds</div>`;
+                
+                html += `</div></div>`;
+            }
+            
+            // If no records found
+            if (html === '') {
+                html = '<div class="no-records">No DNS records found for selected types.</div>';
+            }
+            
+            dnsResult.innerHTML = html;
+        }
+        
+        // Show error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            dnsResult.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

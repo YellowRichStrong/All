@@ -215,59 +215,43 @@ img[src*="Logo"] {
 .tool-card {
     background: white;
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
+    min-height: auto;
 }
 
 .tool-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .tool-icon {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     color: #0066cc;
-    font-size: 48px;
+    font-size: 36px;
 }
 
 .tool-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin-bottom: 8px;
     color: #333;
 }
 
 .tool-card p {
     color: #666;
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 13px;
+    margin-bottom: 0;
+    line-height: 1.4;
 }
 
-/* Tool Button Styles */
-.tool-btn {
-    background-color: #0066cc !important;
-    color: white !important;
-    border: none !important;
-    padding: 8px 16px !important;
-    border-radius: 4px !important;
-    cursor: pointer !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    transition: background-color 0.3s !important;
-    display: inline-block !important;
-    margin-top: 10px !important;
-}
-
-.tool-btn:hover {
-    background-color: #0052a3 !important;
-}
-
-/* 确保.tool-content内的按钮也应用相同样式 */
+/* 移除tool-btn按钮 */
+.tool-btn,
+.tool-card-link .tool-btn,
 .tool-content .tool-btn {
-    background-color: #0066cc !important;
-    color: white !important;
+    display: none !important;
 }
 
 /* Features Section */
@@ -449,6 +433,36 @@ footer {
 
 .back-to-top:hover {
     background-color: #0052a3;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    padding: 0 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.breadcrumb a {
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+    color: #0052a3;
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    color: #333;
+    font-weight: 500;
+}
+
+.breadcrumb > * {
+    display: inline-block;
+    margin-right: 5px;
 }
 
 /* Tool Page Styles */

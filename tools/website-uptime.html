@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Uptime Checker - Free Online Monitoring Tool - OOPEN AII</title>
+    <meta name="description" content="Free online website uptime checker to monitor if your website is online, check response time, and verify availability from multiple locations worldwide.">
+    <meta name="keywords" content="website uptime,uptime checker,site availability,response time monitor,online status">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/website-uptime.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/website-uptime.html">
+    <meta property="og:title" content="Website Uptime Checker - Free Online Monitoring Tool">
+    <meta property="og:description" content="Free online website uptime checker to monitor if your website is online and check response time.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/website-uptime.html">
+    <meta property="twitter:title" content="Website Uptime Checker - Free Online Monitoring Tool">
+    <meta property="twitter:description" content="Free online website uptime checker to monitor if your website is online and check response time.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tool-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .uptime-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input,
+        .input-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .primary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #1E88E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .primary-btn:hover {
+            background: #1976D2;
+        }
+        
+        .primary-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .advanced-options {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .advanced-options-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        
+        .advanced-options-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .toggle-icon {
+            font-size: 18px;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+        
+        .toggle-icon.expanded {
+            transform: rotate(180deg);
+        }
+        
+        .advanced-options-content {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .advanced-options-content.expanded {
+            display: flex;
+        }
+        
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .location-option {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .location-option:hover {
+            border-color: #1E88E5;
+            background: #f0f7ff;
+        }
+        
+        .location-option.selected {
+            border-color: #1E88E5;
+            background: #e3f2fd;
+            font-weight: 600;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .result-header h3 {
+            color: #333;
+            margin: 0;
+        }
+        
+        .status-badge {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .status-badge.online {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-badge.offline {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .status-icon {
+            font-size: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        .uptime-result {
+            background: #f8f9fa;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .uptime-result.hidden {
+            display: none;
+        }
+        
+        .result-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .result-card h4 {
+            color: #1E88E5;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .metric-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #1E88E5;
+        }
+        
+        .metric-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .metric-unit {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .location-results {
+            margin-top: 20px;
+        }
+        
+        .location-card {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .location-card.offline {
+            border-left-color: #f44336;
+        }
+        
+        .location-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .location-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .location-status {
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        .location-status.online {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .location-status.offline {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .location-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .detail-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .response-time-chart {
+            height: 250px;
+            margin: 20px 0;
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 15px;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+        }
+        
+        .chart-bar {
+            flex: 1;
+            margin: 0 2px;
+            background: linear-gradient(to top, #1E88E5, #90CAF9);
+            border-radius: 4px 4px 0 0;
+            transition: height 1s ease-in-out;
+            position: relative;
+        }
+        
+        .chart-bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        .chart-bar-value {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .error-message.hidden {
+            display: none;
+        }
+        
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #1E88E5;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: loading 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loading {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .history-timeline {
+            position: relative;
+            padding: 10px 0;
+        }
+        
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: #e0e0e0;
+        }
+        
+        .history-item {
+            position: relative;
+            padding-left: 45px;
+            margin-bottom: 20px;
+        }
+        
+        .history-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .history-dot {
+            position: absolute;
+            left: 8px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4caf50;
+            border: 3px solid #e8f5e9;
+            z-index: 1;
+        }
+        
+        .history-dot.offline {
+            background: #f44336;
+            border-color: #ffebee;
+        }
+        
+        .history-content {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+        }
+        
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .history-time {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .history-status {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+        
+        .history-status.online {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .history-status.offline {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .history-details {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+            
+            .result-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .location-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .chart-bar-label {
+                font-size: 10px;
+                max-width: 80px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb">
+                <a href="../index.html">index</a>
+                <span>/</span>
+                <a href="../network.html">Network Tools</a>
+                <span>/</span>
+                <span>Website Uptime Checker</span>
+            </div>
+
+            <!-- Tool Container -->
+            <div class="tool-container">
+                <!-- Tool Header -->
+                <div class="tool-header">
+                    <h2>Website Uptime Checker</h2>
+                    <p>Free online website uptime checker to monitor if your website is online, check response time, and verify availability from multiple locations worldwide.</p>
+                </div>
+
+                <!-- Uptime Check Form -->
+                <form class="uptime-form" id="uptimeCheckForm">
+                    <div class="input-group">
+                        <label for="url">Website URL</label>
+                        <input type="text" id="url" placeholder="Enter website URL (e.g., https://example.com)" required>
+                    </div>
+                    
+                    <!-- Advanced Options -->
+                    <div class="advanced-options">
+                        <div class="advanced-options-header" id="advancedOptionsToggle">
+                            <h3>Advanced Options</h3>
+                            <span class="toggle-icon" id="toggleIcon">▼</span>
+                        </div>
+                        <div class="advanced-options-content" id="advancedOptionsContent">
+                            <div class="input-group">
+                                <label for="checkType">Check Type</label>
+                                <select id="checkType">
+                                    <option value="http">HTTP(s) Request</option>
+                                    <option value="ping">Ping</option>
+                                    <option value="both">Both</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="locations">Check From Locations</label>
+                                <div class="location-grid">
+                                    <div class="location-option selected" data-location="us-east">United States (East)</div>
+                                    <div class="location-option selected" data-location="europe">Europe (Frankfurt)</div>
+                                    <div class="location-option selected" data-location="asia">Asia (Singapore)</div>
+                                    <div class="location-option" data-location="australia">Australia (Sydney)</div>
+                                </div>
+                                <p class="help-text" style="font-size: 14px; color: #666; margin-top: 5px;">Select locations to check from (maximum 4)</p>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="timeout">Timeout</label>
+                                <select id="timeout">
+                                    <option value="5">5 seconds</option>
+                                    <option value="10" selected>10 seconds</option>
+                                    <option value="15">15 seconds</option>
+                                    <option value="30">30 seconds</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="checkBtn">Check Uptime</button>
+                        <button type="button" class="secondary-btn" id="clearBtn">Clear</button>
+                    </div>
+                </form>
+
+                <!-- Error Message -->
+                <div class="error-message hidden" id="errorMessage">
+                    <p id="errorText">An error occurred while processing your request.</p>
+                </div>
+
+                <!-- Result Section -->
+                <div class="result-section">
+                    <div class="result-header">
+                        <h3>Uptime Results for <span id="resultUrl">example.com</span></h3>
+                        <div id="statusBadge" class="status-badge online">
+                            <span class="status-icon">●</span>
+                            Online
+                        </div>
+                    </div>
+                    <div class="uptime-result hidden" id="uptimeResult">
+                        <!-- Uptime results will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const uptimeCheckForm = document.getElementById('uptimeCheckForm');
+        const urlInput = document.getElementById('url');
+        const checkTypeSelect = document.getElementById('checkType');
+        const timeoutSelect = document.getElementById('timeout');
+        const locationOptions = document.querySelectorAll('.location-option');
+        const advancedOptionsToggle = document.getElementById('advancedOptionsToggle');
+        const advancedOptionsContent = document.getElementById('advancedOptionsContent');
+        const toggleIcon = document.getElementById('toggleIcon');
+        const checkBtn = document.getElementById('checkBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const uptimeResult = document.getElementById('uptimeResult');
+        const resultUrl = document.getElementById('resultUrl');
+        const statusBadge = document.getElementById('statusBadge');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        
+        // Advanced options toggle
+        advancedOptionsToggle.addEventListener('click', function() {
+            advancedOptionsContent.classList.toggle('expanded');
+            toggleIcon.classList.toggle('expanded');
+        });
+        
+        // Location option selection with limit
+        locationOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const selectedCount = document.querySelectorAll('.location-option.selected').length;
+                
+                if (this.classList.contains('selected')) {
+                    // Allow deselection even if at limit
+                    this.classList.remove('selected');
+                } else if (selectedCount < 4) {
+                    // Only allow selection if below limit
+                    this.classList.add('selected');
+                }
+            });
+        });
+        
+        // Form submission handler
+        uptimeCheckForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let url = urlInput.value.trim();
+            const checkType = checkTypeSelect.value;
+            const timeout = parseInt(timeoutSelect.value);
+            const selectedLocations = Array.from(document.querySelectorAll('.location-option.selected'))
+                .map(option => option.dataset.location);
+            
+            // Normalize URL (add http if missing)
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+            
+            checkUptime(url, checkType, selectedLocations, timeout);
+        });
+        
+        // Clear button handler
+        clearBtn.addEventListener('click', function() {
+            urlInput.value = '';
+            checkTypeSelect.value = 'http';
+            timeoutSelect.value = '10';
+            
+            // Reset to default locations
+            locationOptions.forEach((option, index) => {
+                if (index < 3) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+            
+            uptimeResult.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+        });
+        
+        // Check website uptime (simulated)
+        function checkUptime(url, checkType, locations, timeout) {
+            // Show loading state
+            errorMessage.classList.add('hidden');
+            uptimeResult.classList.remove('hidden');
+            uptimeResult.innerHTML = '<div class="loading-indicator">Checking uptime for <strong>' + url + '</strong>... <div class="loading-dots"><span></span><span></span><span></span></div></div>';
+            resultUrl.textContent = url;
+            checkBtn.disabled = true;
+            
+            // Simulate API call delay - longer for more realistic feel
+            setTimeout(() => {
+                // Generate mock uptime data
+                const uptimeData = generateMockUptimeData(url, checkType, locations, timeout);
+                
+                // Display results
+                displayUptimeResults(uptimeData);
+                checkBtn.disabled = false;
+            }, 2000);
+        }
+        
+        // Generate mock uptime data
+        function generateMockUptimeData(url, checkType, locations, timeout) {
+            // Parse domain from URL
+            let domain;
+            try {
+                const urlObj = new URL(url);
+                domain = urlObj.hostname;
+            } catch (e) {
+                domain = url;
+            }
+            
+            // Determine overall status (90% chance online for realistic results)
+            const isOnline = Math.random() > 0.1;
+            
+            // Generate location-specific results
+            const locationResults = [];
+            let totalResponseTime = 0;
+            let successfulChecks = 0;
+            
+            locations.forEach(location => {
+                // 95% chance each location is online if overall status is online
+                // 20% chance each location is online if overall status is offline (some locations might still reach it)
+                const locationOnline = isOnline ? Math.random() > 0.05 : Math.random() < 0.2;
+                
+                let httpResponseTime = null;
+                let pingResponseTime = null;
+                let statusCode = null;
+                let statusText = null;
+                let pingPacketLoss = null;
+                
+                if (locationOnline) {
+                    // Generate response times (lower for more reliable locations)
+                    const baseResponseTime = {
+                        'us-east': 80,
+                        'europe': 150,
+                        'asia': 250,
+                        'australia': 320
+                    }[location] || 200;
+                    
+                    // Add some random variation
+                    httpResponseTime = Math.floor(baseResponseTime + (Math.random() * 100) - 50);
+                    pingResponseTime = Math.floor((baseResponseTime * 0.7) + (Math.random() * 50) - 25);
+                    
+                    // Generate status code
+                    const statusCodes = [200, 200, 200, 200, 200, 200, 200, 301, 302, 304]; // Mostly 200s with some redirects
+                    statusCode = statusCodes[Math.floor(Math.random() * statusCodes.length)];
+                    
+                    // Map status codes to text
+                    const statusTexts = {
+                        200: 'OK',
+                        301: 'Moved Permanently',
+                        302: 'Found',
+                        304: 'Not Modified'
+                    };
+                    statusText = statusTexts[statusCode];
+                    
+                    // Ping packet loss (usually 0 for online sites)
+                    pingPacketLoss = Math.random() > 0.95 ? Math.floor(Math.random() * 30) + 1 : 0;
+                    
+                    // Add to totals for averages
+                    if (checkType === 'http' || checkType === 'both') {
+                        totalResponseTime += httpResponseTime;
+                        successfulChecks++;
+                    }
+                    if (checkType === 'ping' || checkType === 'both') {
+                        totalResponseTime += pingResponseTime;
+                        successfulChecks++;
+                    }
+                    if (checkType === 'both') {
+                        successfulChecks--; // Don't double count in totals
+                    }
+                } else {
+                    // Offline location
+                    statusCode = 0;
+                    statusText = 'Connection Timeout';
+                    httpResponseTime = timeout * 1000;
+                    pingResponseTime = timeout * 1000;
+                    pingPacketLoss = 100;
+                }
+                
+                locationResults.push({
+                    location: location,
+                    locationName: getLocationName(location),
+                    online: locationOnline,
+                    http: checkType === 'http' || checkType === 'both' ? {
+                        responseTime: httpResponseTime,
+                        statusCode: statusCode,
+                        statusText: statusText
+                    } : null,
+                    ping: checkType === 'ping' || checkType === 'both' ? {
+                        responseTime: pingResponseTime,
+                        packetLoss: pingPacketLoss
+                    } : null
+                });
+            });
+            
+            // Calculate average response time
+            const avgResponseTime = successfulChecks > 0 ? Math.floor(totalResponseTime / successfulChecks) : null;
+            
+            // Generate historical uptime data (last 24 hours with hourly checks)
+            const historicalData = generateHistoricalData(isOnline, domain);
+            
+            // Calculate uptime percentage
+            const uptimePercentage = calculateUptimePercentage(historicalData);
+            
+            // Generate response time history for chart
+            const responseTimeHistory = generateResponseTimeHistory(locations, avgResponseTime);
+            
+            return {
+                url: url,
+                domain: domain,
+                checkType: checkType,
+                timeout: timeout,
+                online: isOnline,
+                avgResponseTime: avgResponseTime,
+                uptimePercentage: uptimePercentage,
+                locationResults: locationResults,
+                historicalData: historicalData,
+                responseTimeHistory: responseTimeHistory,
+                timestamp: new Date().toISOString()
+            };
+        }
+        
+        // Get location name from code
+        function getLocationName(locationCode) {
+            const locations = {
+                'us-east': 'United States (East)',
+                'europe': 'Europe (Frankfurt)',
+                'asia': 'Asia (Singapore)',
+                'australia': 'Australia (Sydney)'
+            };
+            
+            return locations[locationCode] || locationCode;
+        }
+        
+        // Generate historical uptime data
+        function generateHistoricalData(isOnlineNow, domain) {
+            const historicalData = [];
+            const now = new Date();
+            
+            // Generate data points for the last 24 hours
+            for (let i = 23; i >= 0; i--) {
+                const timestamp = new Date(now.getTime() - i * 60 * 60 * 1000);
+                
+                // 95% chance online in general, but if currently offline, increase chance of recent outages
+                let isOnline;
+                if (isOnlineNow) {
+                    isOnline = Math.random() > 0.05;
+                } else {
+                    // If currently offline, make recent checks more likely to be offline
+                    const recencyFactor = Math.max(0.5, 1 - (i / 48)); // 100% offline chance at i=0, decreasing to 50% at i=24
+                    isOnline = Math.random() > recencyFactor;
+                }
+                
+                // Generate response time if online
+                let responseTime = null;
+                if (isOnline) {
+                    responseTime = Math.floor(Math.random() * 200) + 50; // 50ms-250ms
+                }
+                
+                historicalData.push({
+                    timestamp: timestamp,
+                    online: isOnline,
+                    responseTime: responseTime,
+                    statusMessage: isOnline ? 'Website is online' : 'Connection timeout'
+                });
+            }
+            
+            return historicalData;
+        }
+        
+        // Calculate uptime percentage from historical data
+        function calculateUptimePercentage(historicalData) {
+            const totalChecks = historicalData.length;
+            const successfulChecks = historicalData.filter(check => check.online).length;
+            
+            return ((successfulChecks / totalChecks) * 100).toFixed(2);
+        }
+        
+        // Generate response time history for chart
+        function generateResponseTimeHistory(locations, avgResponseTime) {
+            // Generate 24 data points for the last 24 hours
+            const history = [];
+            const now = new Date();
+            
+            for (let i = 23; i >= 0; i -= 2) { // Every 2 hours to make chart less crowded
+                const timestamp = new Date(now.getTime() - i * 60 * 60 * 1000);
+                
+                // Generate a response time that's somewhat close to the average but with variation
+                const baseTime = avgResponseTime || 150;
+                const variation = (Math.random() * 100) - 50; // -50 to +50ms variation
+                const responseTime = Math.max(20, Math.floor(baseTime + variation)); // Minimum 20ms
+                
+                history.push({
+                    timestamp: timestamp,
+                    responseTime: responseTime
+                });
+            }
+            
+            return history;
+        }
+        
+        // Display uptime results
+        function displayUptimeResults(data) {
+            // Update status badge
+            updateStatusBadge(data.online);
+            
+            let html = '';
+            
+            // Summary Metrics Card
+            html += `
+            <div class="result-card">
+                <h4>Summary</h4>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">${data.online ? '●' : '●'}<span class="metric-unit" style="color: ${data.online ? '#4caf50' : '#f44336'}"> ${data.online ? 'Online' : 'Offline'}</span></div>
+                        <div class="metric-label">Status</div>
+                    </div>
+                    ${data.avgResponseTime !== null ? `
+                    <div class="metric-card">
+                        <div class="metric-value">${data.avgResponseTime}<span class="metric-unit">ms</span></div>
+                        <div class="metric-label">Avg. Response Time</div>
+                    </div>
+                    ` : ''}
+                    <div class="metric-card">
+                        <div class="metric-value">${data.uptimePercentage}<span class="metric-unit">%</span></div>
+                        <div class="metric-label">24h Uptime</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${data.locationResults.filter(loc => loc.online).length}/${data.locationResults.length}</div>
+                        <div class="metric-label">Locations Reachable</div>
+                    </div>
+                </div>
+            </div>
+            `;
+            
+            // Location Results Card
+            html += `
+            <div class="result-card">
+                <h4>Location Results</h4>
+                <div class="location-results">
+                    ${data.locationResults.map(location => `
+                    <div class="location-card ${!location.online ? 'offline' : ''}">
+                        <div class="location-header">
+                            <span class="location-name">${location.locationName}</span>
+                            <span class="location-status ${location.online ? 'online' : 'offline'}">${location.online ? 'Online' : 'Offline'}</span>
+                        </div>
+                        <div class="location-details">
+                            ${location.http ? `
+                            <div class="detail-item">
+                                <span class="detail-label">HTTP Response Time</span>
+                                <span class="detail-value">${location.http.responseTime}ms</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Status Code</span>
+                                <span class="detail-value">${location.http.statusCode} ${location.http.statusText}</span>
+                            </div>
+                            ` : ''}
+                            ${location.ping ? `
+                            <div class="detail-item">
+                                <span class="detail-label">Ping Response Time</span>
+                                <span class="detail-value">${location.ping.responseTime}ms</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packet Loss</span>
+                                <span class="detail-value">${location.ping.packetLoss}%</span>
+                            </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+            `;
+            
+            // Response Time Chart Card (if we have response time data)
+            if (data.responseTimeHistory && data.responseTimeHistory.length > 0) {
+                html += `
+                <div class="result-card">
+                    <h4>Response Time History (Last 24 Hours)</h4>
+                    <div class="response-time-chart">
+                        ${data.responseTimeHistory.map(item => {
+                            // Get the hour for display
+                            const hour = item.timestamp.getHours();
+                            // Normalize height (assuming max response time of 500ms for scaling)
+                            const height = Math.min(100, (item.responseTime / 500) * 100);
+                            
+                            return `
+                            <div class="chart-bar" style="height: ${height}%;">
+                                <span class="chart-bar-value">${item.responseTime}ms</span>
+                                <span class="chart-bar-label">${hour}:00</span>
+                            </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+                `;
+            }
+            
+            // Recent History Card
+            html += `
+            <div class="result-card">
+                <h4>Recent Status History</h4>
+                <div class="history-timeline">
+                    ${data.historicalData.slice(-8).map(historyItem => {
+                        const timeStr = historyItem.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                        
+                        return `
+                        <div class="history-item">
+                            <div class="history-dot ${!historyItem.online ? 'offline' : ''}"></div>
+                            <div class="history-content">
+                                <div class="history-header">
+                                    <span class="history-time">${timeStr}</span>
+                                    <span class="history-status ${historyItem.online ? 'online' : 'offline'}">${historyItem.online ? 'Online' : 'Offline'}</span>
+                                </div>
+                                <div class="history-details">
+                                    ${historyItem.statusMessage}${historyItem.responseTime ? ` - Response time: ${historyItem.responseTime}ms` : ''}
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+            `;
+            
+            // Additional Information Card
+            html += `
+            <div class="result-card">
+                <h4>Additional Information</h4>
+                <div class="location-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Checked At</span>
+                        <span class="detail-value">${new Date(data.timestamp).toLocaleString()}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Check Type</span>
+                        <span class="detail-value">${getCheckTypeName(data.checkType)}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Timeout</span>
+                        <span class="detail-value">${data.timeout} seconds</span>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                    <p style="font-size: 14px; color: #666; margin: 0;">
+                        <strong>Note:</strong> This is a simulated check. For real-time monitoring, consider setting up a dedicated monitoring service with regular checks from multiple locations.
+                    </p>
+                </div>
+            </div>
+            `;
+            
+            uptimeResult.innerHTML = html;
+            
+            // Animate chart bars
+            setTimeout(() => {
+                const chartBars = document.querySelectorAll('.chart-bar');
+                chartBars.forEach(bar => {
+                    const targetHeight = bar.style.height;
+                    bar.style.height = '0%';
+                    setTimeout(() => {
+                        bar.style.height = targetHeight;
+                    }, 100);
+                });
+            }, 100);
+        }
+        
+        // Update status badge
+        function updateStatusBadge(isOnline) {
+            if (isOnline) {
+                statusBadge.className = 'status-badge online';
+                statusBadge.innerHTML = '<span class="status-icon">●</span> Online';
+            } else {
+                statusBadge.className = 'status-badge offline';
+                statusBadge.innerHTML = '<span class="status-icon">●</span> Offline';
+            }
+        }
+        
+        // Get check type name
+        function getCheckTypeName(checkType) {
+            const types = {
+                'http': 'HTTP(s) Request',
+                'ping': 'Ping',
+                'both': 'HTTP(s) Request and Ping'
+            };
+            
+            return types[checkType] || checkType;
+        }
+        
+        // Show error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            uptimeResult.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

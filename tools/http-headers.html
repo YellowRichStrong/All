@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Headers Checker - Free Online HTTP Tool - OOPEN AII</title>
+    <meta name="description" content="Free online HTTP headers checker tool to view and analyze HTTP response headers from any website. Check status codes, content types, security headers, and more.">
+    <meta name="keywords" content="HTTP headers,HTTP checker,response headers,status codes,security headers,content-type">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/http-headers.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/http-headers.html">
+    <meta property="og:title" content="HTTP Headers Checker - Free Online HTTP Tool">
+    <meta property="og:description" content="Free online HTTP headers checker tool to view and analyze HTTP response headers from any website.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/http-headers.html">
+    <meta property="twitter:title" content="HTTP Headers Checker - Free Online HTTP Tool">
+    <meta property="twitter:description" content="Free online HTTP headers checker tool to view and analyze HTTP response headers from any website.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tool-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .http-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input,
+        .input-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .primary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #1E88E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .primary-btn:hover {
+            background: #1976D2;
+        }
+        
+        .primary-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .advanced-options {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .advanced-options-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        
+        .advanced-options-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .toggle-icon {
+            font-size: 18px;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+        
+        .toggle-icon.expanded {
+            transform: rotate(180deg);
+        }
+        
+        .advanced-options-content {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .advanced-options-content.expanded {
+            display: flex;
+        }
+        
+        .custom-headers {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .header-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .header-name,
+        .header-value {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .remove-header {
+            background: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .remove-header:hover {
+            background: #d32f2f;
+        }
+        
+        .add-header {
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            align-self: flex-start;
+        }
+        
+        .add-header:hover {
+            background: #43a047;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .result-header h3 {
+            color: #333;
+            margin: 0;
+        }
+        
+        .response-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .response-status.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .response-status.redirect {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .response-status.client-error {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .response-status.server-error {
+            background: #fce4ec;
+            color: #880e4f;
+        }
+        
+        .http-result {
+            background: #f8f9fa;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .http-result.hidden {
+            display: none;
+        }
+        
+        .response-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .response-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .response-card h4 {
+            color: #1E88E5;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        
+        .request-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .summary-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .summary-value {
+            color: #333;
+            font-size: 16px;
+            word-break: break-word;
+        }
+        
+        .headers-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .headers-table th,
+        .headers-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .headers-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+            width: 30%;
+            white-space: nowrap;
+        }
+        
+        .headers-table td {
+            color: #333;
+            word-break: break-word;
+        }
+        
+        .security-score {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .score-circle.excellent {
+            background: linear-gradient(135deg, #4caf50, #8bc34a);
+        }
+        
+        .score-circle.good {
+            background: linear-gradient(135deg, #8bc34a, #cddc39);
+        }
+        
+        .score-circle.moderate {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+        }
+        
+        .score-circle.poor {
+            background: linear-gradient(135deg, #ff9800, #f44336);
+        }
+        
+        .score-info h5 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+        
+        .score-info p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .security-analysis {
+            margin-top: 20px;
+        }
+        
+        .security-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .security-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .security-item.excellent {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .security-item.good {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .security-item.warning {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .security-item.danger {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+        
+        .security-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+            margin-top: -2px;
+        }
+        
+        .security-content {
+            flex: 1;
+        }
+        
+        .security-content h5 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+        
+        .security-content p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .raw-response {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        
+        .raw-response.hidden {
+            display: none;
+        }
+        
+        .raw-response-toggle {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: #1E88E5;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .error-message.hidden {
+            display: none;
+        }
+        
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #1E88E5;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: loading 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loading {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+            
+            .result-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .request-summary {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-row {
+                flex-direction: column;
+            }
+            
+            .header-name,
+            .header-value {
+                width: 100%;
+            }
+            
+            .headers-table th,
+            .headers-table td {
+                display: block;
+                width: 100%;
+                padding: 8px;
+            }
+            
+            .headers-table th {
+                background: none;
+                padding-bottom: 2px;
+            }
+            
+            .security-score {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb">
+                <a href="../index.html">index</a>
+                <span>/</span>
+                <a href="../network.html">Network Tools</a>
+                <span>/</span>
+                <span>HTTP Headers Checker</span>
+            </div>
+
+            <!-- Tool Container -->
+            <div class="tool-container">
+                <!-- Tool Header -->
+                <div class="tool-header">
+                    <h2>HTTP Headers Checker</h2>
+                    <p>Free online HTTP headers checker tool to view and analyze HTTP response headers from any website. Check status codes, content types, security headers, and more.</p>
+                </div>
+
+                <!-- HTTP Checker Form -->
+                <form class="http-form" id="httpCheckForm">
+                    <div class="input-group">
+                        <label for="url">Website URL</label>
+                        <input type="text" id="url" placeholder="Enter website URL (e.g., https://example.com)" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="method">HTTP Method</label>
+                        <select id="method">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="HEAD">HEAD</option>
+                            <option value="PUT">PUT</option>
+                            <option value="DELETE">DELETE</option>
+                            <option value="OPTIONS">OPTIONS</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Advanced Options -->
+                    <div class="advanced-options">
+                        <div class="advanced-options-header" id="advancedOptionsToggle">
+                            <h3>Advanced Options</h3>
+                            <span class="toggle-icon" id="toggleIcon">▼</span>
+                        </div>
+                        <div class="advanced-options-content" id="advancedOptionsContent">
+                            <div class="input-group">
+                                <label for="followRedirects">Follow Redirects</label>
+                                <select id="followRedirects">
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="customHeaders">Custom Headers</label>
+                                <div class="custom-headers" id="customHeaders">
+                                    <div class="header-row">
+                                        <input type="text" class="header-name" placeholder="Header Name">
+                                        <input type="text" class="header-value" placeholder="Header Value">
+                                        <button type="button" class="remove-header">Remove</button>
+                                    </div>
+                                </div>
+                                <button type="button" class="add-header" id="addHeaderBtn">Add Header</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="checkBtn">Check Headers</button>
+                        <button type="button" class="secondary-btn" id="clearBtn">Clear</button>
+                    </div>
+                </form>
+
+                <!-- Error Message -->
+                <div class="error-message hidden" id="errorMessage">
+                    <p id="errorText">An error occurred while processing your request.</p>
+                </div>
+
+                <!-- Result Section -->
+                <div class="result-section">
+                    <div class="result-header">
+                        <h3>HTTP Response for <span id="resultUrl">example.com</span></h3>
+                        <div id="responseStatusBadge" class="response-status success">200 OK</div>
+                    </div>
+                    <div class="http-result hidden" id="httpResult">
+                        <!-- HTTP results will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const httpCheckForm = document.getElementById('httpCheckForm');
+        const urlInput = document.getElementById('url');
+        const methodSelect = document.getElementById('method');
+        const followRedirectsSelect = document.getElementById('followRedirects');
+        const customHeadersContainer = document.getElementById('customHeaders');
+        const addHeaderBtn = document.getElementById('addHeaderBtn');
+        const advancedOptionsToggle = document.getElementById('advancedOptionsToggle');
+        const advancedOptionsContent = document.getElementById('advancedOptionsContent');
+        const toggleIcon = document.getElementById('toggleIcon');
+        const checkBtn = document.getElementById('checkBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const httpResult = document.getElementById('httpResult');
+        const resultUrl = document.getElementById('resultUrl');
+        const responseStatusBadge = document.getElementById('responseStatusBadge');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        
+        // Advanced options toggle
+        advancedOptionsToggle.addEventListener('click', function() {
+            advancedOptionsContent.classList.toggle('expanded');
+            toggleIcon.classList.toggle('expanded');
+        });
+        
+        // Add custom header
+        addHeaderBtn.addEventListener('click', function() {
+            const headerRow = document.createElement('div');
+            headerRow.className = 'header-row';
+            headerRow.innerHTML = `
+                <input type="text" class="header-name" placeholder="Header Name">
+                <input type="text" class="header-value" placeholder="Header Value">
+                <button type="button" class="remove-header">Remove</button>
+            `;
+            
+            customHeadersContainer.appendChild(headerRow);
+            
+            // Add event listener to the new remove button
+            headerRow.querySelector('.remove-header').addEventListener('click', function() {
+                headerRow.remove();
+            });
+        });
+        
+        // Remove header event delegation
+        customHeadersContainer.addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-header')) {
+                const headerRow = e.target.closest('.header-row');
+                // Always keep at least one header row
+                if (customHeadersContainer.children.length > 1) {
+                    headerRow.remove();
+                } else {
+                    // Clear the inputs in the last row instead of removing it
+                    headerRow.querySelector('.header-name').value = '';
+                    headerRow.querySelector('.header-value').value = '';
+                }
+            }
+        });
+        
+        // Form submission handler
+        httpCheckForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let url = urlInput.value.trim();
+            const method = methodSelect.value;
+            const followRedirects = followRedirectsSelect.value === 'true';
+            
+            // Normalize URL (add http if missing)
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+            
+            checkHTTPHeaders(url, method, followRedirects);
+        });
+        
+        // Clear button handler
+        clearBtn.addEventListener('click', function() {
+            urlInput.value = '';
+            methodSelect.value = 'GET';
+            followRedirectsSelect.value = 'true';
+            
+            // Clear custom headers
+            const headerRows = customHeadersContainer.querySelectorAll('.header-row');
+            headerRows.forEach(row => {
+                row.querySelector('.header-name').value = '';
+                row.querySelector('.header-value').value = '';
+            });
+            
+            httpResult.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+        });
+        
+        // Check HTTP headers (simulated)
+        function checkHTTPHeaders(url, method, followRedirects) {
+            // Show loading state
+            errorMessage.classList.add('hidden');
+            httpResult.classList.remove('hidden');
+            httpResult.innerHTML = '<div class="loading-indicator">Checking HTTP headers for <strong>' + url + '</strong>... <div class="loading-dots"><span></span><span></span><span></span></div></div>';
+            resultUrl.textContent = url;
+            checkBtn.disabled = true;
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // Generate mock HTTP response data
+                const responseData = generateMockHTTPResponse(url, method);
+                
+                // Display results
+                displayHTTPResults(responseData);
+                checkBtn.disabled = false;
+            }, 1500);
+        }
+        
+        // Generate mock HTTP response data
+        function generateMockHTTPResponse(url, method) {
+            // Parse domain from URL
+            let domain;
+            try {
+                const urlObj = new URL(url);
+                domain = urlObj.hostname;
+            } catch (e) {
+                domain = url;
+            }
+            
+            // Common patterns for different domain types
+            const isGoogle = domain.toLowerCase().includes('google');
+            const isMicrosoft = domain.toLowerCase().includes('microsoft');
+            const isFacebook = domain.toLowerCase().includes('facebook');
+            const isTwitter = domain.toLowerCase().includes('twitter') || domain.toLowerCase().includes('x.com');
+            const isExample = domain.toLowerCase().includes('example');
+            
+            // Generate random status code with probabilities
+            const statusCodes = [
+                { code: 200, text: 'OK', type: 'success', probability: 0.7 },
+                { code: 301, text: 'Moved Permanently', type: 'redirect', probability: 0.1 },
+                { code: 302, text: 'Found', type: 'redirect', probability: 0.05 },
+                { code: 304, text: 'Not Modified', type: 'redirect', probability: 0.05 },
+                { code: 404, text: 'Not Found', type: 'client-error', probability: 0.05 },
+                { code: 500, text: 'Internal Server Error', type: 'server-error', probability: 0.02 },
+                { code: 403, text: 'Forbidden', type: 'client-error', probability: 0.02 },
+                { code: 400, text: 'Bad Request', type: 'client-error', probability: 0.01 }
+            ];
+            
+            let statusCode;
+            const random = Math.random();
+            let cumulativeProbability = 0;
+            
+            for (const code of statusCodes) {
+                cumulativeProbability += code.probability;
+                if (random < cumulativeProbability) {
+                    statusCode = code;
+                    break;
+                }
+            }
+            
+            // Generate response time
+            const responseTime = Math.floor(Math.random() * 1000) + 100; // 100-1100ms
+            
+            // Generate content size
+            const contentSize = Math.floor(Math.random() * 100000) + 1000; // 1KB-100KB
+            
+            // Generate request time
+            const now = new Date();
+            const requestTime = now.toLocaleString();
+            
+            // Generate base headers
+            const headers = {
+                'date': now.toUTCString(),
+                'server': isGoogle ? 'gws' : isMicrosoft ? 'Microsoft-IIS/10.0' : isFacebook ? 'nginx/1.21.4' : isTwitter ? 'tsa_a' : 'Apache/2.4.41',
+                'content-type': 'text/html; charset=UTF-8',
+                'content-length': contentSize.toString(),
+                'connection': 'keep-alive',
+                'cache-control': 'max-age=3600',
+                'vary': 'Accept-Encoding',
+                'accept-ranges': 'bytes'
+            };
+            
+            // Add common security headers (with some randomization)
+            if (Math.random() > 0.2) {
+                headers['x-content-type-options'] = 'nosniff';
+            }
+            if (Math.random() > 0.3) {
+                headers['x-frame-options'] = 'SAMEORIGIN';
+            }
+            if (Math.random() > 0.4) {
+                headers['x-xss-protection'] = '1; mode=block';
+            }
+            if (Math.random() > 0.5) {
+                headers['strict-transport-security'] = 'max-age=31536000; includeSubDomains';
+            }
+            if (Math.random() > 0.6) {
+                headers['content-security-policy'] = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://trusted-cdn.com";
+            }
+            if (Math.random() > 0.7) {
+                headers['referrer-policy'] = ['strict-origin-when-cross-origin', 'origin-when-cross-origin', 'no-referrer-when-downgrade'][Math.floor(Math.random() * 3)];
+            }
+            
+            // Add domain-specific headers
+            if (isGoogle) {
+                headers['x-google-analytics'] = 'UA-XXXXXXXXX-X';
+                headers['x-goog-lr'] = 'lang_en-US';
+            } else if (isMicrosoft) {
+                headers['x-powered-by'] = 'ASP.NET';
+                headers['microsoftsharepointteamservices'] = '16.0.0.XXXX';
+            } else if (isFacebook) {
+                headers['facebook-api-version'] = 'v14.0';
+                headers['p3p'] = 'CP="Facebook does not have a P3P policy. Learn why here: http://fb.me/p3p"';
+            }
+            
+            // Add redirect headers if needed
+            if (statusCode.code >= 300 && statusCode.code < 400) {
+                headers['location'] = `https://www.${domain}`;
+            }
+            
+            // Calculate security score based on headers
+            let securityScore = 0;
+            const maxScore = 6;
+            
+            if (headers['strict-transport-security']) securityScore++;
+            if (headers['content-security-policy']) securityScore++;
+            if (headers['x-content-type-options']) securityScore++;
+            if (headers['x-frame-options']) securityScore++;
+            if (headers['x-xss-protection']) securityScore++;
+            if (headers['referrer-policy']) securityScore++;
+            
+            // Generate raw response text
+            let rawResponse = `HTTP/1.1 ${statusCode.code} ${statusCode.text}\n`;
+            for (const [key, value] of Object.entries(headers)) {
+                rawResponse += `${key}: ${value}\n`;
+            }
+            rawResponse += '\n'; // End of headers marker
+            
+            // Calculate score percentage
+            const scorePercentage = Math.round((securityScore / maxScore) * 100);
+            let scoreCategory;
+            let scoreColor;
+            
+            if (scorePercentage >= 90) {
+                scoreCategory = 'excellent';
+                scoreColor = 'excellent';
+            } else if (scorePercentage >= 70) {
+                scoreCategory = 'good';
+                scoreColor = 'good';
+            } else if (scorePercentage >= 50) {
+                scoreCategory = 'moderate';
+                scoreColor = 'moderate';
+            } else {
+                scoreCategory = 'poor';
+                scoreColor = 'poor';
+            }
+            
+            return {
+                url: url,
+                method: method,
+                statusCode: statusCode.code,
+                statusText: statusCode.text,
+                statusType: statusCode.type,
+                responseTime: responseTime,
+                contentSize: contentSize,
+                requestTime: requestTime,
+                headers: headers,
+                securityScore: scorePercentage,
+                scoreCategory: scoreCategory,
+                scoreColor: scoreColor,
+                rawResponse: rawResponse
+            };
+        }
+        
+        // Display HTTP results
+        function displayHTTPResults(data) {
+            // Update status badge
+            updateStatusBadge(data);
+            
+            let html = '';
+            
+            // Request Summary Card
+            html += `
+            <div class="response-card">
+                <h4>Request Summary</h4>
+                <div class="request-summary">
+                    <div class="summary-item">
+                        <div class="summary-label">URL</div>
+                        <div class="summary-value">${data.url}</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Method</div>
+                        <div class="summary-value">${data.method}</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Status</div>
+                        <div class="summary-value">${data.statusCode} ${data.statusText}</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Response Time</div>
+                        <div class="summary-value">${data.responseTime} ms</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Content Size</div>
+                        <div class="summary-value">${formatBytes(data.contentSize)}</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Request Time</div>
+                        <div class="summary-value">${data.requestTime}</div>
+                    </div>
+                </div>
+            </div>
+            `;
+            
+            // Response Headers Card
+            html += `
+            <div class="response-card">
+                <h4>Response Headers</h4>
+                <table class="headers-table">
+                    ${Object.entries(data.headers).map(([key, value]) => `
+                    <tr>
+                        <th>${key}</th>
+                        <td>${value}</td>
+                    </tr>
+                    `).join('')}
+                </table>
+            </div>
+            `;
+            
+            // Security Analysis Card
+            html += `
+            <div class="response-card">
+                <h4>Security Analysis</h4>
+                <div class="security-score">
+                    <div class="score-circle ${data.scoreColor}">${data.securityScore}%</div>
+                    <div class="score-info">
+                        <h5>${getScoreDescription(data.scoreCategory)}</h5>
+                        <p>Security header implementation score based on recommended best practices.</p>
+                    </div>
+                </div>
+                
+                <div class="security-analysis">
+                    ${getSecurityAnalysis(data.headers).map(item => `
+                    <div class="security-item ${item.type}">
+                        <span class="security-icon">${item.icon}</span>
+                        <div class="security-content">
+                            <h5>${item.title}</h5>
+                            <p>${item.description}</p>
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+            `;
+            
+            // Raw Response Card
+            html += `
+            <div class="response-card">
+                <h4>Raw Response</h4>
+                <div class="raw-response" id="rawResponse">${data.rawResponse}</div>
+                <div class="raw-response-toggle">
+                    <button type="button" class="toggle-btn" id="toggleRawResponse">Hide Raw Response</button>
+                </div>
+            </div>
+            `;
+            
+            httpResult.innerHTML = html;
+            
+            // Add event listener for raw response toggle
+            document.getElementById('toggleRawResponse').addEventListener('click', function() {
+                const rawResponse = document.getElementById('rawResponse');
+                rawResponse.classList.toggle('hidden');
+                this.textContent = rawResponse.classList.contains('hidden') ? 'Show Raw Response' : 'Hide Raw Response';
+            });
+        }
+        
+        // Update status badge
+        function updateStatusBadge(data) {
+            responseStatusBadge.className = `response-status ${data.statusType}`;
+            responseStatusBadge.textContent = `${data.statusCode} ${data.statusText}`;
+        }
+        
+        // Format bytes to human-readable format
+        function formatBytes(bytes, decimals = 2) {
+            if (bytes === 0) return '0 Bytes';
+            
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+        
+        // Get score description
+        function getScoreDescription(category) {
+            const descriptions = {
+                'excellent': 'Excellent Security Configuration',
+                'good': 'Good Security Configuration',
+                'moderate': 'Moderate Security Configuration',
+                'poor': 'Poor Security Configuration'
+            };
+            
+            return descriptions[category] || 'Unknown Security Level';
+        }
+        
+        // Get security analysis items
+        function getSecurityAnalysis(headers) {
+            const analysis = [];
+            
+            // Check for HSTS
+            if (headers['strict-transport-security']) {
+                analysis.push({
+                    type: 'excellent',
+                    icon: '✅',
+                    title: 'HSTS Enabled',
+                    description: 'HTTP Strict Transport Security is properly configured, ensuring secure HTTPS connections.'
+                });
+            } else {
+                analysis.push({
+                    type: 'danger',
+                    icon: '❌',
+                    title: 'HSTS Missing',
+                    description: 'HTTP Strict Transport Security is not implemented. Consider adding the Strict-Transport-Security header.'
+                });
+            }
+            
+            // Check for CSP
+            if (headers['content-security-policy']) {
+                analysis.push({
+                    type: 'excellent',
+                    icon: '✅',
+                    title: 'Content Security Policy Configured',
+                    description: 'CSP is implemented, helping to prevent XSS attacks and other code injection vulnerabilities.'
+                });
+            } else {
+                analysis.push({
+                    type: 'warning',
+                    icon: '⚠️',
+                    title: 'Content Security Policy Missing',
+                    description: 'Consider implementing a Content Security Policy to protect against various web vulnerabilities.'
+                });
+            }
+            
+            // Check for X-Content-Type-Options
+            if (headers['x-content-type-options']) {
+                analysis.push({
+                    type: 'excellent',
+                    icon: '✅',
+                    title: 'X-Content-Type-Options Set',
+                    description: 'This header prevents MIME-sniffing, reducing the risk of drive-by downloads.'
+                });
+            } else {
+                analysis.push({
+                    type: 'warning',
+                    icon: '⚠️',
+                    title: 'X-Content-Type-Options Missing',
+                    description: 'Consider adding X-Content-Type-Options: nosniff to prevent MIME type sniffing.'
+                });
+            }
+            
+            // Check for X-Frame-Options
+            if (headers['x-frame-options']) {
+                analysis.push({
+                    type: 'excellent',
+                    icon: '✅',
+                    title: 'X-Frame-Options Configured',
+                    description: 'This header helps protect against clickjacking attacks by controlling how your site can be framed.'
+                });
+            } else {
+                analysis.push({
+                    type: 'warning',
+                    icon: '⚠️',
+                    title: 'X-Frame-Options Missing',
+                    description: 'Consider adding X-Frame-Options to protect against clickjacking attacks.'
+                });
+            }
+            
+            // Check for X-XSS-Protection
+            if (headers['x-xss-protection']) {
+                analysis.push({
+                    type: 'good',
+                    icon: '✅',
+                    title: 'XSS Protection Enabled',
+                    description: 'Browser-based XSS filtering is enabled as an additional security layer.'
+                });
+            } else {
+                analysis.push({
+                    type: 'warning',
+                    icon: '⚠️',
+                    title: 'XSS Protection Not Explicitly Set',
+                    description: 'Consider adding X-XSS-Protection header for older browsers that don\'t support CSP.'
+                });
+            }
+            
+            // Check for Referrer-Policy
+            if (headers['referrer-policy']) {
+                analysis.push({
+                    type: 'excellent',
+                    icon: '✅',
+                    title: 'Referrer Policy Configured',
+                    description: 'Referrer-Policy controls what information is included in the Referer header, enhancing privacy.'
+                });
+            } else {
+                analysis.push({
+                    type: 'warning',
+                    icon: '⚠️',
+                    title: 'Referrer Policy Missing',
+                    description: 'Consider implementing a Referrer-Policy to control information leakage in referrer headers.'
+                });
+            }
+            
+            return analysis;
+        }
+        
+        // Show error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            httpResult.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

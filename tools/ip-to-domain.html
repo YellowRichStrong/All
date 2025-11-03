@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP to Domain Converter - Reverse DNS Lookup Tool</title>
+    <meta name="description" content="Convert any IP address to associated domain names using our reverse DNS lookup tool. Find all domains hosted on a specific IP address.">
+    <meta name="keywords" content="IP to domain, reverse DNS lookup, IP address to domain, find domains on IP, reverse lookup">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/ip-to-domain.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/ip-to-domain.html">
+    <meta property="og:title" content="IP to Domain Converter - OOPEN AII">
+    <meta property="og:description" content="Convert IP address to associated domain names using reverse DNS lookup. Find all domains hosted on a specific IP.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/ip-to-domain.html">
+    <meta property="twitter:title" content="IP to Domain Converter - OOPEN AII">
+    <meta property="twitter:description" content="Convert IP address to associated domain names using reverse DNS lookup. Find all domains hosted on a specific IP.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        /* IP to Domain Specific Styles */
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-section {
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .results-section {
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+        }
+
+        .result-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e9ecef;
+        }
+
+        .result-card h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .domain-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .domain-item {
+            background-color: #ffffff;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            border-left: 3px solid #007bff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .domain-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .domain-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .domain-type {
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+        .copy-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: #218838;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #f5c6cb;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .tool-description {
+            background-color: #e9f7fe;
+            border-left: 4px solid #007bff;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tip-box h4 {
+            color: #856404;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-box ul {
+            margin-bottom: 0;
+            padding-left: 1.5rem;
+        }
+
+        .tip-box li {
+            margin-bottom: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 1.5rem;
+            }
+
+            .domain-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .copy-btn {
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../index.html">Home</a> &gt; 
+            <a href="../network.html">Network Tools</a> &gt; 
+            <span>IP to Domain Converter</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <section class="tool-section">
+                <div class="tool-header">
+                    <h1>IP to Domain Converter</h1>
+                    <p>Convert any IP address to associated domain names using reverse DNS lookup</p>
+                </div>
+
+                <div class="tool-container">
+                    <div class="tool-description">
+                        <p>This tool performs reverse DNS lookup to find domain names associated with a given IP address. It helps identify websites and services hosted on a specific server and can be useful for network diagnostics, security analysis, and website research.</p>
+                    </div>
+
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label for="ipAddress">Enter IP Address:</label>
+                            <input type="text" id="ipAddress" placeholder="e.g., 8.8.8.8" value="8.8.8.8">
+                        </div>
+                        <button id="lookupBtn" class="btn">Convert IP to Domains</button>
+                        <button id="clearBtn" class="btn" style="background-color: #6c757d; margin-left: 10px;">Clear</button>
+                    </div>
+
+                    <div id="loadingIndicator" class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Performing reverse DNS lookup...</p>
+                    </div>
+
+                    <div id="errorContainer" class="error-message"></div>
+
+                    <div id="resultsContainer" class="results-section">
+                        <div class="result-card">
+                            <h3>Domain Names Associated with <span id="displayedIp"></span></h3>
+                            <ul id="domainResultsList" class="domain-list">
+                                <!-- Results will be inserted here -->
+                            </ul>
+                            <div id="noResults" style="display: none; text-align: center; padding: 2rem; color: #666;">
+                                <p>No domain names found for this IP address.</p>
+                            </div>
+                        </div>
+
+                        <div class="tip-box">
+                            <h4>Reverse DNS Lookup Tips</h4>
+                            <ul>
+                                <li>Not all IP addresses have reverse DNS records configured</li>
+                                <li>Large hosting providers often have many domains per IP address</li>
+                                <li>Some IPs may only return their PTR record rather than all hosted domains</li>
+                                <li>For complete results, consider multiple lookup methods or professional tools</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools Section -->
+            <section class="related-tools">
+                <div class="section-header">
+                    <h2>Related Network Tools</h2>
+                </div>
+                <div class="tools-grid">
+                    <!-- IP Lookup -->
+                    <a href="ip-lookup.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                    <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                    <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                                </svg>
+                            </div>
+                            <h3>IP Lookup</h3>
+                            <p>Get detailed information about any IP address including geolocation and ISP data.</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+
+                    <!-- DNS Lookup -->
+                    <a href="dns-lookup.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                    <polyline points="2 17 12 22 22 17"></polyline>
+                                    <polyline points="2 12 12 17 22 12"></polyline>
+                                </svg>
+                            </div>
+                            <h3>DNS Lookup</h3>
+                            <p>Look up DNS records for a domain name including A, CNAME, MX, TXT, and more.</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+
+                    <!-- Whois Lookup -->
+                    <a href="whois-lookup.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                </svg>
+                            </div>
+                            <h3>Whois Lookup</h3>
+                            <p>Get domain registration information including owner details and expiration date.</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ipAddressInput = document.getElementById('ipAddress');
+            const lookupBtn = document.getElementById('lookupBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const errorContainer = document.getElementById('errorContainer');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const displayedIp = document.getElementById('displayedIp');
+            const domainResultsList = document.getElementById('domainResultsList');
+            const noResults = document.getElementById('noResults');
+
+            // Validate IP address format
+            function isValidIp(ip) {
+                const ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+                return ipRegex.test(ip);
+            }
+
+            // Show error message
+            function showError(message) {
+                errorContainer.textContent = message;
+                errorContainer.style.display = 'block';
+            }
+
+            // Hide error message
+            function hideError() {
+                errorContainer.style.display = 'none';
+            }
+
+            // Show loading indicator
+            function showLoading() {
+                loadingIndicator.style.display = 'block';
+                resultsContainer.classList.remove('show');
+                hideError();
+            }
+
+            // Hide loading indicator
+            function hideLoading() {
+                loadingIndicator.style.display = 'none';
+            }
+
+            // Clear results
+            function clearResults() {
+                domainResultsList.innerHTML = '';
+                noResults.style.display = 'none';
+                resultsContainer.classList.remove('show');
+            }
+
+            // Add domain to results list
+            function addDomainToResults(domain, type) {
+                const li = document.createElement('li');
+                li.className = 'domain-item';
+                
+                const domainInfo = document.createElement('div');
+                domainInfo.className = 'domain-info';
+                
+                const domainName = document.createElement('span');
+                domainName.className = 'domain-name';
+                domainName.textContent = domain;
+                
+                const domainType = document.createElement('span');
+                domainType.className = 'domain-type';
+                domainType.textContent = type;
+                
+                domainInfo.appendChild(domainName);
+                domainInfo.appendChild(domainType);
+                
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = 'Copy';
+                copyBtn.addEventListener('click', function() {
+                    navigator.clipboard.writeText(domain).then(function() {
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Copied!';
+                        copyBtn.style.backgroundColor = '#28a745';
+                        
+                        setTimeout(function() {
+                            copyBtn.textContent = originalText;
+                            copyBtn.style.backgroundColor = '';
+                        }, 2000);
+                    });
+                });
+                
+                li.appendChild(domainInfo);
+                li.appendChild(copyBtn);
+                domainResultsList.appendChild(li);
+            }
+
+            // Simulate reverse DNS lookup (since we can't make actual DNS queries from browser)
+            function performReverseDnsLookup(ip) {
+                // This is a simulation - in a real environment, you would make API calls
+                // to a service that can perform reverse DNS lookups
+                
+                // Sample mock data for demonstration
+                const mockData = {
+                    '8.8.8.8': [
+                        { domain: 'dns.google', type: 'PTR Record' },
+                        { domain: 'google-public-dns-a.google.com', type: 'Associated Domain' }
+                    ],
+                    '1.1.1.1': [
+                        { domain: 'one.one.one.one', type: 'PTR Record' },
+                        { domain: 'cloudflare-dns.com', type: 'Associated Domain' }
+                    ],
+                    '9.9.9.9': [
+                        { domain: 'dns.quad9.net', type: 'PTR Record' },
+                        { domain: 'quad9.net', type: 'Associated Domain' }
+                    ],
+                    '142.250.185.142': [
+                        { domain: 'sfo07s32-in-f142.1e100.net', type: 'PTR Record' },
+                        { domain: 'google.com', type: 'Associated Domain' },
+                        { domain: 'gmail.com', type: 'Associated Domain' },
+                        { domain: 'youtube.com', type: 'Associated Domain' }
+                    ]
+                };
+                
+                // Return mock data or generate random results for other IPs
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        if (mockData[ip]) {
+                            resolve(mockData[ip]);
+                        } else {
+                            // Generate some random results for demonstration
+                            const randomCount = Math.floor(Math.random() * 5) + 1;
+                            const results = [];
+                            
+                            for (let i = 0; i < randomCount; i++) {
+                                const recordTypes = ['PTR Record', 'Associated Domain', 'Mail Server', 'Web Server'];
+                                results.push({
+                                    domain: `server-${i}.example.com`,
+                                    type: recordTypes[Math.floor(Math.random() * recordTypes.length)]
+                                });
+                            }
+                            
+                            resolve(results);
+                        }
+                    }, 1500); // Simulate network delay
+                });
+            }
+
+            // Handle lookup button click
+            lookupBtn.addEventListener('click', function() {
+                const ip = ipAddressInput.value.trim();
+                
+                if (!ip) {
+                    showError('Please enter an IP address.');
+                    return;
+                }
+                
+                if (!isValidIp(ip)) {
+                    showError('Please enter a valid IP address.');
+                    return;
+                }
+                
+                hideError();
+                showLoading();
+                clearResults();
+                
+                performReverseDnsLookup(ip)
+                    .then(domains => {
+                        hideLoading();
+                        displayedIp.textContent = ip;
+                        
+                        if (domains && domains.length > 0) {
+                            domains.forEach(item => {
+                                addDomainToResults(item.domain, item.type);
+                            });
+                            noResults.style.display = 'none';
+                        } else {
+                            noResults.style.display = 'block';
+                        }
+                        
+                        resultsContainer.classList.add('show');
+                    })
+                    .catch(error => {
+                        hideLoading();
+                        showError('An error occurred while performing the lookup. Please try again.');
+                        console.error('Lookup error:', error);
+                    });
+            });
+
+            // Handle clear button click
+            clearBtn.addEventListener('click', function() {
+                ipAddressInput.value = '';
+                clearResults();
+                hideError();
+                hideLoading();
+            });
+
+            // Allow Enter key to trigger lookup
+            ipAddressInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    lookupBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

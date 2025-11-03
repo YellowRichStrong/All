@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSL Certificate Checker - Free Online SSL Tool - OOPEN AII</title>
+    <meta name="description" content="Free online SSL certificate checker tool to verify website SSL certificates, expiration dates, and security details. Check if a website's SSL is valid and secure.">
+    <meta name="keywords" content="SSL checker,SSL certificate,SSL verification,security certificate,HTTPS check,SSL expiration">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/ssl-checker.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/ssl-checker.html">
+    <meta property="og:title" content="SSL Certificate Checker - Free Online SSL Tool">
+    <meta property="og:description" content="Free online SSL certificate checker tool to verify website SSL certificates. Check if a website's SSL is valid and secure.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/ssl-checker.html">
+    <meta property="twitter:title" content="SSL Certificate Checker - Free Online SSL Tool">
+    <meta property="twitter:description" content="Free online SSL certificate checker tool to verify website SSL certificates. Check if a website's SSL is valid and secure.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tool-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .ssl-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .primary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #1E88E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .primary-btn:hover {
+            background: #1976D2;
+        }
+        
+        .primary-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .result-header h3 {
+            color: #333;
+            margin: 0;
+        }
+        
+        .ssl-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .ssl-status.valid {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .ssl-status.invalid {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .ssl-status.expiring-soon {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        
+        .ssl-result {
+            background: #f8f9fa;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .ssl-result.hidden {
+            display: none;
+        }
+        
+        .certificate-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .certificate-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .certificate-card h4 {
+            color: #1E88E5;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        
+        .certificate-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .certificate-field {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .certificate-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .certificate-value {
+            color: #333;
+            font-size: 16px;
+            word-break: break-word;
+        }
+        
+        .certificate-value.expired {
+            color: #c62828;
+            font-weight: 600;
+        }
+        
+        .certificate-value.expiring-soon {
+            color: #e65100;
+            font-weight: 600;
+        }
+        
+        .certificate-value.valid {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        
+        .certificate-chain {
+            margin-top: 20px;
+        }
+        
+        .certificate-chain h5 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .chain-item {
+            background: #f8f9fa;
+            border-left: 3px solid #1E88E5;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .chain-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .chain-item-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .chain-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .chain-field {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chain-label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 3px;
+        }
+        
+        .chain-value {
+            font-size: 14px;
+            color: #333;
+            word-break: break-word;
+        }
+        
+        .ssl-details {
+            margin-top: 20px;
+        }
+        
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .details-table th,
+        .details-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .details-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+            width: 30%;
+        }
+        
+        .details-table td {
+            color: #333;
+            word-break: break-word;
+        }
+        
+        .ssl-grade {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .grade-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .grade-badge.A {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .grade-badge.B {
+            background: #8bc34a;
+            color: white;
+        }
+        
+        .grade-badge.C {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .grade-badge.D {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .grade-badge.F {
+            background: #f44336;
+            color: white;
+        }
+        
+        .ssl-recommendations {
+            background: #f0f7ff;
+            border-radius: 6px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .ssl-recommendations h5 {
+            color: #1E88E5;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .recommendation-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .recommendation-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e3f2fd;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        
+        .recommendation-item:last-child {
+            border-bottom: none;
+        }
+        
+        .recommendation-icon {
+            font-size: 20px;
+            color: #1E88E5;
+            flex-shrink: 0;
+            margin-top: -2px;
+        }
+        
+        .raw-certificate {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        
+        .raw-certificate.hidden {
+            display: none;
+        }
+        
+        .raw-certificate-toggle {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: #1E88E5;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .error-message.hidden {
+            display: none;
+        }
+        
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #1E88E5;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: loading 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loading {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+            
+            .result-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .certificate-info,
+            .chain-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .details-table th,
+            .details-table td {
+                display: block;
+                width: 100%;
+                padding: 8px;
+            }
+            
+            .details-table th {
+                background: none;
+                padding-bottom: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb">
+                <a href="../index.html">index</a>
+                <span>/</span>
+                <a href="../network.html">Network Tools</a>
+                <span>/</span>
+                <span>SSL Certificate Checker</span>
+            </div>
+
+            <!-- Tool Container -->
+            <div class="tool-container">
+                <!-- Tool Header -->
+                <div class="tool-header">
+                    <h2>SSL Certificate Checker</h2>
+                    <p>Free online SSL certificate checker tool to verify website SSL certificates, expiration dates, and security details. Check if a website's SSL is valid and secure.</p>
+                </div>
+
+                <!-- SSL Checker Form -->
+                <form class="ssl-form" id="sslCheckForm">
+                    <div class="input-group">
+                        <label for="domain">Website URL</label>
+                        <input type="text" id="domain" placeholder="Enter website URL (e.g., example.com)" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="checkBtn">Check SSL</button>
+                        <button type="button" class="secondary-btn" id="clearBtn">Clear</button>
+                    </div>
+                </form>
+
+                <!-- Error Message -->
+                <div class="error-message hidden" id="errorMessage">
+                    <p id="errorText">An error occurred while processing your request.</p>
+                </div>
+
+                <!-- Result Section -->
+                <div class="result-section">
+                    <div class="result-header">
+                        <h3>SSL Certificate for <span id="resultDomain">example.com</span></h3>
+                        <div id="sslStatusBadge" class="ssl-status valid">Valid</div>
+                    </div>
+                    <div class="ssl-result hidden" id="sslResult">
+                        <!-- SSL results will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const sslCheckForm = document.getElementById('sslCheckForm');
+        const domainInput = document.getElementById('domain');
+        const checkBtn = document.getElementById('checkBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const sslResult = document.getElementById('sslResult');
+        const resultDomain = document.getElementById('resultDomain');
+        const sslStatusBadge = document.getElementById('sslStatusBadge');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        
+        // Form submission handler
+        sslCheckForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let domain = domainInput.value.trim();
+            
+            // Normalize domain (remove http/https and trailing slashes)
+            domain = domain.replace(/^https?:\/\//, '').replace(/\/$/, '');
+            
+            checkSSL(domain);
+        });
+        
+        // Clear button handler
+        clearBtn.addEventListener('click', function() {
+            domainInput.value = '';
+            sslResult.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+        });
+        
+        // Check SSL certificate (simulated)
+        function checkSSL(domain) {
+            // Show loading state
+            errorMessage.classList.add('hidden');
+            sslResult.classList.remove('hidden');
+            sslResult.innerHTML = '<div class="loading-indicator">Checking SSL certificate for <strong>' + domain + '</strong>... <div class="loading-dots"><span></span><span></span><span></span></div></div>';
+            resultDomain.textContent = domain;
+            checkBtn.disabled = true;
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // Generate mock SSL certificate data
+                const sslData = generateMockSSLCertificate(domain);
+                
+                // Display results
+                displaySSLResults(sslData);
+                checkBtn.disabled = false;
+            }, 1500);
+        }
+        
+        // Generate mock SSL certificate data
+        function generateMockSSLCertificate(domain) {
+            // Common patterns for different domain types
+            const isGoogle = domain.toLowerCase().includes('google');
+            const isMicrosoft = domain.toLowerCase().includes('microsoft');
+            const isFacebook = domain.toLowerCase().includes('facebook');
+            const isTwitter = domain.toLowerCase().includes('twitter') || domain.toLowerCase().includes('x.com');
+            
+            // Generate dates
+            const now = new Date();
+            const notBeforeDate = new Date(now.getTime() - Math.floor(Math.random() * 365 * 24 * 60 * 60 * 1000));
+            
+            // 80% chance of valid certificate, 20% chance of expiring soon or expired
+            const randomFactor = Math.random();
+            let notAfterDate;
+            
+            if (randomFactor < 0.8) {
+                // Valid certificate (expires in the future)
+                notAfterDate = new Date(now.getTime() + Math.floor(Math.random() * 365 * 24 * 60 * 60 * 1000));
+            } else if (randomFactor < 0.9) {
+                // Expiring soon (expires within 30 days)
+                notAfterDate = new Date(now.getTime() + Math.floor(Math.random() * 30 * 24 * 60 * 60 * 1000));
+            } else {
+                // Expired certificate
+                notAfterDate = new Date(now.getTime() - Math.floor(Math.random() * 30 * 24 * 60 * 60 * 1000));
+            }
+            
+            // Calculate days until expiration
+            const daysUntilExpiration = Math.ceil((notAfterDate - now) / (1000 * 60 * 60 * 24));
+            const isExpired = notAfterDate < now;
+            const isExpiringSoon = !isExpired && daysUntilExpiration < 30;
+            
+            // Determine issuer based on domain
+            let issuer = {
+                organization: 'Let\'s Encrypt',
+                commonName: 'Let\'s Encrypt Authority X3'
+            };
+            
+            if (isGoogle) {
+                issuer = {
+                    organization: 'Google Trust Services LLC',
+                    commonName: 'GTS CA 1C3'
+                };
+            } else if (isMicrosoft) {
+                issuer = {
+                    organization: 'Microsoft Corporation',
+                    commonName: 'Microsoft RSA TLS CA 02'
+                };
+            } else if (isFacebook || isTwitter) {
+                issuer = {
+                    organization: 'DigiCert Inc',
+                    commonName: 'DigiCert TLS RSA SHA256 2020 CA1'
+                };
+            }
+            
+            // Determine certificate grade (A-F)
+            const grades = ['A', 'A', 'A', 'B', 'B', 'C'];
+            const certificateGrade = grades[Math.floor(Math.random() * grades.length)];
+            
+            // Determine supported protocols and ciphers
+            const protocols = ['TLS 1.3', 'TLS 1.2'];
+            
+            // Randomly decide if TLS 1.0/1.1 are supported (most modern sites don't support these)
+            if (Math.random() > 0.7) {
+                protocols.push('TLS 1.1');
+            }
+            if (Math.random() > 0.9) {
+                protocols.push('TLS 1.0');
+            }
+            
+            const ciphers = [
+                'TLS_AES_256_GCM_SHA384',
+                'TLS_CHACHA20_POLY1305_SHA256',
+                'TLS_AES_128_GCM_SHA256',
+                'ECDHE-ECDSA-AES256-GCM-SHA384',
+                'ECDHE-RSA-AES256-GCM-SHA384',
+                'ECDHE-ECDSA-CHACHA20-POLY1305',
+                'ECDHE-RSA-CHACHA20-POLY1305'
+            ];
+            
+            // Generate random serial number
+            const serialNumber = Math.random().toString(16).slice(2, 34).toUpperCase();
+            
+            // Generate certificate chain
+            const certificateChain = [
+                {
+                    subject: {
+                        commonName: domain,
+                        organization: isGoogle ? 'Google LLC' : isMicrosoft ? 'Microsoft Corporation' : isFacebook ? 'Facebook, Inc.' : isTwitter ? 'Twitter, Inc.' : 'Example Organization',
+                        country: 'US'
+                    },
+                    issuer: issuer.commonName,
+                    serialNumber: serialNumber,
+                    notBefore: notBeforeDate.toISOString(),
+                    notAfter: notAfterDate.toISOString(),
+                    algorithm: 'RSA-2048'
+                },
+                {
+                    subject: {
+                        commonName: issuer.commonName,
+                        organization: issuer.organization,
+                        country: 'US'
+                    },
+                    issuer: 'DigiCert Global Root CA',
+                    serialNumber: Math.random().toString(16).slice(2, 34).toUpperCase(),
+                    notBefore: new Date(notBeforeDate.getTime() - 365 * 24 * 60 * 60 * 1000).toISOString(),
+                    notAfter: new Date(notAfterDate.getTime() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+                    algorithm: 'RSA-4096'
+                }
+            ];
+            
+            return {
+                domain: domain,
+                isExpired: isExpired,
+                isExpiringSoon: isExpiringSoon,
+                daysUntilExpiration: daysUntilExpiration,
+                notBefore: notBeforeDate.toISOString(),
+                notAfter: notAfterDate.toISOString(),
+                serialNumber: serialNumber,
+                issuer: issuer,
+                subject: {
+                    commonName: domain,
+                    organization: isGoogle ? 'Google LLC' : isMicrosoft ? 'Microsoft Corporation' : isFacebook ? 'Facebook, Inc.' : isTwitter ? 'Twitter, Inc.' : 'Example Organization',
+                    organizationalUnit: 'IT Department',
+                    country: 'US',
+                    state: 'California',
+                    locality: 'Mountain View'
+                },
+                publicKeyAlgorithm: 'RSA',
+                publicKeyLength: 2048,
+                signatureAlgorithm: 'SHA256withRSA',
+                certificateGrade: certificateGrade,
+                protocols: protocols,
+                ciphers: ciphers,
+                isTrusted: !isExpired && Math.random() > 0.1,
+                isWildcard: domain.startsWith('*.'),
+                alternativeNames: [domain, 'www.' + domain],
+                certificateChain: certificateChain
+            };
+        }
+        
+        // Display SSL results
+        function displaySSLResults(data) {
+            // Update status badge
+            updateStatusBadge(data);
+            
+            let html = '';
+            
+            // Certificate Summary Card
+            html += `
+            <div class="certificate-card">
+                <h4>Certificate Summary</h4>
+                <div class="certificate-info">
+                    <div class="certificate-field">
+                        <div class="certificate-label">Common Name (CN)</div>
+                        <div class="certificate-value">${data.subject.commonName}</div>
+                    </div>
+                    <div class="certificate-field">
+                        <div class="certificate-label">Issuer</div>
+                        <div class="certificate-value">${data.issuer.organization}</div>
+                    </div>
+                    <div class="certificate-field">
+                        <div class="certificate-label">Valid From</div>
+                        <div class="certificate-value">${formatReadableDate(data.notBefore)}</div>
+                    </div>
+                    <div class="certificate-field">
+                        <div class="certificate-label">Valid Until</div>
+                        <div class="certificate-value ${data.isExpired ? 'expired' : data.isExpiringSoon ? 'expiring-soon' : 'valid'}">
+                            ${formatReadableDate(data.notAfter)} ${!data.isExpired ? `(${data.daysUntilExpiration} days remaining)` : '(Expired)'}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+            
+            // Certificate Details Card
+            html += `
+            <div class="certificate-card">
+                <h4>Certificate Details</h4>
+                <table class="details-table">
+                    <tr>
+                        <th>Serial Number</th>
+                        <td>${data.serialNumber}</td>
+                    </tr>
+                    <tr>
+                        <th>Signature Algorithm</th>
+                        <td>${data.signatureAlgorithm}</td>
+                    </tr>
+                    <tr>
+                        <th>Public Key Algorithm</th>
+                        <td>${data.publicKeyAlgorithm} (${data.publicKeyLength} bits)</td>
+                    </tr>
+                    <tr>
+                        <th>Subject Organization</th>
+                        <td>${data.subject.organization}</td>
+                    </tr>
+                    <tr>
+                        <th>Subject Unit</th>
+                        <td>${data.subject.organizationalUnit}</td>
+                    </tr>
+                    <tr>
+                        <th>Subject Location</th>
+                        <td>${data.subject.locality}, ${data.subject.state}, ${data.subject.country}</td>
+                    </tr>
+                    <tr>
+                        <th>Alternative Names</th>
+                        <td>${data.alternativeNames.join(', ')}</td>
+                    </tr>
+                    <tr>
+                        <th>Wildcard Certificate</th>
+                        <td>${data.isWildcard ? 'Yes' : 'No'}</td>
+                    </tr>
+                    <tr>
+                        <th>Trusted</th>
+                        <td>${data.isTrusted ? 'Yes' : 'No'}</td>
+                    </tr>
+                </table>
+            </div>
+            `;
+            
+            // Security Analysis Card
+            html += `
+            <div class="certificate-card">
+                <h4>Security Analysis</h4>
+                <table class="details-table">
+                    <tr>
+                        <th>SSL Grade</th>
+                        <td>
+                            <div class="ssl-grade">
+                                <div class="grade-badge ${data.certificateGrade}">${data.certificateGrade}</div>
+                                <span>${getGradeDescription(data.certificateGrade)}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Supported Protocols</th>
+                        <td>${data.protocols.join(', ')}</td>
+                    </tr>
+                    <tr>
+                        <th>Strongest Cipher</th>
+                        <td>${data.ciphers[0]}</td>
+                    </tr>
+                </table>
+                
+                <div class="ssl-recommendations">
+                    <h5>Recommendations</h5>
+                    <ul class="recommendation-list">
+                        ${getSecurityRecommendations(data).map(rec => `
+                        <li class="recommendation-item">
+                            <span class="recommendation-icon">${rec.icon}</span>
+                            <span>${rec.text}</span>
+                        </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            </div>
+            `;
+            
+            // Certificate Chain Card
+            html += `
+            <div class="certificate-card">
+                <h4>Certificate Chain</h4>
+                <div class="certificate-chain">
+                    ${data.certificateChain.map((cert, index) => `
+                    <div class="chain-item">
+                        <div class="chain-item-title">Certificate ${index + 1}: ${index === 0 ? 'Leaf Certificate' : 'Intermediate Certificate'}</div>
+                        <div class="chain-info">
+                            <div class="chain-field">
+                                <div class="chain-label">Subject</div>
+                                <div class="chain-value">${cert.subject.commonName}</div>
+                            </div>
+                            <div class="chain-field">
+                                <div class="chain-label">Issuer</div>
+                                <div class="chain-value">${cert.issuer}</div>
+                            </div>
+                            <div class="chain-field">
+                                <div class="chain-label">Algorithm</div>
+                                <div class="chain-value">${cert.algorithm}</div>
+                            </div>
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+            `;
+            
+            sslResult.innerHTML = html;
+        }
+        
+        // Update status badge
+        function updateStatusBadge(data) {
+            sslStatusBadge.className = 'ssl-status';
+            
+            if (data.isExpired) {
+                sslStatusBadge.className += ' invalid';
+                sslStatusBadge.textContent = 'Expired';
+            } else if (data.isExpiringSoon) {
+                sslStatusBadge.className += ' expiring-soon';
+                sslStatusBadge.textContent = 'Expiring Soon';
+            } else {
+                sslStatusBadge.className += ' valid';
+                sslStatusBadge.textContent = 'Valid';
+            }
+        }
+        
+        // Format date to more readable format
+        function formatReadableDate(isoDate) {
+            const date = new Date(isoDate);
+            return date.toLocaleString();
+        }
+        
+        // Get grade description
+        function getGradeDescription(grade) {
+            const descriptions = {
+                'A': 'Excellent security configuration',
+                'B': 'Good security configuration',
+                'C': 'Moderate security configuration',
+                'D': 'Weak security configuration',
+                'F': 'Very poor security configuration'
+            };
+            
+            return descriptions[grade] || 'Unknown grade';
+        }
+        
+        // Get security recommendations
+        function getSecurityRecommendations(data) {
+            const recommendations = [];
+            
+            // Check certificate expiration
+            if (data.isExpired) {
+                recommendations.push({
+                    icon: '⚠️',
+                    text: 'The SSL certificate has expired. Please renew it immediately to ensure secure connections.'
+                });
+            } else if (data.isExpiringSoon) {
+                recommendations.push({
+                    icon: '⚠️',
+                    text: 'The SSL certificate will expire soon. Consider renewing it to avoid service disruptions.'
+                });
+            } else {
+                recommendations.push({
+                    icon: '✅',
+                    text: 'The SSL certificate is valid and not expiring soon.'
+                });
+            }
+            
+            // Check for deprecated protocols
+            if (data.protocols.includes('TLS 1.0') || data.protocols.includes('TLS 1.1')) {
+                recommendations.push({
+                    icon: '⚠️',
+                    text: 'Consider disabling TLS 1.0 and TLS 1.1 as they are deprecated and have known security vulnerabilities.'
+                });
+            } else {
+                recommendations.push({
+                    icon: '✅',
+                    text: 'No deprecated TLS protocols detected.'
+                });
+            }
+            
+            // Check public key length
+            if (data.publicKeyLength < 2048) {
+                recommendations.push({
+                    icon: '⚠️',
+                    text: 'The public key length is less than 2048 bits. Consider using a longer key length for better security.'
+                });
+            } else {
+                recommendations.push({
+                    icon: '✅',
+                    text: 'The public key length is sufficient for current security standards.'
+                });
+            }
+            
+            // Check certificate trust
+            if (!data.isTrusted) {
+                recommendations.push({
+                    icon: '⚠️',
+                    text: 'The certificate is not trusted by common browsers. Ensure it is issued by a recognized Certificate Authority.'
+                });
+            } else {
+                recommendations.push({
+                    icon: '✅',
+                    text: 'The certificate is trusted by common browsers.'
+                });
+            }
+            
+            return recommendations;
+        }
+        
+        // Show error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            sslResult.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

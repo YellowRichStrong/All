@@ -70,6 +70,8 @@
                 <ul>
                     <li><a href="index.html">Image Tools</a></li>
                     <li class="active"><a href="encry.html">Encry Tools</a></li>
+                    <li><a href="code.html" style="display:block !important;">Code Tools</a></li>
+                    <li><a href="network.html">Network Tools</a></li>
                     <li><a href="dav.html">Dav</a></li>
                 </ul>
             </nav>
@@ -98,23 +100,7 @@
                 <div class="section-header">
                     <h2>Categories</h2>
                 </div>
-                <div class="category-grid">
-                    <div class="category-item" data-category="all">
-                        <span>All Tools</span>
-                    </div>
-                    <div class="category-item" data-category="encryption">
-                        <span>Encryption</span>
-                    </div>
-                    <div class="category-item" data-category="decryption">
-                        <span>Decryption</span>
-                    </div>
-                    <div class="category-item" data-category="hash">
-                        <span>Hash</span>
-                    </div>
-                    <div class="category-item" data-category="conversion">
-                        <span>Conversion</span>
-                    </div>
-                </div>
+
             </section>
 
 
@@ -353,6 +339,7 @@
             });
 
             // Tool card hover animation (enhanced)
+            const toolCards = document.querySelectorAll('.tool-card');
             toolCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateY(-5px)';

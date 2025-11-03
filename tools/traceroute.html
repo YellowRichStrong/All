@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traceroute - Free Online Route Tracking Tool - OOPEN AII</title>
+    <meta name="description" content="Free online traceroute tool to trace the network path from your browser to a specific domain or IP address.">
+    <meta name="keywords" content="traceroute,route trace,network path,hop count,network latency,packet route">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/traceroute.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/traceroute.html">
+    <meta property="og:title" content="Traceroute - Free Online Route Tracking Tool">
+    <meta property="og:description" content="Trace the network path from your browser to a specific domain or IP address.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/traceroute.html">
+    <meta property="twitter:title" content="Traceroute - Free Online Route Tracking Tool">
+    <meta property="twitter:description" content="Trace the network path from your browser to a specific domain or IP address.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tool-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .traceroute-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input,
+        .input-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+        }
+        
+        .advanced-options {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        
+        .advanced-options h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .primary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #1E88E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .primary-btn:hover {
+            background: #1976D2;
+        }
+        
+        .primary-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+        }
+        
+        .result-header {
+            margin-bottom: 20px;
+        }
+        
+        .result-header h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .traceroute-result {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .hop {
+            display: flex;
+            padding: 8px;
+            margin-bottom: 5px;
+            background: #fff;
+            border-radius: 4px;
+            border-left: 3px solid #1E88E5;
+            transition: all 0.3s ease;
+        }
+        
+        .hop:hover {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transform: translateX(2px);
+        }
+        
+        .hop:last-child {
+            margin-bottom: 0;
+        }
+        
+        .hop-number {
+            width: 40px;
+            font-weight: 600;
+            color: #1E88E5;
+        }
+        
+        .hop-info {
+            flex: 1;
+        }
+        
+        .hop-address {
+            font-weight: 600;
+        }
+        
+        .hop-hostname {
+            color: #666;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .hop-times {
+            font-size: 14px;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .hop-time {
+            margin-right: 10px;
+        }
+        
+        .hop-time.fast {
+            color: #4CAF50;
+        }
+        
+        .hop-time.medium {
+            color: #FFC107;
+        }
+        
+        .hop-time.slow {
+            color: #FF5722;
+        }
+        
+        .hop-time.timeout {
+            color: #f44336;
+        }
+        
+        .traceroute-summary {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .summary-item {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .summary-value {
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .traceroute-result.hidden,
+        .traceroute-summary.hidden {
+            display: none;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .error-message.hidden {
+            display: none;
+        }
+        
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #1E88E5;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: loading 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loading {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hop {
+                flex-direction: column;
+            }
+            
+            .hop-number {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb">
+                <a href="../index.html">index</a>
+                <span>/</span>
+                <a href="../network.html">Network Tools</a>
+                <span>/</span>
+                <span>Traceroute</span>
+            </div>
+
+            <!-- Tool Container -->
+            <div class="tool-container">
+                <!-- Tool Header -->
+                <div class="tool-header">
+                    <h2>Traceroute</h2>
+                    <p>Trace the network path from your browser to a specific domain or IP address.</p>
+                </div>
+
+                <!-- Traceroute Form -->
+                <form class="traceroute-form" id="tracerouteForm">
+                    <div class="input-group">
+                        <label for="target">IP Address or Domain</label>
+                        <input type="text" id="target" placeholder="Enter IP address (e.g., 8.8.8.8) or domain (e.g., google.com)" required>
+                    </div>
+                    
+                    <div class="advanced-options">
+                        <h4>Advanced Options</h4>
+                        <div class="input-group">
+                            <label for="maxHops">Maximum Hops</label>
+                            <select id="maxHops">
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="60">60</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="timeout">Timeout (seconds)</label>
+                            <select id="timeout">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="traceBtn">Start Trace</button>
+                        <button type="button" class="secondary-btn" id="clearBtn">Clear</button>
+                    </div>
+                </form>
+
+                <!-- Error Message -->
+                <div class="error-message hidden" id="errorMessage">
+                    <p id="errorText">An error occurred while processing your request.</p>
+                </div>
+
+                <!-- Result Section -->
+                <div class="result-section">
+                    <div class="result-header">
+                        <h3>Traceroute Results to <span id="resultTarget">example.com</span></h3>
+                    </div>
+                    <div class="traceroute-result hidden" id="tracerouteResult">
+                        <!-- Traceroute results will be displayed here -->
+                    </div>
+                    
+                    <div class="traceroute-summary hidden" id="tracerouteSummary">
+                        <h4>Summary</h4>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <div class="summary-label">Total Hops</div>
+                                <div class="summary-value" id="totalHops">0</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Destination Reached</div>
+                                <div class="summary-value" id="destinationReached">No</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Total Time</div>
+                                <div class="summary-value" id="totalTime">0 ms</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Avg Hop Time</div>
+                                <div class="summary-value" id="avgHopTime">0 ms</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const tracerouteForm = document.getElementById('tracerouteForm');
+        const targetInput = document.getElementById('target');
+        const maxHopsSelect = document.getElementById('maxHops');
+        const timeoutSelect = document.getElementById('timeout');
+        const traceBtn = document.getElementById('traceBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const tracerouteResult = document.getElementById('tracerouteResult');
+        const resultTarget = document.getElementById('resultTarget');
+        const tracerouteSummary = document.getElementById('tracerouteSummary');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        
+        // Summary fields
+        const totalHopsField = document.getElementById('totalHops');
+        const destinationReachedField = document.getElementById('destinationReached');
+        const totalTimeField = document.getElementById('totalTime');
+        const avgHopTimeField = document.getElementById('avgHopTime');
+        
+        // Form submission handler
+        tracerouteForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const target = targetInput.value.trim();
+            const maxHops = parseInt(maxHopsSelect.value);
+            const timeout = parseInt(timeoutSelect.value);
+            
+            runTraceroute(target, maxHops, timeout);
+        });
+        
+        // Clear button handler
+        clearBtn.addEventListener('click', function() {
+            targetInput.value = '';
+            tracerouteResult.classList.add('hidden');
+            tracerouteSummary.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+        });
+        
+        // Run traceroute (simulated)
+        function runTraceroute(target, maxHops, timeout) {
+            // Show loading state
+            errorMessage.classList.add('hidden');
+            tracerouteResult.classList.remove('hidden');
+            tracerouteSummary.classList.add('hidden');
+            tracerouteResult.innerHTML = '<div class="loading-indicator">Tracing route to <strong>' + target + '</strong>... <div class="loading-dots"><span></span><span></span><span></span></div></div>';
+            resultTarget.textContent = target;
+            traceBtn.disabled = true;
+            
+            // Initialize results
+            const hops = [];
+            let totalTime = 0;
+            
+            // Simulate traceroute process with mock data
+            setTimeout(() => {
+                tracerouteResult.innerHTML = ''; // Clear loading indicator
+                
+                // Add header
+                addOutput('Tracing route to ' + target + ' with maximum ' + maxHops + ' hops...\n');
+                
+                // Start traceroute simulation
+                simulateTracerouteSequence(target, maxHops, timeout, hops, (result) => {
+                    // Update UI with results
+                    updateResults(result);
+                    traceBtn.disabled = false;
+                });
+            }, 1000);
+        }
+        
+        // Simulate traceroute sequence
+        function simulateTracerouteSequence(target, maxHops, timeout, hops, callback) {
+            // Determine number of hops based on target
+            let hopCount = 10; // Default hop count
+            const isLocal = target.includes('localhost') || target.startsWith('127.');
+            const isGoogle = target.toLowerCase().includes('google') || target === '8.8.8.8';
+            const isMicrosoft = target.toLowerCase().includes('microsoft');
+            
+            if (isLocal) {
+                hopCount = 1; // Localhost is just 1 hop
+            } else if (isGoogle) {
+                hopCount = 8;
+            } else if (isMicrosoft) {
+                hopCount = 12;
+            }
+            
+            // Ensure we don't exceed max hops
+            hopCount = Math.min(hopCount, maxHops);
+            
+            let currentHop = 1;
+            let totalTime = 0;
+            
+            // Simulate each hop
+            function traceHop() {
+                if (currentHop > hopCount) {
+                    // All hops completed
+                    const result = {
+                        hops: hops,
+                        totalHops: hops.length,
+                        totalTime: Math.round(totalTime),
+                        avgTime: Math.round(totalTime / hops.length),
+                        destinationReached: true
+                    };
+                    callback(result);
+                    return;
+                }
+                
+                // Simulate hop delay
+                setTimeout(() => {
+                    // Generate mock hop data
+                    const hop = generateMockHop(currentHop, target);
+                    hops.push(hop);
+                    
+                    // Update total time
+                    totalTime += hop.times.reduce((sum, time) => sum + (time === 'timeout' ? 0 : time), 0);
+                    
+                    // Display hop
+                    displayHop(hop);
+                    
+                    currentHop++;
+                    traceHop();
+                }, 500); // 500ms delay between hops
+            }
+            
+            // Start tracing
+            traceHop();
+        }
+        
+        // Generate mock hop data
+        function generateMockHop(hopNumber, target) {
+            let ip, hostname;
+            const times = [];
+            
+            // Generate IP addresses based on hop number
+            if (hopNumber === 1) {
+                // First hop is always gateway/router
+                ip = '192.168.1.1';
+                hostname = 'gateway.home';
+            } else if (hopNumber === 2) {
+                // ISP router
+                ip = '10.0.0.1';
+                hostname = 'router.isp.net';
+            } else if (hopNumber === 3) {
+                // ISP core
+                ip = `192.168.${Math.floor(Math.random() * 255)}.1`;
+                hostname = 'core.isp.net';
+            } else if (hopNumber === 4 || hopNumber === 5) {
+                // Regional backbone
+                ip = `203.0.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+                hostname = `backbone-${hopNumber}.regional.net`;
+            } else if (hopNumber === 6 || hopNumber === 7) {
+                // Internet exchange
+                ip = `200.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+                hostname = `ix-${hopNumber}.internet.net`;
+            } else if (hopNumber >= 8) {
+                // Final destination network
+                ip = getDestinationIP(target);
+                hostname = target;
+            }
+            
+            // Generate 3 time samples for each hop
+            for (let i = 0; i < 3; i++) {
+                // Random packet loss (5% chance)
+                if (Math.random() < 0.05) {
+                    times.push('timeout');
+                } else {
+                    // Calculate time based on hop distance
+                    const baseTime = hopNumber * 5 + Math.random() * 10;
+                    times.push(Math.round(baseTime));
+                }
+            }
+            
+            return {
+                number: hopNumber,
+                ip: ip,
+                hostname: hostname,
+                times: times
+            };
+        }
+        
+        // Get destination IP based on target
+        function getDestinationIP(target) {
+            if (target.includes('localhost') || target.startsWith('127.')) {
+                return '127.0.0.1';
+            } else if (target.toLowerCase().includes('google') || target === '8.8.8.8') {
+                return '8.8.8.8';
+            } else if (target.toLowerCase().includes('microsoft')) {
+                return '20.112.250.133';
+            } else {
+                return `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+            }
+        }
+        
+        // Display a single hop
+        function displayHop(hop) {
+            const hopElement = document.createElement('div');
+            hopElement.className = 'hop';
+            
+            // Hop number
+            const hopNumberElement = document.createElement('div');
+            hopNumberElement.className = 'hop-number';
+            hopNumberElement.textContent = hop.number + '.';
+            hopElement.appendChild(hopNumberElement);
+            
+            // Hop info
+            const hopInfoElement = document.createElement('div');
+            hopInfoElement.className = 'hop-info';
+            
+            // Hop address and hostname
+            const addressLine = document.createElement('div');
+            const addressSpan = document.createElement('span');
+            addressSpan.className = 'hop-address';
+            addressSpan.textContent = hop.ip;
+            addressLine.appendChild(addressSpan);
+            
+            if (hop.hostname && hop.hostname !== hop.ip) {
+                const hostnameSpan = document.createElement('span');
+                hostnameSpan.className = 'hop-hostname';
+                hostnameSpan.textContent = '(' + hop.hostname + ')';
+                addressLine.appendChild(hostnameSpan);
+            }
+            
+            hopInfoElement.appendChild(addressLine);
+            
+            // Hop times
+            const timesLine = document.createElement('div');
+            timesLine.className = 'hop-times';
+            
+            hop.times.forEach((time, index) => {
+                const timeSpan = document.createElement('span');
+                timeSpan.className = 'hop-time';
+                
+                if (time === 'timeout') {
+                    timeSpan.className += ' timeout';
+                    timeSpan.textContent = '*';
+                } else {
+                    // Add color class based on time
+                    if (time < 50) timeSpan.className += ' fast';
+                    else if (time < 150) timeSpan.className += ' medium';
+                    else timeSpan.className += ' slow';
+                    
+                    timeSpan.textContent = time + ' ms';
+                }
+                
+                timesLine.appendChild(timeSpan);
+            });
+            
+            hopInfoElement.appendChild(timesLine);
+            hopElement.appendChild(hopInfoElement);
+            
+            // Add to results
+            tracerouteResult.appendChild(hopElement);
+            tracerouteResult.scrollTop = tracerouteResult.scrollHeight;
+        }
+        
+        // Add text output
+        function addOutput(text) {
+            const outputDiv = document.createElement('div');
+            outputDiv.textContent = text;
+            tracerouteResult.appendChild(outputDiv);
+        }
+        
+        // Update results summary
+        function updateResults(result) {
+            tracerouteSummary.classList.remove('hidden');
+            
+            totalHopsField.textContent = result.totalHops;
+            destinationReachedField.textContent = result.destinationReached ? 'Yes' : 'No';
+            totalTimeField.textContent = result.totalTime + ' ms';
+            avgHopTimeField.textContent = result.avgTime + ' ms';
+            
+            // Add summary line
+            addOutput('\nTrace complete. ' + (result.destinationReached ? 'Destination reached!' : 'Destination not reached.'));
+            addOutput('Total hops: ' + result.totalHops + ', Total time: ' + result.totalTime + ' ms');
+        }
+        
+        // Show error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            tracerouteResult.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

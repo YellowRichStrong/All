@@ -1,5 +1,25 @@
 User-agent: *
 Allow: /
+
+# Allow specific crawlers with custom instructions
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow sensitive areas if any (adjust as needed)
+Disallow: /tmp/
+Disallow: /private/
+
+# Link to sitemap
+Sitemap: https://oopenai2026.com/sitemap.xml
+
+# Crawl-delay directive (optional, be cautious with this)
+Crawl-delay: 10
 Allow: /tools/
 
 Sitemap: https://oopenai2026.com/sitemap.xml

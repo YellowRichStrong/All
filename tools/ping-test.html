@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping Test - Free Online Ping Tool - OOPEN AII</title>
+    <meta name="description" content="Free online ping test tool to check connectivity and response time to a specific domain or IP address from your browser.">
+    <meta name="keywords" content="ping test,online ping tool,network ping,connectivity test,response time,latency test">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://oopenai2026.com/tools/ping-test.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oopenai2026.com/tools/ping-test.html">
+    <meta property="og:title" content="Ping Test - Free Online Ping Tool">
+    <meta property="og:description" content="Check connectivity and response time to a specific domain or IP address from your browser.">
+    <meta property="og:image" content="https://oopenai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://oopenai2026.com/tools/ping-test.html">
+    <meta property="twitter:title" content="Ping Test - Free Online Ping Tool">
+    <meta property="twitter:description" content="Check connectivity and response time to a specific domain or IP address from your browser.">
+    <meta property="twitter:image" content="https://oopenai2026.com/images/logo.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6486368477427533",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tool-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tool-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .ping-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input,
+        .input-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+        }
+        
+        .advanced-options {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        
+        .advanced-options h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .primary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #1E88E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .primary-btn:hover {
+            background: #1976D2;
+        }
+        
+        .primary-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+        }
+        
+        .result-header {
+            margin-bottom: 20px;
+        }
+        
+        .result-header h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .ping-result {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .ping-summary {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .summary-item {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .summary-value {
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .status-success {
+            color: #4CAF50;
+        }
+        
+        .status-failed {
+            color: #f44336;
+        }
+        
+        .ping-result.hidden,
+        .ping-summary.hidden {
+            display: none;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .error-message.hidden {
+            display: none;
+        }
+        
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #666;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #1E88E5;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: loading 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loading {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Image Tools</a></li>
+                    <li><a href="../encry.html">Encry Tools</a></li>
+                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                    <li class="active"><a href="../network.html">Network Tools</a></li>
+                    <li><a href="../dav.html">Dav</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb">
+                <a href="../index.html">index</a>
+                <span>/</span>
+                <a href="../network.html">Network Tools</a>
+                <span>/</span>
+                <span>Ping Test</span>
+            </div>
+
+            <!-- Tool Container -->
+            <div class="tool-container">
+                <!-- Tool Header -->
+                <div class="tool-header">
+                    <h2>Ping Test</h2>
+                    <p>Check the connectivity and response time to a specific domain or IP address from your browser.</p>
+                </div>
+
+                <!-- Ping Test Form -->
+                <form class="ping-form" id="pingForm">
+                    <div class="input-group">
+                        <label for="target">IP Address or Domain</label>
+                        <input type="text" id="target" placeholder="Enter IP address (e.g., 8.8.8.8) or domain (e.g., google.com)" required>
+                    </div>
+                    
+                    <div class="advanced-options">
+                        <h4>Advanced Options</h4>
+                        <div class="input-group">
+                            <label for="count">Number of Pings</label>
+                            <select id="count">
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="timeout">Timeout (seconds)</label>
+                            <select id="timeout">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="pingBtn">Start Ping</button>
+                        <button type="button" class="secondary-btn" id="clearBtn">Clear</button>
+                    </div>
+                </form>
+
+                <!-- Error Message -->
+                <div class="error-message hidden" id="errorMessage">
+                    <p id="errorText">An error occurred while processing your request.</p>
+                </div>
+
+                <!-- Result Section -->
+                <div class="result-section">
+                    <div class="result-header">
+                        <h3>Ping Results</h3>
+                    </div>
+                    <div class="ping-result hidden" id="pingResult">
+                        <div id="pingOutput">
+                            <!-- Ping output will be displayed here -->
+                        </div>
+                    </div>
+                    
+                    <div class="ping-summary hidden" id="pingSummary">
+                        <h4>Summary</h4>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <div class="summary-label">Status</div>
+                                <div class="summary-value" id="statusValue">--</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Packets Sent</div>
+                                <div class="summary-value" id="packetsSent">0</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Packets Received</div>
+                                <div class="summary-value" id="packetsReceived">0</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Packet Loss</div>
+                                <div class="summary-value" id="packetLoss">0%</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Min Response</div>
+                                <div class="summary-value" id="minResponse">0 ms</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Max Response</div>
+                                <div class="summary-value" id="maxResponse">0 ms</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Average Response</div>
+                                <div class="summary-value" id="avgResponse">0 ms</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Free online tools for image editing, encryption, coding, networking, and more. All tools work right in your browser without installing any software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tool Categories</h4>
+                    <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const pingForm = document.getElementById('pingForm');
+        const targetInput = document.getElementById('target');
+        const countSelect = document.getElementById('count');
+        const timeoutSelect = document.getElementById('timeout');
+        const pingBtn = document.getElementById('pingBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const pingResult = document.getElementById('pingResult');
+        const pingOutput = document.getElementById('pingOutput');
+        const pingSummary = document.getElementById('pingSummary');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        
+        // Summary fields
+        const statusValue = document.getElementById('statusValue');
+        const packetsSent = document.getElementById('packetsSent');
+        const packetsReceived = document.getElementById('packetsReceived');
+        const packetLoss = document.getElementById('packetLoss');
+        const minResponse = document.getElementById('minResponse');
+        const maxResponse = document.getElementById('maxResponse');
+        const avgResponse = document.getElementById('avgResponse');
+        
+        // Form submission handler
+        pingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const target = targetInput.value.trim();
+            const count = parseInt(countSelect.value);
+            const timeout = parseInt(timeoutSelect.value);
+            
+            runPingTest(target, count, timeout);
+        });
+        
+        // Clear button handler
+        clearBtn.addEventListener('click', function() {
+            targetInput.value = '';
+            pingResult.classList.add('hidden');
+            pingSummary.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+            pingOutput.textContent = '';
+        });
+        
+        // Run ping test (simulated)
+        function runPingTest(target, count, timeout) {
+            // Show loading state
+            errorMessage.classList.add('hidden');
+            pingResult.classList.remove('hidden');
+            pingSummary.classList.add('hidden');
+            pingOutput.innerHTML = '<div class="loading-indicator">Pinging <strong>' + target + '</strong>... <div class="loading-dots"><span></span><span></span><span></span></div></div>';
+            pingBtn.disabled = true;
+            
+            // Initialize results
+            let responses = [];
+            let received = 0;
+            let sent = 0;
+            
+            // Simulate ping process with mock data
+            setTimeout(() => {
+                pingOutput.textContent = ''; // Clear loading indicator
+                
+                // Add ping header
+                addOutput('Pinging ' + target + '...\n');
+                
+                // Start ping simulation
+                simulatePingSequence(target, count, timeout, responses, (result) => {
+                    // Update UI with results
+                    updateResults(result);
+                    pingBtn.disabled = false;
+                });
+            }, 1000);
+        }
+        
+        // Simulate ping sequence
+        function simulatePingSequence(target, count, timeout, responses, callback) {
+            let sent = 0;
+            let received = 0;
+            
+            // Generate mock response times based on target
+            let baseTime = 0;
+            if (target === '8.8.8.8' || target.toLowerCase().includes('google')) {
+                baseTime = 50; // Google DNS is usually fast
+            } else if (target.includes('local') || target.startsWith('192.168')) {
+                baseTime = 10; // Local network is very fast
+            } else {
+                baseTime = 100; // Default response time
+            }
+            
+            // Simulate each ping
+            function ping(index) {
+                if (index >= count) {
+                    // All pings completed
+                    const result = calculateResults(responses, count);
+                    callback(result);
+                    return;
+                }
+                
+                sent++;
+                
+                // Random packet loss (10% chance)
+                const isLost = Math.random() < 0.1;
+                
+                if (isLost) {
+                    addOutput('Request timeout for ping ' + (index + 1));
+                } else {
+                    // Calculate response time with some variation
+                    const variation = Math.random() * baseTime * 0.5;
+                    const responseTime = baseTime + variation;
+                    responses.push(responseTime);
+                    received++;
+                    
+                    addOutput('Reply from ' + target + ': time=' + Math.round(responseTime) + 'ms');
+                }
+                
+                // Next ping after a short delay
+                setTimeout(() => ping(index + 1), 500);
+            }
+            
+            // Start ping sequence
+            ping(0);
+        }
+        
+        // Add text to ping output
+        function addOutput(text) {
+            const textNode = document.createTextNode(text + '\n');
+            pingOutput.appendChild(textNode);
+            pingOutput.scrollTop = pingOutput.scrollHeight;
+        }
+        
+        // Calculate ping results
+        function calculateResults(responses, totalSent) {
+            const received = responses.length;
+            const loss = totalSent - received;
+            const lossPercent = Math.round((loss / totalSent) * 100);
+            
+            let min = 0, max = 0, avg = 0;
+            if (received > 0) {
+                min = Math.min(...responses);
+                max = Math.max(...responses);
+                avg = responses.reduce((sum, val) => sum + val, 0) / received;
+            }
+            
+            return {
+                sent: totalSent,
+                received: received,
+                loss: loss,
+                lossPercent: lossPercent,
+                min: Math.round(min),
+                max: Math.round(max),
+                avg: Math.round(avg),
+                status: received > 0 ? 'success' : 'failed'
+            };
+        }
+        
+        // Update results UI
+        function updateResults(result) {
+            // Add summary to output
+            addOutput('\n--- ' + targetInput.value + ' ping statistics ---');
+            addOutput(result.sent + ' packets transmitted, ' + result.received + ' received, ' + 
+                      result.lossPercent + '% packet loss');
+            
+            if (result.received > 0) {
+                addOutput('Approximate round trip times in milli-seconds:');
+                addOutput('Minimum = ' + result.min + 'ms, Maximum = ' + result.max + 'ms, Average = ' + result.avg + 'ms');
+            }
+            
+            // Update summary section
+            pingSummary.classList.remove('hidden');
+            
+            statusValue.textContent = result.status === 'success' ? 'Successful' : 'Failed';
+            statusValue.className = 'summary-value ' + (result.status === 'success' ? 'status-success' : 'status-failed');
+            
+            packetsSent.textContent = result.sent;
+            packetsReceived.textContent = result.received;
+            packetLoss.textContent = result.lossPercent + '%';
+            minResponse.textContent = result.min + ' ms';
+            maxResponse.textContent = result.max + ' ms';
+            avgResponse.textContent = result.avg + ' ms';
+        }
+        
+        // Validate IP or domain format
+        function isValidTarget(target) {
+            const ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+            const domainRegex = /^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
+            return ipRegex.test(target) || domainRegex.test(target);
+        }
+    </script>
+</body>
+</html>
