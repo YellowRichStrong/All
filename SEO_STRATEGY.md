@@ -41,25 +41,25 @@ OOPEN AII is a free online tools platform with 4 main categories:
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://oopenai2026.com/</loc>
+    <loc>https://openai2026.com/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://oopenai2026.com/encry.html</loc>
+    <loc>https://openai2026.com/encry.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://oopenai2026.com/code.html</loc>
+    <loc>https://openai2026.com/code.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://oopenai2026.com/network.html</loc>
+    <loc>https://openai2026.com/network.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -75,7 +75,7 @@ Allow: /
 
 # Disallow sensitive directories if any
 
-Sitemap: https://oopenai2026.com/sitemap.xml
+Sitemap: https://openai2026.com/sitemap.xml
 ```
 
 ### Structured Data Implementation
@@ -89,11 +89,11 @@ Add Schema.org markup to all pages:
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "OOPEN AII - Free Online Tools",
-  "url": "https://oopenai2026.com/",
+  "url": "https://openai2026.com/",
   "description": "Free online tools for image editing, encryption, coding, and network diagnostics. All tools work in your browser with no installation required.",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://oopenai2026.com/search?q={search_term_string}",
+    "target": "https://openai2026.com/search?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -115,7 +115,7 @@ Add Schema.org markup to all pages:
     "priceCurrency": "USD"
   },
   "description": "Free IP lookup tool to get detailed information about any IP address including geolocation, ISP, country, city, timezone and more.",
-  "url": "https://oopenai2026.com/tools/ip-lookup.html"
+  "url": "https://openai2026.com/tools/ip-lookup.html"
 }
 </script>
 ```

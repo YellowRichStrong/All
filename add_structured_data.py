@@ -53,7 +53,7 @@ def add_structured_data_to_file(file_path):
     
     tool_name = get_tool_name(filename)
     tool_description = get_tool_description(filename)
-    tool_url = f"https://oopenai2026.com/tools/{filename}"
+    tool_url = f"https://openai2026.com/tools/{filename}"
     
     # Create structured data JSON
     structured_data = f'''
@@ -74,7 +74,7 @@ def add_structured_data_to_file(file_path):
       "provider": {{
         "@type": "Organization",
         "name": "OOPEN AII",
-        "url": "https://oopenai2026.com/"
+        "url": "https://openai2026.com/"
       }}
     }}
     </script>
@@ -117,11 +117,11 @@ def add_structured_data_to_all_pages():
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "OOPEN AII - Free Online Tools",
-      "url": "https://oopenai2026.com/",
+      "url": "https://openai2026.com/",
       "description": "Free online tools for image editing, encryption, coding, and network diagnostics. All tools work in your browser with no installation required.",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://oopenai2026.com/search?q={search_term_string}",
+        "target": "https://openai2026.com/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }

@@ -16,13 +16,13 @@ Disallow: /tmp/
 Disallow: /private/
 
 # Link to sitemap
-Sitemap: https://oopenai2026.com/sitemap.xml
+Sitemap: https://openai2026.com/sitemap.xml
 
 # Crawl-delay directive (optional, be cautious with this)
 Crawl-delay: 10
 Allow: /tools/
 
-Sitemap: https://oopenai2026.com/sitemap.xml
+Sitemap: https://openai2026.com/sitemap.xml
 
 # 阻止爬取不必要的目录
 Disallow: /images/

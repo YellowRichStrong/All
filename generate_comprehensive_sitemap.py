@@ -12,49 +12,49 @@ def generate_sitemap():
     sitemap = f'''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://oopenai2026.com/</loc>
+    <loc>https://openai2026.com/</loc>
     <lastmod>{current_date}</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://oopenai2026.com/encry.html</loc>
+    <loc>https://openai2026.com/encry.html</loc>
     <lastmod>{current_date}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://oopenai2026.com/code.html</loc>
+    <loc>https://openai2026.com/code.html</loc>
     <lastmod>{current_date}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://oopenai2026.com/network.html</loc>
+    <loc>https://openai2026.com/network.html</loc>
     <lastmod>{current_date}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://oopenai2026.com/dav.html</loc>
+    <loc>https://openai2026.com/dav.html</loc>
     <lastmod>{current_date}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://oopenai2026.com/contact.html</loc>
+    <loc>https://openai2026.com/contact.html</loc>
     <lastmod>{current_date}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://oopenai2026.com/privacy.html</loc>
+    <loc>https://openai2026.com/privacy.html</loc>
     <lastmod>{current_date}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://oopenai2026.com/terms.html</loc>
+    <loc>https://openai2026.com/terms.html</loc>
     <lastmod>{current_date}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -74,7 +74,7 @@ def generate_sitemap():
                     
                 sitemap += f'''
   <url>
-    <loc>https://oopenai2026.com/tools/{filename}</loc>
+    <loc>https://openai2026.com/tools/{filename}</loc>
     <lastmod>{current_date}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>{priority}</priority>
