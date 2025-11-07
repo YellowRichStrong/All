@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Compressor/Formatter - OOPEN AII</title>
-    <meta name="description" content="Free online JSON compressor and formatter tool to beautify or compress your JSON data with syntax highlighting and customization options.">
-    <meta name="keywords" content="json compressor, json formatter, json beautifier, json minifier, online json tool">
+    <title>Json Compressor - Code Tools | OOPEN AII</title>
+    <meta name="description" content="Professional json compressor for developers. Format, minify, and optimize your code quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="compressor, development tools, json, no registration, oopen ai, free online tool, code minifier, programming utilities, online code editor, browser-based, code formatter">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
@@ -353,6 +353,29 @@
             }
         }
     </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Json Compressor",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A professional Json Compressor tool designed for developers to format, minify, and optimize code quickly and efficiently.",
+      "url": "https://openai2026.com/tools/json-compressor.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
 </head>
 <body>
     <!-- Header -->
@@ -366,12 +389,13 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="../index.html">Image Tools</a></li>
-                    <li><a href="../encry.html">Encry Tools</a></li>
-                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
-                    <li><a href="../network.html">Network Tools</a></li>
-                    <li class="active"><a href="../dav.html">Dav</a></li>
-                </ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../text.html">Text Tools</a></li>
+                        <li class="active" ><a href="../dav.html">Dav</a></li>
+                    </ul>
             </nav>
         </div>
     </header>
@@ -380,8 +404,8 @@
     <main>
         <div class="container">
             <div class="breadcrumb">
-                <a href="../index.html">index</a> &gt; 
-                <a href="../code.html">Code Tools</a> &gt; 
+                <a href="../index.html">Home</a> &gt; 
+                <a href="../dav.html">Dav</a> &gt; 
                 <span>Json Compressor</span>
             </div>
         </div>
@@ -517,12 +541,23 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2024 OOPEN AII. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="../privacy.html">Privacy Policy</a>
-                    <a href="../terms.html">Terms of Service</a>
-                    <a href="../contact.html">Contact</a>
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
                 </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
             </div>
         </div>
     </footer>
@@ -642,84 +677,28 @@
         processBtn.addEventListener('click', processJson);
         clearBtn.addEventListener('click', clearAll);
         copyBtn.addEventListener('click', copyToClipboard);
-        downloadBtn.addEventListener('click', downloadJson);
-        loadExampleBtn.addEventListener('click', loadExample);
-        
-        // Example buttons
-        simpleJsonBtn.addEventListener('click', () => loadSpecificExample('simple'));
-        nestedJsonBtn.addEventListener('click', () => loadSpecificExample('nested'));
-        arrayJsonBtn.addEventListener('click', () => loadSpecificExample('array'));
-        complexJsonBtn.addEventListener('click', () => loadSpecificExample('complex'));
-        
-        // Initialize
-        updateProcessButtonText();
-        updateInputSize();
-        
-        // Functions
-        function updateProcessButtonText() {
-            processBtn.textContent = currentAction === 'format' ? 'Format JSON' : 'Compress JSON';
-        }
-        
-        function updateInputSize() {
-            const size = new Blob([inputText.value]).size;
-            inputSize.textContent = size;
-        }
-        
-        function updateOutputSize(output) {
-            const size = new Blob([output]).size;
-            outputSize.textContent = size;
-            
-            // Calculate size difference
-            const inputSizeVal = new Blob([inputText.value]).size;
-            if (inputSizeVal > 0) {
-                const diff = ((size - inputSizeVal) / inputSizeVal * 100).toFixed(2);
-                sizeDifference.textContent = (diff.startsWith('-') ? '' : '+') + diff + '%';
-                sizeDifference.className = diff < 0 ? 'size-value size-difference' : 'size-value';
-            }
-        }
-        
-        function processJson() {
-            try {
-                const input = inputText.value.trim();
-                if (!input) {
-                    showMessage('Please enter JSON data', 'error');
+        downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // 防止a标签的默认行为
+                
+                if (!this.href) {
+                    Utils.showNotification('No image available to download', 'error');
                     return;
                 }
                 
-                // Parse JSON
-                let jsonObj;
-                try {
-                    jsonObj = JSON.parse(input);
-                } catch (e) {
-                    showMessage('Invalid JSON: ' + e.message, 'error');
-                    return;
-                }
+                // 创建临时下载链接以确保下载正常工作
+                const tempLink = document.createElement('a');
+                tempLink.href = this.href;
+                tempLink.download = this.download || 'json-compressor.png';
+                tempLink.style.display = 'none';
                 
-                let output;
-                if (currentAction === 'format') {
-                    // Format JSON
-                    const indent = useTabs.checked ? '\t' : ' '.repeat(parseInt(indentSize.value));
-                    
-                    // Sort keys if option is selected
-                    if (sortKeys.checked) {
-                        jsonObj = sortObjectKeys(jsonObj);
-                    }
-                    
-                    output = JSON.stringify(jsonObj, null, indent);
-                } else {
-                    // Compress JSON
-                    output = JSON.stringify(jsonObj);
-                    
-                    if (!removeWhitespace.checked) {
-                        // If we don't want to remove whitespace, we still need to format minimally
-                        output = JSON.stringify(jsonObj, null, 0);
-                    }
-                    
-                    if (escapeUnicode.checked) {
-                        // Convert non-ASCII characters to Unicode escape sequences
-                        output = output.replace(/[\u007f-\uffff]/g, function(c) {
-                            return '\\u' + ('0000' + c.charCodeAt(0).toString(16)).slice(-4);
-                        });
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                
+                // 清理
+                setTimeout(() => {
+                    document.body.removeChild(tempLink);
+                }, 100);
+            });
                     }
                 }
                 

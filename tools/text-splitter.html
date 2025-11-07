@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Splitter - Tools | OOPEN AII</title>
+    <meta name="description" content="Free online text splitter to help you complete your tasks quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="oopen ai, no registration, splitter, free online tool, browser-based, text">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://openai2026.com/tools/text-splitter.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://openai2026.com/tools/text-splitter.html">
+    <meta property="og:title" content="Text Splitter - Free Online Text Segmentation Tool">
+    <meta property="og:description" content="Split text into lines, words, or by character count with our free online text splitter tool.">
+    <meta property="og:image" content="https://openai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://openai2026.com/tools/text-splitter.html">
+    <meta property="twitter:title" content="Text Splitter - Free Online Text Segmentation Tool">
+    <meta property="twitter:description" content="Split text into lines, words, or by character count with our free online text splitter tool.">
+    <meta property="twitter:image" content="https://openai2026.com/images/logo.png">
+    <style>
+        /* Tool Card Link Styles */
+        .tool-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .tool-card-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .tool-card-link:hover .tool-card {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tool-card-link .tool-btn {
+            cursor: pointer;
+        }
+        
+        /* Text Splitter Specific Styles */
+        .text-splitter-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin: 20px 0;
+        }
+        
+        .split-options {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .split-type {
+            margin-bottom: 15px;
+        }
+        
+        .split-type h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .split-type-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .split-type-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .split-settings {
+            display: none;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .split-settings.show {
+            display: block;
+        }
+        
+        .setting-group {
+            margin-bottom: 15px;
+        }
+        
+        .setting-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .setting-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .setting-group input,
+        .setting-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .text-areas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .text-area-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .text-area-container h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 250px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        textarea:focus {
+            border-color: #4CAF50;
+        }
+        
+        .split-results {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .split-results h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .split-results-stats {
+            background-color: #e9ecef;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .split-items {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .split-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            position: relative;
+        }
+        
+        .split-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .split-item-number {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 12px;
+            color: #666;
+            background-color: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0b7dda;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Text Splitter",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A useful Text Splitter tool that helps you complete your tasks quickly and efficiently. Free to use with no registration required.",
+      "url": "https://openai2026.com/tools/text-splitter.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li class="active" ><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../text.html">Text Tools</a></li>
+                    <li>Text Splitter</li>
+                </ul>
+            </nav>
+
+            <div class="text-splitter-container">
+                <h2>Text Splitter</h2>
+                <p>Split text into lines, words, or by character count with our free online text splitter tool.</p>
+                
+                <!-- Split Options -->
+                <div class="split-options">
+                    <div class="split-type">
+                        <h3>Split By:</h3>
+                        <div class="split-type-options">
+                            <div class="split-type-option">
+                                <input type="radio" id="splitByLine" name="splitType" checked>
+                                <label for="splitByLine">Lines</label>
+                            </div>
+                            <div class="split-type-option">
+                                <input type="radio" id="splitByWord" name="splitType">
+                                <label for="splitByWord">Words</label>
+                            </div>
+                            <div class="split-type-option">
+                                <input type="radio" id="splitByCharacter" name="splitType">
+                                <label for="splitByCharacter">Characters</label>
+                            </div>
+                            <div class="split-type-option">
+                                <input type="radio" id="splitByCustom" name="splitType">
+                                <label for="splitByCustom">Custom Delimiter</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Split Settings for Characters -->
+                    <div class="split-settings" id="characterSettings">
+                        <div class="setting-group">
+                            <label for="characterCount">Characters per segment:</label>
+                            <input type="number" id="characterCount" value="50" min="1" max="1000">
+                        </div>
+                    </div>
+                    
+                    <!-- Split Settings for Custom Delimiter -->
+                    <div class="split-settings" id="customSettings">
+                        <div class="setting-group">
+                            <label for="customDelimiter">Custom delimiter:</label>
+                            <input type="text" id="customDelimiter" value="," placeholder="Enter delimiter">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Text Area -->
+                <div class="text-area-container">
+                    <h3>Input Text</h3>
+                    <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+                </div>
+                
+                <!-- Split Results -->
+                <div class="split-results">
+                    <h3>Split Results</h3>
+                    <div class="split-results-stats" id="splitStats">
+                        No results to display. Enter text and click Split to see results.
+                    </div>
+                    <div class="split-items" id="splitResults">
+                        <!-- Split results will be inserted here -->
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="splitBtn" class="btn btn-primary">Split Text</button>
+                    <button id="copyBtn" class="btn btn-secondary">Copy Results</button>
+                    <button id="clearBtn" class="btn btn-danger">Clear All</button>
+                </div>
+            </div>
+            
+            <!-- Related Tools -->
+            <section class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="tools-grid">
+                    <a href="text-formatter.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">📝</div>
+                            <h3>Text Formatter</h3>
+                            <p>Format and beautify your text</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+                    <a href="line-counter.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">📏</div>
+                            <h3>Line Counter</h3>
+                            <p>Count lines in your text</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('inputText');
+            const splitBtn = document.getElementById('splitBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const splitResults = document.getElementById('splitResults');
+            const splitStats = document.getElementById('splitStats');
+            
+            // Radio buttons
+            const splitByLine = document.getElementById('splitByLine');
+            const splitByWord = document.getElementById('splitByWord');
+            const splitByCharacter = document.getElementById('splitByCharacter');
+            const splitByCustom = document.getElementById('splitByCustom');
+            
+            // Settings
+            const characterSettings = document.getElementById('characterSettings');
+            const customSettings = document.getElementById('customSettings');
+            const characterCount = document.getElementById('characterCount');
+            const customDelimiter = document.getElementById('customDelimiter');
+            
+            // Update visibility of settings based on selected split type
+            function updateSettingsVisibility() {
+                // Hide all settings
+                characterSettings.classList.remove('show');
+                customSettings.classList.remove('show');
+                
+                // Show relevant settings
+                if (splitByCharacter.checked) {
+                    characterSettings.classList.add('show');
+                } else if (splitByCustom.checked) {
+                    customSettings.classList.add('show');
+                }
+            }
+            
+            // Split text function
+            function splitText() {
+                const text = inputText.value;
+                let segments = [];
+                
+                if (!text) {
+                    splitStats.textContent = 'Please enter text to split.';
+                    splitResults.innerHTML = '';
+                    return;
+                }
+                
+                // Split based on selected option
+                if (splitByLine.checked) {
+                    segments = text.split('\n');
+                } else if (splitByWord.checked) {
+                    segments = text.trim().split(/\s+/);
+                } else if (splitByCharacter.checked) {
+                    const count = parseInt(characterCount.value) || 50;
+                    segments = [];
+                    for (let i = 0; i < text.length; i += count) {
+                        segments.push(text.substring(i, i + count));
+                    }
+                } else if (splitByCustom.checked) {
+                    const delimiter = customDelimiter.value || ',';
+                    segments = text.split(delimiter);
+                }
+                
+                // Update stats
+                splitStats.textContent = `Split into ${segments.length} segments.`;
+                
+                // Update results display
+                updateResultsDisplay(segments);
+            }
+            
+            // Update results display
+            function updateResultsDisplay(segments) {
+                splitResults.innerHTML = '';
+                
+                segments.forEach((segment, index) => {
+                    const segmentElement = document.createElement('div');
+                    segmentElement.className = 'split-item';
+                    
+                    // Add segment content
+                    segmentElement.textContent = segment || '[Empty]';
+                    
+                    // Add segment number
+                    const numberElement = document.createElement('span');
+                    numberElement.className = 'split-item-number';
+                    numberElement.textContent = index + 1;
+                    segmentElement.appendChild(numberElement);
+                    
+                    splitResults.appendChild(segmentElement);
+                });
+            }
+            
+            // Copy results function
+            function copyResults() {
+                const segments = Array.from(splitResults.querySelectorAll('.split-item'))
+                    .map(item => item.textContent.replace(/\d+$/, '').trim());
+                
+                if (segments.length > 0) {
+                    const textToCopy = segments.join('\n');
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Copied!';
+                        
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                        }, 2000);
+                    });
+                }
+            }
+            
+            // Clear all function
+            function clearAll() {
+                inputText.value = '';
+                splitResults.innerHTML = '';
+                splitStats.textContent = 'No results to display. Enter text and click Split to see results.';
+                inputText.focus();
+            }
+            
+            // Event listeners
+            splitBtn.addEventListener('click', splitText);
+            copyBtn.addEventListener('click', copyResults);
+            clearBtn.addEventListener('click', clearAll);
+            
+            // Radio button change listeners
+            [splitByLine, splitByWord, splitByCharacter, splitByCustom].forEach(radio => {
+                radio.addEventListener('change', updateSettingsVisibility);
+            });
+            
+            // Initialize settings visibility
+            updateSettingsVisibility();
+            
+            // Focus on input text area
+            inputText.focus();
+        });
+    </script>
+</body>
+</html>

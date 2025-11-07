@@ -5,9 +5,34 @@
       crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placeholder Image Generator - OOPEN AII</title>
+    <title>Placeholder Generator - Tools | OOPEN AII</title>
+    <meta name="description" content="Free online placeholder generator to help you complete your tasks quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="oopen ai, no registration, free online tool, placeholder, browser-based, generator">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../images/logo.png" type="image/png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Placeholder Generator",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A useful Placeholder Generator tool that helps you complete your tasks quickly and efficiently. Free to use with no registration required.",
+      "url": "https://openai2026.com/tools/placeholder-generator.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
 </head>
 <body>
     <!-- Header -->
@@ -21,12 +46,13 @@
             </div>
             <nav>
                 <ul>
-                    <li class="active"><a href="../index.html">Image Tools</a></li>
-                    <li><a href="../encry.html">Encry Tools</a></li>
-                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
-                    <li><a href="../network.html">Network Tools</a></li>
-                    <li><a href="../dav.html">Dav</a></li>
-                </ul>
+                        <li class="active" ><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
             </nav>
         </div>
     </header>
@@ -170,13 +196,24 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="../pages/contact.html">Contact Us</a>
-                <a href="../pages/privacy.html">Privacy Policy</a>
-                <a href="../pages/terms.html">User Rights</a>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
             </div>
         </div>
     </footer>
@@ -287,21 +324,27 @@
             });
             
             // Download image
-            downloadBtn.addEventListener('click', function() {
-                const format = imageFormat.value;
-                const mimeType = `image/${format}`;
-                const qualityValue = parseInt(quality.value) / 100;
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // 防止a标签的默认行为
                 
-                let dataURL;
-                if (format === 'jpeg' || format === 'webp') {
-                    dataURL = previewCanvas.toDataURL(mimeType, qualityValue);
-                } else {
-                    dataURL = previewCanvas.toDataURL(mimeType);
+                if (!this.href) {
+                    Utils.showNotification('No image available to download', 'error');
+                    return;
                 }
                 
-                downloadBtn.href = dataURL;
-                downloadBtn.download = `placeholder-${width.value}x${height.value}.${format}`;
-                Utils.showNotification('Placeholder downloaded!');
+                // 创建临时下载链接以确保下载正常工作
+                const tempLink = document.createElement('a');
+                tempLink.href = this.href;
+                tempLink.download = this.download || 'placeholder-generator.png';
+                tempLink.style.display = 'none';
+                
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                
+                // 清理
+                setTimeout(() => {
+                    document.body.removeChild(tempLink);
+                }, 100);
             });
             
             // Copy to clipboard

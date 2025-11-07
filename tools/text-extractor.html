@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Extractor - Tools | OOPEN AII</title>
+    <meta name="description" content="Free online text extractor to help you complete your tasks quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="oopen ai, no registration, free online tool, extractor, browser-based, text">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://openai2026.com/tools/text-extractor.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://openai2026.com/tools/text-extractor.html">
+    <meta property="og:title" content="Text Extractor - Extract Emails, URLs, Numbers from Text">
+    <meta property="og:description" content="Extract emails, URLs, phone numbers, and custom patterns from text with our free online text extractor tool.">
+    <meta property="og:image" content="https://openai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://openai2026.com/tools/text-extractor.html">
+    <meta property="twitter:title" content="Text Extractor - Extract Emails, URLs, Numbers from Text">
+    <meta property="twitter:description" content="Extract emails, URLs, phone numbers, and custom patterns from text with our free online text extractor tool.">
+    <meta property="twitter:image" content="https://openai2026.com/images/logo.png">
+    <style>
+        /* Tool Card Link Styles */
+        .tool-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .tool-card-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .tool-card-link:hover .tool-card {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tool-card-link .tool-btn {
+            cursor: pointer;
+        }
+        
+        /* Text Extractor Specific Styles */
+        .text-extractor-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin: 20px 0;
+        }
+        
+        .extract-options {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .extract-type {
+            margin-bottom: 15px;
+        }
+        
+        .extract-type h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .extract-type-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .extract-type-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .custom-regex {
+            display: none;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .custom-regex.show {
+            display: block;
+        }
+        
+        .custom-regex label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .custom-regex input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .text-areas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .text-area-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .text-area-container h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 250px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        textarea:focus {
+            border-color: #4CAF50;
+        }
+        
+        .extract-results {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .extract-results h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .extract-results-stats {
+            background-color: #e9ecef;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .extract-items {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .extract-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            position: relative;
+        }
+        
+        .extract-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .extract-item-number {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 12px;
+            color: #666;
+            background-color: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0b7dda;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Text Extractor",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A useful Text Extractor tool that helps you complete your tasks quickly and efficiently. Free to use with no registration required.",
+      "url": "https://openai2026.com/tools/text-extractor.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li class="active" ><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../text.html">Text Tools</a></li>
+                    <li>Text Extractor</li>
+                </ul>
+            </nav>
+
+            <div class="text-extractor-container">
+                <h2>Text Extractor</h2>
+                <p>Extract emails, URLs, phone numbers, and custom patterns from text with our free online text extractor tool.</p>
+                
+                <!-- Extract Options -->
+                <div class="extract-options">
+                    <div class="extract-type">
+                        <h3>Extract Type:</h3>
+                        <div class="extract-type-options">
+                            <div class="extract-type-option">
+                                <input type="radio" id="extractEmails" name="extractType" checked>
+                                <label for="extractEmails">Email Addresses</label>
+                            </div>
+                            <div class="extract-type-option">
+                                <input type="radio" id="extractURLs" name="extractType">
+                                <label for="extractURLs">URLs</label>
+                            </div>
+                            <div class="extract-type-option">
+                                <input type="radio" id="extractNumbers" name="extractType">
+                                <label for="extractNumbers">Numbers</label>
+                            </div>
+                            <div class="extract-type-option">
+                                <input type="radio" id="extractPhoneNumbers" name="extractType">
+                                <label for="extractPhoneNumbers">Phone Numbers</label>
+                            </div>
+                            <div class="extract-type-option">
+                                <input type="radio" id="extractCustom" name="extractType">
+                                <label for="extractCustom">Custom Regex</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Custom Regex Input -->
+                    <div class="custom-regex" id="customRegexContainer">
+                        <label for="customRegex">Custom Regular Expression:</label>
+                        <input type="text" id="customRegex" placeholder="Enter regex pattern">
+                    </div>
+                </div>
+                
+                <!-- Text Area -->
+                <div class="text-area-container">
+                    <h3>Input Text</h3>
+                    <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+                </div>
+                
+                <!-- Extract Results -->
+                <div class="extract-results">
+                    <h3>Extracted Results</h3>
+                    <div class="extract-results-stats" id="extractStats">
+                        No results to display. Enter text and click Extract to see results.
+                    </div>
+                    <div class="extract-items" id="extractResults">
+                        <!-- Extracted results will be inserted here -->
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="extractBtn" class="btn btn-primary">Extract</button>
+                    <button id="copyBtn" class="btn btn-secondary">Copy Results</button>
+                    <button id="clearBtn" class="btn btn-danger">Clear All</button>
+                </div>
+            </div>
+            
+            <!-- Related Tools -->
+            <section class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="tools-grid">
+                    <a href="text-formatter.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">📝</div>
+                            <h3>Text Formatter</h3>
+                            <p>Format and beautify your text</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+                    <a href="text-splitter.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">✂️</div>
+                            <h3>Text Splitter</h3>
+                            <p>Split text into segments</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('inputText');
+            const extractBtn = document.getElementById('extractBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const extractResults = document.getElementById('extractResults');
+            const extractStats = document.getElementById('extractStats');
+            const customRegexContainer = document.getElementById('customRegexContainer');
+            const customRegex = document.getElementById('customRegex');
+            
+            // Radio buttons
+            const extractEmails = document.getElementById('extractEmails');
+            const extractURLs = document.getElementById('extractURLs');
+            const extractNumbers = document.getElementById('extractNumbers');
+            const extractPhoneNumbers = document.getElementById('extractPhoneNumbers');
+            const extractCustom = document.getElementById('extractCustom');
+            
+            // Regex patterns
+            const patterns = {
+                emails: /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g,
+                urls: /(https?:\/\/[\w\-._~:\/?#[\]@!$&'()*+,;=]+)|(www\.[\w\-._~:\/?#[\]@!$&'()*+,;=]+)/g,
+                numbers: /\d+/g,
+                phoneNumbers: /\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}/g
+            };
+            
+            // Update visibility of custom regex input based on selected extract type
+            function updateCustomRegexVisibility() {
+                customRegexContainer.classList.toggle('show', extractCustom.checked);
+            }
+            
+            // Extract text function
+            function extractText() {
+                const text = inputText.value;
+                let matches = [];
+                let patternName = '';
+                
+                if (!text) {
+                    extractStats.textContent = 'Please enter text to extract from.';
+                    extractResults.innerHTML = '';
+                    return;
+                }
+                
+                // Choose regex pattern based on selected option
+                if (extractEmails.checked) {
+                    matches = text.match(patterns.emails) || [];
+                    patternName = 'Email Addresses';
+                } else if (extractURLs.checked) {
+                    matches = text.match(patterns.urls) || [];
+                    patternName = 'URLs';
+                } else if (extractNumbers.checked) {
+                    matches = text.match(patterns.numbers) || [];
+                    patternName = 'Numbers';
+                } else if (extractPhoneNumbers.checked) {
+                    matches = text.match(patterns.phoneNumbers) || [];
+                    patternName = 'Phone Numbers';
+                } else if (extractCustom.checked) {
+                    try {
+                        const regexPattern = new RegExp(customRegex.value, 'g');
+                        matches = text.match(regexPattern) || [];
+                        patternName = 'Custom Pattern';
+                    } catch (e) {
+                        extractStats.textContent = 'Invalid regular expression pattern.';
+                        extractResults.innerHTML = '';
+                        return;
+                    }
+                }
+                
+                // Remove duplicates
+                matches = [...new Set(matches)];
+                
+                // Update stats
+                extractStats.textContent = `Extracted ${matches.length} ${patternName} from your text.`;
+                
+                // Update results display
+                updateResultsDisplay(matches);
+            }
+            
+            // Update results display
+            function updateResultsDisplay(matches) {
+                extractResults.innerHTML = '';
+                
+                if (matches.length === 0) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'extract-item';
+                    noResults.textContent = 'No matches found.';
+                    extractResults.appendChild(noResults);
+                    return;
+                }
+                
+                matches.forEach((match, index) => {
+                    const matchElement = document.createElement('div');
+                    matchElement.className = 'extract-item';
+                    
+                    // Add match content
+                    matchElement.textContent = match;
+                    
+                    // Add match number
+                    const numberElement = document.createElement('span');
+                    numberElement.className = 'extract-item-number';
+                    numberElement.textContent = index + 1;
+                    matchElement.appendChild(numberElement);
+                    
+                    extractResults.appendChild(matchElement);
+                });
+            }
+            
+            // Copy results function
+            function copyResults() {
+                const matches = Array.from(extractResults.querySelectorAll('.extract-item'))
+                    .map(item => item.textContent.replace(/\d+$/, '').trim());
+                
+                if (matches.length > 0) {
+                    const textToCopy = matches.join('\n');
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Copied!';
+                        
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                        }, 2000);
+                    });
+                }
+            }
+            
+            // Clear all function
+            function clearAll() {
+                inputText.value = '';
+                extractResults.innerHTML = '';
+                extractStats.textContent = 'No results to display. Enter text and click Extract to see results.';
+                inputText.focus();
+            }
+            
+            // Event listeners
+            extractBtn.addEventListener('click', extractText);
+            copyBtn.addEventListener('click', copyResults);
+            clearBtn.addEventListener('click', clearAll);
+            
+            // Radio button change listeners
+            [extractEmails, extractURLs, extractNumbers, extractPhoneNumbers, extractCustom].forEach(radio => {
+                radio.addEventListener('change', updateCustomRegexVisibility);
+            });
+            
+            // Initialize custom regex visibility
+            updateCustomRegexVisibility();
+            
+            // Focus on input text area
+            inputText.focus();
+        });
+    </script>
+</body>
+</html>

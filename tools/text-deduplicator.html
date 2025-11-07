@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Deduplicator - Tools | OOPEN AII</title>
+    <meta name="description" content="Free online text deduplicator to help you complete your tasks quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="oopen ai, deduplicator, no registration, free online tool, browser-based, text">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://openai2026.com/tools/text-deduplicator.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://openai2026.com/tools/text-deduplicator.html">
+    <meta property="og:title" content="Text Deduplicator - Remove Duplicate Lines from Text">
+    <meta property="og:description" content="Remove duplicate lines or phrases from text with our free online text deduplicator tool.">
+    <meta property="og:image" content="https://openai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://openai2026.com/tools/text-deduplicator.html">
+    <meta property="twitter:title" content="Text Deduplicator - Remove Duplicate Lines from Text">
+    <meta property="twitter:description" content="Remove duplicate lines or phrases from text with our free online text deduplicator tool.">
+    <meta property="twitter:image" content="https://openai2026.com/images/logo.png">
+    <style>
+        /* Tool Card Link Styles */
+        .tool-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .tool-card-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .tool-card-link:hover .tool-card {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tool-card-link .tool-btn {
+            cursor: pointer;
+        }
+        
+        /* Text Deduplicator Specific Styles */
+        .text-deduplicator-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin: 20px 0;
+        }
+        
+        .dedupe-options {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .dedupe-type {
+            margin-bottom: 15px;
+        }
+        
+        .dedupe-type h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .dedupe-type-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .dedupe-type-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .case-sensitivity {
+            background-color: #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .case-sensitivity label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .text-areas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .text-area-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .text-area-container h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 250px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        textarea:focus {
+            border-color: #4CAF50;
+        }
+        
+        .dedupe-results {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .dedupe-results h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .dedupe-results-stats {
+            background-color: #e9ecef;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .dedupe-results-text {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 250px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0b7dda;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Text Deduplicator",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A useful Text Deduplicator tool that helps you complete your tasks quickly and efficiently. Free to use with no registration required.",
+      "url": "https://openai2026.com/tools/text-deduplicator.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li class="active" ><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../text.html">Text Tools</a></li>
+                    <li>Text Deduplicator</li>
+                </ul>
+            </nav>
+
+            <div class="text-deduplicator-container">
+                <h2>Text Deduplicator</h2>
+                <p>Remove duplicate lines or phrases from text with our free online text deduplicator tool.</p>
+                
+                <!-- Dedupe Options -->
+                <div class="dedupe-options">
+                    <div class="dedupe-type">
+                        <h3>Deduplicate By:</h3>
+                        <div class="dedupe-type-options">
+                            <div class="dedupe-type-option">
+                                <input type="radio" id="dedupeByLine" name="dedupeType" checked>
+                                <label for="dedupeByLine">Lines</label>
+                            </div>
+                            <div class="dedupe-type-option">
+                                <input type="radio" id="dedupeByWord" name="dedupeType">
+                                <label for="dedupeByWord">Words</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Case Sensitivity -->
+                    <div class="case-sensitivity">
+                        <label>
+                            <input type="checkbox" id="caseSensitive">
+                            Case Sensitive Matching
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Input Text Area -->
+                <div class="text-area-container">
+                    <h3>Input Text</h3>
+                    <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+                </div>
+                
+                <!-- Dedupe Results -->
+                <div class="dedupe-results">
+                    <h3>Deduplicated Results</h3>
+                    <div class="dedupe-results-stats" id="dedupeStats">
+                        No results to display. Enter text and click Deduplicate to see results.
+                    </div>
+                    <div class="dedupe-results-text" id="dedupeResults"></div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="deduplicateBtn" class="btn btn-primary">Deduplicate</button>
+                    <button id="copyBtn" class="btn btn-secondary">Copy Results</button>
+                    <button id="clearBtn" class="btn btn-danger">Clear All</button>
+                    <button id="swapBtn" class="btn btn-secondary">Swap</button>
+                </div>
+            </div>
+            
+            <!-- Related Tools -->
+            <section class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="tools-grid">
+                    <a href="text-formatter.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">📝</div>
+                            <h3>Text Formatter</h3>
+                            <p>Format and beautify your text</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+                    <a href="text-extractor.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">🔍</div>
+                            <h3>Text Extractor</h3>
+                            <p>Extract specific content from text</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('inputText');
+            const deduplicateBtn = document.getElementById('deduplicateBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const swapBtn = document.getElementById('swapBtn');
+            const dedupeResults = document.getElementById('dedupeResults');
+            const dedupeStats = document.getElementById('dedupeStats');
+            const caseSensitive = document.getElementById('caseSensitive');
+            
+            // Radio buttons
+            const dedupeByLine = document.getElementById('dedupeByLine');
+            const dedupeByWord = document.getElementById('dedupeByWord');
+            
+            // Deduplicate text function
+            function deduplicateText() {
+                const text = inputText.value;
+                let uniqueItems = [];
+                let originalCount = 0;
+                let uniqueCount = 0;
+                
+                if (!text) {
+                    dedupeStats.textContent = 'Please enter text to deduplicate.';
+                    dedupeResults.textContent = '';
+                    return;
+                }
+                
+                if (dedupeByLine.checked) {
+                    // Deduplicate by lines
+                    const lines = text.split('\n');
+                    originalCount = lines.length;
+                    const seen = new Set();
+                    
+                    lines.forEach(line => {
+                        let processedLine = line;
+                        if (!caseSensitive.checked) {
+                            processedLine = processedLine.toLowerCase();
+                        }
+                        
+                        if (!seen.has(processedLine)) {
+                            seen.add(processedLine);
+                            uniqueItems.push(line);
+                        }
+                    });
+                    
+                    uniqueCount = uniqueItems.length;
+                } else if (dedupeByWord.checked) {
+                    // Deduplicate by words
+                    const words = text.split(/\s+/);
+                    originalCount = words.length;
+                    const seen = new Set();
+                    
+                    words.forEach(word => {
+                        let processedWord = word;
+                        if (!caseSensitive.checked) {
+                            processedWord = processedWord.toLowerCase();
+                        }
+                        
+                        if (!seen.has(processedWord) && word.trim() !== '') {
+                            seen.add(processedWord);
+                            uniqueItems.push(word);
+                        }
+                    });
+                    
+                    uniqueCount = uniqueItems.length;
+                }
+                
+                // Update stats
+                const duplicatesRemoved = originalCount - uniqueCount;
+                dedupeStats.textContent = `Original: ${originalCount}, Unique: ${uniqueCount}, Duplicates Removed: ${duplicatesRemoved}`;
+                
+                // Update results display
+                if (dedupeByLine.checked) {
+                    dedupeResults.textContent = uniqueItems.join('\n');
+                } else if (dedupeByWord.checked) {
+                    dedupeResults.textContent = uniqueItems.join(' ');
+                }
+            }
+            
+            // Copy results function
+            function copyResults() {
+                const resultText = dedupeResults.textContent;
+                
+                if (resultText) {
+                    navigator.clipboard.writeText(resultText).then(() => {
+                        // Show feedback
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Copied!';
+                        
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                        }, 2000);
+                    });
+                }
+            }
+            
+            // Clear all function
+            function clearAll() {
+                inputText.value = '';
+                dedupeResults.textContent = '';
+                dedupeStats.textContent = 'No results to display. Enter text and click Deduplicate to see results.';
+                inputText.focus();
+            }
+            
+            // Swap function (move results to input)
+            function swapInputOutput() {
+                const resultText = dedupeResults.textContent;
+                if (resultText) {
+                    inputText.value = resultText;
+                    dedupeResults.textContent = '';
+                    dedupeStats.textContent = 'Results moved to input. You can now edit or reprocess them.';
+                }
+            }
+            
+            // Event listeners
+            deduplicateBtn.addEventListener('click', deduplicateText);
+            copyBtn.addEventListener('click', copyResults);
+            clearBtn.addEventListener('click', clearAll);
+            swapBtn.addEventListener('click', swapInputOutput);
+            
+            // Focus on input text area
+            inputText.focus();
+        });
+    </script>
+</body>
+</html>

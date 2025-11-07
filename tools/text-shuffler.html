@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Shuffler - Tools | OOPEN AII</title>
+    <meta name="description" content="Free online text shuffler to help you complete your tasks quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="oopen ai, no registration, free online tool, shuffler, browser-based, text">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="OOPEN AII">
+    <meta name="google" content="notranslate">
+    <link rel="canonical" href="https://openai2026.com/tools/text-shuffler.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://openai2026.com/tools/text-shuffler.html">
+    <meta property="og:title" content="Text Shuffler - Randomly Shuffle Text">
+    <meta property="og:description" content="Randomly shuffle text, lines, or words with our free online text shuffler tool.">
+    <meta property="og:image" content="https://openai2026.com/images/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://openai2026.com/tools/text-shuffler.html">
+    <meta property="twitter:title" content="Text Shuffler - Randomly Shuffle Text">
+    <meta property="twitter:description" content="Randomly shuffle text, lines, or words with our free online text shuffler tool.">
+    <meta property="twitter:image" content="https://openai2026.com/images/logo.png">
+    <style>
+        /* Tool Card Link Styles */
+        .tool-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .tool-card-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .tool-card-link:hover .tool-card {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tool-card-link .tool-btn {
+            cursor: pointer;
+        }
+        
+        /* Text Shuffler Specific Styles */
+        .text-shuffler-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin: 20px 0;
+        }
+        
+        .shuffle-options {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .shuffle-type {
+            margin-bottom: 15px;
+        }
+        
+        .shuffle-type h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .shuffle-type-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .shuffle-type-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .text-areas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .text-area-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .text-area-container h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 250px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        textarea:focus {
+            border-color: #4CAF50;
+        }
+        
+        .shuffle-result {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .shuffle-result h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .shuffle-result-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 250px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0b7dda;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Text Shuffler",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A useful Text Shuffler tool that helps you complete your tasks quickly and efficiently. Free to use with no registration required.",
+      "url": "https://openai2026.com/tools/text-shuffler.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li class="active" ><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../text.html">Text Tools</a></li>
+                    <li>Text Shuffler</li>
+                </ul>
+            </nav>
+
+            <div class="text-shuffler-container">
+                <h2>Text Shuffler</h2>
+                <p>Randomly shuffle text, lines, or words with our free online text shuffler tool.</p>
+                
+                <!-- Shuffle Options -->
+                <div class="shuffle-options">
+                    <div class="shuffle-type">
+                        <h3>Shuffle By:</h3>
+                        <div class="shuffle-type-options">
+                            <div class="shuffle-type-option">
+                                <input type="radio" id="shuffleByLine" name="shuffleType" checked>
+                                <label for="shuffleByLine">Lines</label>
+                            </div>
+                            <div class="shuffle-type-option">
+                                <input type="radio" id="shuffleByWord" name="shuffleType">
+                                <label for="shuffleByWord">Words</label>
+                            </div>
+                            <div class="shuffle-type-option">
+                                <input type="radio" id="shuffleByCharacter" name="shuffleType">
+                                <label for="shuffleByCharacter">Characters</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Input Text Area -->
+                <div class="text-area-container">
+                    <h3>Input Text</h3>
+                    <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+                </div>
+                
+                <!-- Shuffle Result -->
+                <div class="shuffle-result">
+                    <h3>Shuffled Text</h3>
+                    <div class="shuffle-result-content" id="shuffleResult"></div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="shuffleBtn" class="btn btn-primary">Shuffle</button>
+                    <button id="copyBtn" class="btn btn-secondary">Copy Results</button>
+                    <button id="clearBtn" class="btn btn-danger">Clear All</button>
+                    <button id="swapBtn" class="btn btn-secondary">Swap</button>
+                </div>
+            </div>
+            
+            <!-- Related Tools -->
+            <section class="related-tools">
+                <h3>Related Tools</h3>
+                <div class="tools-grid">
+                    <a href="text-formatter.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">📝</div>
+                            <h3>Text Formatter</h3>
+                            <p>Format and beautify your text</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+                    <a href="text-splitter.html" class="tool-card-link">
+                        <div class="tool-card">
+                            <div class="tool-icon">✂️</div>
+                            <h3>Text Splitter</h3>
+                            <p>Split text into segments</p>
+                            <button class="tool-btn">Use Tool</button>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('inputText');
+            const shuffleBtn = document.getElementById('shuffleBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const swapBtn = document.getElementById('swapBtn');
+            const shuffleResult = document.getElementById('shuffleResult');
+            
+            // Radio buttons
+            const shuffleByLine = document.getElementById('shuffleByLine');
+            const shuffleByWord = document.getElementById('shuffleByWord');
+            const shuffleByCharacter = document.getElementById('shuffleByCharacter');
+            
+            // Fisher-Yates (Knuth) shuffle algorithm
+            function shuffleArray(array) {
+                const newArray = [...array];
+                for (let i = newArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+                }
+                return newArray;
+            }
+            
+            // Shuffle text function
+            function shuffleText() {
+                const text = inputText.value;
+                
+                if (!text) {
+                    shuffleResult.textContent = '';
+                    return;
+                }
+                
+                let shuffledText = '';
+                
+                if (shuffleByLine.checked) {
+                    // Shuffle lines
+                    const lines = text.split('\n');
+                    const shuffledLines = shuffleArray(lines);
+                    shuffledText = shuffledLines.join('\n');
+                } else if (shuffleByWord.checked) {
+                    // Shuffle words
+                    const words = text.split(/\s+/);
+                    const shuffledWords = shuffleArray(words);
+                    shuffledText = shuffledWords.join(' ');
+                } else if (shuffleByCharacter.checked) {
+                    // Shuffle characters
+                    const chars = text.split('');
+                    const shuffledChars = shuffleArray(chars);
+                    shuffledText = shuffledChars.join('');
+                }
+                
+                // Update result
+                shuffleResult.textContent = shuffledText;
+            }
+            
+            // Copy results function
+            function copyResults() {
+                const text = shuffleResult.textContent;
+                
+                if (text) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        // Show feedback
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Copied!';
+                        
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                        }, 2000);
+                    });
+                }
+            }
+            
+            // Clear all function
+            function clearAll() {
+                inputText.value = '';
+                shuffleResult.textContent = '';
+                inputText.focus();
+            }
+            
+            // Swap function (move results to input)
+            function swapInputOutput() {
+                const text = shuffleResult.textContent;
+                if (text) {
+                    inputText.value = text;
+                    shuffleResult.textContent = '';
+                    inputText.focus();
+                }
+            }
+            
+            // Event listeners
+            shuffleBtn.addEventListener('click', shuffleText);
+            copyBtn.addEventListener('click', copyResults);
+            clearBtn.addEventListener('click', clearAll);
+            swapBtn.addEventListener('click', swapInputOutput);
+            
+            // Focus on input text area
+            inputText.focus();
+        });
+    </script>
+</body>
+</html>

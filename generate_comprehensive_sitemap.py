@@ -36,6 +36,12 @@ def generate_sitemap():
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://openai2026.com/text.html</loc>
+    <lastmod>{current_date}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://openai2026.com/dav.html</loc>
     <lastmod>{current_date}</lastmod>
     <changefreq>weekly</changefreq>

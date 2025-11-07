@@ -5,9 +5,34 @@
       crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Text to Image - OOPEN AII</title>
+    <title>Image Add Text - Image Tools | OOPEN AII</title>
+    <meta name="description" content="Free online image add text to edit, convert, and optimize your images. Works in your browser with no installation required. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="image optimizer, oopen ai, no registration, free image editor, free online tool, image processing, online image tools, image converter, add, image, browser-based, text">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../images/logo.png" type="image/png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Image Add Text",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A powerful Image Add Text tool that lets you edit and manipulate your images directly in your browser. No installation required and completely free to use.",
+      "url": "https://openai2026.com/tools/image-add-text.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
 </head>
 <body>
     <!-- Header -->
@@ -21,12 +46,13 @@
             </div>
             <nav>
                 <ul>
-                    <li class="active"><a href="../index.html">Image Tools</a></li>
-                    <li><a href="../encry.html">Encry Tools</a></li>
-                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
-                    <li><a href="../network.html">Network Tools</a></li>
-                    <li><a href="../dav.html">Dav</a></li>
-                </ul>
+                        <li class="active" ><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
             </nav>
         </div>
     </header>
@@ -35,7 +61,7 @@
     <main>
         <div class="container">
             <div class="breadcrumb">
-                <a href="../index.html">index</a> &gt; 
+                <a href="../index.html">Home</a> &gt; 
                 <a href="../index.html">Image Tools</a> &gt; 
                 <span>Image Add Text</span>
             </div>
@@ -172,13 +198,24 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="../pages/contact.html">Contact Us</a>
-                <a href="../pages/privacy.html">Privacy Policy</a>
-                <a href="../pages/terms.html">User Rights</a>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
             </div>
         </div>
     </footer>
@@ -385,17 +422,51 @@
             });
             
             // Download image
-            downloadBtn.addEventListener('click', function() {
-                if (!originalImage) {
-                    Utils.showNotification('Please upload an image first', 'error');
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // 防止a标签的默认行为
+                
+                if (!this.href) {
+                    Utils.showNotification('No image available to download', 'error');
                     return;
                 }
                 
-                drawImageWithText();
-                const dataURL = previewCanvas.toDataURL('image/png');
-                downloadBtn.href = dataURL;
-                downloadBtn.download = 'image-with-text.png';
-                Utils.showNotification('Image with text ready for download!');
+                // 创建临时下载链接以确保下载正常工作
+                const tempLink = document.createElement('a');
+                tempLink.href = this.href;
+                tempLink.download = this.download || 'image-add-text.png';
+                tempLink.style.display = 'none';
+                
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                
+                // 清理
+                setTimeout(() => {
+                    document.body.removeChild(tempLink);
+                }, 100);
+            });
+            
+            // 修复下载按钮的点击事件
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // 防止a标签的默认行为
+                
+                if (!this.href) {
+                    Utils.showNotification('No image available to download', 'error');
+                    return;
+                }
+                
+                // 创建临时下载链接以确保下载正常工作
+                const tempLink = document.createElement('a');
+                tempLink.href = this.href;
+                tempLink.download = this.download || 'image-add-text.png';
+                tempLink.style.display = 'none';
+                
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                
+                // 清理
+                setTimeout(() => {
+                    document.body.removeChild(tempLink);
+                }, 100);
             });
         });
     </script>

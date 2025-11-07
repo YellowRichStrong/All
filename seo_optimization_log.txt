@@ -1,0 +1,475 @@
+[2025-11-04 16:32:19] 启动SEO关键词自动优化服务 (自动模式: False)
+[2025-11-04 16:32:19] ============================================================
+[2025-11-04 16:32:19] 开始执行完整的SEO关键词优化
+[2025-11-04 16:32:19] ============================================================
+[2025-11-04 16:32:19] 开始优化meta标签和关键词...
+[2025-11-04 16:32:19] Meta标签优化成功完成
+[2025-11-04 16:32:19] 输出: Optimized meta tags for ascii-converter.html
+Optimized meta tags for color-converter.html
+Optimized meta tags for des-encryption.html
+Optimized meta tags for text-deduplicator.html
+Optimized meta tags for text-to-image.html
+Optimized meta tags for ping-test.html
+Optimized meta tags for color-picker.html
+Optimized meta tags for text-splitter.html
+Optimized meta tags for aes-encryption.html
+Optimized meta tags for case-converter.html
+Optimized meta tags for lorem-ipsum-generator.html
+Optimized meta tags for html-preview.html
+Optimized meta tags for crc32-encryption.html
+Optimized meta tags for image-cropper.html
+Optimized meta tags for ip-lookup.html
+Optimized meta tags for hmac-hash-encryption.html
+Optimized meta tags for base64-to-image.html
+Optimized meta tags for ripemd160-encryption.html
+Optimized meta tags for jwt-encryption.html
+Optimized meta tags for http-headers.html
+Optimized meta tags for js-eval-encryption.html
+Optimized meta tags for text-encoder.html
+Optimized meta tags for base-converter.html
+Optimized meta tags for xml-json-converter.html
+Optimized meta tags for image-watermark.html
+Optimized meta tags for ip-to-domain.html
+Optimized meta tags for image-to-excel.html
+Optimized meta tags for port-scanner.html
+Optimized meta tags for sql-minify-format.html
+Optimized meta tags for word-counter.html
+Optimized meta tags for json-formatter.html
+Optimized meta tags for image-compressor.html
+Optimized meta tags for icon-to-base64.html
+Optimized meta tags for website-uptime.html
+Optimized meta tags for image-color-extraction.html
+Optimized meta tags for css-minify-format.html
+Optimized meta tags for line-counter.html
+Optimized meta tags for text-binary-converter.html
+Optimized meta tags for placeholder-generator.html
+Optimized meta tags for sha-encryption.html
+Optimized meta tags for data-size-converter.html
+Optimized meta tags for rc4-encryption.html
+Optimized meta tags for html-to-text.html
+Optimized meta tags for xml-minify-format.html
+Optimized meta tags for timestamp-converter.html
+Optimized meta tags for favicon-generator.html
+Optimized meta tags for image-grid-cutter.html
+Optimized meta tags for text-diff.html
+Optimized meta tags for maze-generator.html
+Optimized meta tags for regex-tester.html
+Optimized meta tags for tripledes-encryption.html
+Optimized meta tags for rabbit-encryption.html
+Optimized meta tags for website-performance.html
+Optimized meta tags for string-comparison.html
+Optimized meta tags for traceroute.html
+Optimized meta tags for network-speed-test.html
+Optimized meta tags for js-minify-format.html
+Optimized meta tags for pinyin-converter.html
+Optimized meta tags for text-analyzer.html
+Optimized meta tags for image-mosaic.html
+Optimized meta tags for image-stitching.html
+Optimized meta tags for text-extractor.html
+Optimized meta tags for whois-lookup.html
+Optimized meta tags for advanced-word-counter.html
+Optimized meta tags for time-diff-calculator.html
+Optimized meta tags for text-shuffler.html
+Optimized meta tags for json-compressor.html
+Optimized meta tags for text-comparison.html
+Optimized meta tags for text-formatter.html
+Optimized meta tags for screen-color-picker.html
+Optimized meta tags for html-minify-format.html
+Optimized meta tags for js-debugger.html
+Optimized meta tags for icon-changer.html
+Optimized meta tags for dns-lookup.html
+Optimized meta tags for md5-encryption.html
+Optimized meta tags for image-add-text.html
+Optimized meta tags for ssl-checker.html
+Optimized meta tags for base64-encoder.html
+Optimized meta tags for image-rounded-corners.html
+Optimized meta tags for shake-encryption.html
+Optimized meta tags for image-converter.html
+Optimized meta tags for hmac-encryption.html
+Optimized meta tags for json-get-converter.html
+Optimized meta tags for url-encoder.html
+Optimized meta tags for image-to-grayscale.html
+Optimized meta tags for keccak-encryption.html
+Total pages with optimized meta tags: 86
+[2025-11-04 16:32:19] 更新站点地图...
+[2025-11-04 16:32:19] 站点地图更新成功
+[2025-11-04 16:32:19] ============================================================
+[2025-11-04 16:32:19] SEO优化完成，耗时: 0.08 秒
+[2025-11-04 16:32:19] Meta标签优化: 成功
+[2025-11-04 16:32:19] 站点地图更新: 成功
+[2025-11-04 16:32:19] ============================================================
+[2025-11-04 16:32:19] 手动优化完成，程序退出
+[2025-11-04 16:42:12] 启动SEO关键词自动优化服务 (自动模式: False)
+[2025-11-04 16:42:12] ============================================================
+[2025-11-04 16:42:12] 开始执行完整的SEO关键词优化
+[2025-11-04 16:42:12] ============================================================
+[2025-11-04 16:42:12] 开始优化meta标签和关键词...
+[2025-11-04 16:42:12] Meta标签优化成功完成
+[2025-11-04 16:42:12] 输出: Optimized meta tags for ascii-converter.html
+Optimized meta tags for color-converter.html
+Optimized meta tags for des-encryption.html
+Optimized meta tags for text-deduplicator.html
+Optimized meta tags for text-to-image.html
+Optimized meta tags for ping-test.html
+Optimized meta tags for color-picker.html
+Optimized meta tags for text-splitter.html
+Optimized meta tags for aes-encryption.html
+Optimized meta tags for case-converter.html
+Optimized meta tags for lorem-ipsum-generator.html
+Optimized meta tags for html-preview.html
+Optimized meta tags for crc32-encryption.html
+Optimized meta tags for image-cropper.html
+Optimized meta tags for ip-lookup.html
+Optimized meta tags for hmac-hash-encryption.html
+Optimized meta tags for base64-to-image.html
+Optimized meta tags for ripemd160-encryption.html
+Optimized meta tags for jwt-encryption.html
+Optimized meta tags for http-headers.html
+Optimized meta tags for js-eval-encryption.html
+Optimized meta tags for text-encoder.html
+Optimized meta tags for base-converter.html
+Optimized meta tags for xml-json-converter.html
+Optimized meta tags for image-watermark.html
+Optimized meta tags for ip-to-domain.html
+Optimized meta tags for image-to-excel.html
+Optimized meta tags for port-scanner.html
+Optimized meta tags for sql-minify-format.html
+Optimized meta tags for word-counter.html
+Optimized meta tags for json-formatter.html
+Optimized meta tags for image-compressor.html
+Optimized meta tags for icon-to-base64.html
+Optimized meta tags for website-uptime.html
+Optimized meta tags for image-color-extraction.html
+Optimized meta tags for css-minify-format.html
+Optimized meta tags for line-counter.html
+Optimized meta tags for text-binary-converter.html
+Optimized meta tags for placeholder-generator.html
+Optimized meta tags for sha-encryption.html
+Optimized meta tags for data-size-converter.html
+Optimized meta tags for rc4-encryption.html
+Optimized meta tags for html-to-text.html
+Optimized meta tags for xml-minify-format.html
+Optimized meta tags for timestamp-converter.html
+Optimized meta tags for favicon-generator.html
+Optimized meta tags for image-grid-cutter.html
+Optimized meta tags for text-diff.html
+Optimized meta tags for maze-generator.html
+Optimized meta tags for regex-tester.html
+Optimized meta tags for tripledes-encryption.html
+Optimized meta tags for rabbit-encryption.html
+Optimized meta tags for website-performance.html
+Optimized meta tags for string-comparison.html
+Optimized meta tags for traceroute.html
+Optimized meta tags for network-speed-test.html
+Optimized meta tags for js-minify-format.html
+Optimized meta tags for pinyin-converter.html
+Optimized meta tags for text-analyzer.html
+Optimized meta tags for image-mosaic.html
+Optimized meta tags for image-stitching.html
+Optimized meta tags for text-extractor.html
+Optimized meta tags for whois-lookup.html
+Optimized meta tags for advanced-word-counter.html
+Optimized meta tags for time-diff-calculator.html
+Optimized meta tags for text-shuffler.html
+Optimized meta tags for json-compressor.html
+Optimized meta tags for text-comparison.html
+Optimized meta tags for text-formatter.html
+Optimized meta tags for screen-color-picker.html
+Optimized meta tags for html-minify-format.html
+Optimized meta tags for js-debugger.html
+Optimized meta tags for icon-changer.html
+Optimized meta tags for dns-lookup.html
+Optimized meta tags for md5-encryption.html
+Optimized meta tags for image-add-text.html
+Optimized meta tags for ssl-checker.html
+Optimized meta tags for base64-encoder.html
+Optimized meta tags for image-rounded-corners.html
+Optimized meta tags for shake-encryption.html
+Optimized meta tags for image-converter.html
+Optimized meta tags for hmac-encryption.html
+Optimized meta tags for json-get-converter.html
+Optimized meta tags for url-encoder.html
+Optimized meta tags for image-to-grayscale.html
+Optimized meta tags for keccak-encryption.html
+Total pages with optimized meta tags: 86
+[2025-11-04 16:42:12] 开始添加结构化数据标记...
+[2025-11-04 16:42:13] 结构化数据标记成功完成
+[2025-11-04 16:42:13] 输出: Added structured data to ascii-converter.html
+Added structured data to color-converter.html
+Added structured data to des-encryption.html
+Added structured data to text-deduplicator.html
+Added structured data to text-to-image.html
+Added structured data to ping-test.html
+Added structured data to color-picker.html
+Added structured data to text-splitter.html
+Added structured data to aes-encryption.html
+Added structured data to case-converter.html
+Added structured data to lorem-ipsum-generator.html
+Added structured data to html-preview.html
+Added structured data to crc32-encryption.html
+Added structured data to image-cropper.html
+Added structured data to ip-lookup.html
+Added structured data to hmac-hash-encryption.html
+Added structured data to base64-to-image.html
+Added structured data to ripemd160-encryption.html
+Added structured data to jwt-encryption.html
+Added structured data to http-headers.html
+Added structured data to js-eval-encryption.html
+Added structured data to text-encoder.html
+Added structured data to base-converter.html
+Added structured data to xml-json-converter.html
+Added structured data to image-watermark.html
+Added structured data to ip-to-domain.html
+Added structured data to image-to-excel.html
+Added structured data to port-scanner.html
+Added structured data to sql-minify-format.html
+Added structured data to word-counter.html
+Added structured data to json-formatter.html
+Added structured data to image-compressor.html
+Added structured data to icon-to-base64.html
+Added structured data to website-uptime.html
+Added structured data to image-color-extraction.html
+Added structured data to css-minify-format.html
+Added structured data to line-counter.html
+Added structured data to text-binary-converter.html
+Added structured data to placeholder-generator.html
+Added structured data to sha-encryption.html
+Added structured data to data-size-converter.html
+Added structured data to rc4-encryption.html
+Added structured data to html-to-text.html
+Added structured data to xml-minify-format.html
+Added structured data to timestamp-converter.html
+Added structured data to favicon-generator.html
+Added structured data to image-grid-cutter.html
+Added structured data to text-diff.html
+Added structured data to maze-generator.html
+Added structured data to regex-tester.html
+Added structured data to tripledes-encryption.html
+Added structured data to rabbit-encryption.html
+Added structured data to website-performance.html
+Added structured data to string-comparison.html
+Added structured data to traceroute.html
+Added structured data to network-speed-test.html
+Added structured data to js-minify-format.html
+Added structured data to pinyin-converter.html
+Added structured data to text-analyzer.html
+Added structured data to image-mosaic.html
+Added structured data to image-stitching.html
+Added structured data to text-extractor.html
+Added structured data to whois-lookup.html
+Added structured data to advanced-word-counter.html
+Added structured data to time-diff-calculator.html
+Added structured data to text-shuffler.html
+Added structured data to json-compressor.html
+Added structured data to text-comparison.html
+Added structured data to text-formatter.html
+Added structured data to screen-color-picker.html
+Added structured data to html-minify-format.html
+Added structured data to js-debugger.html
+Added structured data to icon-changer.html
+Added structured data to dns-lookup.html
+Added structured data to md5-encryption.html
+Added structured data to image-add-text.html
+Added structured data to ssl-checker.html
+Added structured data to base64-encoder.html
+Added structured data to image-rounded-corners.html
+Added structured data to shake-encryption.html
+Added structured data to image-converter.html
+Added structured data to hmac-encryption.html
+Added structured data to json-get-converter.html
+Added structured data to url-encoder.html
+Added structured data to image-to-grayscale.html
+Added structured data to keccak-encryption.html
+Added structured data to index.html
+Total pages updated: 87
+[2025-11-04 16:42:50] 启动SEO关键词自动优化服务 (自动模式: False)
+[2025-11-04 16:42:50] ============================================================
+[2025-11-04 16:42:50] 开始执行完整的SEO关键词优化
+[2025-11-04 16:42:50] ============================================================
+[2025-11-04 16:42:50] 开始优化meta标签和关键词...
+[2025-11-04 16:42:50] Meta标签优化成功完成
+[2025-11-04 16:42:50] 输出: Optimized meta tags for ascii-converter.html
+Optimized meta tags for color-converter.html
+Optimized meta tags for des-encryption.html
+Optimized meta tags for text-deduplicator.html
+Optimized meta tags for text-to-image.html
+Optimized meta tags for ping-test.html
+Optimized meta tags for color-picker.html
+Optimized meta tags for text-splitter.html
+Optimized meta tags for aes-encryption.html
+Optimized meta tags for case-converter.html
+Optimized meta tags for lorem-ipsum-generator.html
+Optimized meta tags for html-preview.html
+Optimized meta tags for crc32-encryption.html
+Optimized meta tags for image-cropper.html
+Optimized meta tags for ip-lookup.html
+Optimized meta tags for hmac-hash-encryption.html
+Optimized meta tags for base64-to-image.html
+Optimized meta tags for ripemd160-encryption.html
+Optimized meta tags for jwt-encryption.html
+Optimized meta tags for http-headers.html
+Optimized meta tags for js-eval-encryption.html
+Optimized meta tags for text-encoder.html
+Optimized meta tags for base-converter.html
+Optimized meta tags for xml-json-converter.html
+Optimized meta tags for image-watermark.html
+Optimized meta tags for ip-to-domain.html
+Optimized meta tags for image-to-excel.html
+Optimized meta tags for port-scanner.html
+Optimized meta tags for sql-minify-format.html
+Optimized meta tags for word-counter.html
+Optimized meta tags for json-formatter.html
+Optimized meta tags for image-compressor.html
+Optimized meta tags for icon-to-base64.html
+Optimized meta tags for website-uptime.html
+Optimized meta tags for image-color-extraction.html
+Optimized meta tags for css-minify-format.html
+Optimized meta tags for line-counter.html
+Optimized meta tags for text-binary-converter.html
+Optimized meta tags for placeholder-generator.html
+Optimized meta tags for sha-encryption.html
+Optimized meta tags for data-size-converter.html
+Optimized meta tags for rc4-encryption.html
+Optimized meta tags for html-to-text.html
+Optimized meta tags for xml-minify-format.html
+Optimized meta tags for timestamp-converter.html
+Optimized meta tags for favicon-generator.html
+Optimized meta tags for image-grid-cutter.html
+Optimized meta tags for text-diff.html
+Optimized meta tags for maze-generator.html
+Optimized meta tags for regex-tester.html
+Optimized meta tags for tripledes-encryption.html
+Optimized meta tags for rabbit-encryption.html
+Optimized meta tags for website-performance.html
+Optimized meta tags for string-comparison.html
+Optimized meta tags for traceroute.html
+Optimized meta tags for network-speed-test.html
+Optimized meta tags for js-minify-format.html
+Optimized meta tags for pinyin-converter.html
+Optimized meta tags for text-analyzer.html
+Optimized meta tags for image-mosaic.html
+Optimized meta tags for image-stitching.html
+Optimized meta tags for text-extractor.html
+Optimized meta tags for whois-lookup.html
+Optimized meta tags for advanced-word-counter.html
+Optimized meta tags for time-diff-calculator.html
+Optimized meta tags for text-shuffler.html
+Optimized meta tags for json-compressor.html
+Optimized meta tags for text-comparison.html
+Optimized meta tags for text-formatter.html
+Optimized meta tags for screen-color-picker.html
+Optimized meta tags for html-minify-format.html
+Optimized meta tags for js-debugger.html
+Optimized meta tags for icon-changer.html
+Optimized meta tags for dns-lookup.html
+Optimized meta tags for md5-encryption.html
+Optimized meta tags for image-add-text.html
+Optimized meta tags for ssl-checker.html
+Optimized meta tags for base64-encoder.html
+Optimized meta tags for image-rounded-corners.html
+Optimized meta tags for shake-encryption.html
+Optimized meta tags for image-converter.html
+Optimized meta tags for hmac-encryption.html
+Optimized meta tags for json-get-converter.html
+Optimized meta tags for url-encoder.html
+Optimized meta tags for image-to-grayscale.html
+Optimized meta tags for keccak-encryption.html
+Total pages with optimized meta tags: 86
+[2025-11-04 16:42:50] 开始添加结构化数据标记...
+[2025-11-04 16:42:50] 结构化数据标记成功完成
+[2025-11-04 16:42:50] 输出: Structured data already exists in ascii-converter.html
+Structured data already exists in color-converter.html
+Structured data already exists in des-encryption.html
+Structured data already exists in text-deduplicator.html
+Structured data already exists in text-to-image.html
+Structured data already exists in ping-test.html
+Structured data already exists in color-picker.html
+Structured data already exists in text-splitter.html
+Structured data already exists in aes-encryption.html
+Structured data already exists in case-converter.html
+Structured data already exists in lorem-ipsum-generator.html
+Structured data already exists in html-preview.html
+Structured data already exists in crc32-encryption.html
+Structured data already exists in image-cropper.html
+Structured data already exists in ip-lookup.html
+Structured data already exists in hmac-hash-encryption.html
+Structured data already exists in base64-to-image.html
+Structured data already exists in ripemd160-encryption.html
+Structured data already exists in jwt-encryption.html
+Structured data already exists in http-headers.html
+Structured data already exists in js-eval-encryption.html
+Structured data already exists in text-encoder.html
+Structured data already exists in base-converter.html
+Structured data already exists in xml-json-converter.html
+Structured data already exists in image-watermark.html
+Structured data already exists in ip-to-domain.html
+Structured data already exists in image-to-excel.html
+Structured data already exists in port-scanner.html
+Structured data already exists in sql-minify-format.html
+Structured data already exists in word-counter.html
+Structured data already exists in json-formatter.html
+Structured data already exists in image-compressor.html
+Structured data already exists in icon-to-base64.html
+Structured data already exists in website-uptime.html
+Structured data already exists in image-color-extraction.html
+Structured data already exists in css-minify-format.html
+Structured data already exists in line-counter.html
+Structured data already exists in text-binary-converter.html
+Structured data already exists in placeholder-generator.html
+Structured data already exists in sha-encryption.html
+Structured data already exists in data-size-converter.html
+Structured data already exists in rc4-encryption.html
+Structured data already exists in html-to-text.html
+Structured data already exists in xml-minify-format.html
+Structured data already exists in timestamp-converter.html
+Structured data already exists in favicon-generator.html
+Structured data already exists in image-grid-cutter.html
+Structured data already exists in text-diff.html
+Structured data already exists in maze-generator.html
+Structured data already exists in regex-tester.html
+Structured data already exists in tripledes-encryption.html
+Structured data already exists in rabbit-encryption.html
+Structured data already exists in website-performance.html
+Structured data already exists in string-comparison.html
+Structured data already exists in traceroute.html
+Structured data already exists in network-speed-test.html
+Structured data already exists in js-minify-format.html
+Structured data already exists in pinyin-converter.html
+Structured data already exists in text-analyzer.html
+Structured data already exists in image-mosaic.html
+Structured data already exists in image-stitching.html
+Structured data already exists in text-extractor.html
+Structured data already exists in whois-lookup.html
+Structured data already exists in advanced-word-counter.html
+Structured data already exists in time-diff-calculator.html
+Structured data already exists in text-shuffler.html
+Structured data already exists in json-compressor.html
+Structured data already exists in text-comparison.html
+Structured data already exists in text-formatter.html
+Structured data already exists in screen-color-picker.html
+Structured data already exists in html-minify-format.html
+Structured data already exists in js-debugger.html
+Structured data already exists in icon-changer.html
+Structured data already exists in dns-lookup.html
+Structured data already exists in md5-encryption.html
+Structured data already exists in image-add-text.html
+Structured data already exists in ssl-checker.html
+Structured data already exists in base64-encoder.html
+Structured data already exists in image-rounded-corners.html
+Structured data already exists in shake-encryption.html
+Structured data already exists in image-converter.html
+Structured data already exists in hmac-encryption.html
+Structured data already exists in json-get-converter.html
+Structured data already exists in url-encoder.html
+Structured data already exists in image-to-grayscale.html
+Structured data already exists in keccak-encryption.html
+Total pages updated: 0
+[2025-11-04 16:42:50] 更新站点地图...
+[2025-11-04 16:42:50] 站点地图更新成功
+[2025-11-04 16:42:50] ============================================================
+[2025-11-04 16:42:50] SEO优化完成，耗时: 0.08 秒
+[2025-11-04 16:42:50] Meta标签优化: 成功
+[2025-11-04 16:42:50] 结构化数据标记: 成功
+[2025-11-04 16:42:50] 站点地图更新: 成功
+[2025-11-04 16:42:50] ============================================================
+[2025-11-04 16:42:50] 手动优化完成，程序退出

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum Generator - Tools | OOPEN AII</title>
+    <meta name="description" content="Free online lorem ipsum generator to help you complete your tasks quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="oopen ai, no registration, free online tool, lorem, ipsum, browser-based, generator">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <style>
+        .tool-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .generator-options {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .option-group {
+            margin-bottom: 15px;
+        }
+        
+        .option-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .option-group select,
+        .option-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .option-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #45a049;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .result-container {
+            margin-top: 20px;
+        }
+        
+        .result-stats {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-item .label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .stat-item .value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .result-text {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 300px;
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .custom-text-group {
+            margin-top: 20px;
+        }
+        
+        .custom-text-group textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        
+        @media (max-width: 768px) {
+            .option-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .result-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Lorem Ipsum Generator",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A useful Lorem Ipsum Generator tool that helps you complete your tasks quickly and efficiently. Free to use with no registration required.",
+      "url": "https://openai2026.com/tools/lorem-ipsum-generator.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li class="active" ><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <h2>Lorem Ipsum Generator</h2>
+                <p>Generate placeholder text for your designs, mockups, and prototypes. Customize the length, format, and type of text.</p>
+                
+                <div class="generator-options">
+                    <div class="option-row">
+                        <div class="option-group">
+                            <label for="generatorType">Generate By:</label>
+                            <select id="generatorType">
+                                <option value="paragraphs">Paragraphs</option>
+                                <option value="sentences">Sentences</option>
+                                <option value="words">Words</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="count">Count:</label>
+                            <input type="number" id="count" min="1" max="100" value="5">
+                        </div>
+                    </div>
+                    
+                    <div class="option-row">
+                        <div class="option-group">
+                            <label for="textType">Text Type:</label>
+                            <select id="textType">
+                                <option value="lorem">Lorem Ipsum</option>
+                                <option value="english">English</option>
+                                <option value="custom">Custom Dictionary</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="sentenceLength">Sentence Length:</label>
+                            <select id="sentenceLength">
+                                <option value="short">Short</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="long">Long</option>
+                                <option value="mixed">Mixed</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="startWithLorem" checked>
+                        <label for="startWithLorem">Start with "Lorem ipsum dolor sit amet..."</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="addPunctuation" checked>
+                        <label for="addPunctuation">Add punctuation</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="useHtml">
+                        <label for="useHtml">Wrap in HTML paragraphs</label>
+                    </div>
+                    
+                    <div class="custom-text-group" id="customDictionaryContainer" style="display: none;">
+                        <label for="customDictionary">Custom Dictionary Words (separated by commas):</label>
+                        <textarea id="customDictionary" placeholder="Enter your custom words here, separated by commas..."></textarea>
+                        <small class="help-text">Enter words separated by commas. These will be used to generate the placeholder text.</small>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <button id="generateBtn" class="btn btn-primary">Generate Text</button>
+                    <button id="copyBtn" class="btn btn-secondary">Copy to Clipboard</button>
+                    <button id="clearBtn" class="btn btn-secondary">Clear</button>
+                </div>
+                
+                <div class="result-container">
+                    <div class="result-stats">
+                        <div class="stat-item">
+                            <div class="label">Paragraphs</div>
+                            <div class="value" id="paragraphCount">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="label">Sentences</div>
+                            <div class="value" id="sentenceCount">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="label">Words</div>
+                            <div class="value" id="wordCount">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="label">Characters</div>
+                            <div class="value" id="charCount">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-text" id="resultText">
+                        Your generated text will appear here.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const generatorType = document.getElementById('generatorType');
+            const count = document.getElementById('count');
+            const textType = document.getElementById('textType');
+            const sentenceLength = document.getElementById('sentenceLength');
+            const startWithLorem = document.getElementById('startWithLorem');
+            const addPunctuation = document.getElementById('addPunctuation');
+            const useHtml = document.getElementById('useHtml');
+            const customDictionaryContainer = document.getElementById('customDictionaryContainer');
+            const customDictionary = document.getElementById('customDictionary');
+            const generateBtn = document.getElementById('generateBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const resultText = document.getElementById('resultText');
+            const paragraphCount = document.getElementById('paragraphCount');
+            const sentenceCount = document.getElementById('sentenceCount');
+            const wordCount = document.getElementById('wordCount');
+            const charCount = document.getElementById('charCount');
+            
+            // Lorem ipsum words dictionary
+            const loremWords = [
+                'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 
+                'sed', 'do', 'eiusmod', 'tempor', 'incididunt', 'ut', 'labore', 'et', 'dolore', 
+                'magna', 'aliqua', 'ut', 'enim', 'ad', 'minim', 'veniam', 'quis', 'nostrud', 
+                'exercitation', 'ullamco', 'laboris', 'nisi', 'ut', 'aliquip', 'ex', 'ea', 'commodo', 
+                'consequat', 'duis', 'aute', 'irure', 'dolor', 'in', 'reprehenderit', 'in', 'voluptate', 
+                'velit', 'esse', 'cillum', 'dolore', 'eu', 'fugiat', 'nulla', 'pariatur', 'excepteur', 
+                'sint', 'occaecat', 'cupidatat', 'non', 'proident', 'sunt', 'in', 'culpa', 'qui', 
+                'officia', 'deserunt', 'mollit', 'anim', 'id', 'est', 'laborum'
+            ];
+            
+            // Common English words dictionary
+            const englishWords = [
+                'the', 'and', 'is', 'in', 'it', 'you', 'that', 'he', 'was', 'for', 'on', 'are', 'with', 
+                'as', 'I', 'his', 'they', 'be', 'at', 'one', 'have', 'this', 'from', 'or', 'had', 'by', 
+                'not', 'word', 'but', 'what', 'some', 'we', 'can', 'out', 'other', 'were', 'all', 'there', 
+                'when', 'up', 'use', 'your', 'how', 'said', 'an', 'each', 'she', 'which', 'do', 'their', 
+                'if', 'will', 'way', 'about', 'many', 'then', 'them', 'write', 'would', 'like', 'so', 'these', 
+                'her', 'long', 'make', 'thing', 'see', 'him', 'two', 'has', 'look', 'more', 'day', 'could', 
+                'go', 'come', 'did', 'my', 'sound', 'no', 'most', 'number', 'who', 'over', 'know', 'water', 
+                'than', 'call', 'first', 'people', 'may', 'down', 'side', 'been', 'now', 'find', 'any', 'new', 
+                'work', 'part', 'take', 'get', 'place', 'made', 'live', 'where', 'after', 'back', 'little', 'only'
+            ];
+            
+            // First paragraph of Lorem Ipsum
+            const loremStart = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+            
+            // Show/hide custom dictionary based on text type selection
+            textType.addEventListener('change', function() {
+                customDictionaryContainer.style.display = textType.value === 'custom' ? 'block' : 'none';
+            });
+            
+            generateBtn.addEventListener('click', generateText);
+            
+            copyBtn.addEventListener('click', function() {
+                copyToClipboard(resultText.textContent);
+            });
+            
+            clearBtn.addEventListener('click', function() {
+                resultText.textContent = 'Your generated text will appear here.';
+                updateStats('');
+            });
+            
+            function generateText() {
+                const type = generatorType.value;
+                const numItems = parseInt(count.value);
+                const wordsDictionary = getDictionary();
+                
+                let text = '';
+                
+                switch (type) {
+                    case 'paragraphs':
+                        text = generateParagraphs(numItems, wordsDictionary);
+                        break;
+                    case 'sentences':
+                        text = generateSentences(numItems, wordsDictionary);
+                        break;
+                    case 'words':
+                        text = generateWords(numItems, wordsDictionary);
+                        break;
+                }
+                
+                if (useHtml.checked && type === 'paragraphs') {
+                    text = text.split('\n\n').map(p => `<p>${p}</p>`).join('\n');
+                }
+                
+                resultText.textContent = text;
+                updateStats(text);
+            }
+            
+            function getDictionary() {
+                switch (textType.value) {
+                    case 'lorem':
+                        return loremWords;
+                    case 'english':
+                        return englishWords;
+                    case 'custom':
+                        const customWords = customDictionary.value
+                            .split(',')
+                            .map(word => word.trim())
+                            .filter(word => word.length > 0);
+                        return customWords.length > 0 ? customWords : loremWords;
+                    default:
+                        return loremWords;
+                }
+            }
+            
+            function generateParagraphs(count, dictionary) {
+                let paragraphs = [];
+                
+                // Check if we should start with the standard lorem ipsum paragraph
+                if (startWithLorem.checked && textType.value === 'lorem') {
+                    paragraphs.push(loremStart);
+                    count--;
+                }
+                
+                for (let i = 0; i < count; i++) {
+                    // Generate a paragraph with 3-8 sentences
+                    const sentencesPerParagraph = getRandomInt(3, 8);
+                    const paragraphSentences = [];
+                    
+                    for (let j = 0; j < sentencesPerParagraph; j++) {
+                        paragraphSentences.push(generateSingleSentence(dictionary));
+                    }
+                    
+                    paragraphs.push(paragraphSentences.join(' '));
+                }
+                
+                return paragraphs.join('\n\n');
+            }
+            
+            function generateSentences(count, dictionary) {
+                let sentences = [];
+                
+                // Check if we should start with the standard lorem ipsum sentence
+                if (startWithLorem.checked && textType.value === 'lorem') {
+                    sentences.push(loremStart.split('. ')[0]);
+                    count--;
+                }
+                
+                for (let i = 0; i < count; i++) {
+                    sentences.push(generateSingleSentence(dictionary));
+                }
+                
+                return sentences.join(' ');
+            }
+            
+            function generateWords(count, dictionary) {
+                let words = [];
+                
+                // Check if we should start with the standard lorem ipsum words
+                if (startWithLorem.checked && textType.value === 'lorem') {
+                    const startWords = loremStart.split(/\s+/).slice(0, Math.min(5, count));
+                    words = startWords;
+                    count -= startWords.length;
+                }
+                
+                for (let i = 0; i < count; i++) {
+                    const randomWord = dictionary[getRandomInt(0, dictionary.length - 1)];
+                    words.push(randomWord);
+                }
+                
+                return words.join(' ');
+            }
+            
+            function generateSingleSentence(dictionary) {
+                let sentenceLength;
+                
+                switch (sentenceLength.value) {
+                    case 'short':
+                        sentenceLength = getRandomInt(5, 10);
+                        break;
+                    case 'medium':
+                        sentenceLength = getRandomInt(10, 20);
+                        break;
+                    case 'long':
+                        sentenceLength = getRandomInt(20, 30);
+                        break;
+                    case 'mixed':
+                        sentenceLength = getRandomInt(5, 30);
+                        break;
+                }
+                
+                const words = [];
+                
+                for (let i = 0; i < sentenceLength; i++) {
+                    const randomWord = dictionary[getRandomInt(0, dictionary.length - 1)];
+                    
+                    // Capitalize the first word
+                    if (i === 0) {
+                        words.push(capitalizeFirst(randomWord));
+                    } else {
+                        words.push(randomWord);
+                    }
+                }
+                
+                let sentence = words.join(' ');
+                
+                // Add punctuation if enabled
+                if (addPunctuation.checked) {
+                    const punctuation = ['.', '.', '.', '.', '.', '!', '?'];
+                    sentence += punctuation[getRandomInt(0, punctuation.length - 1)];
+                }
+                
+                return sentence;
+            }
+            
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            
+            function capitalizeFirst(str) {
+                return str.charAt(0).toUpperCase() + str.slice(1);
+            }
+            
+            function copyToClipboard(text) {
+                navigator.clipboard.writeText(text).then(function() {
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = 'Copied!';
+                    copyBtn.classList.add('btn-primary');
+                    copyBtn.classList.remove('btn-secondary');
+                    
+                    setTimeout(function() {
+                        copyBtn.textContent = originalText;
+                        copyBtn.classList.remove('btn-primary');
+                        copyBtn.classList.add('btn-secondary');
+                    }, 2000);
+                });
+            }
+            
+            function updateStats(text) {
+                // Remove HTML tags if present
+                const plainText = text.replace(/<[^>]*>/g, '');
+                
+                // Count paragraphs (2 or more newlines)
+                const paragraphs = plainText.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+                paragraphCount.textContent = paragraphs.length;
+                
+                // Count sentences (basic implementation)
+                const sentences = plainText.split(/[.!?]+/).filter(s => s.trim().length > 0);
+                sentenceCount.textContent = sentences.length;
+                
+                // Count words
+                const words = plainText.trim().split(/\s+/);
+                wordCount.textContent = words[0] === '' ? 0 : words.length;
+                
+                // Count characters (excluding spaces)
+                charCount.textContent = plainText.replace(/\s/g, '').length;
+            }
+            
+            // Generate initial text
+            generateText();
+        });
+    </script>
+</body>
+</html>

@@ -5,9 +5,34 @@
       crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze Generator - OOPEN AII</title>
+    <title>Maze Generator - Tools | OOPEN AII</title>
+    <meta name="description" content="Free online maze generator to help you complete your tasks quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="oopen ai, no registration, free online tool, maze, browser-based, generator">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../images/logo.png" type="image/png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Maze Generator",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A useful Maze Generator tool that helps you complete your tasks quickly and efficiently. Free to use with no registration required.",
+      "url": "https://openai2026.com/tools/maze-generator.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
 </head>
 <body>
     <!-- Header -->
@@ -21,12 +46,13 @@
             </div>
             <nav>
                 <ul>
-                    <li class="active"><a href="../index.html">Image Tools</a></li>
-                    <li><a href="../encry.html">Encry Tools</a></li>
-                    <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
-                    <li><a href="../network.html">Network Tools</a></li>
-                    <li><a href="../dav.html">Dav</a></li>
-                </ul>
+                        <li class="active" ><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
             </nav>
         </div>
     </header>
@@ -240,13 +266,24 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="../pages/contact.html">Contact Us</a>
-                <a href="../pages/privacy.html">Privacy Policy</a>
-                <a href="../pages/terms.html">User Rights</a>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2026 OOPEN AII. All rights reserved.</p>
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
             </div>
         </div>
     </footer>
@@ -399,132 +436,28 @@
                 generateMazeBtn.addEventListener('click', generateMaze);
                 solveMazeBtn.addEventListener('click', solveMaze);
                 clearSolutionBtn.addEventListener('click', clearSolution);
-                downloadBtn.addEventListener('click', downloadMaze);
-                regenerateBtn.addEventListener('click', regenerateMaze);
-                resetBtn.addEventListener('click', resetSettings);
-
-                // Initialize
-                updateMazeStats();
-                difficulty.dispatchEvent(new Event('input'));
-                outputQuality.dispatchEvent(new Event('input'));
-            }
-
-            function updateMazeStats() {
-                const width = parseInt(mazeWidth.value);
-                const height = parseInt(mazeHeight.value);
-                mazeStats.textContent = `Maze size: ${width} × ${height} cells`;
-            }
-
-            function applyTheme() {
-                const theme = mazeTheme.value;
-                switch(theme) {
-                    case 'classic':
-                        wallColor.value = '#000000';
-                        wallColorText.value = '#000000';
-                        pathColor.value = '#ffffff';
-                        pathColorText.value = '#ffffff';
-                        solutionColor.value = '#ff0000';
-                        solutionColorText.value = '#ff0000';
-                        break;
-                    case 'colorful':
-                        wallColor.value = '#2c3e50';
-                        wallColorText.value = '#2c3e50';
-                        pathColor.value = '#ecf0f1';
-                        pathColorText.value = '#ecf0f1';
-                        solutionColor.value = '#e74c3c';
-                        solutionColorText.value = '#e74c3c';
-                        break;
-                    case 'dark':
-                        wallColor.value = '#ffffff';
-                        wallColorText.value = '#ffffff';
-                        pathColor.value = '#1a1a1a';
-                        pathColorText.value = '#1a1a1a';
-                        solutionColor.value = '#00ff00';
-                        solutionColorText.value = '#00ff00';
-                        break;
-                    case 'nature':
-                        wallColor.value = '#5d4037';
-                        wallColorText.value = '#5d4037';
-                        pathColor.value = '#8bc34a';
-                        pathColorText.value = '#8bc34a';
-                        solutionColor.value = '#ff9800';
-                        solutionColorText.value = '#ff9800';
-                        break;
-                    case 'neon':
-                        wallColor.value = '#000000';
-                        wallColorText.value = '#000000';
-                        pathColor.value = '#0a0a0a';
-                        pathColorText.value = '#0a0a0a';
-                        solutionColor.value = '#00ffff';
-                        solutionColorText.value = '#00ffff';
-                        break;
-                    case 'pastel':
-                        wallColor.value = '#a8d0e6';
-                        wallColorText.value = '#a8d0e6';
-                        pathColor.value = '#f8e9a1';
-                        pathColorText.value = '#f8e9a1';
-                        solutionColor.value = '#f76c6c';
-                        solutionColorText.value = '#f76c6c';
-                        break;
-                }
-
-                if (maze) drawMaze();
-            }
-
-            function generateMaze() {
-                const width = parseInt(mazeWidth.value);
-                const height = parseInt(mazeHeight.value);
-                const algorithm = generationAlgorithm.value;
-                const difficultyLevel = parseInt(difficulty.value);
-
-                // Generate maze based on selected algorithm
-                switch(algorithm) {
-                    case 'dfs':
-                        maze = generateDFSMaze(width, height, difficultyLevel);
-                        break;
-                    case 'kruskal':
-                        maze = generateKruskalMaze(width, height, difficultyLevel);
-                        break;
-                    case 'prim':
-                        maze = generatePrimMaze(width, height, difficultyLevel);
-                        break;
-                    case 'binary':
-                        maze = generateBinaryTreeMaze(width, height, difficultyLevel);
-                        break;
-                    case 'sidewinder':
-                        maze = generateSidewinderMaze(width, height, difficultyLevel);
-                        break;
-                    default:
-                        maze = generateDFSMaze(width, height, difficultyLevel);
-                }
-
-                // Clear solution
-                solution = [];
-                showSolution.checked = false;
-                clearSolutionBtn.disabled = true;
-
-                // Draw maze
-                drawMaze();
-
-                // Update UI
-                noMazeMessage.style.display = 'none';
-                downloadBtn.disabled = false;
-                regenerateBtn.disabled = false;
-
-                // Show success notification
-                Utils.showNotification(`Maze generated successfully! ${width} × ${height} cells`);
-            }
-
-            function generateDFSMaze(width, height, difficulty) {
-                // Initialize maze with walls everywhere
-                const maze = Array(height).fill().map(() => Array(width).fill({ north: true, east: true, south: true, west: true, visited: false }));
-                const stack = [];
+                downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // 防止a标签的默认行为
                 
-                // Start at the top-left corner
-                let currentRow = 0;
-                let currentCol = 0;
-                maze[currentRow][currentCol].visited = true;
-                stack.push({ row: currentRow, col: currentCol });
+                if (!this.href) {
+                    Utils.showNotification('No image available to download', 'error');
+                    return;
+                }
+                
+                // 创建临时下载链接以确保下载正常工作
+                const tempLink = document.createElement('a');
+                tempLink.href = this.href;
+                tempLink.download = this.download || 'maze-generator.png';
+                tempLink.style.display = 'none';
+                
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                
+                // 清理
+                setTimeout(() => {
+                    document.body.removeChild(tempLink);
+                }, 100);
+            });
                 
                 while (stack.length > 0) {
                     // Get the current cell

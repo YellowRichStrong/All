@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Encoder - Tools | OOPEN AII</title>
+    <meta name="description" content="Free online text encoder to help you complete your tasks quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="oopen ai, no registration, free online tool, encoder, browser-based, text">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <style>
+        .tool-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .encoding-options {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .option-group {
+            margin-bottom: 15px;
+        }
+        
+        .option-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .option-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .text-containers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #45a049;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .btn-icon {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .swap-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #swapBtn {
+            padding: 10px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: rotate(90deg);
+        }
+        
+        .encoding-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .encoding-info h4 {
+            margin-top: 0;
+            color: #1565c0;
+        }
+        
+        .encoding-info p {
+            margin-bottom: 0;
+            color: #1976d2;
+        }
+        
+        @media (max-width: 768px) {
+            .text-containers {
+                grid-template-columns: 1fr;
+            }
+            
+            .swap-container {
+                transform: rotate(0deg);
+            }
+            
+            #swapBtn {
+                transform: rotate(180deg);
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Text Encoder",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A useful Text Encoder tool that helps you complete your tasks quickly and efficiently. Free to use with no registration required.",
+      "url": "https://openai2026.com/tools/text-encoder.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li class="active" ><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <h2>Text Encoder/Decoder</h2>
+                <p>Encode and decode text using various methods like Base64, URL encoding, HTML entities, and more.</p>
+                
+                <div class="encoding-options">
+                    <div class="option-group">
+                        <label for="encodingType">Encoding Type:</label>
+                        <select id="encodingType">
+                            <option value="base64">Base64</option>
+                            <option value="url">URL Encoding</option>
+                            <option value="html">HTML Entities</option>
+                            <option value="hex">Hexadecimal</option>
+                            <option value="binary">Binary</option>
+                            <option value="ascii">ASCII Codes</option>
+                            <option value="rot13">ROT13</option>
+                            <option value="uriComponent">URI Component</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="text-containers">
+                    <div class="text-container">
+                        <label for="inputText">Input Text:</label>
+                        <textarea id="inputText" placeholder="Enter text to encode or decode..."></textarea>
+                    </div>
+                    
+                    <div class="swap-container">
+                        <button id="swapBtn" title="Swap input and output">
+                            ⇄
+                        </button>
+                    </div>
+                    
+                    <div class="text-container">
+                        <label for="outputText">Output Text:</label>
+                        <textarea id="outputText" placeholder="Result will appear here..." readonly></textarea>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <button id="encodeBtn" class="btn btn-primary btn-icon">
+                        <span>🔐</span> Encode
+                    </button>
+                    <button id="decodeBtn" class="btn btn-secondary btn-icon">
+                        <span>🔓</span> Decode
+                    </button>
+                    <button id="copyBtn" class="btn btn-secondary btn-icon">
+                        <span>📋</span> Copy Output
+                    </button>
+                    <button id="clearBtn" class="btn btn-secondary btn-icon">
+                        <span>🗑️</span> Clear
+                    </button>
+                    <button id="sampleBtn" class="btn btn-secondary btn-icon">
+                        <span>📝</span> Load Sample
+                    </button>
+                </div>
+                
+                <div class="encoding-info" id="encodingInfo">
+                    <h4>About Base64 Encoding</h4>
+                    <p>Base64 is a group of binary-to-text encoding schemes that represent binary data in an ASCII string format by translating it into a radix-64 representation. It's commonly used for transmitting data in HTTP headers and storing binary data in XML.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('inputText');
+            const outputText = document.getElementById('outputText');
+            const encodingType = document.getElementById('encodingType');
+            const encodeBtn = document.getElementById('encodeBtn');
+            const decodeBtn = document.getElementById('decodeBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const swapBtn = document.getElementById('swapBtn');
+            const sampleBtn = document.getElementById('sampleBtn');
+            const encodingInfo = document.getElementById('encodingInfo');
+            
+            // Sample text
+            const sampleText = 'Hello, World! This is a sample text for encoding and decoding.';
+            
+            // Update encoding info based on selected encoding type
+            encodingType.addEventListener('change', updateEncodingInfo);
+            
+            encodeBtn.addEventListener('click', encodeText);
+            decodeBtn.addEventListener('click', decodeText);
+            
+            copyBtn.addEventListener('click', function() {
+                copyToClipboard(outputText.value);
+            });
+            
+            clearBtn.addEventListener('click', function() {
+                inputText.value = '';
+                outputText.value = '';
+            });
+            
+            swapBtn.addEventListener('click', function() {
+                const temp = inputText.value;
+                inputText.value = outputText.value;
+                outputText.value = temp;
+            });
+            
+            sampleBtn.addEventListener('click', function() {
+                inputText.value = sampleText;
+                encodeText();
+            });
+            
+            function encodeText() {
+                const text = inputText.value;
+                const type = encodingType.value;
+                let encoded = '';
+                
+                try {
+                    switch (type) {
+                        case 'base64':
+                            encoded = btoa(unescape(encodeURIComponent(text)));
+                            break;
+                        case 'url':
+                            encoded = encodeURI(text);
+                            break;
+                        case 'html':
+                            encoded = text
+                                .replace(/&/g, '&amp;')
+                                .replace(/</g, '&lt;')
+                                .replace(/>/g, '&gt;')
+                                .replace(/"/g, '&quot;')
+                                .replace(/'/g, '&#039;');
+                            break;
+                        case 'hex':
+                            encoded = text.split('').map(char => 
+                                char.charCodeAt(0).toString(16).padStart(2, '0')
+                            ).join('');
+                            break;
+                        case 'binary':
+                            encoded = text.split('').map(char => 
+                                char.charCodeAt(0).toString(2).padStart(8, '0')
+                            ).join(' ');
+                            break;
+                        case 'ascii':
+                            encoded = text.split('').map(char => 
+                                char.charCodeAt(0)
+                            ).join(' ');
+                            break;
+                        case 'rot13':
+                            encoded = text.replace(/[a-z]/gi, char => {
+                                const code = char.charCodeAt(0);
+                                if (code >= 65 && code <= 90) {
+                                    return String.fromCharCode(((code - 65 + 13) % 26) + 65);
+                                } else if (code >= 97 && code <= 122) {
+                                    return String.fromCharCode(((code - 97 + 13) % 26) + 97);
+                                }
+                                return char;
+                            });
+                            break;
+                        case 'uriComponent':
+                            encoded = encodeURIComponent(text);
+                            break;
+                    }
+                    
+                    outputText.value = encoded;
+                } catch (error) {
+                    outputText.value = 'Error encoding text: ' + error.message;
+                }
+            }
+            
+            function decodeText() {
+                const text = inputText.value;
+                const type = encodingType.value;
+                let decoded = '';
+                
+                try {
+                    switch (type) {
+                        case 'base64':
+                            decoded = decodeURIComponent(escape(atob(text)));
+                            break;
+                        case 'url':
+                            decoded = decodeURI(text);
+                            break;
+                        case 'html':
+                            const temp = document.createElement('textarea');
+                            temp.innerHTML = text;
+                            decoded = temp.value;
+                            break;
+                        case 'hex':
+                            decoded = text.match(/.{2}/g) ? text.match(/.{2}/g).map(hex => 
+                                String.fromCharCode(parseInt(hex, 16))
+                            ).join('') : '';
+                            break;
+                        case 'binary':
+                            decoded = text.split(' ').map(bin => 
+                                String.fromCharCode(parseInt(bin, 2))
+                            ).join('');
+                            break;
+                        case 'ascii':
+                            decoded = text.split(' ').map(ascii => 
+                                String.fromCharCode(parseInt(ascii))
+                            ).join('');
+                            break;
+                        case 'rot13':
+                            // ROT13 is its own inverse
+                            decoded = text.replace(/[a-z]/gi, char => {
+                                const code = char.charCodeAt(0);
+                                if (code >= 65 && code <= 90) {
+                                    return String.fromCharCode(((code - 65 + 13) % 26) + 65);
+                                } else if (code >= 97 && code <= 122) {
+                                    return String.fromCharCode(((code - 97 + 13) % 26) + 97);
+                                }
+                                return char;
+                            });
+                            break;
+                        case 'uriComponent':
+                            decoded = decodeURIComponent(text);
+                            break;
+                    }
+                    
+                    outputText.value = decoded;
+                } catch (error) {
+                    outputText.value = 'Error decoding text: ' + error.message;
+                }
+            }
+            
+            function copyToClipboard(text) {
+                navigator.clipboard.writeText(text).then(function() {
+                    const originalText = copyBtn.textContent;
+                    copyBtn.innerHTML = '<span>✅</span> Copied!';
+                    
+                    setTimeout(function() {
+                        copyBtn.innerHTML = '<span>📋</span> Copy Output';
+                    }, 2000);
+                });
+            }
+            
+            function updateEncodingInfo() {
+                const type = encodingType.value;
+                let infoHtml = '';
+                
+                switch (type) {
+                    case 'base64':
+                        infoHtml = `
+                            <h4>About Base64 Encoding</h4>
+                            <p>Base64 is a group of binary-to-text encoding schemes that represent binary data in an ASCII string format by translating it into a radix-64 representation. It's commonly used for transmitting data in HTTP headers and storing binary data in XML.</p>
+                        `;
+                        break;
+                    case 'url':
+                        infoHtml = `
+                            <h4>About URL Encoding</h4>
+                            <p>URL encoding converts characters into a format that can be transmitted over the Internet. It replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits. URLs can only be sent over the Internet using the ASCII character-set.</p>
+                        `;
+                        break;
+                    case 'html':
+                        infoHtml = `
+                            <h4>About HTML Entities</h4>
+                            <p>HTML entities are used to display reserved characters in HTML. Reserved characters are those that have special meaning in HTML, such as less than (&lt;) and greater than (&gt;) signs.</p>
+                        `;
+                        break;
+                    case 'hex':
+                        infoHtml = `
+                            <h4>About Hexadecimal Encoding</h4>
+                            <p>Hexadecimal encoding represents each character as two hexadecimal digits (0-9, A-F). It's often used in debugging and to represent binary data in a more compact form than binary.</p>
+                        `;
+                        break;
+                    case 'binary':
+                        infoHtml = `
+                            <h4>About Binary Encoding</h4>
+                            <p>Binary encoding represents each character as a sequence of 8 bits (0s and 1s). This is the fundamental representation of data in computers.</p>
+                        `;
+                        break;
+                    case 'ascii':
+                        infoHtml = `
+                            <h4>About ASCII Codes</h4>
+                            <p>ASCII (American Standard Code for Information Interchange) is a character encoding standard for electronic communication. Each character is represented by a number between 0 and 127.</p>
+                        `;
+                        break;
+                    case 'rot13':
+                        infoHtml = `
+                            <h4>About ROT13</h4>
+                            <p>ROT13 (rotate by 13 places) is a simple letter substitution cipher that replaces a letter with the 13th letter after it in the alphabet. It's its own inverse, meaning applying it twice returns to the original text.</p>
+                        `;
+                        break;
+                    case 'uriComponent':
+                        infoHtml = `
+                            <h4>About URI Component Encoding</h4>
+                            <p>URI component encoding is similar to URL encoding but encodes more characters. It's used for encoding parts of a URI (Uniform Resource Identifier) such as query parameters or path segments.</p>
+                        `;
+                        break;
+                }
+                
+                encodingInfo.innerHTML = infoHtml;
+            }
+            
+            // Initialize with sample text and info
+            updateEncodingInfo();
+        });
+    </script>
+</body>
+</html>

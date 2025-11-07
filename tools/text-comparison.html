@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Comparison - Tools | OOPEN AII</title>
+    <meta name="description" content="Free online text comparison to help you complete your tasks quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="oopen ai, no registration, free online tool, comparison, browser-based, text">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <style>
+        .tool-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .text-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .text-input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .comparison-options {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .option-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .option-group label {
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #45a049;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .results-section {
+            margin-top: 20px;
+        }
+        
+        .comparison-stats {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-item h4 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .stat-item .value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .diff-result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            max-height: 500px;
+            overflow: auto;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .diff-line {
+            padding: 4px 10px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .diff-line:hover {
+            background: #f8f9fa;
+        }
+        
+        .line-number {
+            width: 50px;
+            text-align: right;
+            padding-right: 10px;
+            color: #666;
+            font-size: 12px;
+            user-select: none;
+        }
+        
+        .line-content {
+            flex: 1;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .added { background-color: #e6ffed; }
+        .added .line-content { color: #22863a; }
+        
+        .removed { background-color: #ffeef0; }
+        .removed .line-content { color: #cb2431; }
+        
+        .modified { background-color: #fff7e6; }
+        
+        .unchanged { opacity: 0.6; }
+        
+        .highlight {
+            background-color: #ffeb3b;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .text-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Text Comparison",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A useful Text Comparison tool that helps you complete your tasks quickly and efficiently. Free to use with no registration required.",
+      "url": "https://openai2026.com/tools/text-comparison.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li class="active" ><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <h2>Text Comparison</h2>
+                <p>Compare two text documents and highlight the differences between them.</p>
+                
+                <div class="comparison-options">
+                    <h3>Comparison Options</h3>
+                    <div class="option-group">
+                        <input type="checkbox" id="showLineNumbers" checked>
+                        <label for="showLineNumbers">Show line numbers</label>
+                    </div>
+                    <div class="option-group">
+                        <input type="checkbox" id="ignoreWhitespace">
+                        <label for="ignoreWhitespace">Ignore whitespace differences</label>
+                    </div>
+                    <div class="option-group">
+                        <input type="checkbox" id="ignoreCase">
+                        <label for="ignoreCase">Ignore case differences</label>
+                    </div>
+                </div>
+                
+                <div class="text-inputs">
+                    <div class="text-input-container">
+                        <label for="text1">Original Text:</label>
+                        <textarea id="text1" placeholder="Enter original text here..."></textarea>
+                    </div>
+                    <div class="text-input-container">
+                        <label for="text2">Modified Text:</label>
+                        <textarea id="text2" placeholder="Enter modified text here..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <button id="compareBtn" class="btn btn-primary">Compare Texts</button>
+                    <button id="clearBtn" class="btn btn-secondary">Clear</button>
+                    <button id="swapBtn" class="btn btn-secondary">Swap Texts</button>
+                    <button id="sampleBtn" class="btn btn-secondary">Load Sample Texts</button>
+                </div>
+                
+                <div class="results-section">
+                    <h3>Comparison Results</h3>
+                    <div class="comparison-stats">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <h4>Total Lines</h4>
+                                <div class="value" id="totalLines">0</div>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Unchanged Lines</h4>
+                                <div class="value" id="unchangedLines">0</div>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Added Lines</h4>
+                                <div class="value" id="addedLines">0</div>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Removed Lines</h4>
+                                <div class="value" id="removedLines">0</div>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Modified Lines</h4>
+                                <div class="value" id="modifiedLines">0</div>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Change Percentage</h4>
+                                <div class="value" id="changePercentage">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diff-result" id="diffResult">
+                        <div style="padding: 20px; text-align: center; color: #666;">
+                            Compare texts to see differences
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const text1 = document.getElementById('text1');
+            const text2 = document.getElementById('text2');
+            const compareBtn = document.getElementById('compareBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const swapBtn = document.getElementById('swapBtn');
+            const sampleBtn = document.getElementById('sampleBtn');
+            const showLineNumbers = document.getElementById('showLineNumbers');
+            const ignoreWhitespace = document.getElementById('ignoreWhitespace');
+            const ignoreCase = document.getElementById('ignoreCase');
+            const diffResult = document.getElementById('diffResult');
+            
+            // Sample texts for demonstration
+            const sampleText1 = `The quick brown fox jumps over the lazy dog.
+This is a sample text for comparison.
+It contains multiple lines.
+Some lines may be modified or removed.
+Others may be added in the new version.`;
+            
+            const sampleText2 = `The quick brown fox jumps over the lazy cat.
+This is a sample text for comparison.
+It contains several lines.
+Some lines may be modified or updated.
+Others may be added in the new version.
+This is an additional line that wasn't in the original.`;
+            
+            sampleBtn.addEventListener('click', function() {
+                text1.value = sampleText1;
+                text2.value = sampleText2;
+                compareTexts();
+            });
+            
+            compareBtn.addEventListener('click', compareTexts);
+            
+            clearBtn.addEventListener('click', function() {
+                text1.value = '';
+                text2.value = '';
+                resetResults();
+            });
+            
+            swapBtn.addEventListener('click', function() {
+                const temp = text1.value;
+                text1.value = text2.value;
+                text2.value = temp;
+                compareTexts();
+            });
+            
+            // Update comparison when options change
+            showLineNumbers.addEventListener('change', compareTexts);
+            ignoreWhitespace.addEventListener('change', compareTexts);
+            ignoreCase.addEventListener('change', compareTexts);
+            
+            function compareTexts() {
+                const originalText = text1.value;
+                const modifiedText = text2.value;
+                
+                if (!originalText.trim() || !modifiedText.trim()) {
+                    resetResults();
+                    return;
+                }
+                
+                // Process options
+                const processOptions = {
+                    ignoreWhitespace: ignoreWhitespace.checked,
+                    ignoreCase: ignoreCase.checked
+                };
+                
+                // Split texts into lines
+                const originalLines = originalText.split('\n');
+                const modifiedLines = modifiedText.split('\n');
+                
+                // Process lines according to options
+                const processedOriginalLines = processLines(originalLines, processOptions);
+                const processedModifiedLines = processLines(modifiedLines, processOptions);
+                
+                // Generate diff
+                const diff = generateDiff(processedOriginalLines, processedModifiedLines);
+                
+                // Display diff
+                displayDiff(diff, originalLines, modifiedLines);
+                
+                // Update statistics
+                updateStatistics(diff);
+            }
+            
+            function processLines(lines, options) {
+                return lines.map(line => {
+                    let processedLine = line;
+                    
+                    if (options.ignoreWhitespace) {
+                        processedLine = processedLine.trim().replace(/\s+/g, ' ');
+                    }
+                    
+                    if (options.ignoreCase) {
+                        processedLine = processedLine.toLowerCase();
+                    }
+                    
+                    return processedLine;
+                });
+            }
+            
+            function generateDiff(originalLines, modifiedLines) {
+                // Simple diff algorithm based on line comparison
+                const diff = [];
+                const maxLength = Math.max(originalLines.length, modifiedLines.length);
+                
+                let i = 0, j = 0;
+                
+                while (i < originalLines.length || j < modifiedLines.length) {
+                    if (i >= originalLines.length) {
+                        // Added line
+                        diff.push({ type: 'added', originalLine: null, modifiedLine: j });
+                        j++;
+                    } else if (j >= modifiedLines.length) {
+                        // Removed line
+                        diff.push({ type: 'removed', originalLine: i, modifiedLine: null });
+                        i++;
+                    } else if (originalLines[i] === modifiedLines[j]) {
+                        // Unchanged line
+                        diff.push({ type: 'unchanged', originalLine: i, modifiedLine: j });
+                        i++;
+                        j++;
+                    } else {
+                        // Check if this is a modification or a move
+                        let foundMatch = false;
+                        
+                        // Look ahead in modified lines
+                        for (let k = j + 1; k < Math.min(j + 5, modifiedLines.length); k++) {
+                            if (originalLines[i] === modifiedLines[k]) {
+                                // Add lines between j and k as added
+                                for (let l = j; l < k; l++) {
+                                    diff.push({ type: 'added', originalLine: null, modifiedLine: l });
+                                }
+                                j = k;
+                                foundMatch = true;
+                                break;
+                            }
+                        }
+                        
+                        // Look ahead in original lines
+                        if (!foundMatch) {
+                            for (let k = i + 1; k < Math.min(i + 5, originalLines.length); k++) {
+                                if (originalLines[k] === modifiedLines[j]) {
+                                    // Add lines between i and k as removed
+                                    for (let l = i; l < k; l++) {
+                                        diff.push({ type: 'removed', originalLine: l, modifiedLine: null });
+                                    }
+                                    i = k;
+                                    foundMatch = true;
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        if (!foundMatch) {
+                            // Mark as modified
+                            diff.push({ type: 'modified', originalLine: i, modifiedLine: j });
+                            i++;
+                            j++;
+                        }
+                    }
+                }
+                
+                return diff;
+            }
+            
+            function displayDiff(diff, originalLines, modifiedLines) {
+                diffResult.innerHTML = '';
+                
+                diff.forEach(item => {
+                    const diffLine = document.createElement('div');
+                    diffLine.className = `diff-line ${item.type}`;
+                    
+                    // Add line number
+                    if (showLineNumbers.checked) {
+                        const lineNumber = document.createElement('div');
+                        lineNumber.className = 'line-number';
+                        lineNumber.textContent = item.originalLine !== null ? item.originalLine + 1 : '';
+                        diffLine.appendChild(lineNumber);
+                    }
+                    
+                    // Add line content
+                    const lineContent = document.createElement('div');
+                    lineContent.className = 'line-content';
+                    
+                    if (item.type === 'added') {
+                        lineContent.textContent = modifiedLines[item.modifiedLine];
+                    } else if (item.type === 'removed') {
+                        lineContent.textContent = originalLines[item.originalLine];
+                    } else if (item.type === 'unchanged') {
+                        lineContent.textContent = originalLines[item.originalLine];
+                    } else if (item.type === 'modified') {
+                        // For modified lines, highlight differences
+                        const originalText = originalLines[item.originalLine];
+                        const modifiedText = modifiedLines[item.modifiedLine];
+                        lineContent.innerHTML = highlightDifferences(originalText, modifiedText);
+                    }
+                    
+                    diffLine.appendChild(lineContent);
+                    diffResult.appendChild(diffLine);
+                });
+            }
+            
+            function highlightDifferences(originalText, modifiedText) {
+                // Simple word-based highlighting
+                const originalWords = originalText.split(/(\s+)/);
+                const modifiedWords = modifiedText.split(/(\s+)/);
+                let result = '';
+                
+                let i = 0, j = 0;
+                
+                while (i < originalWords.length && j < modifiedWords.length) {
+                    if (originalWords[i] === modifiedWords[j]) {
+                        // Same word
+                        result += escapeHtml(originalWords[i]);
+                        i++;
+                        j++;
+                    } else {
+                        // Find longest common subsequence
+                        let maxMatch = 0;
+                        let matchIndex = -1;
+                        
+                        for (let k = j; k < modifiedWords.length; k++) {
+                            let matchCount = 0;
+                            while (i + matchCount < originalWords.length && 
+                                   k + matchCount < modifiedWords.length && 
+                                   originalWords[i + matchCount] === modifiedWords[k + matchCount]) {
+                                matchCount++;
+                            }
+                            if (matchCount > maxMatch) {
+                                maxMatch = matchCount;
+                                matchIndex = k;
+                            }
+                        }
+                        
+                        if (maxMatch > 0) {
+                            // Add differing words from modified
+                            for (let l = j; l < matchIndex; l++) {
+                                result += `<span class="highlight">${escapeHtml(modifiedWords[l])}</span>`;
+                            }
+                            // Add matching words
+                            for (let l = 0; l < maxMatch; l++) {
+                                result += escapeHtml(originalWords[i + l]);
+                            }
+                            i += maxMatch;
+                            j = matchIndex + maxMatch;
+                        } else {
+                            // No match found, just highlight the first differing word
+                            result += `<span class="highlight">${escapeHtml(modifiedWords[j])}</span>`;
+                            i++;
+                            j++;
+                        }
+                    }
+                }
+                
+                // Add remaining words
+                while (j < modifiedWords.length) {
+                    result += `<span class="highlight">${escapeHtml(modifiedWords[j])}</span>`;
+                    j++;
+                }
+                
+                return result;
+            }
+            
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+            
+            function updateStatistics(diff) {
+                const stats = {
+                    total: diff.length,
+                    unchanged: 0,
+                    added: 0,
+                    removed: 0,
+                    modified: 0
+                };
+                
+                diff.forEach(item => {
+                    stats[item.type]++;
+                });
+                
+                const changeCount = stats.added + stats.removed + stats.modified;
+                const changePercentage = stats.total > 0 ? Math.round((changeCount / stats.total) * 100) : 0;
+                
+                document.getElementById('totalLines').textContent = stats.total;
+                document.getElementById('unchangedLines').textContent = stats.unchanged;
+                document.getElementById('addedLines').textContent = stats.added;
+                document.getElementById('removedLines').textContent = stats.removed;
+                document.getElementById('modifiedLines').textContent = stats.modified;
+                document.getElementById('changePercentage').textContent = `${changePercentage}%`;
+            }
+            
+            function resetResults() {
+                diffResult.innerHTML = `
+                    <div style="padding: 20px; text-align: center; color: #666;">
+                        Compare texts to see differences
+                    </div>
+                `;
+                
+                document.getElementById('totalLines').textContent = '0';
+                document.getElementById('unchangedLines').textContent = '0';
+                document.getElementById('addedLines').textContent = '0';
+                document.getElementById('removedLines').textContent = '0';
+                document.getElementById('modifiedLines').textContent = '0';
+                document.getElementById('changePercentage').textContent = '0%';
+            }
+        });
+    </script>
+</body>
+</html>

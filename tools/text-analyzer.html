@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9K4YK9LXE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-F9K4YK9LXE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer - Tools | OOPEN AII</title>
+    <meta name="description" content="Free online text analyzer to help you complete your tasks quickly and efficiently. 100% free with no registration needed. Try it now!">
+    <meta name="keywords" content="oopen ai, no registration, free online tool, analyzer, browser-based, text">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <style>
+        .tool-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .analysis-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .analysis-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .analysis-item h4 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .analysis-item .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .text-input-container,
+        .result-container {
+            width: 100%;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #45a049;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .word-frequency {
+            margin-top: 20px;
+        }
+        
+        .frequency-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .frequency-table th,
+        .frequency-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .frequency-table th {
+            background: #f8f9fa;
+        }
+        
+        .frequency-table tr:hover {
+            background: #f5f5f5;
+        }
+        
+        @media (max-width: 768px) {
+            .analysis-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Text Analyzer",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A useful Text Analyzer tool that helps you complete your tasks quickly and efficiently. Free to use with no registration required.",
+      "url": "https://openai2026.com/tools/text-analyzer.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "OOPEN AII",
+        "url": "https://openai2026.com/"
+      }
+    }
+    </script>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                        <li><a href="../index.html">Image Tools</a></li>
+                        <li><a href="../encry.html">Encry Tools</a></li>
+                        <li><a href="../code.html" style="display:block !important;">Code Tools</a></li>
+                        <li><a href="../network.html">Network Tools</a></li>
+                        <li class="active" ><a href="../text.html">Text Tools</a></li>
+                        <li><a href="../dav.html">Dav</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <h2>Text Analyzer</h2>
+                <p>Analyze your text for statistics, readability scores, word frequency, and more.</p>
+                
+                <div class="text-input-container">
+                    <label for="inputText">Enter text to analyze:</label>
+                    <textarea id="inputText" placeholder="Paste your text here..."></textarea>
+                </div>
+                
+                <div class="controls">
+                    <button id="analyzeBtn" class="btn btn-primary">Analyze Text</button>
+                    <button id="clearBtn" class="btn btn-secondary">Clear</button>
+                    <button id="sampleBtn" class="btn btn-secondary">Load Sample Text</button>
+                </div>
+                
+                <!-- Basic Statistics -->
+                <div class="analysis-section">
+                    <h3>Basic Statistics</h3>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <h4>Total Words</h4>
+                            <div class="value" id="wordCount">0</div>
+                        </div>
+                        <div class="analysis-item">
+                            <h4>Unique Words</h4>
+                            <div class="value" id="uniqueWords">0</div>
+                        </div>
+                        <div class="analysis-item">
+                            <h4>Characters (with spaces)</h4>
+                            <div class="value" id="charsWithSpaces">0</div>
+                        </div>
+                        <div class="analysis-item">
+                            <h4>Characters (without spaces)</h4>
+                            <div class="value" id="charsWithoutSpaces">0</div>
+                        </div>
+                        <div class="analysis-item">
+                            <h4>Sentences</h4>
+                            <div class="value" id="sentenceCount">0</div>
+                        </div>
+                        <div class="analysis-item">
+                            <h4>Paragraphs</h4>
+                            <div class="value" id="paragraphCount">0</div>
+                        </div>
+                        <div class="analysis-item">
+                            <h4>Average Word Length</h4>
+                            <div class="value" id="avgWordLength">0.0</div>
+                        </div>
+                        <div class="analysis-item">
+                            <h4>Average Sentence Length</h4>
+                            <div class="value" id="avgSentenceLength">0.0</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Readability Scores -->
+                <div class="analysis-section">
+                    <h3>Readability Scores</h3>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <h4>Flesch Reading Ease</h4>
+                            <div class="value" id="fleschScore">0.0</div>
+                        </div>
+                        <div class="analysis-item">
+                            <h4>Reading Level</h4>
+                            <div class="value" id="readingLevel">N/A</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word Frequency -->
+                <div class="analysis-section word-frequency">
+                    <h3>Most Common Words (Top 20)</h3>
+                    <table class="frequency-table" id="frequencyTable">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Frequency</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>OOPEN AII</h3>
+                    <p>Providing powerful image tools for all your needs. All tools are free to use and work entirely in your browser.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../contact.html">Contact Us</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../terms.html">User Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 OOPEN AII. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('inputText');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const sampleBtn = document.getElementById('sampleBtn');
+            
+            // Sample text for demonstration
+            const sampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.\n\nNeque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?";
+            
+            sampleBtn.addEventListener('click', function() {
+                inputText.value = sampleText;
+                analyzeText();
+            });
+            
+            analyzeBtn.addEventListener('click', analyzeText);
+            
+            clearBtn.addEventListener('click', function() {
+                inputText.value = '';
+                resetAnalysis();
+            });
+            
+            // Auto-analyze on input change
+            inputText.addEventListener('input', debounce(analyzeText, 500));
+            
+            function analyzeText() {
+                const text = inputText.value;
+                
+                if (!text.trim()) {
+                    resetAnalysis();
+                    return;
+                }
+                
+                // Basic statistics
+                const wordCount = countWords(text);
+                const uniqueWords = countUniqueWords(text);
+                const charsWithSpaces = text.length;
+                const charsWithoutSpaces = text.replace(/\s/g, '').length;
+                const sentenceCount = countSentences(text);
+                const paragraphCount = countParagraphs(text);
+                const avgWordLength = calculateAverageWordLength(text);
+                const avgSentenceLength = sentenceCount > 0 ? wordCount / sentenceCount : 0;
+                
+                // Update basic statistics
+                document.getElementById('wordCount').textContent = wordCount;
+                document.getElementById('uniqueWords').textContent = uniqueWords;
+                document.getElementById('charsWithSpaces').textContent = charsWithSpaces;
+                document.getElementById('charsWithoutSpaces').textContent = charsWithoutSpaces;
+                document.getElementById('sentenceCount').textContent = sentenceCount;
+                document.getElementById('paragraphCount').textContent = paragraphCount;
+                document.getElementById('avgWordLength').textContent = avgWordLength.toFixed(1);
+                document.getElementById('avgSentenceLength').textContent = avgSentenceLength.toFixed(1);
+                
+                // Calculate readability scores
+                const fleschScore = calculateFleschReadingEase(text, wordCount, sentenceCount, charsWithoutSpaces);
+                const readingLevel = getReadingLevel(fleschScore);
+                
+                document.getElementById('fleschScore').textContent = fleschScore.toFixed(1);
+                document.getElementById('readingLevel').textContent = readingLevel;
+                
+                // Word frequency analysis
+                const wordFrequency = getWordFrequency(text);
+                displayWordFrequency(wordFrequency, wordCount);
+            }
+            
+            function resetAnalysis() {
+                document.getElementById('wordCount').textContent = '0';
+                document.getElementById('uniqueWords').textContent = '0';
+                document.getElementById('charsWithSpaces').textContent = '0';
+                document.getElementById('charsWithoutSpaces').textContent = '0';
+                document.getElementById('sentenceCount').textContent = '0';
+                document.getElementById('paragraphCount').textContent = '0';
+                document.getElementById('avgWordLength').textContent = '0.0';
+                document.getElementById('avgSentenceLength').textContent = '0.0';
+                document.getElementById('fleschScore').textContent = '0.0';
+                document.getElementById('readingLevel').textContent = 'N/A';
+                
+                const frequencyTableBody = document.querySelector('#frequencyTable tbody');
+                frequencyTableBody.innerHTML = '';
+            }
+            
+            function countWords(text) {
+                const words = text.trim().split(/\s+/);
+                return words[0] === '' ? 0 : words.length;
+            }
+            
+            function countUniqueWords(text) {
+                const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+                const uniqueWords = new Set(words);
+                return uniqueWords.size;
+            }
+            
+            function countSentences(text) {
+                // Simple sentence counting based on common punctuation
+                const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+                return sentences.length;
+            }
+            
+            function countParagraphs(text) {
+                const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+                return paragraphs.length || (text.trim().length > 0 ? 1 : 0);
+            }
+            
+            function calculateAverageWordLength(text) {
+                const words = text.match(/\b\w+\b/g) || [];
+                if (words.length === 0) return 0;
+                
+                const totalLength = words.reduce((sum, word) => sum + word.length, 0);
+                return totalLength / words.length;
+            }
+            
+            function calculateFleschReadingEase(text, wordCount, sentenceCount, charCount) {
+                if (wordCount === 0 || sentenceCount === 0) return 0;
+                
+                // Simplified Flesch Reading Ease calculation
+                // 206.835 - 1.015 × (total words / total sentences) - 84.6 × (total syllables / total words)
+                // Using a simplified syllable count based on character length
+                const avgWordLength = charCount / wordCount;
+                const avgWordsPerSentence = wordCount / sentenceCount;
+                
+                // This is an approximation since we're not doing actual syllable counting
+                return Math.max(0, Math.min(100, 206.835 - (1.015 * avgWordsPerSentence) - (84.6 * (avgWordLength / 5))));
+            }
+            
+            function getReadingLevel(fleschScore) {
+                if (fleschScore >= 90) return '5th Grade';
+                if (fleschScore >= 80) return '6th Grade';
+                if (fleschScore >= 70) return '7th Grade';
+                if (fleschScore >= 60) return '8th-9th Grade';
+                if (fleschScore >= 50) return '10th-12th Grade';
+                if (fleschScore >= 30) return 'College';
+                return 'College Graduate';
+            }
+            
+            function getWordFrequency(text) {
+                const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+                const frequency = {};
+                
+                words.forEach(word => {
+                    // Skip common stopwords
+                    const stopwords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'as', 'is', 'are', 'was', 'were', 'be', 'been', 'being'];
+                    if (!stopwords.includes(word)) {
+                        frequency[word] = (frequency[word] || 0) + 1;
+                    }
+                });
+                
+                // Convert to array and sort by frequency
+                return Object.entries(frequency)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 20);
+            }
+            
+            function displayWordFrequency(frequency, totalWords) {
+                const frequencyTableBody = document.querySelector('#frequencyTable tbody');
+                frequencyTableBody.innerHTML = '';
+                
+                frequency.forEach(([word, count]) => {
+                    const percentage = (count / totalWords * 100).toFixed(1);
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${word}</td>
+                        <td>${count}</td>
+                        <td>${percentage}%</td>
+                    `;
+                    frequencyTableBody.appendChild(row);
+                });
+            }
+            
+            // Debounce function to limit the rate at which a function can fire
+            function debounce(func, wait) {
+                let timeout;
+                return function() {
+                    const context = this;
+                    const args = arguments;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(context, args), wait);
+                };
+            }
+        });
+    </script>
+</body>
+</html>
