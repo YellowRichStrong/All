@@ -451,6 +451,39 @@ footer {
     text-align: center;
 }
 
+/* Blog Styles */
+.blog-post-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-post-meta {
+    margin-bottom: 10px;
+}
+
+.read-more-btn {
+    align-self: flex-end;
+    background-color: #0066cc;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+}
+
+.read-more-btn:hover {
+    background-color: #0052a3;
+    transform: translateY(-1px);
+}
+
 /* Back to Top Button */
 .back-to-top {
     position: fixed;

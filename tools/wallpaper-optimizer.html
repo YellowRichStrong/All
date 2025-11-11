@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>壁纸优化工具 - NBA11手机壁纸下载</title>
+    <meta name="description" content="专为NBA11壁纸网站设计的图片优化工具，支持WebP格式转换、响应式尺寸生成和智能压缩">
+    <meta name="keywords" content="壁纸优化,图片压缩,WebP转换,手机壁纸,NBA11">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <style>
+        .wallpaper-optimizer {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .device-presets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .device-preset {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .device-preset:hover {
+            border-color: #0066cc;
+            background-color: #f0f8ff;
+        }
+        
+        .device-preset.active {
+            border-color: #0066cc;
+            background-color: #e8f4fd;
+        }
+        
+        .device-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .device-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .device-specs {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .optimization-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .result-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .result-image {
+            max-width: 100%;
+            max-height: 200px;
+            margin-bottom: 10px;
+        }
+        
+        .result-info {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .file-size {
+            font-weight: bold;
+            color: #0066cc;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #218838;
+        }
+        
+        .batch-optimization {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .batch-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .batch-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .batch-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .batch-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .batch-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .batch-item {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .batch-thumb {
+            max-width: 100%;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+        
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #e8f4fd;
+            border-radius: 8px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486368477427533"
+      crossorigin="anonymous"></script></head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="NBA11 Logo">
+                </a>
+                <h1>NBA11</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li class="active"><a href="wallpaper-optimizer.html">壁纸优化</a></li>
+                    <li><a href="image-compressor.html">图片压缩</a></li>
+                    <li><a href="image-converter.html">格式转换</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="tool-container">
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <a href="../index.html">首页</a> > 
+                    <a href="../index.html">图片工具</a> > 
+                    <span>壁纸优化工具</span>
+                </div>
+                
+                <div class="tool-header">
+                    <h2>壁纸优化工具</h2>
+                    <p>专为NBA11壁纸网站设计的智能优化工具，提升图片加载速度</p>
+                </div>
+
+                <div class="tool-content wallpaper-optimizer">
+                    <!-- Upload Section -->
+                    <div class="upload-section">
+                        <div class="upload-container">
+                            <div class="upload-box" id="uploadBox">
+                                <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;">
+                                <label for="imageUpload" class="upload-label">
+                                    <div class="upload-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#999" viewBox="0 0 16 16">
+                                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 13a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/>
+                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                        </svg>
+                                    </div>
+                                    <p>拖拽壁纸图片到这里，或点击选择</p>
+                                    <p class="upload-hint">支持JPG、PNG格式，自动优化为WebP格式</p>
+                                </label>
+                            </div>
+                            <div class="upload-info">
+                                <div id="imagesList" class="images-list"></div>
+                                <div id="uploadProgress" class="upload-progress" style="display: none;">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 0%;"></div>
+                                    </div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Device Presets -->
+                    <div class="settings-section">
+                        <h3>设备预设</h3>
+                        <div class="device-presets">
+                            <div class="device-preset active" data-device="mobile">
+                                <div class="device-icon">📱</div>
+                                <div class="device-name">手机壁纸</div>
+                                <div class="device-specs">1080×1920</div>
+                                <div class="device-specs">WebP格式</div>
+                            </div>
+                            <div class="device-preset" data-device="tablet">
+                                <div class="device-icon">📟</div>
+                                <div class="device-name">平板壁纸</div>
+                                <div class="device-specs">1536×2048</div>
+                                <div class="device-specs">WebP格式</div>
+                            </div>
+                            <div class="device-preset" data-device="desktop">
+                                <div class="device-icon">💻</div>
+                                <div class="device-name">桌面壁纸</div>
+                                <div class="device-specs">1920×1080</div>
+                                <div class="device-specs">WebP格式</div>
+                            </div>
+                            <div class="device-preset" data-device="custom">
+                                <div class="device-icon">⚙️</div>
+                                <div class="device-name">自定义设置</div>
+                                <div class="device-specs">手动调整参数</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom Settings -->
+                    <div class="settings-section" id="customSettings" style="display: none;">
+                        <h3>自定义设置</h3>
+                        <div class="settings-groups">
+                            <div class="settings-group">
+                                <label for="customWidth">宽度:</label>
+                                <input type="number" id="customWidth" value="1080" min="100" max="4000">
+                            </div>
+                            <div class="settings-group">
+                                <label for="customHeight">高度:</label>
+                                <input type="number" id="customHeight" value="1920" min="100" max="4000">
+                            </div>
+                            <div class="settings-group">
+                                <label for="customQuality">质量:</label>
+                                <input type="range" id="customQuality" min="1" max="100" value="85">
+                                <span id="qualityValue">85%</span>
+                            </div>
+                            <div class="settings-group">
+                                <label for="customFormat">格式:</label>
+                                <select id="customFormat">
+                                    <option value="webp">WebP</option>
+                                    <option value="jpeg">JPEG</option>
+                                    <option value="png">PNG</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Optimization Controls -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="optimizeBtn" disabled>优化壁纸</button>
+                        <button class="action-btn" id="batchOptimizeBtn" disabled>批量优化</button>
+                        <button class="action-btn" id="resetBtn" disabled>重置</button>
+                    </div>
+
+                    <!-- Optimization Results -->
+                    <div class="results-section" id="resultsSection" style="display: none;">
+                        <h3>优化结果</h3>
+                        
+                        <!-- Stats Overview -->
+                        <div class="stats-overview" id="statsOverview">
+                            <div class="stat-item">
+                                <div class="stat-value" id="originalSize">0 KB</div>
+                                <div class="stat-label">原始大小</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="optimizedSize">0 KB</div>
+                                <div class="stat-label">优化后大小</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="reductionPercent">0%</div>
+                                <div class="stat-label">体积减少</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="loadingTime">0s</div>
+                                <div class="stat-label">预估加载时间</div>
+                            </div>
+                        </div>
+
+                        <!-- Single Image Results -->
+                        <div class="optimization-results" id="singleResults">
+                            <!-- Results will be populated here -->
+                        </div>
+
+                        <!-- Batch Optimization -->
+                        <div class="batch-optimization" id="batchOptimization" style="display: none;">
+                            <h4>批量优化结果</h4>
+                            <div class="batch-controls">
+                                <button class="batch-btn" id="downloadAllBtn">下载全部</button>
+                                <button class="batch-btn" id="downloadZipBtn">打包下载</button>
+                            </div>
+                            <div class="batch-results" id="batchResults">
+                                <!-- Batch results will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>NBA11</h3>
+                    <p>提供高质量的NBA手机壁纸下载服务</p>
+                </div>
+                <div>
+                    <h3>快速链接</h3>
+                    <div class="footer-links">
+                        <a href="../index.html">首页</a>
+                        <a href="../contact.html">联系我们</a>
+                        <a href="../privacy.html">隐私政策</a>
+                        <a href="../terms.html">用户协议</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 NBA11. All rights reserved.</p>
+                <p>Contact: tankeapp@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const uploadBox = document.getElementById('uploadBox');
+            const imageUpload = document.getElementById('imageUpload');
+            const imagesList = document.getElementById('imagesList');
+            const uploadProgress = document.getElementById('uploadProgress');
+            const optimizeBtn = document.getElementById('optimizeBtn');
+            const batchOptimizeBtn = document.getElementById('batchOptimizeBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const resultsSection = document.getElementById('resultsSection');
+            const singleResults = document.getElementById('singleResults');
+            const batchOptimization = document.getElementById('batchOptimization');
+            const batchResults = document.getElementById('batchResults');
+            const downloadAllBtn = document.getElementById('downloadAllBtn');
+            const downloadZipBtn = document.getElementById('downloadZipBtn');
+            const customSettings = document.getElementById('customSettings');
+            const customQuality = document.getElementById('customQuality');
+            const qualityValue = document.getElementById('qualityValue');
+
+            // Device presets
+            const devicePresets = document.querySelectorAll('.device-preset');
+            
+            // Stats elements
+            const originalSize = document.getElementById('originalSize');
+            const optimizedSize = document.getElementById('optimizedSize');
+            const reductionPercent = document.getElementById('reductionPercent');
+            const loadingTime = document.getElementById('loadingTime');
+
+            // Data storage
+            let uploadedFiles = [];
+            let optimizedFiles = [];
+            let currentDevice = 'mobile';
+
+            // Initialize
+            initEventListeners();
+
+            function initEventListeners() {
+                // Upload handling
+                uploadBox.addEventListener('dragover', handleDragOver);
+                uploadBox.addEventListener('dragleave', handleDragLeave);
+                uploadBox.addEventListener('drop', handleDrop);
+                imageUpload.addEventListener('change', handleFileSelect);
+
+                // Device preset selection
+                devicePresets.forEach(preset => {
+                    preset.addEventListener('click', function() {
+                        devicePresets.forEach(p => p.classList.remove('active'));
+                        this.classList.add('active');
+                        currentDevice = this.dataset.device;
+                        
+                        // Show/hide custom settings
+                        if (currentDevice === 'custom') {
+                            customSettings.style.display = 'block';
+                        } else {
+                            customSettings.style.display = 'none';
+                        }
+                    });
+                });
+
+                // Quality slider
+                customQuality.addEventListener('input', function() {
+                    qualityValue.textContent = this.value + '%';
+                });
+
+                // Action buttons
+                optimizeBtn.addEventListener('click', optimizeImages);
+                batchOptimizeBtn.addEventListener('click', batchOptimizeImages);
+                resetBtn.addEventListener('click', resetAll);
+                downloadAllBtn.addEventListener('click', downloadAll);
+                downloadZipBtn.addEventListener('click', downloadZip);
+            }
+
+            // Device preset configurations
+            const deviceConfigs = {
+                mobile: { width: 1080, height: 1920, quality: 0.85, format: 'webp' },
+                tablet: { width: 1536, height: 2048, quality: 0.85, format: 'webp' },
+                desktop: { width: 1920, height: 1080, quality: 0.9, format: 'webp' },
+                custom: { 
+                    get width() { return parseInt(document.getElementById('customWidth').value) || 1080; },
+                    get height() { return parseInt(document.getElementById('customHeight').value) || 1920; },
+                    get quality() { return parseInt(document.getElementById('customQuality').value) / 100 || 0.85; },
+                    get format() { return document.getElementById('customFormat').value || 'webp'; }
+                }
+            };
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                uploadBox.classList.add('dragover');
+            }
+
+            function handleDragLeave() {
+                uploadBox.classList.remove('dragover');
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                uploadBox.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length > 0) {
+                    processFiles(e.dataTransfer.files);
+                }
+            }
+
+            function handleFileSelect(e) {
+                if (e.target.files.length > 0) {
+                    processFiles(e.target.files);
+                }
+            }
+
+            function processFiles(files) {
+                // Show progress bar
+                uploadProgress.style.display = 'block';
+                const progressBar = uploadProgress.querySelector('.progress-fill');
+                const progressText = uploadProgress.querySelector('.progress-text');
+                
+                let totalFiles = files.length;
+                let processedFiles = 0;
+                
+                // Reset if this is the first upload
+                if (uploadedFiles.length === 0) {
+                    imagesList.innerHTML = '';
+                }
+                
+                // Process each file
+                Array.from(files).forEach(file => {
+                    // Check file type
+                    if (!file.type.match('image.*')) {
+                        Utils.showNotification(`跳过 ${file.name}: 不是图片文件!`, 'warning');
+                        processedFiles++;
+                        updateProgress();
+                        return;
+                    }
+                    
+                    // Check if file already uploaded
+                    if (uploadedFiles.some(f => f.name === file.name && f.size === file.size)) {
+                        Utils.showNotification(`跳过 ${file.name}: 已经上传!`, 'warning');
+                        processedFiles++;
+                        updateProgress();
+                        return;
+                    }
+                    
+                    // Create file entry
+                    const fileEntry = {
+                        name: file.name,
+                        size: file.size,
+                        type: file.type,
+                        file: file
+                    };
+                    
+                    // Add to uploaded files
+                    uploadedFiles.push(fileEntry);
+                    
+                    // Create file item in list
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.dataset.index = uploadedFiles.length - 1;
+                    fileItem.innerHTML = `
+                        <div class="file-info">
+                            <div class="file-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#666" viewBox="0 0 16 16">
+                                    <path d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
+                                    <path d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                            </div>
+                            <div class="file-details">
+                                <p class="file-name">${file.name}</p>
+                                <p class="file-size">${formatFileSize(file.size)} • ${file.type.split('/')[1].toUpperCase()}</p>
+                            </div>
+                        </div>
+                        <button class="remove-file-btn" title="删除文件">&times;</button>
+                    `;
+                    imagesList.appendChild(fileItem);
+                    
+                    // Add event listener to remove button
+                    const removeBtn = fileItem.querySelector('.remove-file-btn');
+                    removeBtn.addEventListener('click', function() {
+                        const index = parseInt(fileItem.dataset.index);
+                        uploadedFiles.splice(index, 1);
+                        updateFileIndices();
+                        fileItem.remove();
+                        updateButtonsState();
+                    });
+                    
+                    processedFiles++;
+                    updateProgress();
+                });
+                
+                function updateProgress() {
+                    const progress = Math.round((processedFiles / totalFiles) * 100);
+                    progressBar.style.width = `${progress}%`;
+                    progressText.textContent = `${progress}%`;
+                    
+                    if (processedFiles >= totalFiles) {
+                        setTimeout(() => {
+                            uploadProgress.style.display = 'none';
+                        }, 500);
+                        
+                        // Update buttons state
+                        updateButtonsState();
+                    }
+                }
+            }
+
+            function updateFileIndices() {
+                document.querySelectorAll('.file-item').forEach((item, index) => {
+                    item.dataset.index = index;
+                });
+            }
+
+            function updateButtonsState() {
+                const hasFiles = uploadedFiles.length > 0;
+                optimizeBtn.disabled = !hasFiles;
+                batchOptimizeBtn.disabled = !hasFiles;
+                resetBtn.disabled = !hasFiles;
+            }
+
+            async function optimizeImages() {
+                if (uploadedFiles.length === 0) return;
+                
+                // Show progress bar
+                uploadProgress.style.display = 'block';
+                const progressBar = uploadProgress.querySelector('.progress-fill');
+                const progressText = uploadProgress.querySelector('.progress-text');
+                
+                let totalFiles = uploadedFiles.length;
+                let optimizedCount = 0;
+                let totalOriginalSize = 0;
+                let totalOptimizedSize = 0;
+                
+                // Clear previous results
+                optimizedFiles = [];
+                singleResults.innerHTML = '';
+                batchOptimization.style.display = 'none';
+                
+                // Get current config
+                const config = deviceConfigs[currentDevice];
+                
+                for (let i = 0; i < uploadedFiles.length; i++) {
+                    const fileEntry = uploadedFiles[i];
+                    totalOriginalSize += fileEntry.size;
+                    
+                    try {
+                        const optimizedBlob = await optimizeSingleImage(fileEntry.file, config);
+                        const optimizedEntry = {
+                            name: fileEntry.name.replace(/\.[^/.]+$/, '') + '.' + config.format,
+                            size: optimizedBlob.size,
+                            type: optimizedBlob.type,
+                            blob: optimizedBlob,
+                            url: URL.createObjectURL(optimizedBlob),
+                            originalSize: fileEntry.size
+                        };
+                        
+                        optimizedFiles.push(optimizedEntry);
+                        totalOptimizedSize += optimizedBlob.size;
+                        
+                        // Create result card
+                        const resultCard = document.createElement('div');
+                        resultCard.className = 'result-card';
+                        resultCard.innerHTML = `
+                            <img src="${optimizedEntry.url}" alt="${optimizedEntry.name}" class="result-image">
+                            <div class="result-info">
+                                <div class="file-size">${formatFileSize(optimizedEntry.size)}</div>
+                                <div>${config.width}×${config.height}</div>
+                                <div>${config.format.toUpperCase()}</div>
+                                <a href="${optimizedEntry.url}" download="${optimizedEntry.name}" class="download-btn">下载</a>
+                            </div>
+                        `;
+                        singleResults.appendChild(resultCard);
+                        
+                    } catch (error) {
+                        console.error('优化失败:', error);
+                        Utils.showNotification(`优化 ${fileEntry.name} 失败`, 'error');
+                    }
+                    
+                    optimizedCount++;
+                    const progress = Math.round((optimizedCount / totalFiles) * 100);
+                    progressBar.style.width = `${progress}%`;
+                    progressText.textContent = `${progress}%`;
+                }
+                
+                // Hide progress bar
+                setTimeout(() => {
+                    uploadProgress.style.display = 'none';
+                    
+                    // Update stats
+                    updateStats(totalOriginalSize, totalOptimizedSize);
+                    
+                    // Show results section
+                    resultsSection.style.display = 'block';
+                }, 500);
+            }
+
+            function optimizeSingleImage(file, config) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = new Image();
+                        img.onload = function() {
+                            const canvas = document.createElement('canvas');
+                            const ctx = canvas.getContext('2d');
+                            
+                            // Calculate dimensions while maintaining aspect ratio
+                            const aspectRatio = img.width / img.height;
+                            let width = config.width;
+                            let height = config.height;
+                            
+                            if (width / height > aspectRatio) {
+                                width = height * aspectRatio;
+                            } else {
+                                height = width / aspectRatio;
+                            }
+                            
+                            canvas.width = width;
+                            canvas.height = height;
+                            
+                            // Draw image with high quality scaling
+                            ctx.imageSmoothingEnabled = true;
+                            ctx.imageSmoothingQuality = 'high';
+                            ctx.drawImage(img, 0, 0, width, height);
+                            
+                            // Convert to desired format
+                            let mimeType;
+                            switch(config.format) {
+                                case 'webp':
+                                    mimeType = 'image/webp';
+                                    break;
+                                case 'jpeg':
+                                    mimeType = 'image/jpeg';
+                                    break;
+                                case 'png':
+                                    mimeType = 'image/png';
+                                    break;
+                                default:
+                                    mimeType = 'image/webp';
+                            }
+                            
+                            canvas.toBlob(blob => {
+                                if (blob) {
+                                    resolve(blob);
+                                } else {
+                                    reject(new Error('无法创建优化后的图片'));
+                                }
+                            }, mimeType, config.quality);
+                        };
+                        img.onerror = reject;
+                        img.src = e.target.result;
+                    };
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            function batchOptimizeImages() {
+                if (uploadedFiles.length === 0) return;
+                
+                // For batch optimization, optimize for all device types
+                Utils.showNotification('批量优化功能开发中，目前请使用单张优化', 'info');
+                optimizeImages();
+            }
+
+            function updateStats(originalSize, optimizedSize) {
+                const reduction = ((1 - optimizedSize / originalSize) * 100).toFixed(1);
+                const estimatedTime = (optimizedSize / (1024 * 50)).toFixed(1); // 假设50KB/s网速
+                
+                originalSize.textContent = formatFileSize(originalSize);
+                optimizedSize.textContent = formatFileSize(optimizedSize);
+                reductionPercent.textContent = `${reduction}%`;
+                loadingTime.textContent = `${estimatedTime}s`;
+            }
+
+            function downloadAll() {
+                if (optimizedFiles.length === 0) return;
+                
+                // Download the first file as example
+                const firstFile = optimizedFiles[0];
+                if (firstFile) {
+                    const link = document.createElement('a');
+                    link.href = firstFile.url;
+                    link.download = firstFile.name;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    Utils.showNotification('壁纸下载成功!');
+                }
+            }
+
+            function downloadZip() {
+                Utils.showNotification('打包下载功能开发中，请单独下载每张壁纸', 'info');
+            }
+
+            function resetAll() {
+                uploadedFiles = [];
+                optimizedFiles = [];
+                imagesList.innerHTML = '';
+                singleResults.innerHTML = '';
+                resultsSection.style.display = 'none';
+                updateButtonsState();
+                Utils.showNotification('已重置所有文件!');
+            }
+
+            // Helper functions
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+        });
+    </script>
+</body>
+</html>
