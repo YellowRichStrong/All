@@ -46,7 +46,7 @@ for filename in os.listdir(blog_dir):
     <div class="container">
         <div class="breadcrumb">
             <a href="https://openai2026.com">Home</a> &gt; 
-            <a href="https://openai2026.com/blog">Blog</a> &gt; 
+            <a href="https://openai2026.com/blog/index.html">Blog</a> &gt; 
             <span>{}</span>
         </div>
     </div>'''.format(filename.replace('.html', '').replace('-', ' ').title())
@@ -64,7 +64,7 @@ for filename in os.listdir(blog_dir):
     <div class="container">
         <div class="breadcrumb">
             <a href="https://openai2026.com">Home</a> &gt; 
-            <a href="https://openai2026.com/blog">Blog</a> &gt; 
+            <a href="https://openai2026.com/blog/index.html">Blog</a> &gt; 
             <span>{}</span>
         </div>
     </div>'''.format(filename.replace('.html', '').replace('-', ' ').title())
