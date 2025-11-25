@@ -70,9 +70,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Supabase配置
-        const SUPABASE_URL = 'https://nuvfdstxwxmdobipzlbf.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51dmZkc3R4d3htZG9iaXB6bGJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMzgxNzgsImV4cCI6MjA3OTYxNDE3OH0.46-tn_DaSzJvnG5NW7PKi_EM9CMk23hD684og6SFjlw';
+        // Supabase配置 - 更新为新项目
+        const SUPABASE_URL = 'https://shzejekcbemmqfpwijmo.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNoemVqZWtjYmVtbXFmcHdpam1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMjI4MzAsImV4cCI6MjA3OTU5ODgzMH0.lSrFmll1vPAPA_-msJKTFfKYfh_m696l7La7Eg3HBFE';
 
         // 创建Supabase客户端
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -83,11 +83,23 @@
 
         async function handleAuthCallback() {
             try {
+                // 检查URL中是否有错误参数
+                const hashParams = new URLSearchParams(window.location.hash.substring(1));
+                const errorParam = hashParams.get('error');
+                const errorDescription = hashParams.get('error_description');
+                
+                if (errorParam) {
+                    throw new Error(`OAuth Error: ${errorParam} - ${errorDescription || 'Unknown error'}`);
+                }
+
                 // Supabase会自动处理URL中的认证参数
                 // 只需要获取当前会话即可
                 const { data: { session }, error } = await supabaseClient.auth.getSession();
 
-                if (error) throw error;
+                if (error) {
+                    console.error('Supabase session error:', error);
+                    throw new Error(`Supabase Error: ${error.message}`);
+                }
 
                 if (session && session.user) {
                     // 认证成功
@@ -107,14 +119,17 @@
                     }, 1500);
                 } else {
                     // 没有会话，尝试从URL获取
-                    const hashParams = new URLSearchParams(window.location.hash.substring(1));
                     const accessToken = hashParams.get('access_token');
                     
                     if (accessToken) {
                         // 等待Supabase处理认证
                         await new Promise(resolve => setTimeout(resolve, 1000));
                         // 重新获取会话
-                        const { data: { session: newSession } } = await supabaseClient.auth.getSession();
+                        const { data: { session: newSession }, error: sessionError } = await supabaseClient.auth.getSession();
+                        
+                        if (sessionError) {
+                            throw new Error(`Session Error: ${sessionError.message}`);
+                        }
                         
                         if (newSession) {
                             loader.style.display = 'none';
@@ -127,10 +142,10 @@
                                 window.location.href = 'https://openai2026.com/index.html';
                             }, 1500);
                         } else {
-                            throw new Error('Failed to create session');
+                            throw new Error('Failed to create session - no session returned');
                         }
                     } else {
-                        throw new Error('No authentication data found');
+                        throw new Error('No authentication data found in URL');
                     }
                 }
 
@@ -139,7 +154,22 @@
                 loader.style.display = 'none';
                 message.className = 'message error';
                 message.textContent = `Authentication failed: ${error.message}`;
-                redirectInfo.innerHTML = 'Please try again. <a href="login.html" style="color: #4CAF50; text-decoration: underline;">Back to login</a>';
+                
+                // 显示详细错误信息和解决方案
+                let errorDetails = '';
+                if (error.message.includes('unexpected_failure')) {
+                    errorDetails = '<br><br><strong>Possible causes:</strong><br>' +
+                        '1. Google Client Secret is missing or incorrect in Supabase<br>' +
+                        '2. Google OAuth is not properly configured<br>' +
+                        '3. Supabase Google Provider is not enabled<br><br>' +
+                        '<strong>Please check:</strong><br>' +
+                        '- Supabase Dashboard → Authentication → Providers → Google<br>' +
+                        '- Make sure Client Secret is filled correctly';
+                }
+                
+                redirectInfo.innerHTML = errorDetails + 
+                    '<br><br><a href="login.html" style="color: #4CAF50; text-decoration: underline;">Back to login</a> | ' +
+                    '<a href="debug.html" style="color: #2196F3; text-decoration: underline;">Open Debug Tool</a>';
             }
         }
 
