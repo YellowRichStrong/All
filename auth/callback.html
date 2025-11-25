@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication - OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f7fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .auth-container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            max-width: 500px;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .message {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .error {
+            color: #f44336;
+        }
+
+        .success {
+            color: #4CAF50;
+        }
+
+        .redirect-info {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="loader" id="loader"></div>
+        <div class="message" id="message">Processing authentication...</div>
+        <div class="redirect-info" id="redirectInfo"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Supabase配置
+        const SUPABASE_URL = 'https://nuvfdstxwxmdobipzlbf.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51dmZkc3R4d3htZG9iaXB6bGJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMzgxNzgsImV4cCI6MjA3OTYxNDE3OH0.46-tn_DaSzJvnG5NW7PKi_EM9CMk23hD684og6SFjlw';
+
+        // 创建Supabase客户端
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const loader = document.getElementById('loader');
+        const message = document.getElementById('message');
+        const redirectInfo = document.getElementById('redirectInfo');
+
+        async function handleAuthCallback() {
+            try {
+                // Supabase会自动处理URL中的认证参数
+                // 只需要获取当前会话即可
+                const { data: { session }, error } = await supabaseClient.auth.getSession();
+
+                if (error) throw error;
+
+                if (session && session.user) {
+                    // 认证成功
+                    loader.style.display = 'none';
+                    message.className = 'message success';
+                    message.textContent = `Welcome, ${session.user.email}!`;
+                    
+                    // 保存用户信息到localStorage
+                    localStorage.setItem('supabase_user', JSON.stringify(session.user));
+                    localStorage.setItem('supabase_session', JSON.stringify(session));
+                    
+                    redirectInfo.textContent = 'Redirecting to homepage...';
+
+                    // 立即重定向到首页（使用完整域名）
+                    setTimeout(() => {
+                        window.location.href = 'https://openai2026.com/index.html';
+                    }, 1500);
+                } else {
+                    // 没有会话，尝试从URL获取
+                    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+                    const accessToken = hashParams.get('access_token');
+                    
+                    if (accessToken) {
+                        // 等待Supabase处理认证
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                        // 重新获取会话
+                        const { data: { session: newSession } } = await supabaseClient.auth.getSession();
+                        
+                        if (newSession) {
+                            loader.style.display = 'none';
+                            message.className = 'message success';
+                            message.textContent = `Welcome, ${newSession.user.email}!`;
+                            localStorage.setItem('supabase_user', JSON.stringify(newSession.user));
+                            localStorage.setItem('supabase_session', JSON.stringify(newSession));
+                            redirectInfo.textContent = 'Redirecting to homepage...';
+                            setTimeout(() => {
+                                window.location.href = 'https://openai2026.com/index.html';
+                            }, 1500);
+                        } else {
+                            throw new Error('Failed to create session');
+                        }
+                    } else {
+                        throw new Error('No authentication data found');
+                    }
+                }
+
+            } catch (error) {
+                console.error('Authentication error:', error);
+                loader.style.display = 'none';
+                message.className = 'message error';
+                message.textContent = `Authentication failed: ${error.message}`;
+                redirectInfo.innerHTML = 'Please try again. <a href="login.html" style="color: #4CAF50; text-decoration: underline;">Back to login</a>';
+            }
+        }
+
+        // 页面加载时处理回调
+        handleAuthCallback();
+    </script>
+</body>
+</html>

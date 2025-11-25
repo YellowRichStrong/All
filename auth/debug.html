@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Supabase Auth</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .section {
+            background: #252526;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #3e3e42;
+        }
+        .section h2 {
+            color: #4FC3F7;
+            margin-top: 0;
+        }
+        .info {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        .error {
+            border-left-color: #f44336;
+        }
+        .warning {
+            border-left-color: #ff9800;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .btn-secondary {
+            background: #2196F3;
+        }
+        .btn-secondary:hover {
+            background: #1976D2;
+        }
+        .btn-danger {
+            background: #f44336;
+        }
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+        pre {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #4CAF50;
+            color: white;
+        }
+        .status.failed {
+            background: #f44336;
+            color: white;
+        }
+        .status.pending {
+            background: #ff9800;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Supabase Authentication Debug Tool</h1>
+    
+    <div class="section">
+        <h2>📋 Configuration Info</h2>
+        <div class="info">
+            <strong>Supabase URL:</strong> <span id="supabaseUrl"></span>
+        </div>
+        <div class="info">
+            <strong>Current Origin:</strong> <span id="currentOrigin"></span>
+        </div>
+        <div class="info">
+            <strong>Callback URL:</strong> <span id="callbackUrl"></span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🔐 Authentication Status</h2>
+        <div class="info" id="authStatus">
+            <span class="status pending">Checking...</span>
+        </div>
+        <div id="userInfo" style="display: none;">
+            <pre id="userDetails"></pre>
+        </div>
+        <button onclick="checkAuth()">🔄 Refresh Auth Status</button>
+        <button class="btn-secondary" onclick="testGoogleLogin()">🧪 Test Google Login</button>
+        <button class="btn-danger" onclick="clearAuth()">🗑️ Clear Auth Data</button>
+    </div>
+
+    <div class="section">
+        <h2>📊 Session Info</h2>
+        <div id="sessionInfo">
+            <pre id="sessionDetails">No session data</pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>💾 LocalStorage Data</h2>
+        <div id="localStorageInfo">
+            <pre id="localStorageDetails">Checking...</pre>
+        </div>
+        <button onclick="showLocalStorage()">🔄 Refresh LocalStorage</button>
+    </div>
+
+    <div class="section">
+        <h2>🌐 URL Parameters</h2>
+        <div class="info">
+            <strong>Hash:</strong> <span id="urlHash"></span>
+        </div>
+        <div class="info">
+            <strong>Query:</strong> <span id="urlQuery"></span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📝 Console Logs</h2>
+        <div id="consoleLogs" style="max-height: 300px; overflow-y: auto;">
+            <pre id="logs"></pre>
+        </div>
+        <button onclick="clearLogs()">🗑️ Clear Logs</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://nuvfdstxwxmdobipzlbf.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51dmZkc3R4d3htZG9iaXB6bGJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMzgxNzgsImV4cCI6MjA3OTYxNDE3OH0.46-tn_DaSzJvnG5NW7PKi_EM9CMk23hD684og6SFjlw';
+
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        let logs = [];
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] [${type.toUpperCase()}] ${message}`;
+            logs.push(logEntry);
+            document.getElementById('logs').textContent = logs.join('\n');
+            console.log(logEntry);
+        }
+
+        function clearLogs() {
+            logs = [];
+            document.getElementById('logs').textContent = '';
+        }
+
+        // 显示配置信息
+        document.getElementById('supabaseUrl').textContent = SUPABASE_URL;
+        document.getElementById('currentOrigin').textContent = window.location.origin;
+        document.getElementById('callbackUrl').textContent = window.location.origin + '/auth/callback.html';
+
+        // 显示URL参数
+        document.getElementById('urlHash').textContent = window.location.hash || '(empty)';
+        document.getElementById('urlQuery').textContent = window.location.search || '(empty)';
+
+        // 检查认证状态
+        async function checkAuth() {
+            log('Checking authentication status...');
+            const authStatusDiv = document.getElementById('authStatus');
+            const userInfoDiv = document.getElementById('userInfo');
+            const userDetailsDiv = document.getElementById('userDetails');
+            const sessionDetailsDiv = document.getElementById('sessionDetails');
+
+            try {
+                const { data: { session }, error } = await supabaseClient.auth.getSession();
+                
+                if (error) {
+                    throw error;
+                }
+
+                if (session && session.user) {
+                    log('✅ User is authenticated', 'success');
+                    authStatusDiv.innerHTML = '<span class="status success">✅ Authenticated</span>';
+                    userInfoDiv.style.display = 'block';
+                    userDetailsDiv.textContent = JSON.stringify(session.user, null, 2);
+                    sessionDetailsDiv.textContent = JSON.stringify(session, null, 2);
+                } else {
+                    log('❌ No active session', 'warning');
+                    authStatusDiv.innerHTML = '<span class="status failed">❌ Not Authenticated</span>';
+                    userInfoDiv.style.display = 'none';
+                    sessionDetailsDiv.textContent = 'No active session';
+                }
+            } catch (error) {
+                log('❌ Error checking auth: ' + error.message, 'error');
+                authStatusDiv.innerHTML = '<span class="status failed">❌ Error: ' + error.message + '</span>';
+            }
+        }
+
+        // 显示LocalStorage
+        function showLocalStorage() {
+            const localStorageDetailsDiv = document.getElementById('localStorageDetails');
+            const data = {
+                supabase_user: localStorage.getItem('supabase_user'),
+                supabase_session: localStorage.getItem('supabase_session'),
+                all_keys: Object.keys(localStorage)
+            };
+            localStorageDetailsDiv.textContent = JSON.stringify(data, null, 2);
+            log('LocalStorage refreshed');
+        }
+
+        // 测试Google登录
+        async function testGoogleLogin() {
+            log('Initiating Google login...');
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: {
+                        redirectTo: window.location.origin + '/auth/callback.html'
+                    }
+                });
+
+                if (error) {
+                    throw error;
+                }
+
+                log('✅ Google login initiated successfully', 'success');
+                log('Redirecting to Google...', 'info');
+            } catch (error) {
+                log('❌ Google login failed: ' + error.message, 'error');
+                alert('Google login failed: ' + error.message);
+            }
+        }
+
+        // 清除认证数据
+        async function clearAuth() {
+            if (!confirm('Are you sure you want to clear all authentication data?')) {
+                return;
+            }
+
+            log('Clearing authentication data...');
+            try {
+                await supabaseClient.auth.signOut();
+                localStorage.removeItem('supabase_user');
+                localStorage.removeItem('supabase_session');
+                log('✅ Authentication data cleared', 'success');
+                checkAuth();
+                showLocalStorage();
+            } catch (error) {
+                log('❌ Error clearing auth: ' + error.message, 'error');
+            }
+        }
+
+        // 页面加载时执行
+        log('Debug tool initialized');
+        checkAuth();
+        showLocalStorage();
+    </script>
+</body>
+</html>

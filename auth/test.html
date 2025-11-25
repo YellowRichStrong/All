@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Login Test - OOPEN AII</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-danger {
+            background: #f44336;
+        }
+
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+
+        .btn-secondary {
+            background: #2196F3;
+        }
+
+        .btn-secondary:hover {
+            background: #1976D2;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .status.not-logged-in {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        .status.logged-in {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .user-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .user-info h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .user-detail {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .user-detail strong {
+            width: 120px;
+            color: #666;
+        }
+
+        .user-detail span {
+            color: #333;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .log {
+            background: #263238;
+            color: #aed581;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .log-item {
+            margin-bottom: 5px;
+            padding: 5px 0;
+            border-bottom: 1px solid #37474f;
+        }
+
+        .log-item:last-child {
+            border-bottom: none;
+        }
+
+        .log-time {
+            color: #64b5f6;
+            margin-right: 10px;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        .instructions {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .instructions h4 {
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Google登录功能测试</h1>
+            <p>测试Supabase Google OAuth集成</p>
+        </div>
+
+        <!-- 登录状态 -->
+        <div class="section">
+            <h2>登录状态</h2>
+            <div id="statusDiv" class="status not-logged-in">
+                ❌ 未登录
+            </div>
+
+            <div id="userInfoDiv" style="display:none;">
+                <div class="user-info">
+                    <img id="userAvatar" class="user-avatar" src="" alt="Avatar">
+                    <h3>用户信息</h3>
+                    <div class="user-detail">
+                        <strong>邮箱:</strong>
+                        <span id="userEmail"></span>
+                    </div>
+                    <div class="user-detail">
+                        <strong>用户ID:</strong>
+                        <span id="userId"></span>
+                    </div>
+                    <div class="user-detail">
+                        <strong>Provider:</strong>
+                        <span id="userProvider"></span>
+                    </div>
+                    <div class="user-detail">
+                        <strong>创建时间:</strong>
+                        <span id="userCreated"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="section">
+            <h2>操作</h2>
+            <button class="btn" id="loginBtn">🔓 Google登录</button>
+            <button class="btn btn-danger" id="logoutBtn">🔒 退出登录</button>
+            <button class="btn btn-secondary" id="checkStatusBtn">🔍 检查状态</button>
+            <button class="btn btn-secondary" id="getSessionBtn">📋 获取会话</button>
+            <button class="btn btn-secondary" id="clearLogBtn">🗑️ 清空日志</button>
+        </div>
+
+        <!-- 使用说明 -->
+        <div class="section">
+            <h2>使用说明</h2>
+            <div class="instructions">
+                <h4>⚙️ 配置步骤：</h4>
+                <ol>
+                    <li>在Supabase Dashboard中启用Google Provider</li>
+                    <li>配置Google OAuth Client ID和Secret</li>
+                    <li>添加回调URL: <code>https://openai2026.com/auth/callback.html</code></li>
+                    <li>点击上方"Google登录"按钮测试</li>
+                </ol>
+            </div>
+
+            <div class="code-block">
+// 当前配置<br>
+Supabase URL: https://nuvfdstxwxmdobipzlbf.supabase.co<br>
+Google Client ID: 524383862092-tut5vno5s2gt1oeb1rkttaj6dhtk1g32.apps.googleusercontent.com<br>
+Redirect URL: https://openai2026.com/auth/callback.html
+            </div>
+        </div>
+
+        <!-- 日志 -->
+        <div class="section">
+            <h2>事件日志</h2>
+            <div class="log" id="logDiv">
+                <div class="log-item">
+                    <span class="log-time">[等待操作]</span>
+                    <span>点击上方按钮开始测试...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Supabase配置
+        const SUPABASE_URL = 'https://nuvfdstxwxmdobipzlbf.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51dmZkc3R4d3htZG9iaXB6bGJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMzgxNzgsImV4cCI6MjA3OTYxNDE3OH0.46-tn_DaSzJvnG5NW7PKi_EM9CMk23hD684og6SFjlw';
+
+        // 创建Supabase客户端
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // DOM元素
+        const statusDiv = document.getElementById('statusDiv');
+        const userInfoDiv = document.getElementById('userInfoDiv');
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const checkStatusBtn = document.getElementById('checkStatusBtn');
+        const getSessionBtn = document.getElementById('getSessionBtn');
+        const clearLogBtn = document.getElementById('clearLogBtn');
+        const logDiv = document.getElementById('logDiv');
+
+        // 日志函数
+        function addLog(message, type = 'info') {
+            const time = new Date().toLocaleTimeString();
+            const logItem = document.createElement('div');
+            logItem.className = 'log-item';
+            logItem.innerHTML = `<span class="log-time">[${time}]</span><span>${message}</span>`;
+            logDiv.appendChild(logItem);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        // Google登录
+        loginBtn.addEventListener('click', async () => {
+            try {
+                addLog('🚀 开始Google登录流程...');
+                
+                const { data, error } = await client.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: {
+                        redirectTo: `${window.location.origin}/auth/callback.html`
+                    }
+                });
+
+                if (error) throw error;
+                
+                addLog('✅ 登录请求已发送，正在跳转到Google...');
+            } catch (error) {
+                addLog(`❌ 登录失败: ${error.message}`, 'error');
+                console.error('Login error:', error);
+            }
+        });
+
+        // 退出登录
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                addLog('🔄 正在退出登录...');
+                
+                const { error } = await client.auth.signOut();
+                if (error) throw error;
+                
+                addLog('✅ 退出登录成功');
+                updateUI(null);
+            } catch (error) {
+                addLog(`❌ 退出失败: ${error.message}`, 'error');
+                console.error('Logout error:', error);
+            }
+        });
+
+        // 检查状态
+        checkStatusBtn.addEventListener('click', async () => {
+            try {
+                addLog('🔍 检查登录状态...');
+                
+                const { data: { user } } = await client.auth.getUser();
+                
+                if (user) {
+                    addLog(`✅ 已登录: ${user.email}`);
+                    updateUI(user);
+                } else {
+                    addLog('ℹ️ 未登录');
+                    updateUI(null);
+                }
+            } catch (error) {
+                addLog(`❌ 检查失败: ${error.message}`, 'error');
+                console.error('Check status error:', error);
+            }
+        });
+
+        // 获取会话
+        getSessionBtn.addEventListener('click', async () => {
+            try {
+                addLog('📋 获取会话信息...');
+                
+                const { data: { session } } = await client.auth.getSession();
+                
+                if (session) {
+                    addLog(`✅ 会话有效，过期时间: ${new Date(session.expires_at * 1000).toLocaleString()}`);
+                    console.log('Session:', session);
+                } else {
+                    addLog('ℹ️ 无活动会话');
+                }
+            } catch (error) {
+                addLog(`❌ 获取会话失败: ${error.message}`, 'error');
+                console.error('Get session error:', error);
+            }
+        });
+
+        // 清空日志
+        clearLogBtn.addEventListener('click', () => {
+            logDiv.innerHTML = '<div class="log-item"><span class="log-time">[已清空]</span><span>日志已清空</span></div>';
+        });
+
+        // 更新UI
+        function updateUI(user) {
+            if (user) {
+                statusDiv.className = 'status logged-in';
+                statusDiv.textContent = '✅ 已登录';
+                userInfoDiv.style.display = 'block';
+
+                document.getElementById('userEmail').textContent = user.email || '-';
+                document.getElementById('userId').textContent = user.id || '-';
+                document.getElementById('userProvider').textContent = user.app_metadata?.provider || '-';
+                document.getElementById('userCreated').textContent = new Date(user.created_at).toLocaleString() || '-';
+                
+                const avatarUrl = user.user_metadata?.avatar_url || 
+                    `https://ui-avatars.com/api/?name=${encodeURIComponent(user.email)}&background=4CAF50&color=fff`;
+                document.getElementById('userAvatar').src = avatarUrl;
+            } else {
+                statusDiv.className = 'status not-logged-in';
+                statusDiv.textContent = '❌ 未登录';
+                userInfoDiv.style.display = 'none';
+            }
+        }
+
+        // 监听认证状态变化
+        client.auth.onAuthStateChange((event, session) => {
+            addLog(`📡 认证状态变化: ${event}`);
+            console.log('Auth state change:', event, session);
+            
+            if (session) {
+                updateUI(session.user);
+            } else {
+                updateUI(null);
+            }
+        });
+
+        // 页面加载时检查状态
+        (async () => {
+            addLog('🎬 页面加载，检查登录状态...');
+            const { data: { user } } = await client.auth.getUser();
+            updateUI(user);
+            
+            if (user) {
+                addLog(`✅ 检测到已登录用户: ${user.email}`);
+            } else {
+                addLog('ℹ️ 当前未登录');
+            }
+        })();
+    </script>
+</body>
+</html>
