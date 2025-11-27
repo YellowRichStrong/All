@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Admin | OOPEN AII</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <style>
+        body {
+            background: #f5f7fa;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .admin-header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-header h1 {
+            color: #333;
+            margin: 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background: #f44336;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background: #d32f2f;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .editor-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .form-group textarea {
+            min-height: 400px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            line-height: 1.6;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-secondary {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #1976D2;
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+
+        .posts-list {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .post-item {
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-info h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .post-meta {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .edit-btn {
+            background: #2196F3;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        .preview-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            min-height: 500px;
+        }
+
+        .preview-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .preview-content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .preview-content p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .message {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .require-login {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 500px;
+            margin: 40px auto;
+        }
+
+        .require-login h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 30px auto;
+            text-align: left;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .login-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .login-btn:hover {
+            background: #45a049;
+        }
+
+        .error-msg {
+            color: #f44336;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .post-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="OOPEN AII Logo">
+                </a>
+                <h1>OOPEN AII</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li class="active"><a href="index.html">Blog</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="admin-container" id="adminContainer">
+        <!-- 未登录提示 -->
+        <div class="require-login" id="requireLogin" style="display: none;">
+            <h2>🔒 管理员登录</h2>
+            <p>请输入管理员账号和密码</p>
+            <form class="login-form" id="adminLoginForm">
+                <input type="text" id="adminUsername" placeholder="账号" required autocomplete="username">
+                <input type="password" id="adminPassword" placeholder="密码" required autocomplete="current-password">
+                <button type="submit" class="login-btn">登录</button>
+                <div class="error-msg" id="loginError" style="display: none;"></div>
+            </form>
+        </div>
+
+        <!-- 管理后台内容 -->
+        <div id="adminContent" style="display: none;">
+            <div class="admin-header">
+                <h1>📝 博客管理后台</h1>
+                <div class="user-info">
+                    <img id="userAvatar" class="user-avatar" src="" alt="User">
+                    <span id="userName"></span>
+                    <button class="logout-btn" id="logoutBtn">退出</button>
+                </div>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="switchTab('new')">✨ 新建文章</button>
+                <button class="tab-btn" onclick="switchTab('list')">📋 文章列表</button>
+                <button class="tab-btn" onclick="switchTab('preview')">👁️ 预览</button>
+            </div>
+
+            <!-- 新建文章 -->
+            <div class="tab-content active" id="tab-new">
+                <div class="editor-container">
+                    <div id="message"></div>
+                    <form id="postForm">
+                        <div class="form-group">
+                            <label for="title">文章标题</label>
+                            <input type="text" id="title" name="title" required placeholder="输入文章标题...">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="slug">URL Slug</label>
+                                <input type="text" id="slug" name="slug" required placeholder="article-url-slug">
+                            </div>
+                            <div class="form-group">
+                                <label for="category">分类</label>
+                                <select id="category" name="category" required>
+                                    <option value="">选择分类</option>
+                                    <option value="Image Tools">Image Tools</option>
+                                    <option value="Code Tools">Code Tools</option>
+                                    <option value="Encryption">Encryption</option>
+                                    <option value="Network Tools">Network Tools</option>
+                                    <option value="Tutorial">Tutorial</option>
+                                    <option value="Tips">Tips</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="excerpt">文章摘要</label>
+                            <textarea id="excerpt" name="excerpt" rows="3" required placeholder="简短描述文章内容..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="content">文章内容 (HTML)</label>
+                            <textarea id="content" name="content" required placeholder="在这里编写 HTML 内容..."></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="metaKeywords">SEO Keywords</label>
+                                <input type="text" id="metaKeywords" name="metaKeywords" placeholder="keyword1, keyword2, keyword3">
+                            </div>
+                            <div class="form-group">
+                                <label for="status">发布状态</label>
+                                <select id="status" name="status">
+                                    <option value="draft">草稿</option>
+                                    <option value="published">已发布</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">💾 保存文章</button>
+                            <button type="button" class="btn btn-secondary" onclick="previewPost()">👁️ 预览</button>
+                            <button type="button" class="btn btn-danger" onclick="resetForm()">🗑️ 清空</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 文章列表 -->
+            <div class="tab-content" id="tab-list">
+                <div class="posts-list">
+                    <h2>所有文章</h2>
+                    <div id="postsList">
+                        <div class="loading">加载中...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 预览 -->
+            <div class="tab-content" id="tab-preview">
+                <div class="preview-container">
+                    <div class="preview-content" id="previewContent">
+                        <p style="text-align: center; color: #999;">预览区域</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 OOPEN AII. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Supabase配置
+        const SUPABASE_URL = 'https://shzejekcbemmqfpwijmo.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNoemVqZWtjYmVtbXFmcHdpam1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMjI4MzAsImV4cCI6MjA3OTU5ODgzMH0.lSrFmll1vPAPA_-msJKTFfKYfh_m696l7La7Eg3HBFE';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let currentUser = null;
+        let currentEditId = null;
+
+        // 管理员账号配置
+        const ADMIN_CREDENTIALS = {
+            username: 'admin',
+            password: '123456'
+        };
+
+        // 检查登录状态
+        async function checkAuth() {
+            // 检查管理员登录状态
+            const adminToken = localStorage.getItem('adminToken');
+            if (adminToken === btoa(ADMIN_CREDENTIALS.username + ':' + ADMIN_CREDENTIALS.password)) {
+                showAdminPanel();
+                return;
+            }
+
+            // 检查 Google 登录状态
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            
+            if (user) {
+                currentUser = user;
+                showAdminPanel(user);
+            } else {
+                document.getElementById('requireLogin').style.display = 'block';
+                document.getElementById('adminContent').style.display = 'none';
+            }
+        }
+
+        // 显示管理后台
+        function showAdminPanel(user = null) {
+            document.getElementById('requireLogin').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+            
+            if (user) {
+                currentUser = user;
+                document.getElementById('userName').textContent = user.user_metadata?.full_name || user.email;
+                document.getElementById('userAvatar').src = user.user_metadata?.avatar_url || 
+                    `https://ui-avatars.com/api/?name=${encodeURIComponent(user.email)}&background=4CAF50&color=fff`;
+            } else {
+                // 管理员登录
+                currentUser = {
+                    id: 'admin',
+                    email: 'admin@openai2026.com',
+                    user_metadata: {
+                        full_name: 'Administrator'
+                    }
+                };
+                document.getElementById('userName').textContent = 'Administrator';
+                document.getElementById('userAvatar').src = 'https://ui-avatars.com/api/?name=Admin&background=FF5722&color=fff';
+            }
+            
+            loadPosts();
+        }
+
+        // 管理员登录表单提交
+        document.getElementById('adminLoginForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const errorMsg = document.getElementById('loginError');
+            
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                // 登录成功，保存 token
+                const token = btoa(username + ':' + password);
+                localStorage.setItem('adminToken', token);
+                
+                // 显示管理后台
+                showAdminPanel();
+            } else {
+                // 登录失败
+                errorMsg.textContent = '❌ 账号或密码错误';
+                errorMsg.style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+            }
+        });
+
+        // 退出登录
+        document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+            // 清除管理员 token
+            localStorage.removeItem('adminToken');
+            
+            // 退出 Google 登录
+            await supabaseClient.auth.signOut();
+            
+            // 重新加载页面
+            window.location.reload();
+        });
+
+        // 切换标签页
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            
+            if (tabName === 'list') {
+                loadPosts();
+            }
+        }
+
+        // 自动生成 slug
+        document.getElementById('title')?.addEventListener('input', (e) => {
+            const title = e.target.value;
+            const slug = title.toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .trim();
+            document.getElementById('slug').value = slug;
+        });
+
+        // 保存文章
+        document.getElementById('postForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                title: document.getElementById('title').value,
+                slug: document.getElementById('slug').value,
+                category: document.getElementById('category').value,
+                excerpt: document.getElementById('excerpt').value,
+                content: document.getElementById('content').value,
+                meta_keywords: document.getElementById('metaKeywords').value,
+                status: document.getElementById('status').value,
+                author_id: currentUser.id,
+                author_name: currentUser.user_metadata?.full_name || currentUser.email,
+                published_at: new Date().toISOString()
+            };
+
+            try {
+                let result;
+                if (currentEditId) {
+                    // 更新文章
+                    result = await supabaseClient
+                        .from('blog_posts')
+                        .update(formData)
+                        .eq('id', currentEditId);
+                } else {
+                    // 新建文章
+                    result = await supabaseClient
+                        .from('blog_posts')
+                        .insert([formData]);
+                }
+
+                if (result.error) throw result.error;
+
+                showMessage('✅ 文章保存成功！', 'success');
+                resetForm();
+                setTimeout(() => switchTab('list'), 1500);
+            } catch (error) {
+                console.error('Error saving post:', error);
+                showMessage('❌ 保存失败: ' + error.message, 'error');
+            }
+        });
+
+        // 加载文章列表
+        async function loadPosts() {
+            const listContainer = document.getElementById('postsList');
+            listContainer.innerHTML = '<div class="loading">加载中...</div>';
+
+            try {
+                const { data: posts, error } = await supabaseClient
+                    .from('blog_posts')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                if (posts.length === 0) {
+                    listContainer.innerHTML = '<p style="text-align: center; color: #999;">暂无文章</p>';
+                    return;
+                }
+
+                listContainer.innerHTML = posts.map(post => `
+                    <div class="post-item">
+                        <div class="post-info">
+                            <h3>${post.title}</h3>
+                            <div class="post-meta">
+                                <span>分类: ${post.category}</span> | 
+                                <span>状态: ${post.status === 'published' ? '✅ 已发布' : '📝 草稿'}</span> | 
+                                <span>${new Date(post.created_at).toLocaleDateString('zh-CN')}</span>
+                            </div>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn edit-btn" onclick="editPost('${post.id}')">编辑</button>
+                            <button class="action-btn delete-btn" onclick="deletePost('${post.id}')">删除</button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                listContainer.innerHTML = '<p style="text-align: center; color: #f44336;">加载失败</p>';
+            }
+        }
+
+        // 编辑文章
+        async function editPost(id) {
+            try {
+                const { data: post, error } = await supabaseClient
+                    .from('blog_posts')
+                    .select('*')
+                    .eq('id', id)
+                    .single();
+
+                if (error) throw error;
+
+                currentEditId = id;
+                document.getElementById('title').value = post.title;
+                document.getElementById('slug').value = post.slug;
+                document.getElementById('category').value = post.category;
+                document.getElementById('excerpt').value = post.excerpt;
+                document.getElementById('content').value = post.content;
+                document.getElementById('metaKeywords').value = post.meta_keywords || '';
+                document.getElementById('status').value = post.status;
+
+                switchTab('new');
+                showMessage('📝 正在编辑文章', 'success');
+            } catch (error) {
+                console.error('Error loading post:', error);
+                showMessage('❌ 加载失败', 'error');
+            }
+        }
+
+        // 删除文章
+        async function deletePost(id) {
+            if (!confirm('确定要删除这篇文章吗？')) return;
+
+            try {
+                const { error } = await supabaseClient
+                    .from('blog_posts')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                showMessage('✅ 文章已删除', 'success');
+                loadPosts();
+            } catch (error) {
+                console.error('Error deleting post:', error);
+                showMessage('❌ 删除失败', 'error');
+            }
+        }
+
+        // 预览文章
+        function previewPost() {
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const category = document.getElementById('category').value;
+            
+            const previewContent = document.getElementById('previewContent');
+            previewContent.innerHTML = `
+                <div style="margin-bottom: 20px;">
+                    <span style="background: #f0f9f0; color: #4CAF50; padding: 5px 12px; border-radius: 20px; font-size: 13px;">${category}</span>
+                </div>
+                <h1>${title}</h1>
+                <div style="color: #666; margin-bottom: 30px;">${new Date().toLocaleDateString('zh-CN')}</div>
+                <div>${content}</div>
+            `;
+            
+            switchTab('preview');
+        }
+
+        // 重置表单
+        function resetForm() {
+            document.getElementById('postForm').reset();
+            currentEditId = null;
+            showMessage('', '');
+        }
+
+        // 显示消息
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            if (!text) {
+                messageDiv.innerHTML = '';
+                return;
+            }
+            messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
+            setTimeout(() => messageDiv.innerHTML = '', 5000);
+        }
+
+        // 页面加载时检查登录
+        checkAuth();
+    </script>
+</body>
+</html>

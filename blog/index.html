@@ -260,7 +260,15 @@
 
         </div>
 
-        <div class="blog-posts">
+        <div class="blog-posts" id="blogPosts">
+            <!-- 文章将从数据库动态加载 -->
+            <div class="loading" style="text-align: center; padding: 40px; color: #666;">
+                <p>加载中...</p>
+            </div>
+        </div>
+
+        <!-- 静态文章（保留作为备份） -->
+        <div class="blog-posts" id="staticPosts" style="display: none;">
             <!-- 最新文章 - November 21, 2025 -->
             <div class="blog-post-item">
                 <a href="website-uptime-monitor-2025.html">
@@ -564,6 +572,81 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Supabase配置
+        const SUPABASE_URL = 'https://shzejekcbemmqfpwijmo.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNoemVqZWtjYmVtbXFmcHdpam1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMjI4MzAsImV4cCI6MjA3OTU5ODgzMH0.lSrFmll1vPAPA_-msJKTFfKYfh_m696l7La7Eg3HBFE';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // 加载博客文章
+        async function loadBlogPosts() {
+            const container = document.getElementById('blogPosts');
+            
+            try {
+                // 从数据库获取已发布的文章
+                const { data: posts, error } = await supabaseClient
+                    .from('blog_posts')
+                    .select('*')
+                    .eq('status', 'published')
+                    .order('published_at', { ascending: false });
+
+                if (error) throw error;
+
+                // 如果数据库有文章，显示数据库文章
+                if (posts && posts.length > 0) {
+                    container.innerHTML = posts.map(post => `
+                        <div class="blog-post-item">
+                            <a href="post.html?slug=${post.slug}">
+                                <h2 class="blog-post-title">${escapeHtml(post.title)}</h2>
+                            </a>
+                            <div class="blog-post-meta">
+                                <span class="blog-post-date">${formatDate(post.published_at)}</span>
+                                <span class="blog-post-author">By ${escapeHtml(post.author_name || 'Admin')}</span>
+                                <span class="blog-post-category">${escapeHtml(post.category)}</span>
+                            </div>
+                            <div class="blog-post-excerpt">
+                                ${escapeHtml(post.excerpt)}
+                            </div>
+                            <a href="post.html?slug=${post.slug}" class="read-more-btn">Read More</a>
+                        </div>
+                    `).join('');
+                } else {
+                    // 如果数据库没有文章，显示静态文章
+                    showStaticPosts();
+                }
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                // 出错时显示静态文章
+                showStaticPosts();
+            }
+        }
+
+        // 显示静态文章
+        function showStaticPosts() {
+            const dynamicContainer = document.getElementById('blogPosts');
+            const staticContainer = document.getElementById('staticPosts');
+            dynamicContainer.style.display = 'none';
+            staticContainer.style.display = 'flex';
+        }
+
+        // 格式化日期
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // HTML转义
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // 页面加载时执行
+        document.addEventListener('DOMContentLoaded', loadBlogPosts);
+    </script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -70,7 +70,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Supabase配置 - 更新为新项目
+        // Supabase配置
         const SUPABASE_URL = 'https://shzejekcbemmqfpwijmo.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNoemVqZWtjYmVtbXFmcHdpam1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMjI4MzAsImV4cCI6MjA3OTU5ODgzMH0.lSrFmll1vPAPA_-msJKTFfKYfh_m696l7La7Eg3HBFE';
 
@@ -102,7 +102,9 @@
                 }
 
                 if (session && session.user) {
-                    // 认证成功
+                    // 认证成功 - 绑定用户数据
+                    await saveUserToDatabase(session.user);
+                    
                     loader.style.display = 'none';
                     message.className = 'message success';
                     message.textContent = `Welcome, ${session.user.email}!`;
@@ -111,7 +113,7 @@
                     localStorage.setItem('supabase_user', JSON.stringify(session.user));
                     localStorage.setItem('supabase_session', JSON.stringify(session));
                     
-                    redirectInfo.textContent = 'Redirecting to homepage...';
+                    redirectInfo.textContent = 'Setting up your account...';
 
                     // 立即重定向到首页（使用完整域名）
                     setTimeout(() => {
@@ -132,12 +134,15 @@
                         }
                         
                         if (newSession) {
+                            // 绑定用户数据
+                            await saveUserToDatabase(newSession.user);
+                            
                             loader.style.display = 'none';
                             message.className = 'message success';
                             message.textContent = `Welcome, ${newSession.user.email}!`;
                             localStorage.setItem('supabase_user', JSON.stringify(newSession.user));
                             localStorage.setItem('supabase_session', JSON.stringify(newSession));
-                            redirectInfo.textContent = 'Redirecting to homepage...';
+                            redirectInfo.textContent = 'Setting up your account...';
                             setTimeout(() => {
                                 window.location.href = 'https://openai2026.com/index.html';
                             }, 1500);
@@ -170,6 +175,44 @@
                 redirectInfo.innerHTML = errorDetails + 
                     '<br><br><a href="login.html" style="color: #4CAF50; text-decoration: underline;">Back to login</a> | ' +
                     '<a href="debug.html" style="color: #2196F3; text-decoration: underline;">Open Debug Tool</a>';
+            }
+        }
+
+        // 将用户信息保存到数据库
+        async function saveUserToDatabase(user) {
+            try {
+                console.log('Saving user to database:', user.id);
+                
+                // 准备用户数据
+                const userData = {
+                    id: user.id,
+                    email: user.email,
+                    full_name: user.user_metadata?.full_name || user.user_metadata?.name || null,
+                    avatar_url: user.user_metadata?.avatar_url || user.user_metadata?.picture || null,
+                    provider: user.app_metadata?.provider || 'google',
+                    last_sign_in: new Date().toISOString(),
+                    updated_at: new Date().toISOString()
+                };
+
+                // 使用 upsert 更新或插入用户数据
+                const { data, error } = await supabaseClient
+                    .from('users')
+                    .upsert(userData, {
+                        onConflict: 'id',
+                        ignoreDuplicates: false
+                    })
+                    .select();
+
+                if (error) {
+                    console.error('Error saving user to database:', error);
+                    // 不抛出错误，允许登录继续
+                    return;
+                }
+
+                console.log('User saved successfully:', data);
+            } catch (err) {
+                console.error('Exception saving user:', err);
+                // 不抛出错误，允许登录继续
             }
         }
 
